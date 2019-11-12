@@ -11,7 +11,7 @@ int tY;    //y-waarde van game over text
 int heartNumber = 3;
 int stopGameTime;
 
-int timer = millis();                 //contains the time from when the game was launched in milliseconds
+int timer;                            //a variable that acts as a timer
 int startTime;                        //contains the time when start was pressed in milliseconds
 
 boolean startGame = false;            //whether the game has started or not
@@ -77,6 +77,9 @@ void gameOver() {      //this function was made by Dylan Kleton
   textSize(150);
   textAlign(CENTER);
   text("Game Over", tX, tY);
+  timer = millis();
+  
+  
 
   scoreObj.countScore(0, 0, 0);
 }
@@ -117,7 +120,7 @@ void draw() {
     obstakel.drawObstakel();
     for (int i = 0; i < enemyNumber; i++) {      //updates, spawns and draws the enemies
       enemyUpdatePosition(i);    //made by Noah Verburg
-      enemySpawner(i);
+      enemySpawner();
       drawEnemies(i);
     }
     for (int i = 0; i< enemyBulletNumber; i++) {      //updates, spawns and draws the bullets
@@ -125,12 +128,12 @@ void draw() {
       enemyBullets[i].drawEnemyBullet(i);
       enemyBullets[i].enemyBulletSpawner();
     }
-    scoreObj.countScore(0, 0, 0); //made by Dylan Kleton
+    scoreObj.countScore(0, 0, 0);         //made by Dylan Kleton
     bullet[0].spawnPlayerBullets();        //spawns player bullets using a for-loop built into the function
     bullet[0].updatePlayerBullets();       //updates player bullets using a for-loop built into the function
     bullet[0].drawPlayerBullets();         //draws player bullets using a for-loop built into the function
     player.movement();                  //updates the position of the player
-    player.player();             //draws the player
+    player.player();                 //draws the player
     heart[0].playerHealth();
     if (heartNumber <= 0) {gameOver(); stop();}
   }
