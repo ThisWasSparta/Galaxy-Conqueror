@@ -9,7 +9,8 @@ class Enemies {
   float eY = 0;    //enemy Y-position
   float eSize; //enemy size
   int eHP;     //enemy health value
-  float orbW;
+
+  float orbW; //this code was written by Noah Verburg
   float orbH;
   float shieldW;
   float shieldH;
@@ -36,16 +37,16 @@ class Enemies {
   float scoutEnemyVelocityFactor = 0.0025;
   float courserEnemyVelocityFactor = 0.0015;
   float goliathEnemyVelocityFactor = 0.00085;
-  
+
   PImage scoutEnemy;                    //sprite for the regular enemy
   PImage courserEnemy;
   PImage goliathEnemy;
   PImage goliathOrb;
-  PImage goliathShield;
-  
+  PImage goliathShield; //code written by Noah Verburg
+
   //int timing;
   int enemyType;
-  
+
   boolean isAlive; //whether or not the enemy is alive
 }
 
@@ -64,7 +65,7 @@ void createEnemy(int type) { //function to create an enemy
   int scoutCheck = enemyRecycle();
   int courserCheck = enemyRecycle();
   int goliathCheck = enemyRecycle();
-  
+
 
   switch(type) {
   case 1:
@@ -138,27 +139,36 @@ void enemyUpdatePosition(int counter) { //function that updates enemy positions 
     enemy[counter].eY = enemy[counter].eY + enemy[counter].eV;
     if (enemy[counter].eY > height + enemy[counter].eH) {
       enemy[counter].isAlive = false;
-      if (enemy[counter].enemyType == 1 && scoreObj.score >= 200) {
+      if (enemy[counter].enemyType == 1) {
         scoreObj.addScore(-200);
-      } else {
-        if (enemy[counter].enemyType == 1 && scoreObj.score <= 200) {
-          scoreObj.score = 0;
-        }
       }
-      if (enemy[counter].enemyType == 2 && scoreObj.score >= 400) {
+      if (enemy[counter].enemyType == 2) {
         scoreObj.addScore(-400);
-      } else {
-        if (enemy[counter].enemyType == 2 && scoreObj.score <= 400) {
-          scoreObj.score = 0;
-        }
       }
-      if (enemy[counter].enemyType == 3 && scoreObj.score >= 600) {
+      if (enemy[counter].enemyType == 3) {
         scoreObj.addScore(-600);
-      } else {
-        if (enemy[counter].enemyType == 3 && scoreObj.score <= 600) {
-          scoreObj.score = 0;
-        }
       }
+      /*if (enemy[counter].enemyType == 1 && scoreObj.score >= 200) {
+       scoreObj.addScore(-200);
+       } else {
+       if (enemy[counter].enemyType == 1 && scoreObj.score <= 200) {
+       scoreObj.score = 0;
+       }
+       }
+       if (enemy[counter].enemyType == 2 && scoreObj.score >= 400) {
+       scoreObj.addScore(-400);
+       } else {
+       if (enemy[counter].enemyType == 2 && scoreObj.score <= 400) {
+       scoreObj.score = 0;
+       }
+       }
+       if (enemy[counter].enemyType == 3 && scoreObj.score >= 600) {
+       scoreObj.addScore(-600);
+       } else {
+       if (enemy[counter].enemyType == 3 && scoreObj.score <= 600) {
+       scoreObj.score = 0;
+       }
+       }*/
     }
   }
 }
@@ -188,7 +198,6 @@ void drawEnemies(int counter) { //function that draws enemies on the given x and
 }
 
 void playerEnemyCollision() {
-  
 }
 
 int enemyShootCheck() {                       //function that checks to see which element of the array can used to fire a projectile
@@ -202,15 +211,15 @@ int enemyShootCheck() {                       //function that checks to see whic
 
 void initializeEnemyArrays() {
 
-  for(int counter = 0; counter < 20; counter++) {
-      enemy[counter] = new Enemies();    
-      enemy[counter].eW = 0;
-      enemy[counter].eH = 0;
-      enemy[counter].eV = 0;
-      enemy[counter].eX = 0;
-      enemy[counter].eY = 0;
-      enemy[counter].eHP = 0;
-      enemy[counter].isAlive = false;
+  for (int counter = 0; counter < 20; counter++) {
+    enemy[counter] = new Enemies();    
+    enemy[counter].eW = 0;
+    enemy[counter].eH = 0;
+    enemy[counter].eV = 0;
+    enemy[counter].eX = 0;
+    enemy[counter].eY = 0;
+    enemy[counter].eHP = 0;
+    enemy[counter].isAlive = false;
   }
 }
 

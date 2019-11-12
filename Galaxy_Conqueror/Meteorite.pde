@@ -1,3 +1,4 @@
+//Deze class is geschreven door Dennis
 class Meteoriet {
   float x, y, startX, startY;
   float size;

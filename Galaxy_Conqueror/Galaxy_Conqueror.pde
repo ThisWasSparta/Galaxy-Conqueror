@@ -37,7 +37,7 @@ Health[] heart = new Health[heartNumber];
 void setup() {
   fullScreen(P3D);             //fullscreen and hardware acceleration
   imageMode(CENTER);           //the image is at the center of the given coordinates
-  frameRate(30);
+  frameRate(60);
   //Font
   player = new SpaceShip();
   scoreObj = new Score();

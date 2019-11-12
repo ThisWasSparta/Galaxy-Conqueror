@@ -1,3 +1,4 @@
+//deze class is geschreven door Dennis
 class Obstakel {
 
   int meteorietNumber = 6;

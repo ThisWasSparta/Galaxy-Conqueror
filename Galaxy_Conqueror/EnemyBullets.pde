@@ -1,4 +1,4 @@
-//this class was written by Floris Kuiper/*
+//this class was written by Floris Kuiper
 class EnemyBullets {
   float bW;          //bullet width
   float bH;          //bullet height
