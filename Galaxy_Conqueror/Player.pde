@@ -16,10 +16,17 @@ class SpaceShip {
   float pV;    //player velocity
   float pX;    //player X-position
   float pY;    //player Y-position
+  float defaultPlayerWidth = 128 * sizeFactor;
+  float defaultPlayerHeight = 118 * sizeFactor;
+  float playerVelocityFactor = 0.006;   //factor which is used to get the desired player velocity compared to the width of the screen
   
   int weapon = 1;
   int weaponState = 1;
   int skinCycle = 0;
+  
+  PImage weapon1;                       //weapon1, weapon2 and weapon3 are the sprites for the player depending on what gun they are using
+  PImage weapon2;
+  PImage weapon3;
   
   boolean setAction(int k, boolean b){    //this boolean function detects the input of keys, and makes the other booleans true or false accordingly
     switch (k) {
@@ -67,6 +74,21 @@ class SpaceShip {
     if (weaponState == 1) {
       weapon1 = loadImage("Spaceship Weapon 1-1.png");
       if (frameCount - skinCycle > 10) {weaponState = 2;}
+    }
+  }
+  
+  void movement() {    //This function was written by Noah Verburg
+    if (player.goLeft && player.pX > player.pW/2) {
+      player.pX -= player.pV;
+    }
+    if (player.goRight && player.pX < width - player.pW/2) {
+      player.pX += player.pV;
+    }
+    if (player.goUp && player.pY > height * 0.75) {
+      player.pY -= player.pV;
+    }
+    if (player.goDown && player.pY < height/1.01 - player.pH/2) {
+      player.pY += player.pV;
     }
   }
 }

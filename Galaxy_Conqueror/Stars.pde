@@ -23,4 +23,19 @@ class BackgroundStars {
       x = random(0, width);
     }
   }
+  
+  void starsAndStartMenu() {      //This function was written by Lucas van Wonderen
+    //Sterren tekenen
+    for (int i = 0; i < starsNumber; i ++) {    //this for loop draws the stars on the background
+      Star[i].show();
+    }
+    if (!startGame) {                           //this if-statement draws the menu if the game hasn't started yet
+      //Titel
+      titel.textShow();
+      //Start button
+      titel.startGame();
+      titel.settingGame();
+      titel.quitGame();
+    }
+  }
 }

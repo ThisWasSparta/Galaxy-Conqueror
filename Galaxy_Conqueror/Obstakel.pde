@@ -38,7 +38,7 @@ class Obstakel {
           if (meteorietHit) {
             meteorieten.remove(i);
             scoreObj.addScore(25);
-            if (lives < 3) {lives += 1;}
+            if (heartNumber < 3) {heartNumber += 1;}
             break;
           }
         }

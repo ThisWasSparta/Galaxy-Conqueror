@@ -8,6 +8,9 @@ class EnemyBullets {
   float bSize;       //bullet size
   int bulletVisibility; //used to make bullets disappear upon colliding with an enemy
   boolean isOnScreen;
+  int lastBulletSpawn;
+  
+  PImage enemyBullet;
   
   int bulletRecycle() {                                  //function that checks to see which element of the array can be recycled to be used to store another bullet
     for (int counter = 0; counter < 20; counter++) {     //for loop that runs through the array to check each element if it can be recycled or not based on if the bullet has killed an enemy or gone offscreen
@@ -47,7 +50,7 @@ class EnemyBullets {
         enemyBullets[counter].isOnScreen = false;
       }
       if (enemyBullets[counter].bX > player.pX - player.pW/2 && enemyBullets[counter].bX < player.pX + player.pW/2 && enemyBullets[counter].bY > player.pY - player.pH/2 && enemyBullets[counter].bY < player.pY + player.pH/2) {
-        lives -= 1;
+        heartNumber -= 1;
         enemyBullets[counter].bY = height * 2;
       }
     }
