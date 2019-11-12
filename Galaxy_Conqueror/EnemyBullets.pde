@@ -1,4 +1,4 @@
-//this class was written by Floris Kuiper
+//this class was written by Floris Kuiper/*
 class EnemyBullets {
   float bW;          //bullet width
   float bH;          //bullet height
@@ -33,7 +33,7 @@ class EnemyBullets {
     }
   }
   
-  void createEnemyBullet() { //function to create an enemy
+  void createEnemyBullet() { //function to create an enemy, created by Floris Kuiper
     int bulletCheck = bulletRecycle();
     int enemyShooter = enemyShootCheck();
     if (bulletCheck != -1 && enemyShooter != -1) { //check to see if the returned element of the array wasn't either in use or something went wrong
@@ -63,7 +63,7 @@ class EnemyBullets {
     }
   }
   
-  void enemyBulletSpawner() { //function that periodically causes enemy bullets to appear on screen
+  void enemyBulletSpawner() { //function that periodically causes enemies to appear on screen
     if (startGame) {
       if (startTime <= timer - 2000) {
         if (lastBulletSpawn <= timer - random(1250, 3500)) {

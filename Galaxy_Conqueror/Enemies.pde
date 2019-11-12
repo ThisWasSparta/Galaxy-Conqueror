@@ -9,8 +9,7 @@ class Enemies {
   float eY = 0;    //enemy Y-position
   float eSize; //enemy size
   int eHP;     //enemy health value
-  
-  float orbW; //this code was written by Noah Verburg
+  float orbW;
   float orbH;
   float shieldW;
   float shieldH;
@@ -42,7 +41,7 @@ class Enemies {
   PImage courserEnemy;
   PImage goliathEnemy;
   PImage goliathOrb;
-  PImage goliathShield; //code written by Noah Verburg ends here
+  PImage goliathShield;
   
   //int timing;
   int enemyType;
@@ -50,12 +49,12 @@ class Enemies {
   boolean isAlive; //whether or not the enemy is alive
 }
 
-void enemySpawner() { //function that periodically causes enemies to appear on screen
+void enemySpawner(int counter) { //function that periodically causes enemies to appear on screen
   if (startGame) {
     if (startTime <= timer - 2000) {
       if (lastSpawn <= timer - random(1250, 3500)) {
         lastSpawn = timer;
-        createEnemy(typeSelector()); //creates an enemy in the right array according to the type rolled by the type selector
+        createEnemy(typeSelector()); //creates an enemy in the right array according to the type rolled by the type generator
       }
     }
   }
