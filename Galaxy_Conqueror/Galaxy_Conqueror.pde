@@ -5,7 +5,7 @@
 int starsNumber = 200;                //Star number
 int playerBulletNumber = 100;
 int enemyNumber = 20;
-int particleNumber = 500;
+int enemyExplosionParticleNumber = 500;
 int enemyBulletNumber = 20;
 int tX;    //x-waarde van game over text
 int tY;    //y-waarde van game over text
@@ -34,7 +34,7 @@ PlayerBullets[] bullet = new PlayerBullets[playerBulletNumber];              //t
 Enemies[] enemy = new Enemies[enemyNumber];                     //three arrays to store data about the 3 different enemy types
 EnemyBullets[] enemyBullets = new EnemyBullets[enemyBulletNumber];
 Health[] heart = new Health[heartNumber];
-ExplosionPart[] particle = new ExplosionPart[particleNumber];
+ExplosionPart[] particle = new ExplosionPart[enemyExplosionParticleNumber];
 
 void setup() {
   fullScreen(P3D);             //fullscreen and hardware acceleration
@@ -63,7 +63,7 @@ void setup() {
   for (int i = 0; i < heartNumber; i++){
     heart[i] = new Health();
   }
-  for (int i = 0; i < particleNumber; i++) {
+  for (int i = 0; i < enemyExplosionParticleNumber; i++) {
     particle[i] = new ExplosionPart();
   }
 }
@@ -137,7 +137,7 @@ void draw() {
     player.movement();                  //updates the position of the player
     player.player();             //draws the player
     heart[0].playerHealth();
-    for (int i = 0; i < particleNumber; i++) {
+    for (int i = 0; i < enemyExplosionParticleNumber; i++) {
       if (particle[i].isAlive) {
         particle[i].updateParticles(i);
         particle[i].drawParticles(i);
