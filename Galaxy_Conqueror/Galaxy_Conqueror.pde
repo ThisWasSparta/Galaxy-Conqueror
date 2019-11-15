@@ -5,6 +5,7 @@
 int starsNumber = 200;                //Star number
 int playerBulletNumber = 100;
 int enemyNumber = 20;
+int particleNumber = 500;
 int enemyBulletNumber = 20;
 int tX;    //x-waarde van game over text
 int tY;    //y-waarde van game over text
@@ -33,6 +34,7 @@ PlayerBullets[] bullet = new PlayerBullets[playerBulletNumber];              //t
 Enemies[] enemy = new Enemies[enemyNumber];                     //three arrays to store data about the 3 different enemy types
 EnemyBullets[] enemyBullets = new EnemyBullets[enemyBulletNumber];
 Health[] heart = new Health[heartNumber];
+ExplosionPart[] particle = new ExplosionPart[particleNumber];
 
 void setup() {
   fullScreen(P3D);             //fullscreen and hardware acceleration
@@ -60,6 +62,9 @@ void setup() {
   }
   for (int i = 0; i < heartNumber; i++){
     heart[i] = new Health();
+  }
+  for (int i = 0; i < particleNumber; i++) {
+    particle[i] = new ExplosionPart();
   }
 }
 
@@ -120,11 +125,11 @@ void draw() {
       enemySpawner(i);
       drawEnemies(i);
     }
-    for (int i = 0; i< enemyBulletNumber; i++) {      //updates, spawns and draws the bullets
+    /*for (int i = 0; i< enemyBulletNumber; i++) {      //updates, spawns and draws the bullets
       enemyBullets[i].enemyBulletUpdatePosition(i);
       enemyBullets[i].drawEnemyBullet(i);
       enemyBullets[i].enemyBulletSpawner();
-    }
+    }*/
     scoreObj.countScore(0, 0, 0); //made by Dylan Kleton
     bullet[0].spawnPlayerBullets();        //spawns player bullets using a for-loop built into the function
     bullet[0].updatePlayerBullets();       //updates player bullets using a for-loop built into the function
@@ -132,6 +137,12 @@ void draw() {
     player.movement();                  //updates the position of the player
     player.player();             //draws the player
     heart[0].playerHealth();
+    for (int i = 0; i < particleNumber; i++) {
+      if (particle[i].isAlive) {
+        particle[i].updateParticles(i);
+        particle[i].drawParticles(i);
+      }
+    }
     if (heartNumber <= 0) {gameOver(); stop();}
   }
   

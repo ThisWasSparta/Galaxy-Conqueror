@@ -51,6 +51,8 @@ class PlayerBullets {
             if (enemy[t].eHP == 0){
               enemy[t].isAlive = false;
               scoreObj.addScore(50);
+              particle[0].particlesPerTurn = 5;
+              particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
             }
         }
         if (enemy[t].enemyType == 2 && bullet[i].bX < enemy[t].eX + enemy[t].courserHitboxX && bullet[i].bX > enemy[t].eX - enemy[t].courserHitboxX && bullet[i].bY < enemy[t].eY + enemy[t].courserHitboxY && bullet[i].bY > enemy[t].eY - enemy[t].courserHitboxY && enemy[t].isAlive == true) {
@@ -59,6 +61,8 @@ class PlayerBullets {
             if (enemy[t].eHP == 0){
               enemy[t].isAlive = false;
               scoreObj.addScore(100);
+              particle[0].particlesPerTurn = 10;
+              particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
             }
         }
         if (enemy[t].enemyType == 3 && bullet[i].bX < enemy[t].eX + enemy[t].goliathHitboxX && bullet[i].bX > enemy[t].eX - enemy[t].goliathHitboxX && bullet[i].bY < enemy[t].eY + enemy[t].goliathHitboxY && bullet[i].bY > enemy[t].eY - enemy[t].goliathHitboxY && enemy[t].isAlive == true) {
@@ -67,6 +71,8 @@ class PlayerBullets {
             if (enemy[t].eHP == 0){
               enemy[t].isAlive = false;
               scoreObj.addScore(150);
+              particle[0].particlesPerTurn = 15;
+              particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
             }
         }
       }
