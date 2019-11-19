@@ -1,5 +1,7 @@
 /*This pde file was written by Floris Kuiper*/
 int lastSpawn; //time in milliseconds when the last enemy was spawned
+int lastCollision = 0; //time in miliseconds of last time the player collided with an enemy
+int collisionFlag = 0; //flag to keep track of if an enemy player collision has happened yet or not
 
 class Enemies {
   float eW;    //enemy width
@@ -148,27 +150,6 @@ void enemyUpdatePosition(int counter) { //function that updates enemy positions 
       if (enemy[counter].enemyType == 3) {
         scoreObj.addScore(-600);
       }
-      /*if (enemy[counter].enemyType == 1 && scoreObj.score >= 200) {
-       scoreObj.addScore(-200);
-       } else {
-       if (enemy[counter].enemyType == 1 && scoreObj.score <= 200) {
-       scoreObj.score = 0;
-       }
-       }
-       if (enemy[counter].enemyType == 2 && scoreObj.score >= 400) {
-       scoreObj.addScore(-400);
-       } else {
-       if (enemy[counter].enemyType == 2 && scoreObj.score <= 400) {
-       scoreObj.score = 0;
-       }
-       }
-       if (enemy[counter].enemyType == 3 && scoreObj.score >= 600) {
-       scoreObj.addScore(-600);
-       } else {
-       if (enemy[counter].enemyType == 3 && scoreObj.score <= 600) {
-       scoreObj.score = 0;
-       }
-       }*/
     }
   }
 }
@@ -197,8 +178,21 @@ void drawEnemies(int counter) { //function that draws enemies on the given x and
   }
 }
 
-void playerEnemyCollision() {
-}
+/*void playerEnemyCollision() {
+  for (int i = 0; i < enemy.length; i++) {
+    if (player.pX > enemy[i].eX && player.pX < enemy[i].eX + enemy[i].eSize && player.pY > enemy[i].eY && player.pY < enemy[i].eY + enemy[i].eSize) {
+      if (collisionFlag == 0) {
+        lastCollision = millis();
+        heartNumber -= 1;
+        collisionFlag = 1;
+        if (lastCollision >= (timer - 2000) && collisionFlag == 1) {
+          lastCollision = millis();
+          heartNumber -= 1;
+        }
+      }
+    }
+  }
+}*/
 
 int enemyShootCheck() {                       //function that checks to see which element of the array can used to fire a projectile
   for (int counter = 0; counter < 20; counter++) {     //for loop that runs through the array to check each element if it can be recycled or not based on if the enemy has been killed/went offscreen
