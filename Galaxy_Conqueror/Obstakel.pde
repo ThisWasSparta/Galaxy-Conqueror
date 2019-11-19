@@ -33,7 +33,7 @@ class Obstakel {
       }
 
       for (int t = 0; t < playerBulletNumber; t++) {
-        if (!meteorietHit && bullet[t].bX < meteorieten.get(i).hitBoxX + meteorieten.get(i).hitBoxW && bullet[t].bX > meteorieten.get(i).hitBoxX && bullet[t].bY < meteorieten.get(i).hitBoxY + meteorieten.get(i).hitBoxH && bullet[t].bY > meteorieten.get(i).hitBoxY)
+        if (!meteorietHit && weapon[t].bX < meteorieten.get(i).hitBoxX + meteorieten.get(i).hitBoxW && weapon[t].bX > meteorieten.get(i).hitBoxX && weapon[t].bY < meteorieten.get(i).hitBoxY + meteorieten.get(i).hitBoxH && weapon[t].bY > meteorieten.get(i).hitBoxY)
         {
           meteorietHit = true;    //als de player bullet de meteoriet raakt, dan is deze boolean true
           if (meteorietHit) {

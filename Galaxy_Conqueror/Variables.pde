@@ -28,19 +28,19 @@ class Variable {
       }
   
       for (int i = 0; i < playerBulletNumber; i++) {
-        bullet[i].lightBullet = loadImage("LightBullet.png");
-        bullet[i].bX = width/2;
-        bullet[i].bY = height * -2;
+        weapon[i].lightBullet = loadImage("LightBullet.png");
+        weapon[i].bX = width/2;
+        weapon[i].bY = height * -2;
         wScale = width/1920;
         hScale = height/1080;
-        bullet[i].bW = bullet[i].defaultBulletWidth * wScale;
-        bullet[i].bH = bullet[i].defaultBulletHeight * hScale;
-        bullet[i].bV = bullet[i].bulletVelocityFactor * width;
+        weapon[i].bW = weapon[i].defaultBulletWidth * wScale;
+        weapon[i].bH = weapon[i].defaultBulletHeight * hScale;
+        weapon[i].bV = weapon[i].bulletVelocityFactor * width;
       }
       for (int i = 0; i < enemyBulletNumber; i++) {
-        enemyBullets[i].bW = bullet[i].defaultBulletWidth * wScale * 1.2;
-        enemyBullets[i].bH = bullet[i].defaultBulletHeight * hScale * 1.2;
-        enemyBullets[i].bV = bullet[i].bulletVelocityFactor * width;
+        enemyBullets[i].bW = weapon[i].defaultBulletWidth * wScale * 1.2;
+        enemyBullets[i].bH = weapon[i].defaultBulletHeight * hScale * 1.2;
+        enemyBullets[i].bV = weapon[i].bulletVelocityFactor * width;
         enemyBullets[i].enemyBullet = loadImage("EnemyBullet.png");
       }
   

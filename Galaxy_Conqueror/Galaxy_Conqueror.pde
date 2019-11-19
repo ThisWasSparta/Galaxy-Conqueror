@@ -33,7 +33,7 @@ Variable variables;
 
 //Aantal sterren
 BackgroundStars[] Star = new BackgroundStars[starsNumber];  //the stars for the background
-PlayerBullets[] bullet = new PlayerBullets[playerBulletNumber];              //the bullets for the player
+PlayerWeapons[] weapon = new PlayerWeapons[playerBulletNumber];              //the bullets for the player
 Enemies[] enemy = new Enemies[enemyNumber];                     //three arrays to store data about the 3 different enemy types
 EnemyBullets[] enemyBullets = new EnemyBullets[enemyBulletNumber];
 Health[] heart = new Health[heartNumber];
@@ -56,7 +56,7 @@ void setup() {
     Star[i] = new BackgroundStars();
   }
   for (int i = 0; i < playerBulletNumber; i++) {
-    bullet[i] = new PlayerBullets();
+    weapon[i] = new PlayerWeapons();
   }
   for (int i = 0; i < enemyNumber; i++) {
     enemy[i] = new Enemies();
@@ -142,18 +142,29 @@ void draw() {
       enemyBullets[i].enemyBulletSpawner();
     }
     scoreObj.countScore(0, 0, 0); //made by Dylan Kleton
-    bullet[0].spawnPlayerBullets();        //spawns player bullets using a for-loop built into the function
-    bullet[0].updatePlayerBullets();       //updates player bullets using a for-loop built into the function
-    bullet[0].drawPlayerBullets();         //draws player bullets using a for-loop built into the function
-    player.playerUpdate();                  //updates the position of the player
-    player.player();             //draws the player
+    
+    if (player.weapon == 1) {
+      weapon[0].spawnPlayerBullets();        //spawns player bullets using a for-loop built into the function
+    }
+    weapon[0].updatePlayerBullets();       //updates player bullets using a for-loop built into the function
+    weapon[0].drawPlayerBullets();         //draws player bullets using a for-loop built into the function
+    
+    if (player.weapon == 2) {
+      weapon[0].updatePlayerLaser();
+    }
+    
+    player.playerUpdate();                 //updates the position of the player
+    player.player();                       //draws the player
+    
     heart[0].playerHealth();
+    
     for (int i = 0; i < enemyExplosionParticleNumber; i++) {
       if (particle[i].isAlive) {
         particle[i].updateParticles(i);
         particle[i].drawParticles(i);
       }
     }
+    
     enemyShootParticle[0].updateParticles();
     enemyShootParticle[0].drawParticles();
     if (heartNumber <= 0) {
