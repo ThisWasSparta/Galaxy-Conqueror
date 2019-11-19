@@ -1,6 +1,6 @@
 class Variable {
   void loadGameValues() {                    //This function was written by Noah Verburg
-    if (!startGame) {
+    if (!valuesLoaded) {
       player.pX = width/2;                        //here are all the variables that
       player.pY = height - height / 5;            //can't be defined in setup() or are
       wScale = width/1920;                           //easier to find in here than in setup()
@@ -45,8 +45,9 @@ class Variable {
       }
   
       player.weapon1 = loadImage("Spaceship Weapon 1-1.png");
-      //player.weapon2 = loadImage("Spaceship Weapon 2-1.png");
+      player.weapon2 = loadImage("Spaceship Weapon 2-1.png");
       //player.weapon3 = loadImage("Spaceship Weapon 3-1.png");
+      valuesLoaded = true;
     }
   }
 }
