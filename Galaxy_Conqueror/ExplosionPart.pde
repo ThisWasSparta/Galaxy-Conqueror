@@ -8,7 +8,6 @@ class ExplosionPart {
   float particleSize;
   int particlesPerTurn = 10;
   int particleTurn = 0;
-  int cooldown;
   
   void spawnParticles(int partNr) {
     particle[partNr].particleSize = random(10, 15);
@@ -56,7 +55,6 @@ class ExplosionPart {
           spawnParticles(particleTurn);
           particleTurn++;
         }
-        cooldown = millis();
       }
     }
   }
