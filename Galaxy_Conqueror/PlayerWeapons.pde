@@ -109,7 +109,7 @@ class PlayerWeapons {
           weapon[playerBulletTurn].bX = player.pX - player.defaultPlayerWidth / 2 * 0.891;
         }
         weapon[playerBulletTurn].bY = player.pY - player.defaultPlayerHeight / 2 * 0.678;
-        playerBulletTurn++;
+        playerLaserTurn++;
       }
       if (playerBulletTurn > 49) {playerBulletTurn = 0;}
     }
