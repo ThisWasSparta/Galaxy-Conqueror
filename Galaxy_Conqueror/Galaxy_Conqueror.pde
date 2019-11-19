@@ -7,6 +7,7 @@ int playerBulletNumber = 100;
 int enemyNumber = 20;
 int enemyExplosionParticleNumber = 500;
 int enemyBulletNumber = 20;
+int enemyMoveParticleNumber = 200;
 int enemyShootParticleNumber = 25;
 int tX;    //x-waarde van game over text
 int tY;    //y-waarde van game over text
@@ -42,6 +43,7 @@ EnemyBullets[] enemyBullets = new EnemyBullets[enemyBulletNumber];
 Health[] heart = new Health[heartNumber];
 ExplosionPart[] particle = new ExplosionPart[enemyExplosionParticleNumber];
 EnemyShootParticle[] enemyShootParticle = new EnemyShootParticle[enemyShootParticleNumber];
+EnemyMoveParticles[] enemyMoveParticle = new EnemyMoveParticles[enemyMoveParticleNumber];
 
 void setup() {
   fullScreen(P3D);             //fullscreen and hardware acceleration
@@ -76,6 +78,9 @@ void setup() {
   }
   for (int i = 0; i < enemyShootParticleNumber; i++) {
     enemyShootParticle[i] = new EnemyShootParticle();
+  }
+  for (int i = 0; i < enemyMoveParticleNumber; i++) {
+    enemyMoveParticle[i] = new EnemyMoveParticles();
   }
 }
 

@@ -105,7 +105,7 @@ void createEnemy(int type) { //function to create an enemy
       enemy[goliathCheck].eV = enemy[goliathCheck].goliathEnemyVelocityFactor * width;
       enemy[goliathCheck].eX = random(enemy[goliathCheck].eW / 2, width - enemy[goliathCheck].eW);
       enemy[goliathCheck].eY = -enemy[goliathCheck].eH;
-      enemy[goliathCheck].eHP = 300;
+      enemy[goliathCheck].eHP = 260;
       enemy[goliathCheck].isAlive = true;
     }
     break;
