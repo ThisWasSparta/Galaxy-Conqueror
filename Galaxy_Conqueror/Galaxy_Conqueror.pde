@@ -21,6 +21,8 @@ boolean startGame = false;            //whether the game has started or not
 
 boolean valuesLoaded = false;
 
+boolean nameScreen;
+
 float sizeFactor = 0.8;
 float wScale;                         //width scale used to adjust the width of images
 float hScale;                         //height scale used to adjust the height of images
@@ -150,8 +152,10 @@ void draw() {
     weapon[0].drawPlayerBullets();         //draws player bullets using a for-loop built into the function
     
     if (player.weapon == 2) {
-      weapon[0].updatePlayerLaser();
+      weapon[0].spawnPlayerLaser();
     }
+    weapon[0].updatePlayerLaser();
+    weapon[0].drawPlayerLaser();
     
     player.playerUpdate();                 //updates the position of the player
     player.player();                       //draws the player

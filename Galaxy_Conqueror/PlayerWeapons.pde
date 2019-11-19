@@ -12,10 +12,20 @@ class PlayerWeapons {
   float lY1;
   float lY2;
   
+  int laserStrength = 1;
+  int laserStrengthTimer = 0;
+  
   boolean bulletIsOnScreen = false;
+  boolean laserIsAlive = false;
+  
   float defaultBulletWidth = 10 * sizeFactor;
   float defaultBulletHeight = 20 * sizeFactor;
+  
+  float defaultLaserWidth = 10 * sizeFactor;
+  float defaultLaserHeight = 60 * sizeFactor;
+  
   PImage lightBullet;                   //sprite for the regular bullet of weapon1
+  PImage laser;
   
   final int PLAYER_BULLET_PER_SALVO = 2;
   int playerBulletTurn = 0;
@@ -25,7 +35,7 @@ class PlayerWeapons {
   
   final int PLAYER_LASER_PER_SALVO = 2;
   int playerLaserTurn = 0;
-  int playerLaserFireRate = 300;
+  int playerLaserFireRate = 1200;
   
   void spawnPlayerBullets() {                          //This function was written by Noah Verburg
       if (player.isShooting && !weapon[playerBulletTurn].bulletIsOnScreen && millis() - playerBulletFireRate > reloadTime) {  //if the shot-button is pressed and the bullet that is supposed to
@@ -100,26 +110,69 @@ class PlayerWeapons {
   }
   
   void spawnPlayerLaser() {
-    if (player.isShooting && reloadTime + playerLaserFireRate == millis()) {
-      reloadTime = millis();
-      for (int i = 0; i < PLAYER_LASER_PER_SALVO; i++) {
-        if (playerLaserTurn%2 == 0) {                                                     //if the current bullet's number is an even number, it spawns  in the
-          weapon[playerBulletTurn].bX = player.pX + player.defaultPlayerWidth / 2 * 0.891;        //left gun, otherwise it spawns in the right turret
-        } else {
-          weapon[playerBulletTurn].bX = player.pX - player.defaultPlayerWidth / 2 * 0.891;
+    for (int i = 0; i < 2; i++) {
+      if (player.isShooting && reloadTime + playerLaserFireRate < millis() && !weapon[i].laserIsAlive) {
+        reloadTime = millis();
+        laserStrengthTimer = millis();
+        for (int e = 0; e < PLAYER_LASER_PER_SALVO; e++) {
+          if (playerLaserTurn%2 == 0) {                                                     //if the current bullet's number is an even number, it spawns  in the
+            weapon[playerLaserTurn].lX = player.pX + player.defaultPlayerWidth / 2 * 0.891;        //left gun, otherwise it spawns in the right turret
+          } else {
+            weapon[playerLaserTurn].lX = player.pX - player.defaultPlayerWidth / 2 * 0.891;
+          }
+          weapon[playerLaserTurn].lY1 = player.pY - player.defaultPlayerHeight / 2 * 0.758;
+          weapon[playerLaserTurn].lY2 = weapon[playerLaserTurn].lY1 - lH;
+          weapon[playerLaserTurn].laserIsAlive = true;
+          playerLaserTurn++;
         }
-        weapon[playerBulletTurn].bY = player.pY - player.defaultPlayerHeight / 2 * 0.678;
-        playerLaserTurn++;
+        if (playerLaserTurn > 1) {playerLaserTurn = 0;}
       }
-      if (playerBulletTurn > 49) {playerBulletTurn = 0;}
     }
   }
   
   void updatePlayerLaser() {
-    
+    for (int i = 0; i < 2; i++) {
+      if (weapon[i].laserIsAlive) {
+        if (i%2 == 0) {                                                     //if the current bullet's number is an even number, it spawns  in the
+          weapon[i].lX = player.pX + player.defaultPlayerWidth / 2 * 0.891;        //left gun, otherwise it spawns in the right turret
+        } else {
+          weapon[i].lX = player.pX - player.defaultPlayerWidth / 2 * 0.891;
+        }
+        weapon[i].lY1 = player.pY - player.defaultPlayerHeight / 2 * 0.758;
+        weapon[i].lY2 = weapon[i].lY1 - lH;
+        
+        if (weapon[i].laserStrengthTimer + 100 < millis()) {
+          if (weapon[i].laserStrength == 1) {
+            weapon[i].laser = loadImage("Player Laser 1.png");
+          }
+          if (weapon[i].laserStrength == 2) {
+            weapon[i].laser = loadImage("Player Laser 2.png");
+          }
+          if (weapon[i].laserStrength == 3) {
+            weapon[i].laser = loadImage("Player Laser 3.png");
+          }
+          if (weapon[i].laserStrength == 4) {
+            weapon[i].laser = loadImage("Player Laser 2.png");
+          }
+          if (weapon[i].laserStrength == 5) {
+            weapon[i].laser = loadImage("Player Laser 1.png");
+          }
+          weapon[i].laserStrengthTimer = millis();
+          weapon[i].laserStrength += 1;
+          if (weapon[i].laserStrength == 6) {
+            weapon[i].laserStrength = 1;
+            weapon[i].laserIsAlive = false;
+          }
+        }
+      }
+    }
   }
   
   void drawPlayerLaser() {
-    
+    for (int i = 0; i < 2; i++) {
+      if (weapon[i].laserIsAlive) {
+        image(weapon[i].laser, weapon[i].lX, weapon[i].lY1 - weapon[i].lH/2, weapon[i].lW, weapon[i].lH);
+      }
+    }
   }
 }

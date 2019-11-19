@@ -29,6 +29,7 @@ class Variable {
   
       for (int i = 0; i < playerBulletNumber; i++) {
         weapon[i].lightBullet = loadImage("LightBullet.png");
+        weapon[i].laser = loadImage("Player Laser 1.png");
         weapon[i].bX = width/2;
         weapon[i].bY = height * -2;
         wScale = width/1920;
@@ -36,6 +37,12 @@ class Variable {
         weapon[i].bW = weapon[i].defaultBulletWidth * wScale;
         weapon[i].bH = weapon[i].defaultBulletHeight * hScale;
         weapon[i].bV = weapon[i].bulletVelocityFactor * width;
+        
+        weapon[i].lW = weapon[i].defaultLaserWidth * wScale;
+        weapon[i].lH = height;
+        weapon[i].lX = width * 2;
+        weapon[i].lY1 = height;
+        weapon[i].lY2 = 0;
       }
       for (int i = 0; i < enemyBulletNumber; i++) {
         enemyBullets[i].bW = weapon[i].defaultBulletWidth * wScale * 1.2;

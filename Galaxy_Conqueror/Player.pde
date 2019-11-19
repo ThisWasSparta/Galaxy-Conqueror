@@ -33,37 +33,6 @@ class SpaceShip {
   PImage weapon2;
   PImage weapon3;
   
-  boolean setAction(int k, boolean b){    //this boolean function detects the input of keys, and makes the other booleans true or false accordingly
-    switch (k) {
-    case 'w':
-      return goUp = b;
-    
-    case 'a':
-      return goLeft = b;
-   
-    case 's':
-      return goDown = b;
-   
-    case 'd':
-      return goRight = b;
-   
-    case 'j':
-       return isShooting = b;
-       
-    case 'l':
-      return nextWeapon = b;
-      
-    case 't':
-      return stop = b;
-      
-    case 'k':
-     return exitgame = b;
-     
-    default:
-      return b;
-    }
-  }
-  
   void player() {          //this code detects what weapon the player is currently using
     if (weapon == 1) {
       image(weapon1, pX, pY, pW, pH);
