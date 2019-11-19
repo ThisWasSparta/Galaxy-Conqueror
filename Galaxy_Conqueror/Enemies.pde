@@ -79,7 +79,7 @@ void createEnemy(int type) { //function to create an enemy
       enemy[scoutCheck].eV = enemy[scoutCheck].scoutEnemyVelocityFactor * width;
       enemy[scoutCheck].eX = random(enemy[scoutCheck].eW / 2, width - enemy[scoutCheck].eW);
       enemy[scoutCheck].eY = -enemy[scoutCheck].eH;
-      enemy[scoutCheck].eHP = 2;
+      enemy[scoutCheck].eHP = 30;
       enemy[scoutCheck].isAlive = true;
     }
     break;
@@ -92,7 +92,7 @@ void createEnemy(int type) { //function to create an enemy
       enemy[courserCheck].eV = enemy[courserCheck].courserEnemyVelocityFactor * width;
       enemy[courserCheck].eX = random(enemy[courserCheck].eW / 2, width - enemy[courserCheck].eW);
       enemy[courserCheck].eY = -enemy[courserCheck].eH;
-      enemy[courserCheck].eHP = 4;
+      enemy[courserCheck].eHP = 110;
       enemy[courserCheck].isAlive = true;
     }
     break;
@@ -105,7 +105,7 @@ void createEnemy(int type) { //function to create an enemy
       enemy[goliathCheck].eV = enemy[goliathCheck].goliathEnemyVelocityFactor * width;
       enemy[goliathCheck].eX = random(enemy[goliathCheck].eW / 2, width - enemy[goliathCheck].eW);
       enemy[goliathCheck].eY = -enemy[goliathCheck].eH;
-      enemy[goliathCheck].eHP = 12;
+      enemy[goliathCheck].eHP = 300;
       enemy[goliathCheck].isAlive = true;
     }
     break;

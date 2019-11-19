@@ -32,6 +32,7 @@ SpaceShip player;                     //Dit is de player
 Titel titel;
 Score scoreObj;
 Variable variables;
+Controls controls;
 
 //Aantal sterren
 BackgroundStars[] Star = new BackgroundStars[starsNumber];  //the stars for the background
@@ -53,6 +54,7 @@ void setup() {
   initializeEnemyArrays();
   titel = new Titel();
   variables = new Variable();
+  controls = new Controls();
   titel.font();
   for (int i = 0; i < starsNumber; i ++) {
     Star[i] = new BackgroundStars();
@@ -100,11 +102,11 @@ void gameOver() {      //this function was made by Dylan Kleton
 }
 
 void keyReleased() {         //This function was written by Noah Verburg
-  player.setAction(key, false);  //detects if a key has been released
+  controls.setAction(key, false);  //detects if a key has been released
 }
 
 void keyPressed() {          //This function was written by Noah Verburg
-  player.setAction(key, true);  //detects if a key has been pressed
+  controls.setAction(key, true);  //detects if a key has been pressed
 }
 
 //Collision Buttons click

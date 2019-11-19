@@ -69,8 +69,8 @@ class PlayerWeapons {
       for (int t = 0; t < enemyNumber; t++) {
         if (enemy[t].enemyType == 1 && weapon[i].bX < enemy[t].eX + enemy[t].scoutHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].scoutHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].scoutHitboxY && weapon[i].bY > enemy[t].eY - enemy[t].scoutHitboxY && enemy[t].isAlive == true) {
           weapon[i].bY -= height;
-          enemy[t].eHP = enemy[t].eHP - 1;
-            if (enemy[t].eHP == 0){
+          enemy[t].eHP = enemy[t].eHP - 15;
+            if (enemy[t].eHP <= 0){
               enemy[t].isAlive = false;
               scoreObj.addScore(50);
               particle[0].particlesPerTurn = 20;
@@ -79,8 +79,8 @@ class PlayerWeapons {
         }
         if (enemy[t].enemyType == 2 && weapon[i].bX < enemy[t].eX + enemy[t].courserHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].courserHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].courserHitboxY && weapon[i].bY > enemy[t].eY - enemy[t].courserHitboxY && enemy[t].isAlive == true) {
           weapon[i].bY -= height;
-          enemy[t].eHP = enemy[t].eHP - 1;
-            if (enemy[t].eHP == 0){
+          enemy[t].eHP = enemy[t].eHP - 15;
+            if (enemy[t].eHP <= 0){
               enemy[t].isAlive = false;
               scoreObj.addScore(100);
               particle[0].particlesPerTurn = 40;
@@ -89,8 +89,8 @@ class PlayerWeapons {
         }
         if (enemy[t].enemyType == 3 && weapon[i].bX < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].goliathHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].goliathHitboxY && weapon[i].bY > enemy[t].eY - enemy[t].goliathHitboxY && enemy[t].isAlive == true) {
           weapon[i].bY -= height;
-          enemy[t].eHP = enemy[t].eHP - 1;
-            if (enemy[t].eHP == 0){
+          enemy[t].eHP = enemy[t].eHP - 15;
+            if (enemy[t].eHP <= 0){
               enemy[t].isAlive = false;
               scoreObj.addScore(150);
               particle[0].particlesPerTurn = 60;
@@ -163,6 +163,39 @@ class PlayerWeapons {
             weapon[i].laserStrength = 1;
             weapon[i].laserIsAlive = false;
           }
+        }
+      }
+      
+      for (int t = 0; t < enemyNumber; t++) {
+        if (enemy[t].enemyType == 1 && weapon[i].lX - weapon[i].lW/2 < enemy[t].eX + enemy[t].scoutHitboxX && weapon[i].lX + weapon[i].lW/2 > enemy[t].eX - enemy[t].scoutHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
+          weapon[i].bY -= height;
+          enemy[t].eHP = enemy[t].eHP - 3;
+            if (enemy[t].eHP <= 0){
+              enemy[t].isAlive = false;
+              scoreObj.addScore(50);
+              particle[0].particlesPerTurn = 20;
+              particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
+            }
+        }
+        if (enemy[t].enemyType == 2 && weapon[i].lX - weapon[i].lW/2 < enemy[t].eX + enemy[t].courserHitboxX && weapon[i].lX + weapon[i].lW/2 > enemy[t].eX - enemy[t].courserHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
+          weapon[i].bY -= height;
+          enemy[t].eHP = enemy[t].eHP - 3;
+            if (enemy[t].eHP <= 0){
+              enemy[t].isAlive = false;
+              scoreObj.addScore(100);
+              particle[0].particlesPerTurn = 40;
+              particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
+            }
+        }
+        if (enemy[t].enemyType == 3 && weapon[i].lX - weapon[i].lW/2 < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].lX + weapon[i].lW/2 > enemy[t].eX - enemy[t].goliathHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
+          weapon[i].bY -= height;
+          enemy[t].eHP = enemy[t].eHP - 3;
+            if (enemy[t].eHP <= 0){
+              enemy[t].isAlive = false;
+              scoreObj.addScore(150);
+              particle[0].particlesPerTurn = 60;
+              particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
+            }
         }
       }
     }
