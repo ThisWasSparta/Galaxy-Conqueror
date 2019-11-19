@@ -196,7 +196,7 @@ void drawEnemies(int counter) { //function that draws enemies on the given x and
 
 int enemyShootCheck() {                       //function that checks to see which element of the array can used to fire a projectile
   for (int counter = 0; counter < 20; counter++) {     //for loop that runs through the array to check each element if it can be recycled or not based on if the enemy has been killed/went offscreen
-    if (enemy[counter].isAlive == true) {
+    if (enemy[counter].isAlive == true && enemy[counter].enemyType == 1) {
       return counter;                                  //returns the number of the element that was found to be suitable
     }
   }
