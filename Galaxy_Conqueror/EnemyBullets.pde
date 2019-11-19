@@ -53,11 +53,10 @@ class EnemyBullets {
         enemyBullets[counter].isOnScreen = false;
       }
       if (enemyBullets[counter].bX > player.pX - player.pW/2 && enemyBullets[counter].bX < player.pX + player.pW/2 && enemyBullets[counter].bY > player.pY - player.pH/2 && enemyBullets[counter].bY < player.pY + player.pH/2) {
-        if (lastCollision >= (timer - 2000)) {
-          lastCollision = millis();
-          heartNumber -= 1;
-          enemyBullets[counter].bY = height * 2;
-        }
+       //if (lastCollision >= (timer - 2000)) {
+        //lastCollision = millis();
+        heartNumber -= 1;
+        enemyBullets[counter].bY = height * 2;
       }
     }
   }
