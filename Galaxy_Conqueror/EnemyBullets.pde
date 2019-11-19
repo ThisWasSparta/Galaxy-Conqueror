@@ -9,9 +9,9 @@ class EnemyBullets {
   int bulletVisibility; //used to make bullets disappear upon colliding with an enemy
   boolean isOnScreen;
   int lastBulletSpawn;
-  
+
   PImage enemyBullet;
-  
+
   int bulletRecycle() {                                  //function that checks to see which element of the array can be recycled to be used to store another bullet
     for (int counter = 0; counter < 20; counter++) {     //for loop that runs through the array to check each element if it can be recycled or not based on if the bullet has killed an enemy or gone offscreen
       if (enemyBullets[counter].isOnScreen == false) {
@@ -20,7 +20,7 @@ class EnemyBullets {
     }
     return -1;                                           //returns -1 if the array is full or something went wrong
   }
-  
+
   void initializeEnemyBulletArray() {
     for (int counter = 0; counter < 20; counter++) {
       enemyBullets[counter] = new EnemyBullets();    
@@ -32,7 +32,7 @@ class EnemyBullets {
       enemyBullets[counter].isOnScreen = false;
     }
   }
-  
+
   void createEnemyBullet() { //function to create an enemy, created by Floris Kuiper
     int bulletCheck = bulletRecycle();
     int enemyShooter = enemyShootCheck();
@@ -42,7 +42,7 @@ class EnemyBullets {
       enemyBullets[bulletCheck].isOnScreen = true;
     }
   }
-  
+
   void enemyBulletUpdatePosition(int counter) { //function that updates bullet positions accordingly to their given speed values and "kills" them when they cross the bottom of the screen
     if (enemyBullets[counter].isOnScreen == true) {
       enemyBullets[counter].bY = enemyBullets[counter].bY + enemyBullets[counter].bV;
@@ -50,19 +50,22 @@ class EnemyBullets {
         enemyBullets[counter].isOnScreen = false;
       }
       if (enemyBullets[counter].bX > player.pX - player.pW/2 && enemyBullets[counter].bX < player.pX + player.pW/2 && enemyBullets[counter].bY > player.pY - player.pH/2 && enemyBullets[counter].bY < player.pY + player.pH/2) {
-        heartNumber -= 1;
-        enemyBullets[counter].bY = height * 2;
+        if (lastCollision >= (timer - 2000)) {
+          lastCollision = millis();
+          heartNumber -= 1;
+          enemyBullets[counter].bY = height * 2;
+        }
       }
     }
   }
-  
+
   void drawEnemyBullet(int counter) { //function that draws enemies on the given x and y coordinates with the right width and height
     if (enemy[counter].isAlive == true) {
       fill(255, 0, 0);
       image(enemyBullet, enemyBullets[counter].bX, enemyBullets[counter].bY, enemyBullets[counter].bW, enemyBullets[counter].bH);
     }
   }
-  
+
   void enemyBulletSpawner() { //function that periodically causes enemies to appear on screen
     if (startGame) {
       if (startTime <= timer - 2000) {
