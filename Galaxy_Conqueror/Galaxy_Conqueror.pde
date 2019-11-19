@@ -12,12 +12,14 @@ int tX;    //x-waarde van game over text
 int tY;    //y-waarde van game over text
 int heartNumber = 3;
 int stopGameTime;
+int gameOverTimer = 0;
 
 int timer = millis();                 //contains the time from when the game was launched in milliseconds
 int startTime;                        //contains the time when start was pressed in milliseconds
 
 boolean startGame = false;            //whether the game has started or not
-boolean stopGame = false;
+
+boolean valuesLoaded = false;
 
 float sizeFactor = 0.8;
 float wScale;                         //width scale used to adjust the width of images
@@ -87,7 +89,11 @@ void gameOver() {      //this function was made by Dylan Kleton
   textSize(150);
   textAlign(CENTER);
   text("Game Over", tX, tY);
-
+  
+  if (gameOverTimer == 0) {
+    gameOverTimer = millis();
+  }
+  
   scoreObj.countScore(0, 0, 0);
 }
 
@@ -123,7 +129,7 @@ void draw() {
   
   timer = millis();
   
-  if (startGame && !stopGame) {    //if the player has pressed start on the menu, the game will start
+  if (startGame) {    //if the player has pressed start on the menu, the game will start
     obstakel.drawObstakel();
     for (int i = 0; i < enemyNumber; i++) {      //updates, spawns and draws the enemies
       enemyUpdatePosition(i);    //made by Noah Verburg
@@ -139,7 +145,7 @@ void draw() {
     bullet[0].spawnPlayerBullets();        //spawns player bullets using a for-loop built into the function
     bullet[0].updatePlayerBullets();       //updates player bullets using a for-loop built into the function
     bullet[0].drawPlayerBullets();         //draws player bullets using a for-loop built into the function
-    player.movement();                  //updates the position of the player
+    player.playerUpdate();                  //updates the position of the player
     player.player();             //draws the player
     heart[0].playerHealth();
     for (int i = 0; i < enemyExplosionParticleNumber; i++) {
@@ -150,7 +156,15 @@ void draw() {
     }
     enemyShootParticle[0].updateParticles();
     enemyShootParticle[0].drawParticles();
-    if (heartNumber <= 0) {gameOver(); stop();}
+    if (heartNumber <= 0) {
+      gameOver();
+      if (gameOverTimer + 5000 < millis()) {
+        startGame = false;
+        valuesLoaded = false;
+        heartNumber = 3;
+        gameOverTimer = 0;
+      }
+    }
   }
   
   if (player.testBoolean) {

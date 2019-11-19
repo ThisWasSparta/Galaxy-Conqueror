@@ -11,6 +11,10 @@ class SpaceShip {
   
   boolean stop;
   
+  boolean nextWeapon;
+  
+  boolean exitgame;
+  
   float pW;    //player width
   float pH;    //player height
   float pV;    //player velocity
@@ -23,6 +27,7 @@ class SpaceShip {
   int weapon = 1;
   int weaponState = 1;
   int skinCycle = 0;
+  int weaponCycleCooldown = 0;
   
   PImage weapon1;                       //weapon1, weapon2 and weapon3 are the sprites for the player depending on what gun they are using
   PImage weapon2;
@@ -42,12 +47,18 @@ class SpaceShip {
     case 'd':
       return goRight = b;
    
-   case 'j':
-      return isShooting = b;
-   case 't':
-     return stop = b;
-   case 'k':
-     return testBoolean = b;
+    case 'j':
+       return isShooting = b;
+       
+    case 'l':
+      return nextWeapon = b;
+      
+    case 't':
+      return stop = b;
+      
+    case 'k':
+     return exitgame = b;
+     
     default:
       return b;
     }
@@ -61,23 +72,26 @@ class SpaceShip {
       image(weapon2, pX, pY, pW, pH);
     }
     if (weapon == 3) {
-      image(weapon3, pX, pY, pW, pH);
+      image(weapon1, pX, pY, pW, pH);
     }
     if (weaponState == 3) {
       weapon1 = loadImage("Spaceship Weapon 1-3.png");
+      weapon2 = loadImage("Spaceship Weapon 2-3.png");
       if (frameCount - skinCycle > 30) {weaponState = 1; skinCycle = frameCount;}
     }
     if (weaponState == 2) {
       weapon1 = loadImage("Spaceship Weapon 1-2.png");
+      weapon2 = loadImage("Spaceship Weapon 2-2.png");
       if (frameCount - skinCycle > 20) {weaponState = 3;}
     }
     if (weaponState == 1) {
       weapon1 = loadImage("Spaceship Weapon 1-1.png");
+      weapon2 = loadImage("Spaceship Weapon 2-1.png");
       if (frameCount - skinCycle > 10) {weaponState = 2;}
     }
   }
   
-  void movement() {    //This function was written by Noah Verburg
+  void playerUpdate() {    //This function was written by Noah Verburg
     if (player.goLeft && player.pX > player.pW/2) {
       player.pX -= player.pV;
     }
@@ -89,6 +103,19 @@ class SpaceShip {
     }
     if (player.goDown && player.pY < height/1.01 - player.pH/2) {
       player.pY += player.pV;
+    }
+    if (player.nextWeapon) {
+      if (weaponCycleCooldown + 250 < millis()) {
+        if (weapon == 3) {
+          weapon = 1;
+        } else {
+          weapon++;
+        }
+        weaponCycleCooldown = millis();
+      }
+    }
+    if (exitgame) {
+      exit();
     }
   }
 }
