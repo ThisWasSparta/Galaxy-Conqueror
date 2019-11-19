@@ -51,7 +51,7 @@ class PlayerBullets {
             if (enemy[t].eHP == 0){
               enemy[t].isAlive = false;
               scoreObj.addScore(50);
-              particle[0].particlesPerTurn = 5;
+              particle[0].particlesPerTurn = 20;
               particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
             }
         }
@@ -61,7 +61,7 @@ class PlayerBullets {
             if (enemy[t].eHP == 0){
               enemy[t].isAlive = false;
               scoreObj.addScore(100);
-              particle[0].particlesPerTurn = 10;
+              particle[0].particlesPerTurn = 40;
               particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
             }
         }
@@ -71,7 +71,7 @@ class PlayerBullets {
             if (enemy[t].eHP == 0){
               enemy[t].isAlive = false;
               scoreObj.addScore(150);
-              particle[0].particlesPerTurn = 15;
+              particle[0].particlesPerTurn = 60;
               particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
             }
         }

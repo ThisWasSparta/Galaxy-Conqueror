@@ -9,6 +9,7 @@ class EnemyBullets {
   int bulletVisibility; //used to make bullets disappear upon colliding with an enemy
   boolean isOnScreen;
   int lastBulletSpawn;
+  int reloadingTime = 0;
   
   PImage enemyBullet;
   
@@ -40,6 +41,7 @@ class EnemyBullets {
       enemyBullets[bulletCheck].bX = enemy[enemyShooter].eX;
       enemyBullets[bulletCheck].bY = enemy[enemyShooter].eY;
       enemyBullets[bulletCheck].isOnScreen = true;
+      enemyShootParticle[0].firing(enemy[enemyShooter].eX, enemy[enemyShooter].eY, enemyShooter);
     }
   }
   

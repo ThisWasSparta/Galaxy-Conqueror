@@ -7,7 +7,7 @@ int playerBulletNumber = 100;
 int enemyNumber = 20;
 int enemyExplosionParticleNumber = 500;
 int enemyBulletNumber = 20;
-int enemyShootParticleNumber = 50;
+int enemyShootParticleNumber = 25;
 int tX;    //x-waarde van game over text
 int tY;    //y-waarde van game over text
 int heartNumber = 3;
@@ -130,11 +130,11 @@ void draw() {
       enemySpawner(i);
       drawEnemies(i);
     }
-    /*for (int i = 0; i< enemyBulletNumber; i++) {      //updates, spawns and draws the bullets
+    for (int i = 0; i< enemyBulletNumber; i++) {      //updates, spawns and draws the bullets
       enemyBullets[i].enemyBulletUpdatePosition(i);
       enemyBullets[i].drawEnemyBullet(i);
       enemyBullets[i].enemyBulletSpawner();
-    }*/
+    }
     scoreObj.countScore(0, 0, 0); //made by Dylan Kleton
     bullet[0].spawnPlayerBullets();        //spawns player bullets using a for-loop built into the function
     bullet[0].updatePlayerBullets();       //updates player bullets using a for-loop built into the function
@@ -148,6 +148,8 @@ void draw() {
         particle[i].drawParticles(i);
       }
     }
+    enemyShootParticle[0].updateParticles();
+    enemyShootParticle[0].drawParticles();
     if (heartNumber <= 0) {gameOver(); stop();}
   }
   

@@ -28,7 +28,7 @@ class ExplosionPart {
     if (particle[counter].lifetime < millis() - 1000) {
       particle[counter].isAlive = false;
     }
-    particle[counter].particleSize *= 0.99;
+    particle[counter].particleSize *= 0.975;
     
     if (particle[counter].x <= 0 || particle[counter].x >= width) {
       particle[counter].xVelocity *= -0.8;
@@ -51,10 +51,8 @@ class ExplosionPart {
         //y = random(height * 0.1, height * 0.9);
         x = X;
         y = Y;
-        for (int e = 0; e < particle[0].particlesPerTurn; e++) {
-          spawnParticles(particleTurn);
-          particleTurn++;
-        }
+        spawnParticles(particleTurn);
+        particleTurn++;
       }
     }
   }
