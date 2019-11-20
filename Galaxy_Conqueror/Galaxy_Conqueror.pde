@@ -148,6 +148,9 @@ void draw() {
     }
     scoreObj.countScore(0, 0, 0); //made by Dylan Kleton
     
+    player.playerUpdate();                 //updates the position of the player
+    player.player();                       //draws the player
+    
     if (player.weapon == 1) {
       weapon[0].spawnPlayerBullets();        //spawns player bullets using a for-loop built into the function
     }
@@ -159,9 +162,6 @@ void draw() {
     }
     weapon[0].updatePlayerLaser();
     weapon[0].drawPlayerLaser();
-    
-    player.playerUpdate();                 //updates the position of the player
-    player.player();                       //draws the player
     
     heart[0].playerHealth();
     
