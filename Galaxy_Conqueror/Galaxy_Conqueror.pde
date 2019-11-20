@@ -29,13 +29,13 @@ float hScale;                         //height scale used to adjust the height o
 
 Obstakel obstakel;                    //Dit is de meteoriet
 SpaceShip player;                     //Dit is de player
+BackgroundStars Star;
 Titel titel;
 Score scoreObj;
 Variable variables;
 Controls controls;
 
 //Aantal sterren
-BackgroundStars[] Star = new BackgroundStars[starsNumber];  //the stars for the background
 PlayerWeapons[] weapon = new PlayerWeapons[playerBulletNumber];              //the bullets for the player
 Enemies[] enemy = new Enemies[enemyNumber];                     //three arrays to store data about the 3 different enemy types
 EnemyBullets[] enemyBullets = new EnemyBullets[enemyBulletNumber];
@@ -55,10 +55,9 @@ void setup() {
   titel = new Titel();
   variables = new Variable();
   controls = new Controls();
+  Star = new BackgroundStars();
   titel.font();
-  for (int i = 0; i < starsNumber; i ++) {
-    Star[i] = new BackgroundStars();
-  }
+  Star.sterrenProp();
   for (int i = 0; i < playerBulletNumber; i++) {
     weapon[i] = new PlayerWeapons();
   }
@@ -127,7 +126,9 @@ void draw() {
   //fill(0, 220);
   //rect(0, 0, width, height);
   background(0);
-  Star[0].starsAndStartMenu();
+  Star.sterrenShow();
+  titel.startScreen();
+  titel.bright();
   //frameRateDisplay();
   variables.loadGameValues();
   
