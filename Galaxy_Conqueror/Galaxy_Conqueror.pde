@@ -2,7 +2,6 @@
  Space Conqueror, and is similar to space invaders and galaga. Where possible it is shown which
  student made the code.*/
 
-int starsNumber = 200;                //Star number
 int playerBulletNumber = 100;
 int enemyNumber = 20;
 int enemyExplosionParticleNumber = 500;
@@ -34,6 +33,7 @@ Titel titel;
 Score scoreObj;
 Variable variables;
 Controls controls;
+Meteoriet meteoriet;
 
 //Aantal sterren
 PlayerWeapons[] weapon = new PlayerWeapons[playerBulletNumber];              //the bullets for the player

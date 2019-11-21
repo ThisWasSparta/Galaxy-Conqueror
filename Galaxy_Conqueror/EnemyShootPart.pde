@@ -31,7 +31,7 @@ class EnemyShootParticle {
     enemyShootParticle[partNr].x = x;
     enemyShootParticle[partNr].y = y;
     enemyShootParticle[partNr].xVelocity = random(-2, 2);
-    enemyShootParticle[partNr].yVelocity = random(4, 5);
+    enemyShootParticle[partNr].yVelocity = random(7, 8);
     enemyShootParticle[partNr].isAlive = true;
     enemyShootParticle[partNr].opacity = 255;
     enemyShootParticle[partNr].particleColorR = random(200, 255);

@@ -1,7 +1,7 @@
 //This class was written by Lucas van Wonderen
 class BackgroundStars {
 
-  int aSter = 200;
+  int aSter = 300;
 
   float []x = new float[aSter];
   float []y = new float[aSter];

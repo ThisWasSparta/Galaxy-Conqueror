@@ -5,7 +5,6 @@ class Obstakel {
   int time;
   boolean meteorietHit;
 
-  Meteoriet meteoriet;
   ArrayList<Meteoriet> meteorieten = new ArrayList<Meteoriet> ();
 
   Obstakel() {

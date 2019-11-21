@@ -11,6 +11,7 @@ class Variable {
       player.isShooting = false;
       tX= width/2;
       tY= height/2;
+      meteoriet.meteorite = loadImage("Meteorite 1.png");
       for (int i = 0; i < enemyNumber; i++) {
         enemy[i].orbW = enemy[i].defaultGoliathOrbSize * wScale;
         enemy[i].orbH = enemy[i].defaultGoliathOrbSize * hScale;
