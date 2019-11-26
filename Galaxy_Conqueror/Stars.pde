@@ -1,41 +1,34 @@
 //This class was written by Lucas van Wonderen
 class BackgroundStars {
-  float x;
-  float y;
-  float yspeed = random(1, 5);
-  float rad;
-  float tran = random(0, 255);
 
-  BackgroundStars () {
-    //Locatie en grootte
-    x = random(0, width);
-    y = random(0, height);
-    rad = random(1, 10);
+  int aSter = 300;
+
+  float []x = new float[aSter];
+  float []y = new float[aSter];
+  float []yspeed = new float[aSter];
+  float []rad = new float[aSter];
+  float []tran = new float[aSter];
+
+  void sterrenProp () {
+    for (int i = 0; i < aSter; i++) {
+      x[i] = random(0, width);
+      y[i] = random(0, height);
+      yspeed[i] = random(1, 5);
+      rad[i] = random(1, 10);
+      tran[i] = random(0, 255);
+    }
   }
-  void show() {
+  void sterrenShow() {
     //Sterren showen
-    fill(255, 255, 255, tran);
-    noStroke();
-    square(x, y, rad);
-    y = y + yspeed;
-    if (y > height) {
-      y = -5;
-      x = random(0, width);
-    }
-  }
-  
-  void starsAndStartMenu() {      //This function was written by Lucas van Wonderen
-    //Sterren tekenen
-    for (int i = 0; i < starsNumber; i ++) {    //this for loop draws the stars on the background
-      Star[i].show();
-    }
-    if (!startGame) {                           //this if-statement draws the menu if the game hasn't started yet
-      //Titel
-      titel.textShow();
-      //Start button
-      titel.startGame();
-      titel.settingGame();
-      titel.quitGame();
+    for (int i = 0; i < aSter; i++) {
+      fill(255, 255, 255, tran[i]);
+      noStroke();    
+      square(x[i], y[i], rad[i]);
+      y[i] = y[i] + yspeed[i];
+      if (y[i] > height) {
+        y[i] = -5;
+        x[i] = random(0, width);
+      }
     }
   }
 }

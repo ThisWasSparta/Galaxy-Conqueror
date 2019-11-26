@@ -1,8 +1,10 @@
+import processing.sound.*;
+
 /* This code is written by group 3 of IG-101 FYS project. It is a game called
  Space Conqueror, and is similar to space invaders and galaga. Where possible it is shown which
  student made the code.*/
 
-int starsNumber = 200;                //Star number
+
 int playerBulletNumber = 100;
 int enemyNumber = 20;
 int enemyExplosionParticleNumber = 500;
@@ -28,15 +30,19 @@ float sizeFactor = 0.8;
 float wScale;                         //width scale used to adjust the width of images
 float hScale;                         //height scale used to adjust the height of images
 
+PImage boss;
+
 Obstakel obstakel;                    //Dit is de meteoriet
 SpaceShip player;                     //Dit is de player
+BackgroundStars Star;
 Titel titel;
 Score scoreObj;
 Variable variables;
 Controls controls;
+Meteoriet meteoriet;
+SoundFile s;
 
 //Aantal sterren
-BackgroundStars[] Star = new BackgroundStars[starsNumber];  //the stars for the background
 PlayerWeapons[] weapon = new PlayerWeapons[playerBulletNumber];              //the bullets for the player
 Enemies[] enemy = new Enemies[enemyNumber];                     //three arrays to store data about the 3 different enemy types
 EnemyBullets[] enemyBullets = new EnemyBullets[enemyBulletNumber];
@@ -57,10 +63,10 @@ void setup() {
   titel = new Titel();
   variables = new Variable();
   controls = new Controls();
+  Star = new BackgroundStars();
+  s = new SoundFile(this, "./sound/stagethemefix.wav");
   titel.font();
-  for (int i = 0; i < starsNumber; i ++) {
-    Star[i] = new BackgroundStars();
-  }
+  Star.sterrenProp();
   for (int i = 0; i < playerBulletNumber; i++) {
     weapon[i] = new PlayerWeapons();
   }
@@ -132,7 +138,9 @@ void draw() {
   //fill(0, 220);
   //rect(0, 0, width, height);
   background(0);
-  Star[0].starsAndStartMenu();
+  Star.sterrenShow();
+  titel.startScreen();
+  titel.bright();
   //frameRateDisplay();
   variables.loadGameValues();
   
@@ -152,6 +160,9 @@ void draw() {
     }
     scoreObj.countScore(0, 0, 0); //made by Dylan Kleton
     
+    player.playerUpdate();                 //updates the position of the player
+    player.player();                       //draws the player
+    
     if (player.weapon == 1) {
       weapon[0].spawnPlayerBullets();        //spawns player bullets using a for-loop built into the function
     }
@@ -163,9 +174,6 @@ void draw() {
     }
     weapon[0].updatePlayerLaser();
     weapon[0].drawPlayerLaser();
-    
-    player.playerUpdate();                 //updates the position of the player
-    player.player();                       //draws the player
     
     heart[0].playerHealth();
     
@@ -188,7 +196,7 @@ void draw() {
       }
     }
   }
-  
+  image(boss, width/2, 121, 1000, 242);
   if (player.testBoolean) {
     
   }

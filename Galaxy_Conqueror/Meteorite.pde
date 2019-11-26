@@ -7,6 +7,8 @@ class Meteoriet {
   float hitBoxY;
   float hitBoxW;
   float hitBoxH;
+  
+  PImage meteorite;
  
   Meteoriet() {
     x = random(1, width); 
@@ -43,9 +45,9 @@ class Meteoriet {
     noStroke();
     fill(255, 255, 255, 0);
     rect(hitBoxX, hitBoxY, hitBoxW, hitBoxH);
-    fill(131,69,46);
-    ellipse(x, y, size, size);
-    
+    //fill(131,69,46);
+    //ellipse(x, y, size, size);
+    image(meteoriet.meteorite, x, y, 62, 48);
   }
  
 }

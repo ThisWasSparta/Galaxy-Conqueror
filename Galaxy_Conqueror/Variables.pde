@@ -11,6 +11,7 @@ class Variable {
       player.isShooting = false;
       tX= width/2;
       tY= height/2;
+      meteoriet.meteorite = loadImage("Meteorite 1.png");
       for (int i = 0; i < enemyNumber; i++) {
         enemy[i].orbW = enemy[i].defaultGoliathOrbSize * wScale;
         enemy[i].orbH = enemy[i].defaultGoliathOrbSize * hScale;
@@ -21,6 +22,7 @@ class Variable {
         enemy[i].goliathEnemy = loadImage("Goliath Enemy.png");
         enemy[i].goliathOrb = loadImage("Energy Orb.png");
         enemy[i].goliathShield = loadImage("Goliath Shield.png");
+        boss = loadImage("Boss.png");
       } 
       for (int i = 0; i < heartNumber; i++) {
         heart[i].heartW = heart[i].defaultHeartWidth * wScale;
