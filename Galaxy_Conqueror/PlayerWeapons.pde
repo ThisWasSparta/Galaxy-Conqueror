@@ -35,7 +35,8 @@ class PlayerWeapons {
   
   final int PLAYER_LASER_PER_SALVO = 2;
   int playerLaserTurn = 0;
-  int playerLaserFireRate = 1200;
+  int playerLaserFireRate = 2000;
+  int playerLaserDamagePerFrame = 6;
   
   void spawnPlayerBullets() {                          //This function was written by Noah Verburg
       if (player.isShooting && !weapon[playerBulletTurn].bulletIsOnScreen && millis() - playerBulletFireRate > reloadTime) {  //if the shot-button is pressed and the bullet that is supposed to
@@ -169,7 +170,7 @@ class PlayerWeapons {
       for (int t = 0; t < enemyNumber; t++) {
         if (enemy[t].enemyType == 1 && weapon[i].lX - weapon[i].lW/2 < enemy[t].eX + enemy[t].scoutHitboxX && weapon[i].lX + weapon[i].lW/2 > enemy[t].eX - enemy[t].scoutHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
           weapon[i].bY -= height;
-          enemy[t].eHP = enemy[t].eHP - 3;
+          enemy[t].eHP = enemy[t].eHP - playerLaserDamagePerFrame;
             if (enemy[t].eHP <= 0){
               enemy[t].isAlive = false;
               scoreObj.addScore(50);
@@ -179,7 +180,7 @@ class PlayerWeapons {
         }
         if (enemy[t].enemyType == 2 && weapon[i].lX - weapon[i].lW/2 < enemy[t].eX + enemy[t].courserHitboxX && weapon[i].lX + weapon[i].lW/2 > enemy[t].eX - enemy[t].courserHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
           weapon[i].bY -= height;
-          enemy[t].eHP = enemy[t].eHP - 3;
+          enemy[t].eHP = enemy[t].eHP - playerLaserDamagePerFrame;
             if (enemy[t].eHP <= 0){
               enemy[t].isAlive = false;
               scoreObj.addScore(100);
@@ -189,7 +190,7 @@ class PlayerWeapons {
         }
         if (enemy[t].enemyType == 3 && weapon[i].lX - weapon[i].lW/2 < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].lX + weapon[i].lW/2 > enemy[t].eX - enemy[t].goliathHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
           weapon[i].bY -= height;
-          enemy[t].eHP = enemy[t].eHP - 3;
+          enemy[t].eHP = enemy[t].eHP - playerLaserDamagePerFrame;
             if (enemy[t].eHP <= 0){
               enemy[t].isAlive = false;
               scoreObj.addScore(150);
