@@ -29,6 +29,8 @@ float sizeFactor = 0.8;
 float wScale;                         //width scale used to adjust the width of images
 float hScale;                         //height scale used to adjust the height of images
 
+PImage boss;
+
 Obstakel obstakel;                    //Dit is de meteoriet
 SpaceShip player;                     //Dit is de player
 BackgroundStars Star;
@@ -189,7 +191,7 @@ void draw() {
       }
     }
   }
-  
+  image(boss, width/2, 121, 1000, 242);
   if (player.testBoolean) {
     
   }
