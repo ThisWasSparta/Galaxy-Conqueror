@@ -99,6 +99,9 @@ class Titel {
   boolean goDown;    //     -direction of player movement
   boolean isShooting;  //whether the player is shooting or not
 
+  float soundDigit;
+  float soundBright;
+
 
   //Font
   void font() {
@@ -210,6 +213,19 @@ class Titel {
 
       float sSx = constrain(sSX, sBX-sBWinn/2, sBX+sBWinn/2);
       float bSx = constrain(bSX, bBX-bBWinn/2, bBX+bBWinn/2);
+
+      float soundDigit = int(dist(sBX - sBW/2, sBY, sSX, sSY)/10);
+      if (soundDigit > 100) {
+        soundDigit = 100;
+      }
+
+      float soundVolume = soundDigit / 100;
+
+      float brightDigit = int(dist(bBX - bBW/2, bBY, bSX, bSY)/10);
+      if (brightDigit > 100) {
+        brightDigit = 100;
+      }
+
       //Soundbar
       rectMode(CENTER);
       fill(255);
@@ -226,7 +242,9 @@ class Titel {
       rect(sSx, sSY, sSW, sSH);
       fill(0);
       rect(sSx, sSY, sSWinn, sSHinn);
-
+      fill(255);
+      textSize(textSizebut);
+      text(int(soundDigit), sSX, sSY + 80);
 
       //Brightnessbar
       rectMode(CENTER);
@@ -244,6 +262,9 @@ class Titel {
       rect(bSx, bSY, bSW, bSH);
       fill(0);
       rect(bSx, bSY, bSWinn, bSHinn);
+      fill(255);
+      textSize(textSizebut);
+      text(int(brightDigit), bSX, bSY + 80);
 
 
       //Back button
