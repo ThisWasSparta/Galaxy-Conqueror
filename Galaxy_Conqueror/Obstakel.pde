@@ -6,7 +6,6 @@ class Obstakel {
   boolean meteorietHit;
   float amountMeteorite = random(5, 8);
 
-  Meteoriet meteoriet;
   ArrayList<Meteoriet> meteorieten = new ArrayList<Meteoriet> ();
 
   Obstakel() {

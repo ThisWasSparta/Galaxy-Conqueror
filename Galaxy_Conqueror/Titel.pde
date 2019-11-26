@@ -148,6 +148,7 @@ class Titel {
         if (keyPressed) {
           if (key == 'x') {
             StartGame = false;
+            startGame = true;
           }
           if (keyCode == DOWN) {
             countCursor ++;
