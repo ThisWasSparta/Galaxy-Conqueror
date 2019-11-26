@@ -1,6 +1,9 @@
+import processing.sound.*;
+
 /* This code is written by group 3 of IG-101 FYS project. It is a game called
  Space Conqueror, and is similar to space invaders and galaga. Where possible it is shown which
  student made the code.*/
+
 
 int playerBulletNumber = 100;
 int enemyNumber = 20;
@@ -34,6 +37,7 @@ Score scoreObj;
 Variable variables;
 Controls controls;
 Meteoriet meteoriet;
+SoundFile s;
 
 //Aantal sterren
 PlayerWeapons[] weapon = new PlayerWeapons[playerBulletNumber];              //the bullets for the player
@@ -56,6 +60,7 @@ void setup() {
   variables = new Variable();
   controls = new Controls();
   Star = new BackgroundStars();
+  s = new SoundFile(this, "./sound/stagethemefix.wav");
   titel.font();
   Star.sterrenProp();
   for (int i = 0; i < playerBulletNumber; i++) {

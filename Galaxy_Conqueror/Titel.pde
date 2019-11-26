@@ -1,4 +1,7 @@
 class Titel {
+
+
+
   // Main titel180
   int textSize = 70;
   int textSizebut = 35;
@@ -102,7 +105,6 @@ class Titel {
   float soundDigit;
   float soundBright;
 
-
   //Font
   void font() {
     PFont font;
@@ -158,6 +160,7 @@ class Titel {
           if (player.isShooting) {
             StartGame = false;
             startGame = true;
+            s.play();
           }
           if (player.goDown) {
             countCursor ++;
