@@ -93,6 +93,12 @@ class Titel {
   boolean CursorBright = false;
   boolean CursorBack = false;
 
+  boolean goLeft;    //  \
+  boolean goRight;   //   \
+  boolean goUp;      //    \
+  boolean goDown;    //     -direction of player movement
+  boolean isShooting;  //whether the player is shooting or not
+
 
   //Font
   void font() {
@@ -146,11 +152,11 @@ class Titel {
         rect(lcX, staButtonY, lcW, lcH);
         rect(rcX, staButtonY, rcW, rcH);
         if (keyPressed) {
-          if (key == 'x') {
+          if (player.isShooting) {
             StartGame = false;
             startGame = true;
           }
-          if (keyCode == DOWN) {
+          if (player.goDown) {
             countCursor ++;
             CursorStart = false;
             CursorSetting = true;
@@ -161,7 +167,7 @@ class Titel {
         rect(lcX, setButtonY, lcW, lcH);
         rect(rcX, setButtonY, rcW, rcH);
         if (keyPressed) {
-          if (key == 'x') {
+          if (player.isShooting) {
             countCursor ++;
             if (countCursor >= 9) {
               countCursor = 0;
@@ -170,14 +176,14 @@ class Titel {
               CursorSound = true;
             }
           }
-          if (keyCode == DOWN) {
+          if (player.goDown) {
             countCursor ++;
             if (countCursor >= 12) {
               countCursor = 0;
               CursorSetting = false;
               CursorQuit = true;
             }
-          } else if (keyCode == UP) {
+          } else if (player.goUp) {
             countCursor ++;
             if (countCursor >= 12) {
               countCursor = 0;
@@ -190,11 +196,10 @@ class Titel {
         rectMode(CENTER);
         rect(lcX, qButtonY, lcW, lcH);
         rect(rcX, qButtonY, rcW, rcH);
-        if (key == 'x') {
-          exit();
-        }
         if (keyPressed) {
-          if (keyCode == UP) {
+          if (player.isShooting) {
+            exit();
+          } else if (player.goUp) {
             countCursor ++;
             CursorQuit = false;
             CursorSetting = true;
@@ -257,12 +262,12 @@ class Titel {
         rect(sBX - sBW/2 - 70, sBY, lcW, lcH);
         rect(sBX + sBW/2 + 70, sBY, rcW, rcH);    
         if (keyPressed) {
-          if (keyCode == LEFT) {
+          if (player.goLeft) {
             sSX -= 10;
-          } else if (keyCode == RIGHT) {
+          } else if (player.goRight) {
             sSX += 10;
           }
-          if (keyCode == DOWN) {
+          if (player.goDown) {
             countCursor ++;
             CursorSound = false;
             CursorBright = true;
@@ -278,19 +283,19 @@ class Titel {
         rect(sBX - sBW/2 - 70, bBY, lcW, lcH);
         rect(sBX + sBW/2 + 70, bBY, rcW, rcH);
         if (keyPressed) {
-          if (keyCode == LEFT) {
+          if (player.goLeft) {
             bSX -= 10;
-          } else if (keyCode == RIGHT) {
+          } else if (player.goRight) {
             bSX += 10;
           }
-          if (keyCode == DOWN) {
+          if (player.goDown) {
             countCursor ++;
             if (countCursor >= 12) {
               countCursor = 0;
               CursorBright = false;
               CursorBack = true;
             }
-          } else if (keyCode == UP) {
+          } else if (player.goUp) {
             countCursor ++;
             if (countCursor >= 12) {
               countCursor = 0;
@@ -308,13 +313,13 @@ class Titel {
         rectMode(CENTER);
         rect(lcX, bButtonY, lcW, lcH);
         rect(rcX, bButtonY, rcW, rcH);
-        if (key == 'x') {
+        if (player.isShooting) {
           SettingGame = false;
           StartGame = true;
           countCursor = 0;
         }
         if (keyPressed) {
-          if (keyCode == UP) {
+          if (player.goUp) {
             countCursor ++;
             CursorBack = false;
             CursorBright = true;
@@ -328,14 +333,5 @@ class Titel {
     fill(0, 0, 0, bright);
     rectMode(CENTER);
     rect(width/2, height/2, width, height);
-  }
-  void barSlide() {
-    if (SettingGame) {
-      if (mouseX > sSX - sSW/2 && mouseX < sSX + sSW/2 && mouseY > sSY - sSH/2 && mouseY < sSY + sSH/2) {
-        sSX = mouseX;
-      } else if (mouseX > bSX - bSW/2 && mouseX < bSX + bSW/2 && mouseY > bSY - bSH/2 && mouseY < bSY + bSH/2) {
-        bSX = mouseX;
-      }
-    }
   }
 }
