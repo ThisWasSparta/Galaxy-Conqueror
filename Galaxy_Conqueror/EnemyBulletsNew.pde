@@ -49,13 +49,20 @@ class EnemyBullets {
       enemyBullets[counter].bY = enemyBullets[counter].bY + enemyBullets[counter].bV;
       if (enemyBullets[counter].bY > height + enemyBullets[counter].bH) {
         enemyBullets[counter].isOnScreen = false;
-        if (enemyBullets[counter].bX > player.pX - player.pW/2 && enemyBullets[counter].bX < player.pX + player.pW/2 && enemyBullets[counter].bY > player.pY - player.pH/2 && enemyBullets[counter].bY < player.pY + player.pH/2) {
-          if (lastCollision >= (timer - 2000)) {
+        if (enemyBullets[counter].bSize + enemyBullets[counter].bW / 2 > player.pX - player.pW/2 
+        && enemyBullets[counter].bSize - enemyBullets[counter].bW / 2 < player.pX + player.pW/2 
+        && enemyBullets[counter].bSize + enemyBullets[counter].bH / 2 > player.pY - player.pH/2 
+        && enemyBullets[counter].bSize - enemyBullets[counter].bH / 2 < player.pY + player.pH/2) {
+          println("if work??");
+          if (lastCollision <= (timer - 2000)) {
+            println("if work c:");
+            
             lastCollision = millis();
             heartNumber -= 1;
             enemyBullets[counter].bY = height * 2;
           }
-        }
+        }else 
+        println("if no work :c");
       }
     }
   }
