@@ -41,6 +41,7 @@ Variable variables;
 Controls controls;
 Meteoriet meteoriet;
 SoundFile s;
+Boss Boss;
 
 //Aantal sterren
 PlayerWeapons[] weapon = new PlayerWeapons[playerBulletNumber];              //the bullets for the player
@@ -64,6 +65,7 @@ void setup() {
   variables = new Variable();
   controls = new Controls();
   Star = new BackgroundStars();
+  Boss = new Boss();
   s = new SoundFile(this, "./sound/stagethemefix.wav");
   titel.font();
   Star.sterrenProp();
@@ -162,6 +164,12 @@ void draw() {
     
     player.playerUpdate();                 //updates the position of the player
     player.player();                       //draws the player
+    
+    if(Boss.currentState != -1) {
+      Boss.bossUpdatePosition();
+      Boss.bossUpdateBehaviour();
+      Boss.bossDraw();
+    }
     
     if (player.weapon == 1) {
       weapon[0].spawnPlayerBullets();        //spawns player bullets using a for-loop built into the function
