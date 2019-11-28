@@ -26,7 +26,7 @@ class Boss {
   void bossUpdatePosition() { //function that makes the boss slowly move up and down
     //ang = radians(angle); < probably redundant, just want to be sure before i remove it
     bossY = bossOriginPointX + (10 * sin(dx * inc));
-    rect(bossX, bossY, bossSize, bossSize);
+    //rect(bossX, bossY, bossSize, bossSize);
     //angle += 2; < ditto
   }
 
