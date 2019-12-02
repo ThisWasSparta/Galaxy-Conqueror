@@ -30,7 +30,7 @@ float sizeFactor = 0.8;
 float wScale;                         //width scale used to adjust the width of images
 float hScale;                         //height scale used to adjust the height of images
 
-PImage boss;
+PImage bossSprite;
 
 Obstakel obstakel;                    //Dit is de meteoriet
 SpaceShip player;                     //Dit is de player
@@ -41,7 +41,7 @@ Variable variables;
 Controls controls;
 Meteoriet meteoriet;
 SoundFile s;
-Boss Boss;
+Boss boss;
 
 //Aantal sterren
 PlayerWeapons[] weapon = new PlayerWeapons[playerBulletNumber];              //the bullets for the player
@@ -65,7 +65,7 @@ void setup() {
   variables = new Variable();
   controls = new Controls();
   Star = new BackgroundStars();
-  Boss = new Boss();
+  boss = new Boss();
   s = new SoundFile(this, "./sound/stagethemefix.wav");
   titel.font();
   Star.sterrenProp();
@@ -164,10 +164,10 @@ void draw() {
     player.playerUpdate();                 //updates the position of the player
     player.player();                       //draws the player
     
-    if(Boss.currentState != -1) {
-      Boss.bossUpdatePosition();
-      Boss.bossUpdateBehaviour();
-      Boss.bossDraw();
+    if(boss.currentState != -1) {
+      boss.bossUpdatePosition();
+      boss.bossUpdateBehaviour();
+      boss.bossDraw();
     }
     
     if (player.weapon == 1) {

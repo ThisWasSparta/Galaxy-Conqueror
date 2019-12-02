@@ -63,6 +63,24 @@ void enemySpawner(int counter) { //function that periodically causes enemies to 
   }
 }
 
+void bossScoutSpawner() { //function called by the boss' backup state to spawn convoys of scouts
+  int arrayIndex = enemyRecycle();
+  int convoyOriginX = (int)random(0, width - enemy[arrayIndex].eSize);
+  for (int spawnCounter = 0; spawnCounter < 3; spawnCounter++) {
+    if (arrayIndex != -1) {
+      enemy[arrayIndex].enemyType = 1;
+      enemy[arrayIndex].eSize = 40;
+      enemy[arrayIndex].eW = enemy[arrayIndex].defaultScoutWidth * wScale;
+      enemy[arrayIndex].eH = enemy[arrayIndex].defaultScoutHeight * hScale;
+      enemy[arrayIndex].eV = enemy[arrayIndex].scoutEnemyVelocityFactor * width;
+      enemy[arrayIndex].eX = convoyOriginX + spawnCounter * 50; 
+      enemy[arrayIndex].eY = -enemy[arrayIndex].eH;
+      enemy[arrayIndex].eHP = 30;
+      enemy[arrayIndex].isAlive = true;
+    }
+  }
+}
+
 void createEnemy(int type) { //function to create an enemy
   int scoutCheck = enemyRecycle();
   int courserCheck = enemyRecycle();
@@ -179,23 +197,23 @@ void drawEnemies(int counter) { //function that draws enemies on the given x and
 }
 
 /*void playerEnemyCollision() {
-  for (int i = 0; i < enemy.length; i++) {
-    if (player.pX > enemy[i].eX && player.pX < enemy[i].eX + enemy[i].eSize && player.pY > enemy[i].eY && player.pY < enemy[i].eY + enemy[i].eSize) {
-      if (collisionFlag == 0) {
-        lastCollision = millis();
-        heartNumber -= 1;
-        collisionFlag = 1;
-        if (lastCollision >= (timer - 2000) && collisionFlag == 1) {
-          lastCollision = millis();
-          heartNumber -= 1;
-        }
-      }
-    }
-  }
-}*/
+ for (int i = 0; i < enemy.length; i++) {
+ if (player.pX > enemy[i].eX && player.pX < enemy[i].eX + enemy[i].eSize && player.pY > enemy[i].eY && player.pY < enemy[i].eY + enemy[i].eSize) {
+ if (collisionFlag == 0) {
+ lastCollision = millis();
+ heartNumber -= 1;
+ collisionFlag = 1;
+ if (lastCollision >= (timer - 2000) && collisionFlag == 1) {
+ lastCollision = millis();
+ heartNumber -= 1;
+ }
+ }
+ }
+ }
+ }*/
 
 int enemyShootCheck() {                       //function that checks to see which element of the array can used to fire a projectile
-  for (int counter = 0; counter < 20; counter++) {     //for loop that runs through the array to check each element if it can be recycled or not based on if the enemy has been killed/went offscreen
+  for (int counter = enemy.length; counter >= 0; counter--) {     //for loop that runs through the array to check each element if it can be recycled or not based on if the enemy has been killed/went offscreen
     if (enemy[counter].isAlive == true && enemy[counter].enemyType == 1) {
       return counter;                                  //returns the number of the element that was found to be suitable
     }

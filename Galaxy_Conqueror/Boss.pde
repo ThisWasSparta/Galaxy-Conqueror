@@ -16,12 +16,19 @@ class Boss {
   int deathrayCooldown = 3;
   int startStateFlag = 0;
   int startStateTime = 0;
+  int startDeathrayTime = 0;
+  int startIdleTime = 0;
+  int bossHealth = 0;
+  int deathrayLength = 0;
   boolean bossAlive = false;
   final int INACTIVE_STATE = -1;
   final int IDLE_STATE = 0;
   final int MISSILE_STATE = 1;
   final int REQUEST_BACKUP_STATE = 2;
   final int DEATHRAY_STATE = 3;
+  final int DEATHRAY_VERTICAL_OFFSET = 60;
+  final int DEATHRAY_HORIZONTAL_OFFSET = 30;
+  final int DEATHRAY_SIZE = 60;
 
   void bossUpdatePosition() { //function that makes the boss slowly move up and down
     //ang = radians(angle); < probably redundant, just want to be sure before i remove it
@@ -32,7 +39,7 @@ class Boss {
 
   void bossDraw() { //function that draws the boss on the given positions
     if (bossAlive == true) {
-      rect(bossX, bossY, bossSize, bossSize);
+      image(bossSprite, bossX, bossY, bossSize, bossSize);
     }
   }
 
@@ -55,11 +62,19 @@ class Boss {
 
       break;
     case REQUEST_BACKUP_STATE:
+      
       //call enemyspawner with the scout's enemy type to summon two groups of three scouts on either side of the play area
       //shoot bullets meanwhile?
       //maybe merge this state with the deathray state...
       break;
     case DEATHRAY_STATE:
+      if (startDeathrayTime - timer < -8000) {
+        fill(173, 216, 230);
+        rect(bossX + DEATHRAY_HORIZONTAL_OFFSET, bossY + DEATHRAY_VERTICAL_OFFSET, DEATHRAY_SIZE, deathrayLength);
+        if (deathrayLength <= height) {
+          deathrayLength += 10;
+        }
+      }
       //play charge sound + have a charging particle effect?
       //time until sound played
       //shoot laser + play laser sound
@@ -71,10 +86,11 @@ class Boss {
 
   int statePicker() {
     deathrayCooldown--;
-    int randomNumber = (int)random(0, 100);
+    int randomNumber = 0;
     if (deathrayCooldown > 0) {
       randomNumber = (int)random(0, 90);
     }
+    randomNumber = (int)random(0, 100);
     if (currentState == 3) {
       currentStateTimer = 5000;
       return IDLE_STATE;
@@ -93,6 +109,7 @@ class Boss {
     }
     if (randomNumber > 90 && randomNumber <= 100 && deathrayCooldown <= 0) {
       currentStateTimer = 10000;
+      startDeathrayTime = timer;
       return DEATHRAY_STATE;
     }
     return 0;

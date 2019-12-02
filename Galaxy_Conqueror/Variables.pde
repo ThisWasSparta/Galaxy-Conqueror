@@ -22,7 +22,7 @@ class Variable {
         enemy[i].goliathEnemy = loadImage("Goliath Enemy.png");
         enemy[i].goliathOrb = loadImage("Energy Orb.png");
         enemy[i].goliathShield = loadImage("Goliath Shield.png");
-        boss = loadImage("Boss.png");
+        bossSprite = loadImage("Boss.png");
       } 
       for (int i = 0; i < heartNumber; i++) {
         heart[i].heartW = heart[i].defaultHeartWidth * wScale;
