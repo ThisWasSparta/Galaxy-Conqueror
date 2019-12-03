@@ -71,6 +71,7 @@ class PlayerWeapons {
         if (enemy[t].enemyType == 1 && weapon[i].bX < enemy[t].eX + enemy[t].scoutHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].scoutHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].scoutHitboxY && weapon[i].bY > enemy[t].eY - enemy[t].scoutHitboxY && enemy[t].isAlive == true) {
           weapon[i].bY -= height;
           enemy[t].eHP = enemy[t].eHP - 15;
+          enemy[t].damageFlashTint = 255;
             if (enemy[t].eHP <= 0){
               enemy[t].isAlive = false;
               scoreObj.addScore(50);
@@ -81,6 +82,7 @@ class PlayerWeapons {
         if (enemy[t].enemyType == 2 && weapon[i].bX < enemy[t].eX + enemy[t].courserHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].courserHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].courserHitboxY && weapon[i].bY > enemy[t].eY - enemy[t].courserHitboxY && enemy[t].isAlive == true) {
           weapon[i].bY -= height;
           enemy[t].eHP = enemy[t].eHP - 15;
+          enemy[t].damageFlashTint = 255;
             if (enemy[t].eHP <= 0){
               enemy[t].isAlive = false;
               scoreObj.addScore(100);
@@ -91,6 +93,7 @@ class PlayerWeapons {
         if (enemy[t].enemyType == 3 && weapon[i].bX < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].goliathHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].goliathHitboxY && weapon[i].bY > enemy[t].eY - enemy[t].goliathHitboxY && enemy[t].isAlive == true) {
           weapon[i].bY -= height;
           enemy[t].eHP = enemy[t].eHP - 15;
+          enemy[t].damageFlashTint = 255;
             if (enemy[t].eHP <= 0){
               enemy[t].isAlive = false;
               scoreObj.addScore(150);
@@ -171,6 +174,7 @@ class PlayerWeapons {
         if (enemy[t].enemyType == 1 && weapon[i].lX - weapon[i].lW/2 < enemy[t].eX + enemy[t].scoutHitboxX && weapon[i].lX + weapon[i].lW/2 > enemy[t].eX - enemy[t].scoutHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
           weapon[i].bY -= height;
           enemy[t].eHP = enemy[t].eHP - playerLaserDamagePerFrame;
+          enemy[t].damageFlashTint = 100;
             if (enemy[t].eHP <= 0){
               enemy[t].isAlive = false;
               scoreObj.addScore(50);
@@ -181,6 +185,7 @@ class PlayerWeapons {
         if (enemy[t].enemyType == 2 && weapon[i].lX - weapon[i].lW/2 < enemy[t].eX + enemy[t].courserHitboxX && weapon[i].lX + weapon[i].lW/2 > enemy[t].eX - enemy[t].courserHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
           weapon[i].bY -= height;
           enemy[t].eHP = enemy[t].eHP - playerLaserDamagePerFrame;
+          enemy[t].damageFlashTint = 100;
             if (enemy[t].eHP <= 0){
               enemy[t].isAlive = false;
               scoreObj.addScore(100);
@@ -191,6 +196,7 @@ class PlayerWeapons {
         if (enemy[t].enemyType == 3 && weapon[i].lX - weapon[i].lW/2 < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].lX + weapon[i].lW/2 > enemy[t].eX - enemy[t].goliathHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
           weapon[i].bY -= height;
           enemy[t].eHP = enemy[t].eHP - playerLaserDamagePerFrame;
+          enemy[t].damageFlashTint = 100;
             if (enemy[t].eHP <= 0){
               enemy[t].isAlive = false;
               scoreObj.addScore(150);

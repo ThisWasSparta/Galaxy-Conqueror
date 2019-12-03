@@ -1,4 +1,8 @@
+import de.bezier.data.sql.*;
+import de.bezier.data.sql.mapper.*;
+
 import processing.sound.*;
+
 
 /* This code is written by group 3 of IG-101 FYS project. It is a game called
  Space Conqueror, and is similar to space invaders and galaga. Where possible it is shown which
