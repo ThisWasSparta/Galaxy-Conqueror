@@ -17,12 +17,12 @@ class NamePicker {
   boolean change = false;
 
   NamePicker() {
-    letterX2 = width/2;
     letterX1 = letterX2-100;
+    letterX2 = width/2;
     letterX3 = letterX2+100;
     letterY = height/2;
     highLightY = letterY+100;
-    highLightX = letterX1;
+    highLightX = 400;
     letterpicker = new Letterpicker();
   }
 
@@ -35,7 +35,7 @@ class NamePicker {
       }
     }
 
-    if (highLightX > letterX1 && highLightX < letterX2) {
+    if (highLightX > letterX1+letterX1/2 && highLightX < letterX1 - letterX1/2) {
       first = false;
       second = true;
       third = false;
@@ -74,7 +74,6 @@ class NamePicker {
       //letterpicker.num = 0;
     }
     
-    textSize(40);
     text(letter1, letterX1, letterY);
     text(letter2, letterX2, letterY);
     text(letter3, letterX3, letterY);

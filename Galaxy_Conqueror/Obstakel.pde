@@ -37,7 +37,7 @@ class Obstakel {
           meteorietHit = true;    //als de player bullet de meteoriet raakt, dan is deze boolean true
           if (meteorietHit) {
             meteorieten.remove(i);
-            scoreObj.addScore(25);
+            scoreObj.addScore(50);
             if (heartNumber < 3) {
               heartNumber += 1;
             }
@@ -74,7 +74,7 @@ class Obstakel {
           meteorietHit = true;    //als de player bullet de meteoriet raakt, dan is deze boolean true
           if (meteorietHit) {
             meteorieten.remove(i);
-            scoreObj.addScore(25);
+            scoreObj.addScore(50);
             if (heartNumber < 3) {
               heartNumber += 1;
             }
