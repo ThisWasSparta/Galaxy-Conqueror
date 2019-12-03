@@ -32,20 +32,20 @@ class NamePicker {
         highLightX += 200;
       } else if (key == 'a') {
         highLightX -= 200;
-      }
+      }   
     }
 
-    if (highLightX > letterX1 && highLightX == letterX2) { //boolean to check if you are selecting the second letter
+    if (highLightX > letterX1 && highLightX < letterX3-100) { //boolean to check if you are selecting the second letter
       first = false;
       second = true;
       third = false;
       letterpicker.Alphabet[letterpicker.num] = letter2;
-    } else if (highLightX > letterX2 && highLightX == letterX3) { // boolean to check if you are selecting the third letter
+    } else if (highLightX > letterX2) { // boolean to check if you are selecting the third letter
       first = false;
       second = false;
       third = true;
       letterpicker.Alphabet[letterpicker.num] = letter3;
-    } else if (highLightX == letterX1) { // boolean to check if you are selecting the first letter
+    } else if (highLightX < letterX2) { // boolean to check if you are selecting the first letter
       first = true;
       second = false;
       third = false;
@@ -72,7 +72,7 @@ class NamePicker {
       letter3 = letterpicker.Alphabet[letterpicker.num];
       //letterpicker.num = 0;
     }
-    println(first,second,third, highLightX, letterX2-100);
+    
     textSize(80);
     text(letter1, letterX1, letterY);
     text(letter2, letterX2, letterY);
