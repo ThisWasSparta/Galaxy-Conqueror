@@ -66,7 +66,7 @@ class Enemies {
 
 void enemySpawner(int counter) { //function that periodically causes enemies to appear on screen
   if (startGame) {
-    if (startTime <= timer - 10000) {
+    if (startTime <= timer - 10000) {// wait 10 seconds until enemies spawn
       if (lastSpawn <= timer - random(minTime, maxTime)) {
         lastSpawn = timer;
         createEnemy(typeSelector()); //creates an enemy in the right array according to the type rolled by the type generator
