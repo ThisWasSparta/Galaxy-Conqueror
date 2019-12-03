@@ -114,7 +114,7 @@ class PlayerWeapons {
             enemy[t].damageFlashTint = 255;
               if (enemy[t].eHP <= 0){
                 enemy[t].isAlive = false;
-                scoreObj.addScore(150);
+                scoreObj.addScore(150 * scoreMultiplier);
                 particle[0].particlesPerTurn = 60;
                 particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
               }
