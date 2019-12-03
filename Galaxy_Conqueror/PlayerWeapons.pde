@@ -40,6 +40,7 @@ class PlayerWeapons {
   
   void spawnPlayerBullets() {                          //This function was written by Noah Verburg
       if (player.isShooting && !weapon[playerBulletTurn].bulletIsOnScreen && millis() - playerBulletFireRate > reloadTime) {  //if the shot-button is pressed and the bullet that is supposed to
+        //sounds.playergatshoot.play();
         reloadTime = millis();                                                                                                //shoot out isnt on screen and the reload timer is done, it fires a bullet
         for (int i = 0; i < PLAYER_BULLET_PER_SALVO; i++) {
           if (playerBulletTurn%2 == 0) {                                                     //if the current bullet's number is an even number, it spawns  in the

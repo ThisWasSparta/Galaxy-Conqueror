@@ -1,5 +1,11 @@
 class Variable {
-  void loadGameValues() {                    //This function was written by Noah Verburg
+  
+
+  
+  void loadGameValues() {   
+    
+    
+    //This function was written by Noah Verburg
     if (!valuesLoaded) {
       player.pX = width/2;                        //here are all the variables that
       player.pY = height - height / 5;            //can't be defined in setup() or are
