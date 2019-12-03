@@ -24,6 +24,42 @@ class EnemyBullets {
     }
   }
 
+  void enemyBulletUpdatePosition(int counter) { //function that updates bullet positions accordingly to their given speed values and "kills" them when they cross the bottom of the screen
+    if (enemyBullets[counter].isOnScreen == true) {
+      enemyBullets[counter].bY = enemyBullets[counter].bY + enemyBullets[counter].bV;
+      playerCollisionCheck(counter);
+    }
+  }
+
+  void playerCollisionCheck(int counter) {
+    if (lastCollision <= (timer - 3000)) {
+      if (enemyBullets[counter].bX - enemyBullets[counter].bW/2 > player.pX - player.pW/2
+        && enemyBullets[counter].bX + enemyBullets[counter].bW/2 < player.pX + player.pW/2
+        && enemyBullets[counter].bY - enemyBullets[counter].bH/2 < player.pX - player.pH/2
+        && enemyBullets[counter].bY + enemyBullets[counter].bH/2 < player.pX + player.pH/2) {
+        println("ouchie");
+        enemyBullets[counter].bY = height * 2;
+        enemyBullets[counter].bX = -1 * width;
+        enemyBullets[counter].isOnScreen = false;
+        lastCollision = millis();
+        heartNumber -= 1;
+      }
+      if (enemyBullets[counter].bY > height + enemyBullets[counter].bH && enemyBullets[counter].isOnScreen == true) {
+        println("my planet doesn't need me anymore");
+        enemyBullets[counter].bX = -1 * width;
+        enemyBullets[counter].bY = height * 2;
+        enemyBullets[counter].isOnScreen = false;
+      }
+    }
+  }
+
+  void drawEnemyBullet(int counter) { //function that draws enemies on the given x and y coordinates with the right width and height
+    if (enemy[counter].isAlive == true && enemyBullets[counter].isOnScreen == true) {
+      fill(255, 0, 0);
+      image(enemyBullet, enemyBullets[counter].bX, enemyBullets[counter].bY, enemyBullets[counter].bW, enemyBullets[counter].bH);
+    }
+  }
+
   void enemyBulletSpawner() { //function that periodically causes enemies to appear on screen
     if (startGame) {
       if (startTime <= timer - 2000) {
@@ -52,42 +88,6 @@ class EnemyBullets {
       enemyBullets[bulletCheck].bY = enemy[enemyShooter].eY;
       enemyBullets[bulletCheck].isOnScreen = true;
       enemyShootParticle[0].firing(enemy[enemyShooter].eX, enemy[enemyShooter].eY, enemyShooter);
-    }
-  }
-
-  void enemyBulletUpdatePosition(int counter) { //function that updates bullet positions accordingly to their given speed values and "kills" them when they cross the bottom of the screen
-    if (enemyBullets[counter].isOnScreen == true) {
-      enemyBullets[counter].bY = enemyBullets[counter].bY + enemyBullets[counter].bV;
-      playerCollisionCheck(counter);
-    }
-  }
-
-  void playerCollisionCheck(int counter) {
-    if (lastCollision <= (timer - 3000)) {
-      if (enemyBullets[counter].bX - enemyBullets[counter].bW/2 > player.pX - player.pW/2
-        && enemyBullets[counter].bX + enemyBullets[counter].bW/2 < player.pX + player.pW/2
-        && enemyBullets[counter].bY - enemyBullets[counter].bH/2 < player.pX - player.pH/2
-        && enemyBullets[counter].bY + enemyBullets[counter].bH/2 < player.pX + player.pH/2){
-        println("ouchie");
-        enemyBullets[counter].bY = height * 2;
-        enemyBullets[counter].bX = -1 * width;
-        enemyBullets[counter].isOnScreen = false;
-        lastCollision = millis();
-        heartNumber -= 1;
-      }
-      if (enemyBullets[counter].bY > height + enemyBullets[counter].bH && enemyBullets[counter].isOnScreen == true) {
-        println("my planet doesn't need me anymore");
-        enemyBullets[counter].bX = -1 * width;
-        enemyBullets[counter].bY = height * 2;
-        enemyBullets[counter].isOnScreen = false;
-      }
-    }
-  }
-
-  void drawEnemyBullet(int counter) { //function that draws enemies on the given x and y coordinates with the right width and height
-    if (enemy[counter].isAlive == true && enemyBullets[counter].isOnScreen == true) {
-      fill(255, 0, 0);
-      image(enemyBullet, enemyBullets[counter].bX, enemyBullets[counter].bY, enemyBullets[counter].bW, enemyBullets[counter].bH);
     }
   }
 }
