@@ -1,6 +1,8 @@
 class NamePicker {
   Letterpicker letterpicker;
-  float letterX;
+  float letterX1;
+  float letterX2;
+  float letterX3;
   float letterY;
   float highLightY;
   float highLightX;
@@ -15,10 +17,12 @@ class NamePicker {
   boolean change = false;
 
   NamePicker() {
-    letterX = 200;
-    letterY = height/4;
-    highLightY = 400;
-    highLightX = 241;
+    letterX2 = width/2;
+    letterX1 = letterX2-100;
+    letterX3 = letterX2+100;
+    letterY = height/2;
+    highLightY = letterY+100;
+    highLightX = letterX1;
     letterpicker = new Letterpicker();
   }
 
@@ -31,7 +35,7 @@ class NamePicker {
       }
     }
 
-    if (highLightX > 241 && highLightX < 442) {
+    if (highLightX > letterX1 && highLightX < letterX2) {
       first = false;
       second = true;
       third = false;
@@ -70,9 +74,10 @@ class NamePicker {
       //letterpicker.num = 0;
     }
     
-    text(letter1, letterX, letterY);
-    text(letter2, letterX+200, letterY);
-    text(letter3, letterX+400, letterY);
+    textSize(40);
+    text(letter1, letterX1, letterY);
+    text(letter2, letterX2, letterY);
+    text(letter3, letterX3, letterY);
     name = ""+letter1+letter2+letter3+"";
     keyPressed = false;
   }
