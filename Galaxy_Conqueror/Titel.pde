@@ -105,6 +105,7 @@ class Titel {
   float soundDigit;
   float soundBright;
 
+
   //Font
   void font() {
     PFont font;
@@ -223,6 +224,7 @@ class Titel {
       }
 
       float soundVolume = soundDigit / 100;
+      sounds.bgm.amp(soundVolume);
 
       float brightDigit = int(dist(bBX - bBW/2, bBY, bSX, bSY)/10);
       if (brightDigit > 100) {
