@@ -2,7 +2,8 @@
 int lastSpawn; //time in milliseconds when the last enemy was spawned
 int lastCollision = 0; //time in miliseconds of last time the player collided with an enemy
 int collisionFlag = 0; //flag to keep track of if an enemy player collision has happened yet or not
-
+float minTime = 1250;
+float maxTime = 3500;
 class Enemies {
   float eW;    //enemy width
   float eH;    //enemy height
@@ -45,6 +46,8 @@ class Enemies {
   float courserEnemyVelocityFactor = 0.0015;
   float goliathEnemyVelocityFactor = 0.00085;
 
+
+
   PImage scoutEnemy;                    //sprite for the regular enemy
   PImage courserEnemy;
   PImage goliathEnemy;
@@ -62,8 +65,8 @@ class Enemies {
 
 void enemySpawner(int counter) { //function that periodically causes enemies to appear on screen
   if (startGame) {
-    if (startTime <= timer - 2000) {
-      if (lastSpawn <= timer - random(1250, 3500)) {
+    if (startTime <= timer - 10000) {
+      if (lastSpawn <= timer - random(minTime, maxTime)) {
         lastSpawn = timer;
         createEnemy(typeSelector()); //creates an enemy in the right array according to the type rolled by the type generator
       }
@@ -97,7 +100,7 @@ void createEnemy(int type) { //function to create an enemy
 
   switch(type) {
   case 1:
-    if (scoutCheck != -1) { //check to see if the returned element of the array wasn't either in use or something went wrong
+    if (scoutCheck != -1 && scoreObj.score >= 500) { //check to see if the returned element of the array wasn't either in use or something went wrong
       enemy[scoutCheck].enemyType = 1;
       enemy[scoutCheck].eSize = 40;
       enemy[scoutCheck].eW = enemy[scoutCheck].defaultScoutWidth * wScale;
@@ -110,7 +113,7 @@ void createEnemy(int type) { //function to create an enemy
     }
     break;
   case 2:
-    if (courserCheck != -1) {
+    if (courserCheck != -1 && scoreObj.score >= 0) {
       enemy[courserCheck].enemyType = 2;
       enemy[courserCheck].eSize = 60;
       enemy[courserCheck].eW = enemy[courserCheck].defaultCourserWidth * wScale;
@@ -123,7 +126,7 @@ void createEnemy(int type) { //function to create an enemy
     }
     break;
   case 3:
-    if (goliathCheck != -1) {
+    if (goliathCheck != -1 && scoreObj.score >= 1000) {
       enemy[goliathCheck].enemyType = 3;
       enemy[goliathCheck].eSize = 70;
       enemy[goliathCheck].eW = enemy[goliathCheck].defaultGoliathWidth * wScale;
