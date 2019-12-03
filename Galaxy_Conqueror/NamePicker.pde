@@ -18,11 +18,11 @@ class NamePicker {
 
   NamePicker() {
     letterX2 = width/2;
-    letterX1 = letterX2-100;
-    letterX3 = letterX2+100;
+    letterX1 = letterX2-200;
+    letterX3 = letterX2+200;
     letterY = height/2;
     highLightY = letterY+100;
-    highLightX = letterX1;
+    highLightX = letterX1-5;
     letterpicker = new Letterpicker();
   }
 
@@ -35,17 +35,17 @@ class NamePicker {
       }
     }
 
-    if (highLightX > letterX1 && highLightX < letterX2) {
+    if (highLightX > letterX1 && highLightX == letterX2) { //boolean to check if you are selecting the second letter
       first = false;
       second = true;
       third = false;
       letterpicker.Alphabet[letterpicker.num] = letter2;
-    } else if (highLightX > 442) {
+    } else if (highLightX > letterX2 && highLightX == letterX3) { // boolean to check if you are selecting the third letter
       first = false;
       second = false;
       third = true;
       letterpicker.Alphabet[letterpicker.num] = letter3;
-    } else if (highLightX <= 241) {
+    } else if (highLightX == letterX1) { // boolean to check if you are selecting the first letter
       first = true;
       second = false;
       third = false;
@@ -57,7 +57,6 @@ class NamePicker {
       ellipse(highLightX, highLightY, 20, 20);
       letterpicker.DrawLetterpicker();
       letter1 = letterpicker.Alphabet[letterpicker.num];
-      //letterpicker.num = 0;
     } 
     
     else if (second) {
@@ -73,8 +72,8 @@ class NamePicker {
       letter3 = letterpicker.Alphabet[letterpicker.num];
       //letterpicker.num = 0;
     }
-    
-    textSize(40);
+    println(first,second,third, highLightX, letterX2-100);
+    textSize(80);
     text(letter1, letterX1, letterY);
     text(letter2, letterX2, letterY);
     text(letter3, letterX3, letterY);
