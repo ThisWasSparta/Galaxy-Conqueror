@@ -156,12 +156,6 @@ void draw() {
       drawEnemies(i);
     }
     
-    /*for (int i = 0; i< enemyBulletNumber; i++) {      //updates, spawns and draws the bullets
-      enemyBullets[i].enemyBulletUpdatePosition(i);
-      enemyBullets[i].drawEnemyBullet(i);
-      enemyBullets[i].enemyBulletSpawner();
-    }*/
-    
     for (int i = 0; i < enemyBulletNumber; i++) {      //updates, spawns and draws the bullets
       enemyBullets[i].enemyBulletUpdatePosition(i);
       enemyBullets[i].drawEnemyBullet(i);
@@ -172,6 +166,9 @@ void draw() {
 
     player.playerUpdate();                 //updates the position of the player
     player.player();                       //draws the player
+    
+    globalBossTimer -= 1;
+    text(globalBossTimer, 120, 60);
 
     /*if (boss.currentState != -1) {
       boss.bossUpdatePosition();

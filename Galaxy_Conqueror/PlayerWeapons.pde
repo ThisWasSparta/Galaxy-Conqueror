@@ -109,6 +109,7 @@ class PlayerWeapons {
             if (enemy[t].eHP <= 0) {
               enemy[t].isAlive = false;
               scoreObj.addScore(150 * scoreMultiplier);
+              goliathOnScreen--;
               particle[0].particlesPerTurn = 60;
               particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
             }

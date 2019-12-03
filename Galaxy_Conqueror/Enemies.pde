@@ -4,6 +4,8 @@ int lastCollision = 0; //time in miliseconds of last time the player collided wi
 int collisionFlag = 0; //flag to keep track of if an enemy player collision has happened yet or not
 float minTime = 1250;
 float maxTime = 3500;
+int goliathOnScreen = 0;
+
 class Enemies {
   float eW;    //enemy width
   float eH;    //enemy height
@@ -56,7 +58,6 @@ class Enemies {
 
   //int timing;
   int enemyType;
-  
   int damageFlashTint = 0;
 
   boolean isAlive; //whether or not the enemy is alive
@@ -156,7 +157,9 @@ int enemyRecycle() {                       //function that checks to see which e
 
 int typeSelector() { //function that rolls a dice on what enemy type should appear
   int value = (int)random(0, 100);
-
+  if (goliathOnScreen <= 3) {
+    value = (int)random(0, 90);
+  }
   if (value >= 0 && value <= 50) {
     return 1;
   }
@@ -182,6 +185,7 @@ void enemyUpdatePosition(int counter) { //function that updates enemy positions 
       }
       if (enemy[counter].enemyType == 3) {
         scoreObj.addScore(-600);
+        goliathOnScreen--;
       }
     }
   }
