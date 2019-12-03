@@ -158,11 +158,13 @@ void draw() {
       enemySpawner(i);
       drawEnemies(i);
     }
+    
     /*for (int i = 0; i< enemyBulletNumber; i++) {      //updates, spawns and draws the bullets
       enemyBullets[i].enemyBulletUpdatePosition(i);
       enemyBullets[i].drawEnemyBullet(i);
       enemyBullets[i].enemyBulletSpawner();
     }*/
+    
     scoreObj.countScore(0, 0, 0); //made by Dylan Kleton
     
     player.playerUpdate();                 //updates the position of the player

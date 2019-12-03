@@ -12,6 +12,8 @@ class Enemies {
   float eSize; //enemy size
   int eHP;     //enemy health value
 
+  float shieldMaxHP;
+  float shieldHP;
   float orbW; //this code was written by Noah Verburg
   float orbH;
   float shieldW;
@@ -19,6 +21,7 @@ class Enemies {
   float orbSize;    //the size of the energy orb of the goliath
   float orbSizeFactor = 0.0;    //this is used to make the orb pulsate
   float shieldTint;
+  float shieldTintMinimum;
   float shieldTintFactor = 0.0; //this is used to make the transparency of the shield pulsate
   float inc = TWO_PI/50;        //this is the driving factor for the pulsating things
   float defaultScoutWidth = 110 * sizeFactor;
@@ -36,6 +39,8 @@ class Enemies {
   float courserHitboxY = defaultCourserHeight / 2 + 2;
   float goliathHitboxX = defaultGoliathWidth / 2 + 2;
   float goliathHitboxY = defaultGoliathHeight / 2 + 2;
+  float shieldHitboxX = shieldW / 2;
+  float shieldHitboxY = shieldH / 2;
   float scoutEnemyVelocityFactor = 0.0025;
   float courserEnemyVelocityFactor = 0.0015;
   float goliathEnemyVelocityFactor = 0.00085;
@@ -52,6 +57,7 @@ class Enemies {
   int damageFlashTint = 0;
 
   boolean isAlive; //whether or not the enemy is alive
+  boolean shieldAlive;
 }
 
 void enemySpawner(int counter) { //function that periodically causes enemies to appear on screen
@@ -125,8 +131,12 @@ void createEnemy(int type) { //function to create an enemy
       enemy[goliathCheck].eV = enemy[goliathCheck].goliathEnemyVelocityFactor * width;
       enemy[goliathCheck].eX = random(enemy[goliathCheck].eW / 2, width - enemy[goliathCheck].eW);
       enemy[goliathCheck].eY = -enemy[goliathCheck].eH;
-      enemy[goliathCheck].eHP = 260;
+      enemy[goliathCheck].eHP = 300;
       enemy[goliathCheck].isAlive = true;
+      enemy[goliathCheck].shieldAlive = true;
+      enemy[goliathCheck].shieldHP = 300;
+      enemy[goliathCheck].shieldMaxHP = 300;
+      enemy[goliathCheck].shieldTintMinimum = 175;
     }
     break;
   }
@@ -198,12 +208,15 @@ void drawEnemies(int counter) { //function that draws enemies on the given x and
         tint(255, enemy[counter].damageFlashTint, enemy[counter].damageFlashTint);
         enemy[counter].damageFlashTint -= 30;
       }
+      enemy[counter].shieldTintMinimum = 175 * (enemy[counter].shieldHP / enemy[counter].shieldMaxHP);
       enemy[counter].orbSize = enemy[counter].orbW + (enemy[counter].orbW * (1 + sin(enemy[counter].orbSizeFactor)))/12;
-      enemy[counter].shieldTint = 175 + (200 * (1 + sin(enemy[counter].shieldTintFactor)))/12;
+      enemy[counter].shieldTint = enemy[counter].shieldTintMinimum + (200 * (1 + sin(enemy[counter].shieldTintFactor)))/12;
       image(enemy[counter].goliathEnemy, enemy[counter].eX, enemy[counter].eY, enemy[counter].eW, enemy[counter].eH);
       image(enemy[counter].goliathOrb, enemy[counter].eX, enemy[counter].eY + enemy[counter].eH / 4 - enemy[counter].eH / 11, enemy[counter].orbSize, enemy[counter].orbSize);
-      tint(255, enemy[counter].shieldTint);
-      image(enemy[counter].goliathShield, enemy[counter].eX, enemy[counter].eY + enemy[counter].eH / 1.5 - enemy[counter].eH / 11, enemy[counter].shieldW, enemy[counter].shieldH);
+      if (enemy[counter].shieldAlive) {
+        tint(255, enemy[counter].shieldTint);
+        image(enemy[counter].goliathShield, enemy[counter].eX, enemy[counter].eY + enemy[counter].eH / 1.5 - enemy[counter].eH / 11, enemy[counter].shieldW, enemy[counter].shieldH);
+      }
       tint(255, 255);
       enemy[counter].orbSizeFactor += enemy[counter].inc;      //this makes the orb pulsate
       enemy[counter].shieldTintFactor += enemy[counter].inc;   //this makes the shields transparency pulsate
