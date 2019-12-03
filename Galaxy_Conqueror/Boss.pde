@@ -1,6 +1,7 @@
 //this pde file was written by Floris Kuiper
 
 int globalBossTimer = 19200;
+int scoutDelay = 3000;
 
 class Boss {
   float bossX = width / 2;
@@ -61,10 +62,13 @@ class Boss {
       //call missilespawner to continuously summon a group of three missiles from the top of the screen
       //do this every 2 seconds until the state ends
       //end the state after... 15 seconds? something like that
-      
+
       break;
     case REQUEST_BACKUP_STATE:
-      
+      if (scoutDelay <= 0) {
+        bossScoutSpawner();
+      }
+      scoutDelay--;
       //call enemyspawner with the scout's enemy type to summon two groups of three scouts on either side of the play area
       //shoot bullets meanwhile?
       //maybe merge this state with the deathray state...

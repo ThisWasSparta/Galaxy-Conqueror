@@ -108,7 +108,7 @@ void setup() {
   for (int i = 0; i < enemyMoveParticleNumber; i++) {
     enemyMoveParticle[i] = new EnemyMoveParticles();
   }
-  for (int i = 0; i < maxP; i++){
+  for (int i = 0; i < maxP; i++) {
     power[i] = new PowerUp();
   }
 }
@@ -155,7 +155,7 @@ void draw() {
       enemySpawner(i);
       drawEnemies(i);
     }
-    
+
     for (int i = 0; i < enemyBulletNumber; i++) {      //updates, spawns and draws the bullets
       enemyBullets[i].enemyBulletUpdatePosition(i);
       enemyBullets[i].drawEnemyBullet(i);
@@ -166,15 +166,15 @@ void draw() {
 
     player.playerUpdate();                 //updates the position of the player
     player.player();                       //draws the player
-    
-    globalBossTimer -= 1;
+
+    globalBossTimer--;
     text(globalBossTimer, 120, 60);
 
     /*if (boss.currentState != -1) {
-      boss.bossUpdatePosition();
-      boss.bossUpdateBehaviour();
-      boss.bossDraw();
-    }*/
+     boss.bossUpdatePosition();
+     boss.bossUpdateBehaviour();
+     boss.bossDraw();
+     }*/
 
     if (player.weapon == 1) {
       weapon[0].spawnPlayerBullets();        //spawns player bullets using a for-loop built into the function
@@ -208,9 +208,9 @@ void draw() {
       gameOver = true;
     }
   }
-  if (gameOver){
-      gameover.GameOverDraw();
-      gameover.GameOverTakeName();
+  if (gameOver) {
+    gameover.GameOverDraw();
+    gameover.GameOverTakeName();
   }
   titel.bright();
   //image(boss, width/2, 121, 1000, 242);
