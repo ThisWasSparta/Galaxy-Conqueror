@@ -167,6 +167,10 @@ void draw() {
     player.playerUpdate();                 //updates the position of the player
     player.player();                       //draws the player
 
+    if(scoreObj.score >= 10000) {
+      Boss.bossSpawn();
+    }
+    
     globalBossTimer--;
     text(globalBossTimer, 120, 60);
 
