@@ -104,12 +104,12 @@ class PlayerWeapons {
             weapon[i].bY -= height;
             enemy[t].eHP = enemy[t].eHP - 15;
             enemy[t].damageFlashTint = 255;
-              if (enemy[t].eHP <= 0){
-                enemy[t].isAlive = false;
-                scoreObj.addScore(150);
-                particle[0].particlesPerTurn = 60;
-                particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
-              }
+            if (enemy[t].eHP <= 0){
+              enemy[t].isAlive = false;
+              scoreObj.addScore(150);
+              particle[0].particlesPerTurn = 60;
+              particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
+            }
           }
         }
       }
