@@ -48,6 +48,8 @@ class Enemies {
 
   //int timing;
   int enemyType;
+  
+  int damageFlashTint = 0;
 
   boolean isAlive; //whether or not the enemy is alive
 }
@@ -176,12 +178,26 @@ void drawEnemies(int counter) { //function that draws enemies on the given x and
   if (enemy[counter].isAlive == true) {
     fill(255, 0, 0);
     if (enemy[counter].enemyType == 1) {
+      if (enemy[counter].damageFlashTint > 0) {
+        tint(255, enemy[counter].damageFlashTint, enemy[counter].damageFlashTint);
+        enemy[counter].damageFlashTint -= 30;
+      }
       image(enemy[counter].scoutEnemy, enemy[counter].eX, enemy[counter].eY, enemy[counter].eW, enemy[counter].eH);
+      tint(255, 255, 255);
     }
     if (enemy[counter].enemyType == 2) {
+      if (enemy[counter].damageFlashTint > 0) {
+        tint(255, enemy[counter].damageFlashTint, enemy[counter].damageFlashTint);
+        enemy[counter].damageFlashTint -= 30;
+      }
       image(enemy[counter].courserEnemy, enemy[counter].eX, enemy[counter].eY, enemy[counter].eW, enemy[counter].eH);
+      tint(255, 255, 255);
     }
     if (enemy[counter].enemyType == 3) {
+      if (enemy[counter].damageFlashTint > 0) {
+        tint(255, enemy[counter].damageFlashTint, enemy[counter].damageFlashTint);
+        enemy[counter].damageFlashTint -= 30;
+      }
       enemy[counter].orbSize = enemy[counter].orbW + (enemy[counter].orbW * (1 + sin(enemy[counter].orbSizeFactor)))/12;
       enemy[counter].shieldTint = 175 + (200 * (1 + sin(enemy[counter].shieldTintFactor)))/12;
       image(enemy[counter].goliathEnemy, enemy[counter].eX, enemy[counter].eY, enemy[counter].eW, enemy[counter].eH);
@@ -192,6 +208,7 @@ void drawEnemies(int counter) { //function that draws enemies on the given x and
       enemy[counter].orbSizeFactor += enemy[counter].inc;      //this makes the orb pulsate
       enemy[counter].shieldTintFactor += enemy[counter].inc;   //this makes the shields transparency pulsate
       //println(enemy[counter].orbSizeFactor);
+      tint(255, 255, 255);
     }
   }
 }
