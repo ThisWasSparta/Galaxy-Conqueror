@@ -1,7 +1,8 @@
 class GameOver {
 
   boolean gameover = false;
-  
+  int tY = height - 800;
+
   GameOver()
   {
   }
@@ -13,12 +14,14 @@ class GameOver {
     textAlign(CENTER);
     text("Game Over", tX, tY);
 
+    if (gameOverTimer == 0) {
+      gameOverTimer = millis();
+    }
+
     scoreObj.countScore(0, 0, 0);
   }
-  
-  void GameOverTakeName(){
-     
+
+  void GameOverTakeName() {
+    namePicker.DrawNamePicker();
   }
-  
-  
 }
