@@ -1,3 +1,5 @@
+import de.bezier.data.sql.*;
+import de.bezier.data.sql.mapper.*;
 import processing.sound.*;
 
 /* This code is written by group 3 of IG-101 FYS project. It is a game called
@@ -40,7 +42,7 @@ Score scoreObj;
 Variable variables;
 Controls controls;
 Meteoriet meteoriet;
-SoundFile s;
+Sounds sounds;
 Boss boss;
 
 //Aantal sterren
@@ -66,7 +68,7 @@ void setup() {
   controls = new Controls();
   Star = new BackgroundStars();
   boss = new Boss();
-  s = new SoundFile(this, "./sound/stagethemefix.wav");
+  sounds = new Sounds(this);
   titel.font();
   Star.sterrenProp();
   for (int i = 0; i < playerBulletNumber; i++) {
@@ -78,7 +80,7 @@ void setup() {
   for (int i = 0; i < enemyBulletNumber; i++) {
     enemyBullets[i] = new EnemyBullets();
   }
-  for (int i = 0; i < heartNumber; i++){
+  for (int i = 0; i < heartNumber; i++) {
     heart[i] = new Health();
   }
   for (int i = 0; i < enemyExplosionParticleNumber; i++) {
@@ -93,24 +95,24 @@ void setup() {
 }
 
 /*void frameRateDisplay() {        //This function was written by Noah Verburg
-  textSize(40);
-  fill(255);
-  text(int(frameRate), width/20, 50);
-  if (player.stop == true) {
-    stop();
-  }
-}*/
+ textSize(40);
+ fill(255);
+ text(int(frameRate), width/20, 50);
+ if (player.stop == true) {
+ stop();
+ }
+ }*/
 
 void gameOver() {      //this function was made by Dylan Kleton
   fill(255, 0, 0);     //if the player is dead, the game over screen shows.
   textSize(150);
   textAlign(CENTER);
   text("Game Over", tX, tY);
-  
+
   if (gameOverTimer == 0) {
     gameOverTimer = millis();
   }
-  
+
   scoreObj.countScore(0, 0, 0);
 }
 
@@ -144,9 +146,9 @@ void draw() {
   titel.startScreen();
   //frameRateDisplay();
   variables.loadGameValues();
-  
+
   timer = millis();
-  
+
   if (startGame) {    //if the player has pressed start on the menu, the game will start
     obstakel.drawObstakel();
     for (int i = 0; i < enemyNumber; i++) {      //updates, spawns and draws the enemies
@@ -154,43 +156,51 @@ void draw() {
       enemySpawner(i);
       drawEnemies(i);
     }
+    
     /*for (int i = 0; i< enemyBulletNumber; i++) {      //updates, spawns and draws the bullets
       enemyBullets[i].enemyBulletUpdatePosition(i);
       enemyBullets[i].drawEnemyBullet(i);
       enemyBullets[i].enemyBulletSpawner();
     }*/
-    scoreObj.countScore(0, 0, 0); //made by Dylan Kleton
     
+    for (int i = 0; i < enemyBulletNumber; i++) {      //updates, spawns and draws the bullets
+      enemyBullets[i].enemyBulletUpdatePosition(i);
+      enemyBullets[i].drawEnemyBullet(i);
+      enemyBullets[i].enemyBulletSpawner();
+    }
+
+    scoreObj.countScore(0, 0, 0); //made by Dylan Kleton
+
     player.playerUpdate();                 //updates the position of the player
     player.player();                       //draws the player
-    
-    if(boss.currentState != -1) {
+
+    /*if (boss.currentState != -1) {
       boss.bossUpdatePosition();
       boss.bossUpdateBehaviour();
       boss.bossDraw();
-    }
-    
+    }*/
+
     if (player.weapon == 1) {
       weapon[0].spawnPlayerBullets();        //spawns player bullets using a for-loop built into the function
     }
     weapon[0].updatePlayerBullets();       //updates player bullets using a for-loop built into the function
     weapon[0].drawPlayerBullets();         //draws player bullets using a for-loop built into the function
-    
+
     if (player.weapon == 2) {
       weapon[0].spawnPlayerLaser();
     }
     weapon[0].updatePlayerLaser();
     weapon[0].drawPlayerLaser();
-    
+
     heart[0].playerHealth();
-    
+
     for (int i = 0; i < enemyExplosionParticleNumber; i++) {
       if (particle[i].isAlive) {
         particle[i].updateParticles(i);
         particle[i].drawParticles(i);
       }
     }
-    
+
     enemyShootParticle[0].updateParticles();
     enemyShootParticle[0].drawParticles();
     if (heartNumber <= 0) {
@@ -206,7 +216,8 @@ void draw() {
   titel.bright();
   //image(boss, width/2, 121, 1000, 242);
   if (player.testBoolean) {
-    
   }
-  if (player.stop) {stop();}
+  if (player.stop) {
+    stop();
+  }
 }
