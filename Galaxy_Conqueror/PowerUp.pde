@@ -1,6 +1,5 @@
 //The code present in this file is written by Sam Spronk, based on the Class Enemies
 int lastpower; //time in milliseconds since last powerup
-int startpowerup;
 
 class PowerUp {
   float pW;        //Powerup width
@@ -8,6 +7,9 @@ class PowerUp {
   float pV = 1;    //Powerup Velocity
   float pX;        //Powerup X coordinate
   float pY;        //Powerup Y coordinate
+  
+  int startPowerup;
+  int timerPowerup;
   
   int typePowerup;
   final int maxP = 3; //Maximum amount of powerups allowed at a time
@@ -41,6 +43,8 @@ switch(powerType) {
       power[doublepointsCheck].pV = 1;
       power[doublepointsCheck].pX = random(power[doublepointsCheck].pW /2, width - power[doublepointsCheck].pW);
       power[doublepointsCheck].pY = -power[doublepointsCheck].pH;
+      power[doublepointsCheck].startPowerup = 0;
+      power[doublepointsCheck].timerPowerup = 0;
     }
   break;
   case 2:
@@ -53,6 +57,8 @@ switch(powerType) {
       power[speedCheck].pV = 1;
       power[speedCheck].pX = random(power[speedCheck].pW / 2, width - power[speedCheck].pW);
       power[speedCheck].pY = -power[speedCheck].pH;
+      power[speedCheck].startPowerup = 0;
+      power[speedCheck].timerPowerup = 0;
     }
   break;
   case 3:
@@ -65,6 +71,8 @@ switch(powerType) {
       power[screenwipeCheck].pV = 1;
       power[screenwipeCheck].pX = random(power[screenwipeCheck].pW / 2, width - power[screenwipeCheck].pW);
       power[screenwipeCheck].pY = -power[screenwipeCheck].pH;
+      power[screenwipeCheck].startPowerup = 0;
+      power[screenwipeCheck].timerPowerup = 0;
     }
   break;
   }
@@ -106,61 +114,77 @@ void powerUpdate(int counter) {
     if(power[counter].pY == height + power[counter].pH) {
       power[counter].isPicked = false;
     }
-    if(power[counter].pX > player.pX - player.pW/2 && power[counter].pX < player.pX + player.pW/2 && power[counter].pY > player.pY - player.pH/2 && power[counter].pY < player.pY + player.pH/2) {
+    if(power[counter].pX > player.pX - player.pW/2 && power[counter].pX < player.pX + player.pW/2 && power[counter].pY > player.pY - player.pH/2 && power[counter].pY < player.pY + player.pH/2 && power[counter].isActivated == false) {
       power[counter].isActivated = true;
-      power[counter].isPicked = false;
       power[counter].pY = height * 2;
-      startpowerup = millis();
+      power[counter].timerPowerup = power[counter].startPowerup - 10000;
+    }
+    if(power[counter].isActivated == true) {
+      if(power[counter].typePowerup == 1) {
+        if(power[counter].startPowerup >= power[counter].timerPowerup) {
+          scoreMultiplier = 2;
+          println(power[counter].startPowerup);
+        }
+        else {
+          scoreMultiplier = 1;
+          power[counter].isActivated = false;
+          power[counter].isPicked = false;
+          println("Powerup deactivated");
+          println(power[counter].startPowerup - power[counter].timerPowerup);
+        }
+        //if(power[counter].startPowerup >= 10000) {
+        //  scoreMultiplier = 1;
+        //  power[counter].isActivated = false;
+        //}
+        //else {
+        //  scoreMultiplier = 2;
+        //}
+      }
+      if(power[counter].typePowerup == 2) {
+        if(power[counter].startPowerup >= power[counter].timerPowerup) {
+          player.playerVelocityFactor = 0.012;
+          println(power[counter].startPowerup);
+        }
+        else {
+          scoreMultiplier = 1;
+          power[counter].isActivated = false;
+          power[counter].isPicked = false;
+          println("Powerup deactivated");
+          println(power[counter].startPowerup - power[counter].timerPowerup);
+        }
+        //if(power[counter].startPowerup >= 10000) {
+        //  player.playerVelocityFactor = 0.006;
+        //  power[counter].isActivated = false;
+        //}
+        //else {
+        //  player.playerVelocityFactor = 0.012;
+          
+        //  }
+        }
+      if(power[counter].typePowerup == 3) {
+        for(int i = 0; i < 20; i++) {
+          if(enemy[i].isAlive == true) {
+            if(enemy[i].enemyType == 1) {
+              scoreObj.addScore(50 * scoreMultiplier);
+              enemy[i].isAlive = false;
+            }
+            if(enemy[i].enemyType == 2) {
+              scoreObj.addScore(100 * scoreMultiplier);
+              enemy[i].isAlive = false;
+            }
+            if(enemy[i].enemyType == 3) {
+              scoreObj.addScore(150 * scoreMultiplier);
+              enemy[i].isAlive = false;
+            }
+          }
+        }
+        power[counter].isActivated = false;
+        power[counter].isPicked = false;
+      }
     }
   }
   
-  println(startpowerup);
   
-  if(power[counter].isActivated == true) {
-    if(power[counter].typePowerup == 1) {
-      if(millis() >= startpowerup) {
-        scoreMultiplier = 1;
-      }
-      else {
-        scoreMultiplier = 2;
-        power[counter].isActivated = false;
-      }
-    }
-    if(power[counter].typePowerup == 2 && power[counter].isActivated == true) {
-      if(millis() >= startpowerup + 10000) {
-        playerVelocityFactor = 0.12;
-        playerBulletFireRate = 120;
-        println(millis());
-      }
-      else {
-        playerVelocityFactor = 0.006;
-        playerBulletFireRate = 1200;
-        println("Speed powerup activated");
-        println(startpowerup);
-        println(millis());
-        power[counter].isActivated = false;
-        }
-      }
-    if(power[counter].typePowerup == 3 && power[counter].isActivated == true) {
-      for(int i = 0; i < 20; i++) {
-        if(enemy[i].isAlive == true) {
-          if(enemy[i].enemyType == 1) {
-            scoreObj.addScore(50 * scoreMultiplier);
-            enemy[i].isAlive = false;
-          }
-          if(enemy[i].enemyType == 2) {
-            scoreObj.addScore(100 * scoreMultiplier);
-            enemy[i].isAlive = false;
-          }
-          if(enemy[i].enemyType == 3) {
-            scoreObj.addScore(150 * scoreMultiplier);
-            enemy[i].isAlive = false;
-          }
-        }
-      }
-      power[counter].isActivated = false;
-    }
-  }
 }
 void drawPower(int counter) {
   if(power[counter].isPicked == true) {
