@@ -40,6 +40,7 @@ class PlayerWeapons {
   
   void spawnPlayerBullets() {                          //This function was written by Noah Verburg
       if (player.isShooting && !weapon[playerBulletTurn].bulletIsOnScreen && millis() - playerBulletFireRate > reloadTime) {  //if the shot-button is pressed and the bullet that is supposed to
+        //sounds.playergatshoot.play();
         reloadTime = millis();                                                                                                //shoot out isnt on screen and the reload timer is done, it fires a bullet
         for (int i = 0; i < PLAYER_BULLET_PER_SALVO; i++) {
           if (playerBulletTurn%2 == 0) {                                                     //if the current bullet's number is an even number, it spawns  in the
@@ -71,6 +72,7 @@ class PlayerWeapons {
         if (enemy[t].enemyType == 1 && weapon[i].bX < enemy[t].eX + enemy[t].scoutHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].scoutHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].scoutHitboxY && weapon[i].bY > enemy[t].eY - enemy[t].scoutHitboxY && enemy[t].isAlive == true) {
           weapon[i].bY -= height;
           enemy[t].eHP = enemy[t].eHP - 15;
+          enemy[t].damageFlashTint = 255;
             if (enemy[t].eHP <= 0){
               enemy[t].isAlive = false;
               scoreObj.addScore(50 * scoreMultiplier);
@@ -81,6 +83,7 @@ class PlayerWeapons {
         if (enemy[t].enemyType == 2 && weapon[i].bX < enemy[t].eX + enemy[t].courserHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].courserHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].courserHitboxY && weapon[i].bY > enemy[t].eY - enemy[t].courserHitboxY && enemy[t].isAlive == true) {
           weapon[i].bY -= height;
           enemy[t].eHP = enemy[t].eHP - 15;
+          enemy[t].damageFlashTint = 255;
             if (enemy[t].eHP <= 0){
               enemy[t].isAlive = false;
               scoreObj.addScore(100 * scoreMultiplier);
@@ -96,7 +99,26 @@ class PlayerWeapons {
               scoreObj.addScore(150 * scoreMultiplier);
               particle[0].particlesPerTurn = 60;
               particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
+        if (enemy[t].shieldAlive) {
+          if (enemy[t].enemyType == 3 && weapon[i].bX < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].goliathHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].goliathHitboxY  * 1.4 && weapon[i].bY > enemy[t].eY + enemy[t].goliathHitboxY * 0.6 && enemy[t].isAlive == true) {
+            weapon[i].bY -= height;
+            enemy[t].shieldHP -= 15;
+            if (enemy[t].shieldHP <= 0) {
+              enemy[t].shieldAlive = false;
             }
+          }
+        } else {
+          if (enemy[t].enemyType == 3 && weapon[i].bX < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].goliathHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].goliathHitboxY && weapon[i].bY > enemy[t].eY - enemy[t].goliathHitboxY && enemy[t].isAlive == true) {
+            weapon[i].bY -= height;
+            enemy[t].eHP = enemy[t].eHP - 15;
+            enemy[t].damageFlashTint = 255;
+              if (enemy[t].eHP <= 0){
+                enemy[t].isAlive = false;
+                scoreObj.addScore(150);
+                particle[0].particlesPerTurn = 60;
+                particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
+              }
+          }
         }
       }
     }
@@ -171,6 +193,7 @@ class PlayerWeapons {
         if (enemy[t].enemyType == 1 && weapon[i].lX - weapon[i].lW/2 < enemy[t].eX + enemy[t].scoutHitboxX && weapon[i].lX + weapon[i].lW/2 > enemy[t].eX - enemy[t].scoutHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
           weapon[i].bY -= height;
           enemy[t].eHP = enemy[t].eHP - playerLaserDamagePerFrame;
+          enemy[t].damageFlashTint = 100;
             if (enemy[t].eHP <= 0){
               enemy[t].isAlive = false;
               scoreObj.addScore(50 * scoreMultiplier);
@@ -181,16 +204,18 @@ class PlayerWeapons {
         if (enemy[t].enemyType == 2 && weapon[i].lX - weapon[i].lW/2 < enemy[t].eX + enemy[t].courserHitboxX && weapon[i].lX + weapon[i].lW/2 > enemy[t].eX - enemy[t].courserHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
           weapon[i].bY -= height;
           enemy[t].eHP = enemy[t].eHP - playerLaserDamagePerFrame;
+          enemy[t].damageFlashTint = 100;
             if (enemy[t].eHP <= 0){
               enemy[t].isAlive = false;
               scoreObj.addScore(100 * scoreMultiplier);
               particle[0].particlesPerTurn = 40;
               particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
             }
-        }
+        } 
         if (enemy[t].enemyType == 3 && weapon[i].lX - weapon[i].lW/2 < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].lX + weapon[i].lW/2 > enemy[t].eX - enemy[t].goliathHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
           weapon[i].bY -= height;
           enemy[t].eHP = enemy[t].eHP - playerLaserDamagePerFrame;
+          enemy[t].damageFlashTint = 100;
             if (enemy[t].eHP <= 0){
               enemy[t].isAlive = false;
               scoreObj.addScore(150 * scoreMultiplier);
