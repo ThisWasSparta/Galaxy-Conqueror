@@ -64,11 +64,7 @@ class EnemyBullets {
 
   void playerCollisionCheck(int counter) {
     if (lastCollision <= (timer - 3000)) {
-      if (/*enemyBullets[counter].bSize + enemyBullets[counter].bX > player.pX - player.pW/2 
-        && enemyBullets[counter].bSize - enemyBullets[counter].bX < player.pX + player.pW/2 
-        && enemyBullets[counter].bSize + enemyBullets[counter].bY > player.pY - player.pH/2 
-        && enemyBullets[counter].bSize - enemyBullets[counter].bY < player.pY + player.pH/2*/
-        enemyBullets[counter].bX - enemyBullets[counter].bW/2 > player.pX - player.pW/2
+      if (enemyBullets[counter].bX - enemyBullets[counter].bW/2 > player.pX - player.pW/2
         && enemyBullets[counter].bX + enemyBullets[counter].bW/2 < player.pX + player.pW/2
         && enemyBullets[counter].bY - enemyBullets[counter].bH/2 < player.pX - player.pH/2
         && enemyBullets[counter].bY + enemyBullets[counter].bH/2 < player.pX + player.pH/2){
