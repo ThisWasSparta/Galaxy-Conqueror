@@ -16,6 +16,8 @@ int tY;    //y-waarde van game over text
 int heartNumber = 3;
 int stopGameTime;
 int gameOverTimer = 0;
+int maxP = 3;                         //maximum amount of powerups present at the same time
+int scoreMultiplier = 1;
 
 int timer = millis();                 //contains the time from when the game was launched in milliseconds
 int startTime;                        //contains the time when start was pressed in milliseconds
@@ -31,6 +33,9 @@ float wScale;                         //width scale used to adjust the width of 
 float hScale;                         //height scale used to adjust the height of images
 
 PImage bossSprite;
+PImage doublepointsPowerup;
+PImage speedPowerup;
+PImage screenwipePowerup;
 
 Obstakel obstakel;                    //Dit is de meteoriet
 SpaceShip player;                     //Dit is de player
@@ -51,6 +56,7 @@ Health[] heart = new Health[heartNumber];
 ExplosionPart[] particle = new ExplosionPart[enemyExplosionParticleNumber];
 EnemyShootParticle[] enemyShootParticle = new EnemyShootParticle[enemyShootParticleNumber];
 EnemyMoveParticles[] enemyMoveParticle = new EnemyMoveParticles[enemyMoveParticleNumber];
+PowerUp[] power = new PowerUp[maxP];
 
 void setup() {
   fullScreen(P3D);             //fullscreen and hardware acceleration
@@ -89,6 +95,9 @@ void setup() {
   }
   for (int i = 0; i < enemyMoveParticleNumber; i++) {
     enemyMoveParticle[i] = new EnemyMoveParticles();
+  }
+  for (int i = 0; i < maxP; i++){
+    power[i] = new PowerUp();
   }
 }
 
@@ -189,6 +198,11 @@ void draw() {
         particle[i].updateParticles(i);
         particle[i].drawParticles(i);
       }
+    }
+    for (int i = 0; i < maxP; i++) {
+      powerUpdate(i);
+      powerupSpawn(i);
+      drawPower(i);
     }
     
     enemyShootParticle[0].updateParticles();
