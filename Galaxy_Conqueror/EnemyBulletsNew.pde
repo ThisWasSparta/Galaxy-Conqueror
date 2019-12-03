@@ -66,6 +66,7 @@ class EnemyBullets {
         if (lastBulletSpawn <= timer - 2000) {
           lastBulletSpawn = timer;
           createEnemyBullet(); //creates an enemy in the right array according to the type rolled by the type generator
+          //sounds.scoutshoot.play();
         }
       }
     }

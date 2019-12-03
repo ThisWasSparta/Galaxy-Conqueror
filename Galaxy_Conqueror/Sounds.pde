@@ -15,6 +15,6 @@ class Sounds {
     deathraycharge = new SoundFile(app,"./sound/deathray_charge.wav");
     enemydeath1 = new SoundFile(app,"./sound/enemy_deathsound1.wav");
     enemydeath2 = new SoundFile(app,"./sound/enemy_deahtsound2.wav");
-    playergatshoot = new SoundFile(app,"./sound/scout_shootnoise.wav");
+    scoutshoot = new SoundFile(app,"./sound/scout_shootnoise.wav");
   }
 }
