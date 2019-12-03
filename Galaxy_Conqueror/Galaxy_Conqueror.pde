@@ -28,6 +28,8 @@ boolean startGame = false;            //whether the game has started or not
 
 boolean valuesLoaded = false;
 
+boolean gameOver = false;
+
 boolean nameScreen;
 
 float sizeFactor = 0.8;
@@ -52,6 +54,7 @@ Boss boss;
 NamePicker namePicker;
 Letterpicker letterPicker;
 DBConnect dbconnect;
+GameOver gameover;
 
 //Aantal sterren
 PlayerWeapons[] weapon = new PlayerWeapons[playerBulletNumber];              //the bullets for the player
@@ -79,6 +82,9 @@ void setup() {
   boss = new Boss();
   sounds = new Sounds(this);
   dbconnect = new DBConnect(this);
+  namePicker = new NamePicker();
+  letterPicker = new Letterpicker();
+  gameover = new GameOver();
   titel.font();
   Star.sterrenProp();
   for (int i = 0; i < playerBulletNumber; i++) {
@@ -107,27 +113,7 @@ void setup() {
   }
 }
 
-/*void frameRateDisplay() {        //This function was written by Noah Verburg
- textSize(40);
- fill(255);
- text(int(frameRate), width/20, 50);
- if (player.stop == true) {
- stop();
- }
- }*/
 
-void gameOver() {      //this function was made by Dylan Kleton
-  fill(255, 0, 0);     //if the player is dead, the game over screen shows.
-  textSize(150);
-  textAlign(CENTER);
-  text("Game Over", tX, tY);
-
-  if (gameOverTimer == 0) {
-    gameOverTimer = millis();
-  }
-
-  scoreObj.countScore(0, 0, 0);
-}
 
 void keyReleased() {         //This function was written by Noah Verburg
   controls.setAction(key, false);  //detects if a key has been released
@@ -221,14 +207,13 @@ void draw() {
     enemyShootParticle[0].updateParticles();
     enemyShootParticle[0].drawParticles();
     if (heartNumber <= 0) {
-      gameOver();
-      if (gameOverTimer + 5000 < millis()) {
-        startGame = false;
-        valuesLoaded = false;
-        heartNumber = 3;
-        gameOverTimer = 0;
-      }
+      startGame = false;
+      gameOver = true;
     }
+  }
+  if (gameOver){
+      gameover.GameOverDraw();
+      gameover.GameOverTakeName();
   }
   titel.bright();
   //image(boss, width/2, 121, 1000, 242);
