@@ -1,5 +1,8 @@
 //this pde file was written by Floris Kuiper
 
+int globalBossTimer = 10000;
+int scoutDelay = 3000;
+
 class Boss {
   float bossX = width / 2;
   float bossY = height / 2;
@@ -29,6 +32,15 @@ class Boss {
   final int DEATHRAY_VERTICAL_OFFSET = 60;
   final int DEATHRAY_HORIZONTAL_OFFSET = 30;
   final int DEATHRAY_SIZE = 60;
+  
+  void bossSpawn() {
+    //disable the spawning of enemies
+    //keep the drawing of enemies enabled
+    //spawn the boss above the screen, slowly move him down into view
+    //fade out level music
+    //kick in the music
+    //
+  }
 
   void bossUpdatePosition() { //function that makes the boss slowly move up and down
     //ang = radians(angle); < probably redundant, just want to be sure before i remove it
@@ -59,10 +71,14 @@ class Boss {
       //call missilespawner to continuously summon a group of three missiles from the top of the screen
       //do this every 2 seconds until the state ends
       //end the state after... 15 seconds? something like that
-
       break;
     case REQUEST_BACKUP_STATE:
-      
+      if (scoutDelay <= 0) {
+        for (int i = 0; i >= 0; i++) {
+          bossScoutSpawner();
+        }
+      }
+      scoutDelay--;
       //call enemyspawner with the scout's enemy type to summon two groups of three scouts on either side of the play area
       //shoot bullets meanwhile?
       //maybe merge this state with the deathray state...

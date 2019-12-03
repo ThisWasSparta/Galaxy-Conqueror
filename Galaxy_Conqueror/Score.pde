@@ -36,7 +36,5 @@ class Score {
     fill(255, 255, 0);
     textSize(50);
     text("Score: " +score, tX, tY/0.5);
-   
-  
   }
 }

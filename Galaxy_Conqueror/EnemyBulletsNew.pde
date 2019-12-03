@@ -18,8 +18,8 @@ class EnemyBullets {
       enemyBullets[counter].bW = 5;
       enemyBullets[counter].bH = 10;
       enemyBullets[counter].bV = 0;
-      enemyBullets[counter].bX = width * 2;
-      enemyBullets[counter].bY = width * 2;
+      enemyBullets[counter].bX = width * -2;
+      enemyBullets[counter].bY = width * -2;
       enemyBullets[counter].isOnScreen = false; //whether or not a bullet is "alive" or not
     }
   }
@@ -35,10 +35,11 @@ class EnemyBullets {
     if (lastCollision <= (timer - 3000)) {
       if (enemyBullets[counter].bX - enemyBullets[counter].bW/2 > player.pX - player.pW/2
         && enemyBullets[counter].bX + enemyBullets[counter].bW/2 < player.pX + player.pW/2
-        && enemyBullets[counter].bY - enemyBullets[counter].bH/2 < player.pX - player.pH/2
-        && enemyBullets[counter].bY + enemyBullets[counter].bH/2 < player.pX + player.pH/2) {
+        && enemyBullets[counter].bY - enemyBullets[counter].bH/2 > player.pY - player.pH/2
+        && enemyBullets[counter].bY + enemyBullets[counter].bH/2 < player.pY + player.pH/2
+        && enemyBullets[counter].isOnScreen == true) {
         println("ouchie");
-        enemyBullets[counter].bY = height * 2;
+        enemyBullets[counter].bY = height * -2;
         enemyBullets[counter].bX = -1 * width;
         enemyBullets[counter].isOnScreen = false;
         lastCollision = millis();
@@ -47,7 +48,7 @@ class EnemyBullets {
       if (enemyBullets[counter].bY > height + enemyBullets[counter].bH && enemyBullets[counter].isOnScreen == true) {
         println("my planet doesn't need me anymore");
         enemyBullets[counter].bX = -1 * width;
-        enemyBullets[counter].bY = height * 2;
+        enemyBullets[counter].bY = height * -2;
         enemyBullets[counter].isOnScreen = false;
       }
     }
