@@ -4,7 +4,7 @@ int lastpower; //time in milliseconds since last powerup
 class PowerUp {
   float pW;        //Powerup width
   float pH;        //Powerup height
-  float pV = 1;    //Powerup Velocity
+  float pV;    //Powerup Velocity
   float pX;        //Powerup X coordinate
   float pY;        //Powerup Y coordinate
   
@@ -40,7 +40,7 @@ switch(powerType) {
       power[doublepointsCheck].isActivated = false;
       power[doublepointsCheck].pW = doublepointsPowerup.width;
       power[doublepointsCheck].pH = doublepointsPowerup.height;
-      power[doublepointsCheck].pV = 1;
+      power[doublepointsCheck].pV = random(1, 3);
       power[doublepointsCheck].pX = random(power[doublepointsCheck].pW /2, width - power[doublepointsCheck].pW);
       power[doublepointsCheck].pY = -power[doublepointsCheck].pH;
       power[doublepointsCheck].startPowerup = 0;
@@ -54,7 +54,7 @@ switch(powerType) {
       power[speedCheck].isActivated = false;
       power[speedCheck].pW = speedPowerup.width;
       power[speedCheck].pH = speedPowerup.height;
-      power[speedCheck].pV = 1;
+      power[speedCheck].pV = random(1, 3);
       power[speedCheck].pX = random(power[speedCheck].pW / 2, width - power[speedCheck].pW);
       power[speedCheck].pY = -power[speedCheck].pH;
       power[speedCheck].startPowerup = 0;
@@ -68,7 +68,7 @@ switch(powerType) {
       power[screenwipeCheck].isActivated = false;
       power[screenwipeCheck].pW = screenwipePowerup.height;
       power[screenwipeCheck].pH = screenwipePowerup.width;
-      power[screenwipeCheck].pV = 1;
+      power[screenwipeCheck].pV = random(1, 3);
       power[screenwipeCheck].pX = random(power[screenwipeCheck].pW / 2, width - power[screenwipeCheck].pW);
       power[screenwipeCheck].pY = -power[screenwipeCheck].pH;
       power[screenwipeCheck].startPowerup = 0;
