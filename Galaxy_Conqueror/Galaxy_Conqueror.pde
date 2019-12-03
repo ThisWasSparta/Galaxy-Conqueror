@@ -49,6 +49,9 @@ Controls controls;
 Meteoriet meteoriet;
 Sounds sounds;
 Boss boss;
+NamePicker namePicker;
+Letterpicker letterPicker;
+DBConnect dbconnect;
 
 //Aantal sterren
 PlayerWeapons[] weapon = new PlayerWeapons[playerBulletNumber];              //the bullets for the player
@@ -75,6 +78,7 @@ void setup() {
   Star = new BackgroundStars();
   boss = new Boss();
   sounds = new Sounds(this);
+  dbconnect = new DBConnect(this);
   titel.font();
   Star.sterrenProp();
   for (int i = 0; i < playerBulletNumber; i++) {

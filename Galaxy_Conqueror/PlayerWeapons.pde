@@ -93,40 +93,24 @@ class PlayerWeapons {
             particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
           }
         }
-        if (enemy[t].enemyType == 3 && weapon[i].bX < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].goliathHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].goliathHitboxY && weapon[i].bY > enemy[t].eY - enemy[t].goliathHitboxY && enemy[t].isAlive == true) {
-          weapon[i].bY -= height;
-          enemy[t].eHP = enemy[t].eHP - 15;
-          if (enemy[t].eHP <= 0) {
-            enemy[t].isAlive = false;
-            scoreObj.addScore(150 * scoreMultiplier);
-            particle[0].particlesPerTurn = 60;
-            particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
-            if (enemy[t].shieldAlive) {
-              if (enemy[t].enemyType == 3 && weapon[i].bX < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].goliathHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].goliathHitboxY  * 1.4 && weapon[i].bY > enemy[t].eY + enemy[t].goliathHitboxY * 0.6 && enemy[t].isAlive == true) {
-                weapon[i].bY -= height;
-                enemy[t].shieldHP -= 15;
-                if (enemy[t].shieldHP <= 0) {
-                  enemy[t].shieldAlive = false;
-                }
-              }
-            } else {
-              if (enemy[t].enemyType == 3 && weapon[i].bX < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].goliathHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].goliathHitboxY && weapon[i].bY > enemy[t].eY - enemy[t].goliathHitboxY && enemy[t].isAlive == true) {
-                weapon[i].bY -= height;
-                enemy[t].eHP = enemy[t].eHP - 15;
-                enemy[t].damageFlashTint = 255;
-                if (enemy[t].eHP <= 0) {
-                  enemy[t].isAlive = false;
-                  scoreObj.addScore(150);
-                  particle[0].particlesPerTurn = 60;
-                  particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
-                }
-                if (enemy[t].eHP <= 0) {
-                  enemy[t].isAlive = false;
-                  scoreObj.addScore(150 * scoreMultiplier);
-                  particle[0].particlesPerTurn = 60;
-                  particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
-                }
-              }
+        if (enemy[t].shieldAlive) {
+          if (enemy[t].enemyType == 3 && weapon[i].bX < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].goliathHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].goliathHitboxY  * 1.4 && weapon[i].bY > enemy[t].eY + enemy[t].goliathHitboxY * 0.6 && enemy[t].isAlive == true) {
+            weapon[i].bY -= height;
+            enemy[t].shieldHP -= 15;
+            if (enemy[t].shieldHP <= 0) {
+              enemy[t].shieldAlive = false;
+            }
+          }
+        } else {
+          if (enemy[t].enemyType == 3 && weapon[i].bX < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].goliathHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].goliathHitboxY && weapon[i].bY > enemy[t].eY - enemy[t].goliathHitboxY && enemy[t].isAlive == true) {
+            weapon[i].bY -= height;
+            enemy[t].eHP = enemy[t].eHP - 15;
+            enemy[t].damageFlashTint = 255;
+            if (enemy[t].eHP <= 0) {
+              enemy[t].isAlive = false;
+              scoreObj.addScore(150 * scoreMultiplier);
+              particle[0].particlesPerTurn = 60;
+              particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
             }
           }
         }
