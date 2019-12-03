@@ -160,7 +160,7 @@ class Titel {
           if (player.isShooting) {
             StartGame = false;
             startGame = true;
-            s.play();
+            sounds.bgm.play();
           }
           if (player.goDown) {
             countCursor ++;
