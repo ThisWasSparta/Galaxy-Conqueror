@@ -39,38 +39,36 @@ class NamePicker {
       first = false;
       second = true;
       third = false;
-      letterpicker.Alphabet[letterpicker.num] = letter2;
+      letterpicker.Alphabet2[letterpicker.num] = letter2;
     } else if (highLightX > letterX2) { // boolean to check if you are selecting the third letter
       first = false;
       second = false;
       third = true;
-      letterpicker.Alphabet[letterpicker.num] = letter3;
+      letterpicker.Alphabet3[letterpicker.num] = letter3;
     } else if (highLightX < letterX2) { // boolean to check if you are selecting the first letter
       first = true;
       second = false;
       third = false;
-      letterpicker.Alphabet[letterpicker.num] = letter1;
+      letterpicker.Alphabet1[letterpicker.num] = letter1;
     }
 
     if (first) {
       
       ellipse(highLightX, highLightY, 20, 20);
       letterpicker.DrawLetterpicker();
-      letter1 = letterpicker.Alphabet[letterpicker.num];
+      letter1 = letterpicker.Alphabet1[letterpicker.num];
     } 
     
     else if (second) {
       ellipse(highLightX, highLightY, 20, 20);
       letterpicker.DrawLetterpicker();
-      letter2 = letterpicker.Alphabet[letterpicker.num];
-      //letterpicker.num = 0;
+      letter2 = letterpicker.Alphabet2[letterpicker.num];
     } 
     
     else if (third) {
       ellipse(highLightX, highLightY, 20, 20);
       letterpicker.DrawLetterpicker();
-      letter3 = letterpicker.Alphabet[letterpicker.num];
-      //letterpicker.num = 0;
+      letter3 = letterpicker.Alphabet3[letterpicker.num];
     }
     
     textSize(80);
