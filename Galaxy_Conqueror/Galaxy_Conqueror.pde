@@ -1,6 +1,12 @@
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
 import de.bezier.data.sql.*;
 import de.bezier.data.sql.mapper.*;
-import processing.sound.*;
 
 /* This code is written by group 3 of IG-101 FYS project. It is a game called
  Space Conqueror, and is similar to space invaders and galaga. Where possible it is shown which
@@ -49,7 +55,7 @@ Score scoreObj;
 Variable variables;
 Controls controls;
 Meteoriet meteoriet;
-Sounds sounds;
+//Sounds sounds;
 Boss boss;
 NamePicker namePicker;
 Letterpicker letterPicker;
@@ -80,7 +86,7 @@ void setup() {
   controls = new Controls();
   Star = new BackgroundStars();
   boss = new Boss();
-  sounds = new Sounds(this);
+  //sounds = new Sounds(this);
   dbconnect = new DBConnect(this);
   namePicker = new NamePicker();
   letterPicker = new Letterpicker();
@@ -168,7 +174,7 @@ void draw() {
     player.player();                       //draws the player
 
     if(scoreObj.score >= 10000) {
-      Boss.bossSpawn();
+      //Boss.bossSpawn();
     }
     
     globalBossTimer--;
