@@ -1,4 +1,7 @@
-//The code present in this file is written by Sam Spronk, based on the Class Enemies
+/*The code present in this file is written by Sam Spronk, based on the Class Enemies
+All values of times are given in milliseconds
+1 000 milliseconds is 1 second
+*/
 int lastpower; //time in milliseconds since last powerup
 
 class PowerUp {
@@ -17,12 +20,12 @@ class PowerUp {
   boolean isPicked;
   boolean isActivated;
 
-  float timePowerup = 10000;
+  float timePowerup = 10000;            //The amount of time a powerup will be active
   float spawnTime;
 }
 void powerupSpawn(int counter) { //function that periodically spawns powerups
   if (startGame) {
-    if (startTime <= timer - 1000) {
+    if (startTime <= timer - 20000) {
       if (lastpower <= timer - random(1000, 5000)) {
         lastpower = timer;
         createPowerup(powerSelector());
@@ -95,7 +98,7 @@ int powerSelector() {                                                          /
   if (firstDice >= 1 && firstDice <= 70) {                                     //If first roll is 70 or less, there will be no powerup
     return 0;
   }
-  if (firstDice >= 71 && firstDice <= 100) {
+  if (firstDice >= 71 && firstDice <= 100) {                                   //If the first roll is 71 or higher, there will be new powerup
     int secondDice = (int)random(1, 100);                                      //The second dice roll decides the powerup
     {
       if (secondDice >= 1 && secondDice <= 50) {
@@ -138,12 +141,12 @@ void powerUpdate(int counter) {
       }
       if (power[counter].typePowerup == 2) {                                                     //Speed
         if (power[counter].spawnTime < millis() - power[counter].timePowerup) {                  //Check if time since activation has not exceeded given time in milliseconds
-          player.playerVelocityFactor = 0.006;                                                   //Reverts player speed to original value
+          player.pV /= 2;                                                                        //Reverts player speed to original value
           power[counter].isActivated = false;                                                    //Deactivates powerup
           power[counter].isPicked = false;                                                       //Allows the slot of the powerup to be used again
           println("Powerup activated");
         } else {
-          player.playerVelocityFactor = 1;                                                       //Increases speed of the player
+          player.pV *= 2;                                                                        //Increases speed of the player
           println("Powerup activated");
         }
       }
