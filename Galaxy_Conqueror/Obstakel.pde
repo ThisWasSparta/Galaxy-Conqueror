@@ -38,7 +38,6 @@ class Obstakel {
           if (meteorietHit) {
             meteorieten.remove(i);
             scoreObj.addScore(25 * scoreMultiplier);
-            scoreObj.addScore(50 * scoreMultiplier);
             if (heartNumber < 3) {
               heartNumber += 1;
             }
@@ -76,7 +75,6 @@ class Obstakel {
           if (meteorietHit) {
             meteorieten.remove(i);
             scoreObj.addScore(25 * scoreMultiplier);
-            scoreObj.addScore(50 * scoreMultiplier);
             if (heartNumber < 3) {
               heartNumber += 1;
             }
