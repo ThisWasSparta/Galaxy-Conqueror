@@ -22,7 +22,7 @@ class PowerUp {
 }
 void powerupSpawn(int counter) { //function that periodically spawns powerups
   if (startGame) {
-    if (startTime <= timer - 1000) {
+    if (startTime <= timer - 20000) {
       if (lastpower <= timer - random(1000, 5000)) {
         lastpower = timer;
         createPowerup(powerSelector());
@@ -95,7 +95,7 @@ int powerSelector() {                                                          /
   if (firstDice >= 1 && firstDice <= 70) {                                     //If first roll is 70 or less, there will be no powerup
     return 0;
   }
-  if (firstDice >= 71 && firstDice <= 100) {
+  if (firstDice >= 71 && firstDice <= 100) {                                   //If the first roll is 71 or higher, there will be new powerup
     int secondDice = (int)random(1, 100);                                      //The second dice roll decides the powerup
     {
       if (secondDice >= 1 && secondDice <= 50) {
