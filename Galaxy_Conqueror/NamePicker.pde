@@ -28,9 +28,9 @@ class NamePicker {
 
   void DrawNamePicker() {
     if (keyPressed) {
-      if (key == 'd') {
+      if (key == 'd' && highLightX < letterX3-100) {
         highLightX += 200;
-      } else if (key == 'a') {
+      } else if (key == 'a' && highLightX > letterX1) {
         highLightX -= 200;
       }   
     }
@@ -39,36 +39,36 @@ class NamePicker {
       first = false;
       second = true;
       third = false;
-      letterpicker.Alphabet2[letterpicker.num] = letter2;
+      letterpicker.Alphabet2[letterpicker.num2] = letter2;
     } else if (highLightX > letterX2) { // boolean to check if you are selecting the third letter
       first = false;
       second = false;
       third = true;
-      letterpicker.Alphabet3[letterpicker.num] = letter3;
+      letterpicker.Alphabet3[letterpicker.num3] = letter3;
     } else if (highLightX < letterX2) { // boolean to check if you are selecting the first letter
       first = true;
       second = false;
       third = false;
-      letterpicker.Alphabet1[letterpicker.num] = letter1;
+      letterpicker.Alphabet1[letterpicker.num1] = letter1;
     }
 
     if (first) {
       
       ellipse(highLightX, highLightY, 20, 20);
-      letterpicker.DrawLetterpicker();
-      letter1 = letterpicker.Alphabet1[letterpicker.num];
+      letterpicker.DrawLetterpicker1();
+      letter1 = letterpicker.Alphabet1[letterpicker.num1];
     } 
     
     else if (second) {
       ellipse(highLightX, highLightY, 20, 20);
-      letterpicker.DrawLetterpicker();
-      letter2 = letterpicker.Alphabet2[letterpicker.num];
+      letterpicker.DrawLetterpicker2();
+      letter2 = letterpicker.Alphabet2[letterpicker.num2];
     } 
     
     else if (third) {
       ellipse(highLightX, highLightY, 20, 20);
-      letterpicker.DrawLetterpicker();
-      letter3 = letterpicker.Alphabet3[letterpicker.num];
+      letterpicker.DrawLetterpicker3();
+      letter3 = letterpicker.Alphabet3[letterpicker.num3];
     }
     
     textSize(80);

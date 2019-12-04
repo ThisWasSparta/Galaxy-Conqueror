@@ -1,3 +1,5 @@
+import processing.sound.*;
+
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
@@ -7,6 +9,8 @@ import ddf.minim.ugens.*;
 
 import de.bezier.data.sql.*;
 import de.bezier.data.sql.mapper.*;
+
+
 
 /* This code is written by group 3 of IG-101 FYS project. It is a game called
  Space Conqueror, and is similar to space invaders and galaga. Where possible it is shown which
@@ -55,11 +59,12 @@ Score scoreObj;
 Variable variables;
 Controls controls;
 Meteoriet meteoriet;
-//Sounds sounds;
+Sounds sounds;
 Boss boss;
 NamePicker namePicker;
 Letterpicker letterPicker;
 DBConnect dbconnect;
+DBQueries dbqueries;
 GameOver gameover;
 
 //Aantal sterren
@@ -86,8 +91,9 @@ void setup() {
   controls = new Controls();
   Star = new BackgroundStars();
   boss = new Boss();
-  //sounds = new Sounds(this);
+  sounds = new Sounds(this);
   dbconnect = new DBConnect(this);
+  dbqueries = new DBQueries();
   namePicker = new NamePicker();
   letterPicker = new Letterpicker();
   gameover = new GameOver();
@@ -173,12 +179,12 @@ void draw() {
     player.playerUpdate();                 //updates the position of the player
     player.player();                       //draws the player
 
-    if(scoreObj.score >= 10000) {
+    if (scoreObj.score >= 10000) {
 
       //Boss.bossSpawn();
       boss.bossSpawn();
     }
-    
+
     globalBossTimer--;
     text(globalBossTimer, 120, 60);
 
@@ -215,14 +221,20 @@ void draw() {
     }
     enemyShootParticle[0].updateParticles();
     enemyShootParticle[0].drawParticles();
+
     if (heartNumber <= 0) {
       startGame = false;
       gameOver = true;
+      gameOverTimer = millis();
     }
   }
   if (gameOver) {
-    gameover.GameOverDraw();
-    gameover.GameOverTakeName();
+    if (millis() >= gameOverTimer+500) {
+      gameover.GameOverDraw();
+      if (millis() >= gameOverTimer+1000) {
+        gameover.GameOverTakeName();
+      }
+    }
   }
   titel.bright();
   //image(boss, width/2, 121, 1000, 242);
