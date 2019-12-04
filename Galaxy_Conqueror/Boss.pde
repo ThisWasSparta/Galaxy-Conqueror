@@ -6,8 +6,8 @@ int scoutDelay = 3000;
 class Boss {
   float bossX = width / 2;
   float bossY = height / 2;
-  float bossW = 500;
-  float bossH = 121;
+  float bossW = 1000;
+  float bossH = 242;
   float angle;
   float bossOriginPointX = width / 2;
   float bossOriginPointY = height / 2;

@@ -38,9 +38,14 @@ class PlayerWeapons {
   int playerLaserFireRate = 2000;
   int playerLaserDamagePerFrame = 6;
 
-  void spawnPlayerBullets() {                          //This function was written by Noah Verburg
+  void spawnPlayerBullets() {//This function was written by Noah Verburg
+    if (!player.isShooting) {
+      playergatshoot.mute();
+    }
     if (player.isShooting && !weapon[playerBulletTurn].bulletIsOnScreen && millis() - playerBulletFireRate > reloadTime) {  //if the shot-button is pressed and the bullet that is supposed to
       //sounds.playergatshoot.play();
+      playergatshoot.unmute();
+      playergatshoot.loop();
       reloadTime = millis();                                                                                                //shoot out isnt on screen and the reload timer is done, it fires a bullet
       for (int i = 0; i < PLAYER_BULLET_PER_SALVO; i++) {
         if (playerBulletTurn%2 == 0) {                                                     //if the current bullet's number is an even number, it spawns  in the
