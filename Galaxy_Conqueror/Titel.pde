@@ -162,6 +162,7 @@ class Titel {
             StartGame = false;
             startGame = true;
             //sounds.bgm.play();
+            bgm.play();
           }
           if (player.goDown) {
             countCursor ++;

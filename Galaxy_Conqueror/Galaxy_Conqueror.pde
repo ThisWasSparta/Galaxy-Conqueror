@@ -60,6 +60,12 @@ Variable variables;
 Controls controls;
 Meteoriet meteoriet;
 Sounds sounds;
+
+Minim minim;
+AudioPlayer bgm;
+AudioPlayer playergatshoot;
+AudioPlayer enemyshoot;
+
 Boss boss;
 NamePicker namePicker;
 Letterpicker letterPicker;
@@ -97,6 +103,12 @@ void setup() {
   namePicker = new NamePicker();
   letterPicker = new Letterpicker();
   gameover = new GameOver();
+
+  minim = new Minim(this);
+  bgm = minim.loadFile("./sound/stagethemefix.wav");
+  playergatshoot = minim.loadFile("./sound/gattlingweapon_noise.wav");
+  enemyshoot = minim.loadFile("./sound/scout_shootnoise.wav");
+
   titel.font();
   Star.sterrenProp();
   for (int i = 0; i < playerBulletNumber; i++) {
@@ -182,66 +194,66 @@ void draw() {
     if (scoreObj.score >= 10000) {
 
       //Boss.bossSpawn();
-    if (globalBossTimer <= 0 && boss.currentState == -1) {
-      boss.bossSpawn();
-    }
+      if (globalBossTimer <= 0 && boss.currentState == -1) {
+        boss.bossSpawn();
+      }
 
-    globalBossTimer--;
-    text(globalBossTimer, 120, 60);
+      globalBossTimer--;
+      text(globalBossTimer, 120, 60);
 
-    if (boss.currentState != -1) {
-      boss.bossUpdatePosition();
-      boss.bossUpdateBehaviour();
-      boss.bossDraw();
-    }
+      if (boss.currentState != -1) {
+        boss.bossUpdatePosition();
+        boss.bossUpdateBehaviour();
+        boss.bossDraw();
+      }
 
-    if (player.weapon == 1) {
-      weapon[0].spawnPlayerBullets();        //spawns player bullets using a for-loop built into the function
-    }
-    weapon[0].updatePlayerBullets();       //updates player bullets using a for-loop built into the function
-    weapon[0].drawPlayerBullets();         //draws player bullets using a for-loop built into the function
+      if (player.weapon == 1) {
+        weapon[0].spawnPlayerBullets();        //spawns player bullets using a for-loop built into the function
+      }
+      weapon[0].updatePlayerBullets();       //updates player bullets using a for-loop built into the function
+      weapon[0].drawPlayerBullets();         //draws player bullets using a for-loop built into the function
 
-    if (player.weapon == 2) {
-      weapon[0].spawnPlayerLaser();
-    }
-    weapon[0].updatePlayerLaser();
-    weapon[0].drawPlayerLaser();
+      if (player.weapon == 2) {
+        weapon[0].spawnPlayerLaser();
+      }
+      weapon[0].updatePlayerLaser();
+      weapon[0].drawPlayerLaser();
 
-    heart[0].playerHealth();
+      heart[0].playerHealth();
 
-    for (int i = 0; i < enemyExplosionParticleNumber; i++) {
-      if (particle[i].isAlive) {
-        particle[i].updateParticles(i);
-        particle[i].drawParticles(i);
+      for (int i = 0; i < enemyExplosionParticleNumber; i++) {
+        if (particle[i].isAlive) {
+          particle[i].updateParticles(i);
+          particle[i].drawParticles(i);
+        }
+      }
+      for (int i = 0; i < maxP; i++) {
+        powerUpdate(i);
+        powerupSpawn(i);
+        drawPower(i);
+      }
+      enemyShootParticle[0].updateParticles();
+      enemyShootParticle[0].drawParticles();
+
+      if (heartNumber <= 0) {
+        startGame = false;
+        gameOver = true;
+        gameOverTimer = millis();
       }
     }
-    for (int i = 0; i < maxP; i++) {
-      powerUpdate(i);
-      powerupSpawn(i);
-      drawPower(i);
-    }
-    enemyShootParticle[0].updateParticles();
-    enemyShootParticle[0].drawParticles();
-
-    if (heartNumber <= 0) {
-      startGame = false;
-      gameOver = true;
-      gameOverTimer = millis();
-    }
-  }
-  if (gameOver) {
-    if (millis() >= gameOverTimer+500) {
-      gameover.GameOverDraw();
-      if (millis() >= gameOverTimer+1000) {
-        gameover.GameOverTakeName();
+    if (gameOver) {
+      if (millis() >= gameOverTimer+500) {
+        gameover.GameOverDraw();
+        if (millis() >= gameOverTimer+1000) {
+          gameover.GameOverTakeName();
+        }
       }
     }
+    titel.bright();
+    //image(boss, width/2, 121, 1000, 242);
+    if (player.testBoolean) {
+    }
+    if (player.stop) {
+      stop();
+    }
   }
-  titel.bright();
-  //image(boss, width/2, 121, 1000, 242);
-  if (player.testBoolean) {
-  }
-  if (player.stop) {
-    stop();
-  }
-}
