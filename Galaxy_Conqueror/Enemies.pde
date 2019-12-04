@@ -60,12 +60,13 @@ class Enemies {
   //int timing;
   int enemyType;
   int damageFlashTint = 0;
+  int score;
 
   boolean isAlive; //whether or not the enemy is alive
   boolean shieldAlive;
 }
 
-void enemySpawner(int counter) { //function that periodically causes enemies to appear on screen
+void enemySpawner() { //function that periodically causes enemies to appear on screen
   if (startGame && boss.bossAlive == false) {
     if (startTime <= timer - 10000) {// wait 10 seconds until enemies spawn
       if (lastSpawn <= timer - random(minTime, maxTime)) {
@@ -111,6 +112,7 @@ void createEnemy(int type) { //function to create an enemy
       enemy[scoutCheck].eX = random(enemy[scoutCheck].eW / 2, width - enemy[scoutCheck].eW);
       enemy[scoutCheck].eY = -enemy[scoutCheck].eH;
       enemy[scoutCheck].eHP = 30;
+      enemy[scoutCheck].score = 50;
       enemy[scoutCheck].isAlive = true;
     }
     break;
@@ -124,6 +126,7 @@ void createEnemy(int type) { //function to create an enemy
       enemy[courserCheck].eX = random(enemy[courserCheck].eW / 2, width - enemy[courserCheck].eW);
       enemy[courserCheck].eY = -enemy[courserCheck].eH;
       enemy[courserCheck].eHP = 110;
+      enemy[courserCheck].score = 100;
       enemy[courserCheck].isAlive = true;
     }
     break;
@@ -141,6 +144,7 @@ void createEnemy(int type) { //function to create an enemy
       enemy[goliathCheck].shieldAlive = true;
       enemy[goliathCheck].shieldHP = 300;
       enemy[goliathCheck].shieldMaxHP = 300;
+      enemy[goliathCheck].score = 150;
       enemy[goliathCheck].shieldTintMinimum = 175;
     }
     break;
