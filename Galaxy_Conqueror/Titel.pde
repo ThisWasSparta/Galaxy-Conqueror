@@ -161,7 +161,7 @@ class Titel {
           if (player.isShooting) {
             StartGame = false;
             startGame = true;
-            sounds.bgm.play();
+            bgm.play();
           }
           if (player.goDown) {
             countCursor ++;
@@ -224,7 +224,6 @@ class Titel {
       }
 
       float soundVolume = soundDigit / 100;
-      sounds.bgm.amp(soundVolume);
 
       float brightDigit = int(dist(bBX - bBW/2, bBY, bSX, bSY)/10);
       if (brightDigit > 100) {

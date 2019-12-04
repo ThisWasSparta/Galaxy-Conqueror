@@ -59,7 +59,7 @@ Score scoreObj;
 Variable variables;
 Controls controls;
 Meteoriet meteoriet;
-Sounds sounds;
+//Sounds sounds;
 
 Minim minim;
 AudioPlayer bgm;
@@ -97,7 +97,7 @@ void setup() {
   controls = new Controls();
   Star = new BackgroundStars();
   boss = new Boss();
-  sounds = new Sounds(this);
+  //sounds = new Sounds(this);
   minim = new Minim(this);
   bgm = minim.loadFile("./sound/stagethemefix.wav");
   playergatshoot = minim.loadFile("./sound/gattlingweapon_noise.wav");
