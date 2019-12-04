@@ -75,7 +75,7 @@ class SpaceShip {
     }
     if (player.nextWeapon) {
       if (weaponCycleCooldown + 250 < millis()) {
-        if (weapon == 3) {
+        if (weapon == 2) {
           weapon = 1;
         } else {
           weapon++;

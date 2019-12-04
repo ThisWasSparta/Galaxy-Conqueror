@@ -36,5 +36,16 @@ class Score {
     fill(255, 255, 0);
     textSize(50);
     text("Score: " +score, tX, tY/0.5);
+    textSize(25);
+    fill(255,0,0);
+    text("A", width * 0.95, height * 0.9);
+    fill(255, 255, 255);
+    text("NEXT", width * 0.95, height * 0.93);
+    text("WEAPON", width * 0.95, height * 0.96);
+    
+    fill(0, 255, 0);
+    text("Y", width * 0.85, height * 0.9);
+    fill(255, 255, 255);
+    text("SHOOT", width * 0.85, height * 0.93);
   }
 }
