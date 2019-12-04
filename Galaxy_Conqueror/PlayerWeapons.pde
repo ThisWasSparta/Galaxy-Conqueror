@@ -77,6 +77,7 @@ class PlayerWeapons {
           enemy[t].damageFlashTint = 255;
           if (enemy[t].eHP <= 0) {
             enemy[t].isAlive = false;
+            killcount++;
             scoreObj.addScore(50 * scoreMultiplier);
             particle[0].particlesPerTurn = 20;
             particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
@@ -88,6 +89,7 @@ class PlayerWeapons {
           enemy[t].damageFlashTint = 255;
           if (enemy[t].eHP <= 0) {
             enemy[t].isAlive = false;
+            killcount++;
             scoreObj.addScore(100 * scoreMultiplier);
             particle[0].particlesPerTurn = 40;
             particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
@@ -108,6 +110,7 @@ class PlayerWeapons {
             enemy[t].damageFlashTint = 255;
             if (enemy[t].eHP <= 0) {
               enemy[t].isAlive = false;
+              killcount++;
               scoreObj.addScore(150 * scoreMultiplier);
               goliathOnScreen--;
               particle[0].particlesPerTurn = 60;
