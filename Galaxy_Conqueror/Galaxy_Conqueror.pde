@@ -1,4 +1,5 @@
 import processing.sound.*;
+
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
@@ -22,8 +23,8 @@ int enemyExplosionParticleNumber = 500;
 int enemyBulletNumber = 20;
 int enemyMoveParticleNumber = 200;
 int enemyShootParticleNumber = 25;
-int tX;                               //x-waarde van game over text
-int tY;                               //y-waarde van game over text
+int tX;    //x-waarde van game over text
+int tY;    //y-waarde van game over text
 int heartNumber = 3;
 int stopGameTime;
 int gameOverTimer = 0;
