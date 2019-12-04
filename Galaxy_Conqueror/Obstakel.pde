@@ -3,6 +3,7 @@ class Obstakel {
 
   int meteorietNumber = 6;
   int time;
+  int meteorScore = 25;
   boolean meteorietHit;
   float amountMeteorite = random(5, 8);
 
@@ -16,7 +17,7 @@ class Obstakel {
 
   void placeMeteorite() {
     //op een random moment (voor zover je dit random kunt noemen) wordt er een meteoriet toegevoegd aan de arraylist
-    if (millis() > time+random(5000, 15000)) {
+    if (millis() > time+random(5000, 15000) && boss.bossAlive == false) {
       meteorieten.add(new Meteoriet());
       time = millis();
     }
@@ -37,8 +38,7 @@ class Obstakel {
           meteorietHit = true;    //als de player bullet de meteoriet raakt, dan is deze boolean true
           if (meteorietHit) {
             meteorieten.remove(i);
-            scoreObj.addScore(25 * scoreMultiplier);
-            scoreObj.addScore(50 * scoreMultiplier);
+            scoreObj.addScore(meteorScore * scoreMultiplier);
             if (heartNumber < 3) {
               heartNumber += 1;
             }
@@ -52,7 +52,7 @@ class Obstakel {
   void makeMeteoriteShower() {
 
     //op een random moment tussen de 30 en 60 sec komt de meteoriteshower event
-    if (millis() > time+random(5000, 8000)) {
+    if (millis() > time+random(5000, 8000) && boss.bossAlive == false) {
       for (int i = 0; i < amountMeteorite; i++) {
         meteorieten.add(new Meteoriet());
       }
@@ -75,8 +75,7 @@ class Obstakel {
           meteorietHit = true;    //als de player bullet de meteoriet raakt, dan is deze boolean true
           if (meteorietHit) {
             meteorieten.remove(i);
-            scoreObj.addScore(25 * scoreMultiplier);
-            scoreObj.addScore(50 * scoreMultiplier);
+            scoreObj.addScore(meteorScore * scoreMultiplier);
             if (heartNumber < 3) {
               heartNumber += 1;
             }
