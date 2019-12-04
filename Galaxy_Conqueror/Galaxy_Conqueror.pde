@@ -182,18 +182,17 @@ void draw() {
     if (scoreObj.score >= 10000) {
 
       //Boss.bossSpawn();
-    if (globalBossTimer <= 0 && boss.currentState == -1) {
       boss.bossSpawn();
     }
 
     globalBossTimer--;
     text(globalBossTimer, 120, 60);
 
-    if (boss.currentState != -1) {
-      boss.bossUpdatePosition();
-      boss.bossUpdateBehaviour();
-      boss.bossDraw();
-    }
+    /*if (boss.currentState != -1) {
+     boss.bossUpdatePosition();
+     boss.bossUpdateBehaviour();
+     boss.bossDraw();
+     }*/
 
     if (player.weapon == 1) {
       weapon[0].spawnPlayerBullets();        //spawns player bullets using a for-loop built into the function

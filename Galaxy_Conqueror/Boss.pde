@@ -1,13 +1,13 @@
 //this pde file was written by Floris Kuiper
 
-int globalBossTimer = 11500; //11500
+int globalBossTimer = 10000;
 int scoutDelay = 3000;
 
 class Boss {
   float bossX = width / 2;
   float bossY = height / 2;
-  float bossW = 1000;
-  float bossH = 242;
+  float bossW = 500;
+  float bossH = 121;
   float angle;
   float bossOriginPointX = width / 2;
   float bossOriginPointY = height / 2;
@@ -16,7 +16,7 @@ class Boss {
   int bossSize = 70;
   int initialState = 0;
   int lastStateSwitch = 0;
-  int currentState = -1;
+  int currentState = 0;
   int currentStateTimer = 0;
   int deathrayCooldown = 3;
   int startStateFlag = 0;
@@ -38,10 +38,9 @@ class Boss {
 
   void bossSpawn() {
     bossAlive = true; //marks the boss as being alive, turns off the spawning of random enemies while keeping the drawing of enemies enabled
-    currentState = 0;
     bossX = width / 2;
     bossY = -bossH;
-    image(bossSprite, bossX, bossY, bossW, bossH);
+    image(bossSprite, bossW, bossH);
     //spawn the boss above the screen, slowly move him down into view
     //fade out level music
     //kick in the music
@@ -50,7 +49,7 @@ class Boss {
 
   void bossUpdatePosition() { //function that makes the boss slowly move up and down
     //ang = radians(angle); < probably redundant, just want to be sure before i remove it
-    //bossY = bossOriginPointX + (10 * sin(dx * inc));
+    bossY = bossOriginPointX + (10 * sin(dx * inc));
     if (bossY < 121) {
       bossY++;
     }
@@ -118,7 +117,6 @@ class Boss {
       if (scoutDelay <= 0) {
         for (int i = 0; i >= 0; i++) {
           bossScoutSpawner();
-          scoutDelay = 3000;
         }
       }
       scoutDelay--;
@@ -153,9 +151,5 @@ class Boss {
       currentState = statePicker();
       startStateFlag = 0;
     }
-  }
-
-  void bossKiller() { //function that kills the boss when his health reaches 0
-    boss.bossAlive = false;
   }
 }
