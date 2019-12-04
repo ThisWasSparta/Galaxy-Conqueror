@@ -9,6 +9,8 @@ import ddf.minim.ugens.*;
 import de.bezier.data.sql.*;
 import de.bezier.data.sql.mapper.*;
 
+
+
 /* This code is written by group 3 of IG-101 FYS project. It is a game called
  Space Conqueror, and is similar to space invaders and galaga. Where possible it is shown which
  student made the code.*/
@@ -20,8 +22,8 @@ int enemyExplosionParticleNumber = 500;
 int enemyBulletNumber = 20;
 int enemyMoveParticleNumber = 200;
 int enemyShootParticleNumber = 25;
-int tX;    //x-waarde van game over text
-int tY;    //y-waarde van game over text
+int tX;                               //x-waarde van game over text
+int tY;                               //y-waarde van game over text
 int heartNumber = 3;
 int stopGameTime;
 int gameOverTimer = 0;
@@ -61,6 +63,7 @@ Boss boss;
 NamePicker namePicker;
 Letterpicker letterPicker;
 DBConnect dbconnect;
+DBQueries dbqueries;
 GameOver gameover;
 
 //Aantal sterren
@@ -89,6 +92,7 @@ void setup() {
   boss = new Boss();
   sounds = new Sounds(this);
   dbconnect = new DBConnect(this);
+  dbqueries = new DBQueries();
   namePicker = new NamePicker();
   letterPicker = new Letterpicker();
   gameover = new GameOver();
@@ -174,20 +178,21 @@ void draw() {
     player.playerUpdate();                 //updates the position of the player
     player.player();                       //draws the player
 
-    if(scoreObj.score >= 10000) {
+    if (scoreObj.score >= 10000) {
 
       //Boss.bossSpawn();
+    if (globalBossTimer <= 0 && boss.currentState == -1) {
       boss.bossSpawn();
     }
-    
+
     globalBossTimer--;
     text(globalBossTimer, 120, 60);
 
-    /*if (boss.currentState != -1) {
-     boss.bossUpdatePosition();
-     boss.bossUpdateBehaviour();
-     boss.bossDraw();
-     }*/
+    if (boss.currentState != -1) {
+      boss.bossUpdatePosition();
+      boss.bossUpdateBehaviour();
+      boss.bossDraw();
+    }
 
     if (player.weapon == 1) {
       weapon[0].spawnPlayerBullets();        //spawns player bullets using a for-loop built into the function
@@ -216,14 +221,20 @@ void draw() {
     }
     enemyShootParticle[0].updateParticles();
     enemyShootParticle[0].drawParticles();
+
     if (heartNumber <= 0) {
       startGame = false;
       gameOver = true;
+      gameOverTimer = millis();
     }
   }
   if (gameOver) {
-    gameover.GameOverDraw();
-    gameover.GameOverTakeName();
+    if (millis() >= gameOverTimer+500) {
+      gameover.GameOverDraw();
+      if (millis() >= gameOverTimer+1000) {
+        gameover.GameOverTakeName();
+      }
+    }
   }
   titel.bright();
   //image(boss, width/2, 121, 1000, 242);
