@@ -68,6 +68,7 @@ class EnemyBullets {
           lastBulletSpawn = timer;
           createEnemyBullet(); //creates an enemy in the right array according to the type rolled by the type generator
           //sounds.scoutshoot.play();
+          //enemyshoot.loop();
         }
       }
     }
@@ -83,6 +84,7 @@ class EnemyBullets {
   }
 
   void createEnemyBullet() { //function to create an enemy bullet
+    enemyshoot.mute();
     int bulletCheck = bulletRecycle();
     int enemyShooter = enemyShootCheck();
     if (bulletCheck != -1 && enemyShooter != -1) { //check to see if the returned element of the array wasn't either in use or something went wrong
@@ -90,6 +92,8 @@ class EnemyBullets {
       enemyBullets[bulletCheck].bY = enemy[enemyShooter].eY;
       enemyBullets[bulletCheck].isOnScreen = true;
       enemyShootParticle[0].firing(enemy[enemyShooter].eX, enemy[enemyShooter].eY, enemyShooter);
+      enemyshoot.unmute();
+      enemyshoot.loop(1);
     }
   }
 }
