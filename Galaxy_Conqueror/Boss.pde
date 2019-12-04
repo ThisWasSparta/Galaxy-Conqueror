@@ -6,6 +6,8 @@ int scoutDelay = 3000;
 class Boss {
   float bossX = width / 2;
   float bossY = height / 2;
+  float bossW = 500;
+  float bossH = 121;
   float angle;
   float bossOriginPointX = width / 2;
   float bossOriginPointY = height / 2;
@@ -32,10 +34,13 @@ class Boss {
   final int DEATHRAY_VERTICAL_OFFSET = 60;
   final int DEATHRAY_HORIZONTAL_OFFSET = 30;
   final int DEATHRAY_SIZE = 60;
-  
+  final int DEATHRAY_TIME = 5000;
+
   void bossSpawn() {
-    //disable the spawning of enemies
-    //keep the drawing of enemies enabled
+    bossAlive = true; //marks the boss as being alive, turns off the spawning of random enemies while keeping the drawing of enemies enabled
+    bossX = width / 2;
+    bossY = -bossH;
+    image(bossSprite, bossW, bossH);
     //spawn the boss above the screen, slowly move him down into view
     //fade out level music
     //kick in the music
@@ -45,59 +50,22 @@ class Boss {
   void bossUpdatePosition() { //function that makes the boss slowly move up and down
     //ang = radians(angle); < probably redundant, just want to be sure before i remove it
     bossY = bossOriginPointX + (10 * sin(dx * inc));
+    if (bossY < 121) {
+      bossY++;
+    }
     //rect(bossX, bossY, bossSize, bossSize);
     //angle += 2; < ditto
   }
 
   void bossDraw() { //function that draws the boss on the given positions
     if (bossAlive == true) {
-      image(bossSprite, bossX, bossY, bossSize, bossSize);
+      image(bossSprite, bossX, bossY, bossW, bossH);
     }
   }
 
   void bossUpdateBehaviour() { //function that calls every necessary action for the boss to switch states and act accordingly
     stateHandler();
     stateSwitcher();
-  }
-
-  void stateHandler() { //function that is called every draw to determine what the boss does next
-    switch(currentState) {
-    case IDLE_STATE:
-      if (((startStateTime - millis()) * -1) >= 5000) { //if statement that checks when 5 seconds of idle time have passed upon which a new state is picked. idle time will never occur twice in a row
-        statePicker();
-      }
-      break;
-    case MISSILE_STATE:
-      //call missilespawner to continuously summon a group of three missiles from the top of the screen
-      //do this every 2 seconds until the state ends
-      //end the state after... 15 seconds? something like that
-      break;
-    case REQUEST_BACKUP_STATE:
-      if (scoutDelay <= 0) {
-        for (int i = 0; i >= 0; i++) {
-          bossScoutSpawner();
-        }
-      }
-      scoutDelay--;
-      //call enemyspawner with the scout's enemy type to summon two groups of three scouts on either side of the play area
-      //shoot bullets meanwhile?
-      //maybe merge this state with the deathray state...
-      break;
-    case DEATHRAY_STATE:
-      if (startDeathrayTime - timer < -8000) {
-        fill(173, 216, 230);
-        rect(bossX + DEATHRAY_HORIZONTAL_OFFSET, bossY + DEATHRAY_VERTICAL_OFFSET, DEATHRAY_SIZE, deathrayLength);
-        if (deathrayLength <= height) {
-          deathrayLength += 10;
-        }
-      }
-      //play charge sound + have a charging particle effect?
-      //time until sound played
-      //shoot laser + play laser sound
-      //time until laser should stop
-      //go to idle state to give the player some time to readjust
-      break;
-    }
   }
 
   int statePicker() {
@@ -129,6 +97,49 @@ class Boss {
       return DEATHRAY_STATE;
     }
     return 0;
+  }
+
+  void stateHandler() { //function that is called every draw to determine what the boss does next
+    switch(currentState) {
+    case IDLE_STATE:
+      if (((startStateTime - millis()) * -1) >= 5000) { //if statement that checks when 5 seconds of idle time have passed upon which a new state is picked. idle time will never occur twice in a row
+        statePicker();
+      }
+      break;
+
+    case MISSILE_STATE:
+      //call missilespawner to continuously summon a group of three missiles from the top of the screen
+      //do this every 2 seconds until the state ends
+      //end the state after... 15 seconds? something like that
+      break;
+
+    case REQUEST_BACKUP_STATE:
+      if (scoutDelay <= 0) {
+        for (int i = 0; i >= 0; i++) {
+          bossScoutSpawner();
+        }
+      }
+      scoutDelay--;
+      //call enemyspawner with the scout's enemy type to summon two groups of three scouts on either side of the play area
+      //shoot bullets meanwhile?
+      //maybe merge this state with the deathray state...
+      break;
+
+    case DEATHRAY_STATE:
+      if (startDeathrayTime - timer < DEATHRAY_TIME) {
+        fill(173, 216, 230);
+        rect(bossX + DEATHRAY_HORIZONTAL_OFFSET, bossY + DEATHRAY_VERTICAL_OFFSET, DEATHRAY_SIZE, deathrayLength);
+        if (deathrayLength <= height) {
+          deathrayLength += 10;
+        }
+      }
+      //play charge sound + have a charging particle effect?
+      //time until sound played
+      //shoot laser + play laser sound
+      //time until laser should stop
+      //go to idle state to give the player some time to readjust
+      break;
+    }
   }
 
   void stateSwitcher() { //function that determines when a state has run its course and rolls to determine the next state

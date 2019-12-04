@@ -2,6 +2,7 @@
 int lastSpawn; //time in milliseconds when the last enemy was spawned
 int lastCollision = 0; //time in miliseconds of last time the player collided with an enemy
 int collisionFlag = 0; //flag to keep track of if an enemy player collision has happened yet or not
+int killcount = 0;
 float minTime = 1250;
 float maxTime = 3500;
 int goliathOnScreen = 0;
@@ -65,7 +66,7 @@ class Enemies {
 }
 
 void enemySpawner(int counter) { //function that periodically causes enemies to appear on screen
-  if (startGame) {
+  if (startGame && boss.bossAlive == false) {
     if (startTime <= timer - 10000) {// wait 10 seconds until enemies spawn
       if (lastSpawn <= timer - random(minTime, maxTime)) {
         lastSpawn = timer;
