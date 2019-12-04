@@ -78,7 +78,7 @@ class PlayerWeapons {
           if (enemy[t].eHP <= 0) {
             enemy[t].isAlive = false;
             killcount++;
-            scoreObj.addScore(50 * scoreMultiplier);
+            scoreObj.addScore(enemy[t].score * scoreMultiplier);
             particle[0].particlesPerTurn = 20;
             particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
           }
@@ -90,7 +90,7 @@ class PlayerWeapons {
           if (enemy[t].eHP <= 0) {
             enemy[t].isAlive = false;
             killcount++;
-            scoreObj.addScore(100 * scoreMultiplier);
+            scoreObj.addScore(enemy[t].score * scoreMultiplier);
             particle[0].particlesPerTurn = 40;
             particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
           }
@@ -111,7 +111,7 @@ class PlayerWeapons {
             if (enemy[t].eHP <= 0) {
               enemy[t].isAlive = false;
               killcount++;
-              scoreObj.addScore(150 * scoreMultiplier);
+              scoreObj.addScore(enemy[t].score * scoreMultiplier);
               goliathOnScreen--;
               particle[0].particlesPerTurn = 60;
               particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
@@ -197,7 +197,7 @@ class PlayerWeapons {
           enemy[t].damageFlashTint = 100;
           if (enemy[t].eHP <= 0) {
             enemy[t].isAlive = false;
-            scoreObj.addScore(50 * scoreMultiplier);
+            scoreObj.addScore(enemy[t].score * scoreMultiplier);
             particle[0].particlesPerTurn = 20;
             particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
           }
@@ -208,7 +208,7 @@ class PlayerWeapons {
           enemy[t].damageFlashTint = 100;
           if (enemy[t].eHP <= 0) {
             enemy[t].isAlive = false;
-            scoreObj.addScore(100 * scoreMultiplier);
+            scoreObj.addScore(enemy[t].score * scoreMultiplier);
             particle[0].particlesPerTurn = 40;
             particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
           }
@@ -219,7 +219,7 @@ class PlayerWeapons {
           enemy[t].damageFlashTint = 100;
           if (enemy[t].eHP <= 0) {
             enemy[t].isAlive = false;
-            scoreObj.addScore(150 * scoreMultiplier);
+            scoreObj.addScore(enemy[t].score * scoreMultiplier);
             particle[0].particlesPerTurn = 60;
             particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
           }

@@ -1,4 +1,7 @@
-//The code present in this file is written by Sam Spronk, based on the Class Enemies
+/*The code present in this file is written by Sam Spronk, based on the Class Enemies
+ All values of times are given in milliseconds
+ 1 000 milliseconds is 1 second
+ */
 int lastpower; //time in milliseconds since last powerup
 
 class PowerUp {
@@ -17,12 +20,12 @@ class PowerUp {
   boolean isPicked;
   boolean isActivated;
 
-  float timePowerup = 10000;
+  float timePowerup = 10000;            //The amount of time a powerup will be active
   float spawnTime;
 }
 void powerupSpawn(int counter) { //function that periodically spawns powerups
   if (startGame) {
-    if (startTime <= timer - 1000) {
+    if (startTime <= timer - 20000) {
       if (lastpower <= timer - random(1000, 5000)) {
         lastpower = timer;
         createPowerup(powerSelector());
@@ -90,12 +93,12 @@ int powerRecycle() {
   return -1;
 }
 
-int powerSelector() {                                                          //rolls for powerup
+int powerSelector() {                                                          //Rolls for powerup
   int firstDice = (int)random(1, 100);                                         //First roll
   if (firstDice >= 1 && firstDice <= 70) {                                     //If first roll is 70 or less, there will be no powerup
     return 0;
   }
-  if (firstDice >= 71 && firstDice <= 100) {
+  if (firstDice >= 71 && firstDice <= 100) {                                   //If the first roll is 71 or higher, there will be new powerup
     int secondDice = (int)random(1, 100);                                      //The second dice roll decides the powerup
     {
       if (secondDice >= 1 && secondDice <= 50) {
@@ -119,10 +122,10 @@ void powerUpdate(int counter) {
     if (power[counter].pY == height + power[counter].pH) {
       power[counter].isPicked = false;
     }
-    if (power[counter].pX > player.pX - player.pW/2 && power[counter].pX < player.pX + player.pW/2 && power[counter].pY > player.pY - player.pH/2 && power[counter].pY < player.pY + player.pH/2 && power[counter].isActivated == false) {
-      power[counter].isActivated = true;
-      power[counter].pY = height * 2;
-      power[counter].spawnTime = millis();  //Sets timer whenever a powerup is activated
+    if (power[counter].pX > player.pX - player.pW/2 && power[counter].pX < player.pX + player.pW/2 && power[counter].pY > player.pY - player.pH/2 && power[counter].pY < player.pY + player.pH/2 && power[counter].isActivated == false) {    //Collision check between player and powerup
+      power[counter].isActivated = true;                                                         //Activates powerup
+      power[counter].pY = height * 2;                                                            //Puts item out of screen
+      power[counter].spawnTime = millis();                                                       //Sets timer whenever a powerup is activated
     }
     if (power[counter].isActivated == true) {                                                    //Check if power is activated
       if (power[counter].typePowerup == 1) {                                                     //Double points
@@ -138,12 +141,12 @@ void powerUpdate(int counter) {
       }
       if (power[counter].typePowerup == 2) {                                                     //Speed
         if (power[counter].spawnTime < millis() - power[counter].timePowerup) {                  //Check if time since activation has not exceeded given time in milliseconds
-          player.playerVelocityFactor = 0.006;                                                   //Reverts player speed to original value
+          player.pV /= 2;                                                                        //Reverts player speed to original value
           power[counter].isActivated = false;                                                    //Deactivates powerup
           power[counter].isPicked = false;                                                       //Allows the slot of the powerup to be used again
           println("Powerup activated");
         } else {
-          player.playerVelocityFactor = 1;                                                       //Increases speed of the player
+          player.pV *= 2;                                                                        //Increases speed of the player
           println("Powerup activated");
         }
       }
@@ -151,15 +154,15 @@ void powerUpdate(int counter) {
         for (int i = 0; i < 20; i++) {                                                           //Cycles through all enemy slots once
           if (enemy[i].isAlive == true) {                                                        //Checks if there are living enemies
             if (enemy[i].enemyType == 1) {
-              scoreObj.addScore(50 * scoreMultiplier);
+              scoreObj.addScore(enemy[counter].score * scoreMultiplier);                         //Adds score of kill
               enemy[i].isAlive = false;                                                          //Kills living enemies
             }
             if (enemy[i].enemyType == 2) {
-              scoreObj.addScore(100 * scoreMultiplier);
+              scoreObj.addScore(enemy[counter].score * scoreMultiplier);                         //Adds score of kill
               enemy[i].isAlive = false;                                                          //Kills living enemies
             }
             if (enemy[i].enemyType == 3) {
-              scoreObj.addScore(150 * scoreMultiplier);
+              scoreObj.addScore(enemy[counter].score * scoreMultiplier);                         //Adds score of kill
               enemy[i].isAlive = false;                                                          //Kills living enemies
             }
           }
