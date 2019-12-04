@@ -59,7 +59,7 @@ Score scoreObj;
 Variable variables;
 Controls controls;
 Meteoriet meteoriet;
-//Sounds sounds;
+Sounds sounds;
 
 Minim minim;
 AudioPlayer bgm;
@@ -97,7 +97,7 @@ void setup() {
   controls = new Controls();
   Star = new BackgroundStars();
   boss = new Boss();
-  //sounds = new Sounds(this);
+  sounds = new Sounds(this);
   minim = new Minim(this);
   bgm = minim.loadFile("./sound/stagethemefix.wav");
   playergatshoot = minim.loadFile("./sound/gattlingweapon_noise.wav");
@@ -189,20 +189,19 @@ void draw() {
     player.playerUpdate();                 //updates the position of the player
     player.player();                       //draws the player
 
-    if (scoreObj.score >= 10000) {
-
-      //Boss.bossSpawn();
+    if (globalBossTimer <= 0 && boss.currentState == -1) {
       boss.bossSpawn();
     }
 
     globalBossTimer--;
     text(globalBossTimer, 120, 60);
+    text(boss.currentState, 120, 160);
 
-    /*if (boss.currentState != -1) {
-     boss.bossUpdatePosition();
-     boss.bossUpdateBehaviour();
-     boss.bossDraw();
-     }*/
+    if (boss.currentState != -1) {
+      boss.bossUpdatePosition();
+      boss.bossUpdateBehaviour();
+      boss.bossDraw();
+    }
 
     if (player.weapon == 1) {
       weapon[0].spawnPlayerBullets();        //spawns player bullets using a for-loop built into the function

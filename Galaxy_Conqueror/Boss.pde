@@ -1,6 +1,6 @@
 //this pde file was written by Floris Kuiper
 
-int globalBossTimer = 10000;
+int globalBossTimer = 11500;
 int scoutDelay = 3000;
 
 class Boss {
@@ -16,7 +16,7 @@ class Boss {
   int bossSize = 70;
   int initialState = 0;
   int lastStateSwitch = 0;
-  int currentState = 0;
+  int currentState = -1;
   int currentStateTimer = 0;
   int deathrayCooldown = 3;
   int startStateFlag = 0;
@@ -35,12 +35,15 @@ class Boss {
   final int DEATHRAY_HORIZONTAL_OFFSET = 30;
   final int DEATHRAY_SIZE = 60;
   final int DEATHRAY_TIME = 5000;
+  final int BOSS_HEALTH_VALUE = 14000;
 
   void bossSpawn() {
     bossAlive = true; //marks the boss as being alive, turns off the spawning of random enemies while keeping the drawing of enemies enabled
+    currentState = 0;
     bossX = width / 2;
     bossY = -bossH;
-    image(bossSprite, bossW, bossH);
+    bossHealth = BOSS_HEALTH_VALUE;
+    image(bossSprite, bossX, bossY, bossW, bossH);
     //spawn the boss above the screen, slowly move him down into view
     //fade out level music
     //kick in the music
@@ -49,7 +52,7 @@ class Boss {
 
   void bossUpdatePosition() { //function that makes the boss slowly move up and down
     //ang = radians(angle); < probably redundant, just want to be sure before i remove it
-    bossY = bossOriginPointX + (10 * sin(dx * inc));
+    //jbossY = bossY + (10 * sin(dx * inc));
     if (bossY < 121) {
       bossY++;
     }
@@ -115,11 +118,12 @@ class Boss {
 
     case REQUEST_BACKUP_STATE:
       if (scoutDelay <= 0) {
+        scoutDelay--;
         for (int i = 0; i >= 0; i++) {
           bossScoutSpawner();
+          scoutDelay = 3000;
         }
       }
-      scoutDelay--;
       //call enemyspawner with the scout's enemy type to summon two groups of three scouts on either side of the play area
       //shoot bullets meanwhile?
       //maybe merge this state with the deathray state...
@@ -151,5 +155,14 @@ class Boss {
       currentState = statePicker();
       startStateFlag = 0;
     }
+  }
+
+  void deathHandler() { //function that's called in to do the cleanup after the boss dies
+  bossAlive = false;
+  currentState = -1;
+  bossX = -width;
+  bossY = -height;
+  bossHealth = BOSS_HEALTH_VALUE;
+  globalBossTimer = 11500;
   }
 }
