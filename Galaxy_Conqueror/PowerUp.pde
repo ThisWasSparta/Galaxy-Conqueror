@@ -154,15 +154,15 @@ void powerUpdate(int counter) {
         for (int i = 0; i < 20; i++) {                                                           //Cycles through all enemy slots once
           if (enemy[i].isAlive == true) {                                                        //Checks if there are living enemies
             if (enemy[i].enemyType == 1) {
-              scoreObj.addScore(50 * scoreMultiplier);                                           //Adds score of kill
+              scoreObj.addScore(enemy[counter].score * scoreMultiplier);                         //Adds score of kill
               enemy[i].isAlive = false;                                                          //Kills living enemies
             }
             if (enemy[i].enemyType == 2) {
-              scoreObj.addScore(100 * scoreMultiplier);                                          //Adds score of kill
+              scoreObj.addScore(enemy[counter].score * scoreMultiplier);                         //Adds score of kill
               enemy[i].isAlive = false;                                                          //Kills living enemies
             }
             if (enemy[i].enemyType == 3) {
-              scoreObj.addScore(150 * scoreMultiplier);                                          //Adds score of kill
+              scoreObj.addScore(enemy[counter].score * scoreMultiplier);                         //Adds score of kill
               enemy[i].isAlive = false;                                                          //Kills living enemies
             }
           }
