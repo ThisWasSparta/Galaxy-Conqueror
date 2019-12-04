@@ -1,3 +1,4 @@
+import processing.sound.*;
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
@@ -55,7 +56,7 @@ Score scoreObj;
 Variable variables;
 Controls controls;
 Meteoriet meteoriet;
-//Sounds sounds;
+Sounds sounds;
 Boss boss;
 NamePicker namePicker;
 Letterpicker letterPicker;
@@ -86,7 +87,7 @@ void setup() {
   controls = new Controls();
   Star = new BackgroundStars();
   boss = new Boss();
-  //sounds = new Sounds(this);
+  sounds = new Sounds(this);
   dbconnect = new DBConnect(this);
   namePicker = new NamePicker();
   letterPicker = new Letterpicker();
