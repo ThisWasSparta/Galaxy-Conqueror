@@ -1,3 +1,5 @@
+import processing.sound.*;
+
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
@@ -55,7 +57,7 @@ Score scoreObj;
 Variable variables;
 Controls controls;
 Meteoriet meteoriet;
-//Sounds sounds;
+Sounds sounds;
 Boss boss;
 NamePicker namePicker;
 Letterpicker letterPicker;
@@ -86,7 +88,7 @@ void setup() {
   controls = new Controls();
   Star = new BackgroundStars();
   boss = new Boss();
-  //sounds = new Sounds(this);
+  sounds = new Sounds(this);
   dbconnect = new DBConnect(this);
   namePicker = new NamePicker();
   letterPicker = new Letterpicker();
@@ -173,20 +175,18 @@ void draw() {
     player.playerUpdate();                 //updates the position of the player
     player.player();                       //draws the player
 
-    if(scoreObj.score >= 10000) {
-
-      //Boss.bossSpawn();
+    if (globalBossTimer <= 0 && boss.currentState == -1) {
       boss.bossSpawn();
     }
-    
+
     globalBossTimer--;
     text(globalBossTimer, 120, 60);
 
-    /*if (boss.currentState != -1) {
-     boss.bossUpdatePosition();
-     boss.bossUpdateBehaviour();
-     boss.bossDraw();
-     }*/
+    if (boss.currentState != -1) {
+      boss.bossUpdatePosition();
+      boss.bossUpdateBehaviour();
+      boss.bossDraw();
+    }
 
     if (player.weapon == 1) {
       weapon[0].spawnPlayerBullets();        //spawns player bullets using a for-loop built into the function
