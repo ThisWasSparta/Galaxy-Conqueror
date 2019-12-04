@@ -60,6 +60,12 @@ Variable variables;
 Controls controls;
 Meteoriet meteoriet;
 Sounds sounds;
+
+Minim minim;
+AudioPlayer bgm;
+AudioPlayer playergatshoot;
+AudioPlayer enemyshoot;
+
 Boss boss;
 NamePicker namePicker;
 Letterpicker letterPicker;
@@ -92,6 +98,10 @@ void setup() {
   Star = new BackgroundStars();
   boss = new Boss();
   sounds = new Sounds(this);
+  minim = new Minim(this);
+  bgm = minim.loadFile("./sound/stagethemefix.wav");
+  playergatshoot = minim.loadFile("./sound/gattlingweapon_noise.wav");
+  enemyshoot = minim.loadFile("./sound/scout_shootnoise.wav");
   dbconnect = new DBConnect(this);
   dbqueries = new DBQueries();
   namePicker = new NamePicker();
