@@ -165,6 +165,8 @@ class Boss {
   bossHealth = BOSS_HEALTH_VALUE;
   globalBossTimer = 11500;
   scoreObj.addScore(2500);
+  bgm.rewind();
+  bgm.play();
   println("Change da world. My final message. Goodbye.");
   }
 }

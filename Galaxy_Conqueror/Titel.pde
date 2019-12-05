@@ -116,6 +116,7 @@ class Titel {
   void startScreen() {
     if (StartGame) {
 
+      playergatshoot.mute();
       //Titel
       fill(255);
       textSize(textSize);
@@ -157,6 +158,8 @@ class Titel {
         rectMode(CENTER);
         rect(lcX, staButtonY, lcW, lcH);
         rect(rcX, staButtonY, rcW, rcH);
+        textSize(20);
+        text("PRESS Y", lcX - width * 0.1, staButtonY);
         if (keyPressed) {
           if (player.isShooting) {
             StartGame = false;
@@ -173,6 +176,8 @@ class Titel {
         rectMode(CENTER);
         rect(lcX, setButtonY, lcW, lcH);
         rect(rcX, setButtonY, rcW, rcH);
+        textSize(20);
+        text("PRESS Y", lcX - width * 0.1, setButtonY);
         if (keyPressed) {
           if (player.isShooting) {
             countCursor ++;
@@ -203,6 +208,8 @@ class Titel {
         rectMode(CENTER);
         rect(lcX, qButtonY, lcW, lcH);
         rect(rcX, qButtonY, rcW, rcH);
+        textSize(20);
+        text("PRESS Y", lcX - width * 0.1, qButtonY);
         if (keyPressed) {
           if (player.isShooting) {
             exit();
@@ -214,6 +221,9 @@ class Titel {
         }
       }
     } else if (SettingGame) {
+
+      playergatshoot.mute();
+
 
       float sSx = constrain(sSX, sBX-sBWinn/2, sBX+sBWinn/2);
       float bSx = constrain(bSX, bBX-bBWinn/2, bBX+bBWinn/2);

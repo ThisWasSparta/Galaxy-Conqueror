@@ -39,6 +39,7 @@ class PlayerWeapons {
   int playerLaserDamagePerFrame = 6;
 
   void spawnPlayerBullets() {//This function was written by Noah Verburg
+  playergatshoot.setVolume(0.1);
     if (!player.isShooting) {
       playergatshoot.mute();
     }
