@@ -32,7 +32,7 @@ class NamePicker {
         highLightX += 200;
       } else if (key == 'a' && highLightX > letterX1) {
         highLightX -= 200;
-      }   
+      }
     }
 
     if (highLightX > letterX1 && highLightX < letterX3-100) { //boolean to check if you are selecting the second letter
@@ -53,24 +53,20 @@ class NamePicker {
     }
 
     if (first) {
-      
+
       ellipse(highLightX, highLightY, 20, 20);
       letterpicker.DrawLetterpicker1();
       letter1 = letterpicker.Alphabet1[letterpicker.num1];
-    } 
-    
-    else if (second) {
+    } else if (second) {
       ellipse(highLightX, highLightY, 20, 20);
       letterpicker.DrawLetterpicker2();
       letter2 = letterpicker.Alphabet2[letterpicker.num2];
-    } 
-    
-    else if (third) {
+    } else if (third) {
       ellipse(highLightX, highLightY, 20, 20);
       letterpicker.DrawLetterpicker3();
       letter3 = letterpicker.Alphabet3[letterpicker.num3];
     }
-    
+
     textSize(80);
     text(letter1, letterX1, letterY);
     text(letter2, letterX2, letterY);

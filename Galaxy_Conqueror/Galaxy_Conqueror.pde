@@ -145,20 +145,6 @@ void keyPressed() {          //This function was written by Noah Verburg
   controls.setAction(key, true);  //detects if a key has been pressed
 }
 
-//Collision Buttons click
-void mousePressed() {        //This function was written by Lucas van Wonderen
-  //Start Button Detection
-  if (mouseX > titel.staButtonX - titel.staButtonW/2 && mouseX < titel.staButtonX + titel.staButtonW/2 && mouseY > titel.staButtonY - titel.staButtonH/2 && mouseY < titel.staButtonY + titel.staButtonH/2) {
-    startTime = timer;
-    startGame = true;
-    //Settings Button Detection
-  } else if (mouseX > titel.setButtonX - titel.setButtonW/2 && mouseX < titel.setButtonX + titel.setButtonW/2 && mouseY > titel.setButtonY - titel.setButtonH/2 && mouseY < titel.setButtonY + titel.setButtonH/2) {
-    //Quit Button Detection
-  } else if (mouseX > titel.qButtonX - titel.qButtonW/2 && mouseX < titel.qButtonX + titel.qButtonW/2 && mouseY > titel.qButtonY - titel.qButtonH/2 && mouseY < titel.qButtonY + titel.qButtonH/2) {
-    exit();
-  }
-}
-
 void draw() {
   //fill(0, 220);
   //rect(0, 0, width, height);
@@ -242,6 +228,33 @@ void draw() {
       gameover.GameOverDraw();
       if (millis() >= gameOverTimer+1000) {
         gameover.GameOverTakeName();
+      }
+      if (player.isShooting) {
+        dbqueries.dbInsert();
+        valuesLoaded = false;
+        gameOver = false;
+        startGame = false;
+        valuesLoaded = false;
+        titel.StartGame = true;
+        heartNumber = 3;
+        scoreObj.score = 0;
+        globalBossTimer = 11500;
+        for (int i = 0; i < 20; i++) {                                                           //Cycles through all enemy slots once
+          if (enemy[i].isAlive == true) {                                                        //Checks if there are living enemies
+            if (enemy[i].enemyType == 1) {
+              enemy[i].isAlive = false;                                                          //Kills living enemies
+            }
+            if (enemy[i].enemyType == 2) {
+              enemy[i].isAlive = false;                                                          //Kills living enemies
+            }
+            if (enemy[i].enemyType == 3) {
+              enemy[i].isAlive = false;                                                          //Kills living enemies
+            }
+          }
+        }
+        //for (int i = 0; i < enemyShootParticleNumber; i++) {
+        //  enemyShootParticle[i].isAlive = false;
+        //}
       }
     }
   }

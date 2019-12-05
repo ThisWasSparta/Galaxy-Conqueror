@@ -12,9 +12,13 @@ class Letterpicker {
     num2 = 0;
     num3 = 0;
   }
-  
+
 
   void DrawLetterpicker1() {
+    if (dbqueries.insertQuerieDone) {
+      num1 = 0;
+      dbqueries.insertQuerieDone = false;
+    }
     if (keyPressed) {
       if (key == 's') {//if key 's' is pressed
         num1++;
@@ -30,7 +34,11 @@ class Letterpicker {
     }
     keyPressed = false;
   }
-    void DrawLetterpicker2() {
+  void DrawLetterpicker2() {
+    if (dbqueries.insertQuerieDone) {
+      num2 = 0;
+      dbqueries.insertQuerieDone = false;
+    }
     if (keyPressed) {
       if (key == 's') {//if key 's' is pressed
         num2++;
@@ -46,7 +54,11 @@ class Letterpicker {
     }
     keyPressed = false;
   }
-    void DrawLetterpicker3() {
+  void DrawLetterpicker3() {
+    if (dbqueries.insertQuerieDone) {
+      num3 = 0;
+      dbqueries.insertQuerieDone = false;
+    }
     if (keyPressed) {
       if (key == 's') {//if key 's' is pressed
         num3++;
@@ -62,11 +74,4 @@ class Letterpicker {
     }
     keyPressed = false;
   }
-  
-  
-  
-  
-  
-  
-  
 }
