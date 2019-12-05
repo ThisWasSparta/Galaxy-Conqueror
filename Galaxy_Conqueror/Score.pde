@@ -47,5 +47,10 @@ class Score {
     text("Y", width * 0.85, height * 0.9);
     fill(255, 255, 255);
     text("SHOOT", width * 0.85, height * 0.93);
+    
+    textSize(15);
+    text("HIT THE", width * 0.052, height * 0.91);
+    text("METEORITE", width * 0.052, height * 0.93);
+    text("FOR +1 HEALTH", width * 0.052, height * 0.95);
   }
 }

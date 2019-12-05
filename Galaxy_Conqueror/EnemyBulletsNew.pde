@@ -39,6 +39,7 @@ class EnemyBullets {
         && enemyBullets[counter].bY + enemyBullets[counter].bH/2 < player.pY + player.pH/2
         && enemyBullets[counter].isOnScreen == true) {
         println("ouchie");
+        player.damageFlashTint = 200;
         enemyBullets[counter].bY = height * -2;
         enemyBullets[counter].bX = -1 * width;
         enemyBullets[counter].isOnScreen = false;

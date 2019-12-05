@@ -28,6 +28,7 @@ class SpaceShip {
   int weaponState = 1;
   int skinCycle = 0;
   int weaponCycleCooldown = 0;
+  int damageFlashTint = 0;
   
   PImage weapon1;                       //weapon1, weapon2 and weapon3 are the sprites for the player depending on what gun they are using
   PImage weapon2;
@@ -35,13 +36,28 @@ class SpaceShip {
   
   void player() {          //this code detects what weapon the player is currently using
     if (weapon == 1) {
+      if (player.damageFlashTint > 0) {
+        tint(255, player.damageFlashTint, player.damageFlashTint);
+        player.damageFlashTint -= 10;
+      }
       image(weapon1, pX, pY, pW, pH);
+      tint(255, 255, 255);
     }
     if (weapon == 2) {
+      if (player.damageFlashTint > 0) {
+        tint(255, player.damageFlashTint, player.damageFlashTint);
+        player.damageFlashTint -= 10;
+      }
       image(weapon2, pX, pY, pW, pH);
+      tint(255, 255, 255);
     }
     if (weapon == 3) {
-      image(weapon1, pX, pY, pW, pH);
+      if (player.damageFlashTint > 0) {
+        tint(255, player.damageFlashTint, player.damageFlashTint);
+        player.damageFlashTint -= 10;
+      }
+      image(weapon3, pX, pY, pW, pH);
+      tint(255, 255, 255);
     }
     if (weaponState == 3) {
       weapon1 = loadImage("Spaceship Weapon 1-3.png");
