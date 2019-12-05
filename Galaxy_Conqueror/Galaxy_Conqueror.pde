@@ -252,9 +252,6 @@ void draw() {
             }
           }
         }
-        //for (int i = 0; i < enemyShootParticleNumber; i++) {
-        //  enemyShootParticle[i].isAlive = false;
-        //}
       }
     }
   }

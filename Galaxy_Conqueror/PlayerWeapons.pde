@@ -75,10 +75,17 @@ class PlayerWeapons {
       if (!weapon[i].bulletIsOnScreen) {
         weapon[i].bY = height * -2;
       }
+      if (weapon[i].bX < boss.bossX + boss.bossW/2 && weapon[i].bX > boss.bossX - boss.bossW/2 && weapon[i].bY < boss.bossY + boss.bossH/2 && weapon[i].bY > boss.bossY - boss.bossH/2 && boss.bossAlive == true) {
+        weapon[i].bY -= height;
+        boss.bossHealth -= 15;
+        if (boss.bossHealth <= 0) {
+          boss.deathHandler();
+        }
+      }
       for (int t = 0; t < enemyNumber; t++) {
         if (enemy[t].enemyType == 1 && weapon[i].bX < enemy[t].eX + enemy[t].scoutHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].scoutHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].scoutHitboxY && weapon[i].bY > enemy[t].eY - enemy[t].scoutHitboxY && enemy[t].isAlive == true) {
           weapon[i].bY -= height;
-          enemy[t].eHP = enemy[t].eHP - 15;
+          enemy[t].eHP -= 15;
           enemy[t].damageFlashTint = 255;
           if (enemy[t].eHP <= 0) {
             enemy[t].isAlive = false;
@@ -90,7 +97,7 @@ class PlayerWeapons {
         }
         if (enemy[t].enemyType == 2 && weapon[i].bX < enemy[t].eX + enemy[t].courserHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].courserHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].courserHitboxY && weapon[i].bY > enemy[t].eY - enemy[t].courserHitboxY && enemy[t].isAlive == true) {
           weapon[i].bY -= height;
-          enemy[t].eHP = enemy[t].eHP - 15;
+          enemy[t].eHP -= 15;
           enemy[t].damageFlashTint = 255;
           if (enemy[t].eHP <= 0) {
             enemy[t].isAlive = false;
@@ -111,7 +118,7 @@ class PlayerWeapons {
         } else {
           if (enemy[t].enemyType == 3 && weapon[i].bX < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].goliathHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].goliathHitboxY && weapon[i].bY > enemy[t].eY - enemy[t].goliathHitboxY && enemy[t].isAlive == true) {
             weapon[i].bY -= height;
-            enemy[t].eHP = enemy[t].eHP - 15;
+            enemy[t].eHP -= 15;
             enemy[t].damageFlashTint = 255;
             if (enemy[t].eHP <= 0) {
               enemy[t].isAlive = false;

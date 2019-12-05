@@ -24,6 +24,9 @@ class Controls {
 
     case 'k':
       return player.exitgame = b;
+      
+    case 'p':
+      return player.suicide = b;
 
     case 'i':
       return nameScreen = b;

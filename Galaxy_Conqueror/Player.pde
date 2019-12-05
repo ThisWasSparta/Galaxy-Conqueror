@@ -15,6 +15,8 @@ class SpaceShip {
   
   boolean exitgame;
   
+  boolean suicide;
+  
   float pW;    //player width
   float pH;    //player height
   float pV;    //player velocity
@@ -98,6 +100,9 @@ class SpaceShip {
         }
         weaponCycleCooldown = millis();
       }
+    }
+    if (player.suicide) {
+      heartNumber = 0;
     }
     if (exitgame) {
       exit();

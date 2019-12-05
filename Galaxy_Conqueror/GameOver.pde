@@ -13,6 +13,9 @@ class GameOver {
     textSize(150);
     textAlign(CENTER);
     text("Game Over", tX, tY);
+    for (int i = 0; i < enemyShootParticleNumber; i++) {
+      enemyShootParticle[i].opacity = 0;
+    }
 
     if (gameOverTimer == 0) {
       gameOverTimer = millis();
