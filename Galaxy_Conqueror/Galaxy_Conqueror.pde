@@ -180,8 +180,8 @@ void draw() {
     }
 
     globalBossTimer--;
-    text(globalBossTimer, 120, 60);
-    text(boss.currentState, 120, 160);
+    //text(globalBossTimer, 120, 60);
+    //text(boss.currentState, 120, 160);
 
     if (boss.currentState != -1) {
       boss.bossUpdatePosition();

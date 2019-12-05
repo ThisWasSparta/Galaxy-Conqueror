@@ -201,7 +201,13 @@ class PlayerWeapons {
           }
         }
       }
-
+      if (weapon[i].lX - weapon[i].lW/2 < boss.bossX + boss.bossX/2 && weapon[i].lX + weapon[i].lW/2 > boss.bossX - boss.bossX/2 && boss.bossAlive && weapon[i].laserIsAlive) {
+        weapon[i].bY -= height;
+        boss.bossHealth -= 15;
+        if (boss.bossHealth <= 0) {
+          boss.deathHandler();
+        }
+      }
       for (int t = 0; t < enemyNumber; t++) {
         if (enemy[t].enemyType == 1 && weapon[i].lX - weapon[i].lW/2 < enemy[t].eX + enemy[t].scoutHitboxX && weapon[i].lX + weapon[i].lW/2 > enemy[t].eX - enemy[t].scoutHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
           weapon[i].bY -= height;
