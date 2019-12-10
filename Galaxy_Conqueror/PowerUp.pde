@@ -1,4 +1,7 @@
-//The code present in this file is written by Sam Spronk, based on the Class Enemies
+/*The code present in this file is written by Sam Spronk, based on the Class Enemies
+ All values of times are given in milliseconds
+ 1 000 milliseconds is 1 second
+ */
 int lastpower; //time in milliseconds since last powerup
 
 class PowerUp {
@@ -17,7 +20,7 @@ class PowerUp {
   boolean isPicked;
   boolean isActivated;
 
-  float timePowerup = 10000;
+  float timePowerup = 10000;     //Amount of time a powerup will be active in milliseconds
   float spawnTime;
 }
 void powerupSpawn(int counter) { //function that periodically spawns powerups
@@ -38,7 +41,7 @@ void createPowerup(int powerType) {
   switch(powerType) {
   case 1:
     if (doublepointsCheck != -1) {
-      power[doublepointsCheck].typePowerup = 1;
+      power[doublepointsCheck].typePowerup = 1;                                                                    //Double points
       power[doublepointsCheck].isPicked = true;
       power[doublepointsCheck].isActivated = false;
       power[doublepointsCheck].pW = doublepointsPowerup.width;
@@ -52,7 +55,7 @@ void createPowerup(int powerType) {
     break;
   case 2:
     if (speedCheck != -1) {
-      power[speedCheck].typePowerup = 2;
+      power[speedCheck].typePowerup = 2;                                                                           //Speed
       power[speedCheck].isPicked = true;
       power[speedCheck].isActivated = false;
       power[speedCheck].pW = speedPowerup.width;
@@ -66,7 +69,7 @@ void createPowerup(int powerType) {
     break;
   case 3:
     if (doublepointsCheck != -1) {
-      power[screenwipeCheck].typePowerup = 3;
+      power[screenwipeCheck].typePowerup = 3;                                                                      //Screenwipe
       power[screenwipeCheck].isPicked = true;
       power[screenwipeCheck].isActivated = false;
       power[screenwipeCheck].pW = screenwipePowerup.height;
