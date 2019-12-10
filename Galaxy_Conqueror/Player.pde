@@ -19,7 +19,9 @@ class SpaceShip {
   
   float pW;    //player width
   float pH;    //player height
-  float pV;    //player velocity
+  float pXV = 0;   //player X velocity
+  float pYV = 0;   //player Y velocity
+  float pMaxV = 0; //player maximal velocity
   float pX;    //player X-position
   float pY;    //player Y-position
   float defaultPlayerWidth = 128 * sizeFactor;
@@ -85,18 +87,63 @@ class SpaceShip {
   }
   
   void playerUpdate() {    //This function was written by Noah Verburg
-    if (player.goLeft && player.pX > player.pW/2) {
-      player.pX -= player.pV;
+      if (player.goLeft && player.pX > player.pW/2) {
+        if (player.pXV > -player.pMaxV ) {
+          player.pXV -= 0.1 * pMaxV;
+        }
+      }
+      if (player.goRight && player.pX < width - player.pW/2) {
+        if (player.pXV < player.pMaxV ) {
+          player.pXV += 0.1 * player.pMaxV;
+        }
+      }
+      if (player.goUp && player.pY > height * 0.75) {
+        if (player.pYV > -player.pMaxV ) {
+          player.pYV -= 0.1 * player.pMaxV;
+        }
+      }
+      if (player.goDown && player.pY < height/1.01 - player.pH/2) {
+        if (player.pYV < player.pMaxV ) {
+          player.pYV += 0.1 * player.pMaxV;
+        }
+      }
+    } else {
+      if (player.pXV < 0) {
+        player.pXV += 0.1 * pMaxV;
+      }
+      if (player.pXV > 0) {
+        player.pXV -= 0.1 * pMaxV;
+      }
+      if (player.pXV < 0.99 && player.pXV > -0.09) {
+        player.pXV = 0;
+      }
+      if (player.pYV < 0) {
+        player.pYV += 0.1 * pMaxV;
+      }
+      if (player.pYV > 0 ) {
+        player.pYV -= 0.1 * pMaxV;
+      }
+      if (player.pYV < 0.09 && player.pYV > -0.09) {
+        player.pYV = 0;
+      }
     }
-    if (player.goRight && player.pX < width - player.pW/2) {
-      player.pX += player.pV;
+    
+    if (pXV < 0 && player.pX < player.pW/2) {
+      pXV = 0;
     }
-    if (player.goUp && player.pY > height * 0.75) {
-      player.pY -= player.pV;
+    if (pXV > 0 && player.pX > width - player.pW/2) {
+      pXV = 0;
     }
-    if (player.goDown && player.pY < height/1.01 - player.pH/2) {
-      player.pY += player.pV;
+    if (pYV < 0 && player.pY < height * 0.75) {
+      pYV = 0;
     }
+    if (pYV > 0 && player.pY > height/1.01 - player.pH/2) {
+      pYV = 0;
+    }
+    
+    player.pX += player.pXV;
+    player.pY += player.pYV;
+    
     if (player.nextWeapon) {
       if (weaponCycleCooldown + 250 < millis()) {
         if (weapon == 3) {

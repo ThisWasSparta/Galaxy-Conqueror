@@ -13,7 +13,7 @@ class Variable {
       hScale = height/1080;
       player.pW = player.defaultPlayerWidth * wScale;
       player.pH = player.defaultPlayerHeight * hScale;
-      player.pV = player.playerVelocityFactor * width;
+      player.pMaxV = player.playerVelocityFactor * width;
       player.isShooting = false;
       tX= width/2;
       tY= height/2;

@@ -68,7 +68,7 @@ class PlayerWeapons {
   //Player bullet functions
 
   void spawnPlayerBullets() {//This function was written by Noah Verburg
-    playergatshoot.setVolume(0.1);
+    //playergatshoot.setVolume(0.1);
     if (!player.isShooting) {
       playergatshoot.mute();
     }
