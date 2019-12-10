@@ -206,6 +206,12 @@ void draw() {
     weapon[0].updatePlayerLaser();
     weapon[0].drawPlayerLaser();
 
+    if (player.weapon == 3) {
+      weapon[0].spawnPlayerRockets();
+    }
+    weapon[0].updatePlayerRockets();
+    weapon[0].drawPlayerRockets();
+    
     player.drawWeaponWheel();
 
     heart[0].playerHealth();

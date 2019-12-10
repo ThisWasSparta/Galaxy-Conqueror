@@ -17,6 +17,8 @@ class Variable {
       player.isShooting = false;
       tX= width/2;
       tY= height/2;
+      player.weaponWheelX = 0.95 * width;
+      player.weaponWheelY = 0.1 * height;
       meteoriet.meteorite = loadImage("Meteorite 1.png");
       for (int i = 0; i < enemyNumber; i++) {
         enemy[i].orbW = enemy[i].defaultGoliathOrbSize * wScale;
@@ -39,10 +41,10 @@ class Variable {
         weapon[i].lightBullet = loadImage("LightBullet.png");
         weapon[i].laser = loadImage("Player Laser 1.png");
         weapon[i].rocket = loadImage("Player Rocket.png");
-        weapon[i].bX = width/2;
-        weapon[i].bY = height * -2;
         wScale = width/1920;
         hScale = height/1080;
+        weapon[i].bX = width/2;
+        weapon[i].bY = height * -2;
         weapon[i].bW = weapon[i].defaultBulletWidth * wScale;
         weapon[i].bH = weapon[i].defaultBulletHeight * hScale;
         weapon[i].bV = weapon[i].bulletVelocityFactor * width;
@@ -52,6 +54,12 @@ class Variable {
         weapon[i].lX = width * 2;
         weapon[i].lY1 = height;
         weapon[i].lY2 = 0;
+        
+        weapon[i].rX = width/2;
+        weapon[i].rY = height * -2;
+        weapon[i].rW = weapon[i].defaultRocketWidth * wScale;
+        weapon[i].rH = weapon[i].defaultRocketHeight * hScale;
+        weapon[i].rV = weapon[i].rocketVelocityFactor * width;
       }
       for (int i = 0; i < enemyBulletNumber; i++) {
         enemyBullets[i].bW = weapon[i].defaultBulletWidth * wScale * 1.2;

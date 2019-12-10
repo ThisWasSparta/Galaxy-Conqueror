@@ -16,6 +16,7 @@ class Enemies {
   float eSize; //enemy size
   int eHP;     //enemy health value
 
+  
   float shieldMaxHP;
   float shieldHP;
   float orbW; //this code was written by Noah Verburg
@@ -28,6 +29,7 @@ class Enemies {
   float shieldTintMinimum;
   float shieldTintFactor = 0.0; //this is used to make the transparency of the shield pulsate
   float inc = TWO_PI/50;        //this is the driving factor for the pulsating things
+  float individualRocketEnemyDistance;
   float defaultScoutWidth = 110 * sizeFactor;
   float defaultScoutHeight = 98 * sizeFactor;
   float defaultCourserWidth = 142 * sizeFactor;
