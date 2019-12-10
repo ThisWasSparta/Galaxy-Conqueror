@@ -11,54 +11,72 @@ class PlayerWeapons {
   float lX;
   float lY1;
   float lY2;
+  
+  float rW;          //rocket width
+  float rH;          //rocket height
+  float rV;          //rocket velocity
+  float rX;          //rocket X-position
+  float rY;          //rocket Y-position
 
   int laserStrength = 1;
   int laserStrengthTimer = 0;
 
   boolean bulletIsOnScreen = false;
   boolean laserIsAlive = false;
+  boolean rocketIsOnScreen = false;
 
   float defaultBulletWidth = 10 * sizeFactor;
   float defaultBulletHeight = 20 * sizeFactor;
 
   float defaultLaserWidth = 10 * sizeFactor;
   float defaultLaserHeight = 60 * sizeFactor;
+  
+  float defaultRocketWidth = 5 * sizeFactor;
+  float defaultRocketHeight = 18 * sizeFactor;  
 
   PImage lightBullet;                   //sprite for the regular bullet of weapon1
   PImage laser;
+  PImage rocket;
 
   final int PLAYER_BULLET_PER_SALVO = 2;
-  int playerBulletTurn = 0;
+  int playerProjectileTurn = 0;
   int playerBulletFireRate = 100;
   int reloadTime = 0;                   //time it takes for the ship to be able to shoot again
+  int playerBulletDamage = 10;
   float bulletVelocityFactor = 0.01;    //factor which is used to get the desired bullet velocity compared to the width of the screen
 
   final int PLAYER_LASER_PER_SALVO = 2;
   int playerLaserTurn = 0;
-  int playerLaserFireRate = 2000;
+  int playerLaserFireRate = 1200;
   int playerLaserDamagePerFrame = 6;
 
+  final int PLAYER_ROCKET_PER_SALVO = 2;
+  int playerRocketFireRate = 300;
+  int playerRocketDamage = 30;
+
+  //Player bullet functions
+
   void spawnPlayerBullets() {//This function was written by Noah Verburg
-  playergatshoot.setVolume(0.1);
+    playergatshoot.setVolume(0.1);
     if (!player.isShooting) {
       playergatshoot.mute();
     }
-    if (player.isShooting && !weapon[playerBulletTurn].bulletIsOnScreen && millis() - playerBulletFireRate > reloadTime) {  //if the shot-button is pressed and the bullet that is supposed to
+    if (player.isShooting && !weapon[playerProjectileTurn].bulletIsOnScreen && millis() - playerBulletFireRate > reloadTime) {  //if the shot-button is pressed and the bullet that is supposed to
       //sounds.playergatshoot.play();
       playergatshoot.unmute();
       playergatshoot.loop();
       reloadTime = millis();                                                                                                //shoot out isnt on screen and the reload timer is done, it fires a bullet
       for (int i = 0; i < PLAYER_BULLET_PER_SALVO; i++) {
-        if (playerBulletTurn%2 == 0) {                                                     //if the current bullet's number is an even number, it spawns  in the
-          weapon[playerBulletTurn].bX = player.pX + player.defaultPlayerWidth / 2 * 0.891;        //left gun, otherwise it spawns in the right turret
+        if (playerProjectileTurn%2 == 0) {                                                     //if the current bullet's number is an even number, it spawns  in the
+          weapon[playerProjectileTurn].bX = player.pX + player.defaultPlayerWidth / 2 * 0.891;        //left gun, otherwise it spawns in the right turret
         } else {
-          weapon[playerBulletTurn].bX = player.pX - player.defaultPlayerWidth / 2 * 0.891;
+          weapon[playerProjectileTurn].bX = player.pX - player.defaultPlayerWidth / 2 * 0.891;
         }
-        weapon[playerBulletTurn].bY = player.pY - player.defaultPlayerHeight / 2 * 0.678;
-        playerBulletTurn++;
+        weapon[playerProjectileTurn].bY = player.pY - player.defaultPlayerHeight / 2 * 0.678;
+        playerProjectileTurn++;
       }
-      if (playerBulletTurn > 49) {
-        playerBulletTurn = 0;
+      if (playerProjectileTurn > 49) {
+        playerProjectileTurn = 0;
       }
     }
   }
@@ -78,7 +96,7 @@ class PlayerWeapons {
       }
       if (weapon[i].bX < boss.bossX + boss.bossW/2 && weapon[i].bX > boss.bossX - boss.bossW/2 && weapon[i].bY < boss.bossY + boss.bossH/2 && weapon[i].bY > boss.bossY - boss.bossH/2 && boss.bossAlive == true) {
         weapon[i].bY -= height;
-        boss.bossHealth -= 15;
+        boss.bossHealth -= playerBulletDamage;
         if (boss.bossHealth <= 0) {
           boss.deathHandler();
         }
@@ -86,7 +104,7 @@ class PlayerWeapons {
       for (int t = 0; t < enemyNumber; t++) {
         if (enemy[t].enemyType == 1 && weapon[i].bX < enemy[t].eX + enemy[t].scoutHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].scoutHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].scoutHitboxY && weapon[i].bY > enemy[t].eY - enemy[t].scoutHitboxY && enemy[t].isAlive == true) {
           weapon[i].bY -= height;
-          enemy[t].eHP -= 15;
+          enemy[t].eHP -= playerBulletDamage;
           enemy[t].damageFlashTint = 255;
           if (enemy[t].eHP <= 0) {
             enemy[t].isAlive = false;
@@ -98,7 +116,7 @@ class PlayerWeapons {
         }
         if (enemy[t].enemyType == 2 && weapon[i].bX < enemy[t].eX + enemy[t].courserHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].courserHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].courserHitboxY && weapon[i].bY > enemy[t].eY - enemy[t].courserHitboxY && enemy[t].isAlive == true) {
           weapon[i].bY -= height;
-          enemy[t].eHP -= 15;
+          enemy[t].eHP -= playerBulletDamage;
           enemy[t].damageFlashTint = 255;
           if (enemy[t].eHP <= 0) {
             enemy[t].isAlive = false;
@@ -111,7 +129,7 @@ class PlayerWeapons {
         if (enemy[t].shieldAlive) {
           if (enemy[t].enemyType == 3 && weapon[i].bX < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].goliathHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].goliathHitboxY  * 1.4 && weapon[i].bY > enemy[t].eY + enemy[t].goliathHitboxY * 0.6 && enemy[t].isAlive == true) {
             weapon[i].bY -= height;
-            enemy[t].shieldHP -= 15;
+            enemy[t].shieldHP -= playerBulletDamage;
             if (enemy[t].shieldHP <= 0) {
               enemy[t].shieldAlive = false;
             }
@@ -119,7 +137,7 @@ class PlayerWeapons {
         } else {
           if (enemy[t].enemyType == 3 && weapon[i].bX < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].goliathHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].goliathHitboxY && weapon[i].bY > enemy[t].eY - enemy[t].goliathHitboxY && enemy[t].isAlive == true) {
             weapon[i].bY -= height;
-            enemy[t].eHP -= 15;
+            enemy[t].eHP -= playerBulletDamage;
             enemy[t].damageFlashTint = 255;
             if (enemy[t].eHP <= 0) {
               enemy[t].isAlive = false;
@@ -143,6 +161,9 @@ class PlayerWeapons {
       }
     }
   }
+
+
+  //Player laser functions
 
   void spawnPlayerLaser() {
     for (int i = 0; i < 2; i++) {
@@ -254,4 +275,105 @@ class PlayerWeapons {
       }
     }
   }
+  
+  //Player rockets functions here
+  
+  /*void spawnPlayerRockets() {//This function was written by Noah Verburg
+    if (player.isShooting && !weapon[playerProjectileTurn].rocketIsOnScreen && millis() - playerRocketFireRate > reloadTime) {  //if the shot-button is pressed and the bullet that is supposed to
+      reloadTime = millis();                                                                                                //shoot out isnt on screen and the reload timer is done, it fires a bullet
+      for (int i = 0; i < PLAYER_ROCKET_PER_SALVO; i++) {
+        if (playerProjectileTurn%2 == 0) {                                                     //if the current bullet's number is an even number, it spawns  in the
+          weapon[playerProjectileTurn].bX = player.pX + player.defaultPlayerWidth / 2 * 0.891;        //left gun, otherwise it spawns in the right turret
+        } else {
+          weapon[playerProjectileTurn].bX = player.pX - player.defaultPlayerWidth / 2 * 0.891;
+        }
+        weapon[playerProjectileTurn].bY = player.pY - player.defaultPlayerHeight / 2 * 0.678;
+        playerProjectileTurn++;
+      }
+      if (playerProjectileTurn > 49) {
+        playerProjectileTurn = 0;
+      }
+    }
+  }
+  
+  void updatePlayerRockets() {                      //this function updates the player's bullets position, detect if they are on screen, and if they hit an enemy
+    for (int i = 0; i < playerBulletNumber; i++) {
+      if (weapon[i].bY < 0 - weapon[i].bH) {
+        weapon[i].bulletIsOnScreen = false;
+      } else {
+        weapon[i].bulletIsOnScreen = true;
+      }
+      if (weapon[i].bulletIsOnScreen) {
+        weapon[i].bY -= weapon[i].bV;
+      }
+      if (!weapon[i].bulletIsOnScreen) {
+        weapon[i].bY = height * -2;
+      }
+      if (weapon[i].bX < boss.bossX + boss.bossW/2 && weapon[i].bX > boss.bossX - boss.bossW/2 && weapon[i].bY < boss.bossY + boss.bossH/2 && weapon[i].bY > boss.bossY - boss.bossH/2 && boss.bossAlive == true) {
+        weapon[i].bY -= height;
+        boss.bossHealth -= playerBulletDamage;
+        if (boss.bossHealth <= 0) {
+          boss.deathHandler();
+        }
+      }
+      for (int t = 0; t < enemyNumber; t++) {
+        if (enemy[t].enemyType == 1 && weapon[i].bX < enemy[t].eX + enemy[t].scoutHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].scoutHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].scoutHitboxY && weapon[i].bY > enemy[t].eY - enemy[t].scoutHitboxY && enemy[t].isAlive == true) {
+          weapon[i].bY -= height;
+          enemy[t].eHP -= playerBulletDamage;
+          enemy[t].damageFlashTint = 255;
+          if (enemy[t].eHP <= 0) {
+            enemy[t].isAlive = false;
+            killcount++;
+            scoreObj.addScore(50 * scoreMultiplier);
+            particle[0].particlesPerTurn = 20;
+            particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
+          }
+        }
+        if (enemy[t].enemyType == 2 && weapon[i].bX < enemy[t].eX + enemy[t].courserHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].courserHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].courserHitboxY && weapon[i].bY > enemy[t].eY - enemy[t].courserHitboxY && enemy[t].isAlive == true) {
+          weapon[i].bY -= height;
+          enemy[t].eHP -= playerBulletDamage;
+          enemy[t].damageFlashTint = 255;
+          if (enemy[t].eHP <= 0) {
+            enemy[t].isAlive = false;
+            killcount++;
+            scoreObj.addScore(100 * scoreMultiplier);
+            particle[0].particlesPerTurn = 40;
+            particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
+          }
+        }
+        if (enemy[t].shieldAlive) {
+          if (enemy[t].enemyType == 3 && weapon[i].bX < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].goliathHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].goliathHitboxY  * 1.4 && weapon[i].bY > enemy[t].eY + enemy[t].goliathHitboxY * 0.6 && enemy[t].isAlive == true) {
+            weapon[i].bY -= height;
+            enemy[t].shieldHP -= playerBulletDamage;
+            if (enemy[t].shieldHP <= 0) {
+              enemy[t].shieldAlive = false;
+            }
+          }
+        } else {
+          if (enemy[t].enemyType == 3 && weapon[i].bX < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].goliathHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].goliathHitboxY && weapon[i].bY > enemy[t].eY - enemy[t].goliathHitboxY && enemy[t].isAlive == true) {
+            weapon[i].bY -= height;
+            enemy[t].eHP -= playerBulletDamage;
+            enemy[t].damageFlashTint = 255;
+            if (enemy[t].eHP <= 0) {
+              enemy[t].isAlive = false;
+              killcount++;
+              scoreObj.addScore(150 * scoreMultiplier);
+              goliathOnScreen--;
+              particle[0].particlesPerTurn = 60;
+              particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  void drawPlayerRockets() {
+    for (int i = 0; i < playerBulletNumber; i++) {
+      if (weapon[i].bulletIsOnScreen) {
+        image(lightBullet, weapon[i].bX, weapon[i].bY, weapon[i].bW, weapon[i].bH);
+      }
+    }
+  }*/
 }
