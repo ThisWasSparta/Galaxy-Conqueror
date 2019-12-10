@@ -51,12 +51,12 @@ class PlayerWeapons {
 
   final int PLAYER_LASER_PER_SALVO = 2;
   int playerLaserTurn = 0;
-  int playerLaserFireRate = 1200;
+  int playerLaserFireRate = 1400;
   int playerLaserDamagePerFrame = 6;
 
   final int PLAYER_ROCKET_PER_SALVO = 2;
-  int playerRocketFireRate = 350;
-  int playerRocketDamage = 35;
+  int playerRocketFireRate = 300;
+  int playerRocketDamage = 25;
   int lowestEnemy;
   int enemyTarget;
   float shortestDistance = 100000;
@@ -347,6 +347,8 @@ class PlayerWeapons {
             
             weapon[i].rocketVelocityFactorX = weapon[i].distanceX / weapon[i].distanceXandY;
             weapon[i].rocketVelocityFactorY = weapon[i].distanceY / weapon[i].distanceXandY;
+            
+            if (weapon[i].rocketVelocityFactorY < 0.2) {weapon[i].rocketVelocityFactorY = 0.2;}
             
             if (enemy[weapon[i].enemyTarget].eX < weapon[i].rX) {
               weapon[i].rX -= weapon[i].rV * weapon[i].rocketVelocityFactorX;

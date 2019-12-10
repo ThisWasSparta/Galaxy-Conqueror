@@ -87,6 +87,7 @@ class SpaceShip {
   }
   
   void playerUpdate() {    //This function was written by Noah Verburg
+    if (player.goLeft || player.goRight || player.goUp || player.goDown) {
       if (player.goLeft && player.pX > player.pW/2) {
         if (player.pXV > -player.pMaxV ) {
           player.pXV -= 0.1 * pMaxV;

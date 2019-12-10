@@ -181,7 +181,7 @@ class Titel {
         rect(rcX, staButtonY, rcW, rcH);
         textSize(20);
         textAlign(CENTER);
-        text("PRESS Y", lcX - width * 0.1, staButtonY);
+        text("PRESS B", lcX - width * 0.1, staButtonY);
         if (keyPressed) {
           if (player.isShooting) {
             StartGame = false;
@@ -201,7 +201,7 @@ class Titel {
         rect(rcX, hiButtonY, rcW, rcH);
         textSize(20);
         textAlign(CENTER);
-        text("PRESS Y", lcX - width * 0.1, hiButtonY);
+        text("PRESS B", lcX - width * 0.1, hiButtonY);
         if (keyPressed) {
           if (player.isShooting) {
             countCursor ++;
@@ -234,7 +234,7 @@ class Titel {
         rect(rcX, setButtonY, rcW, rcH);
         textSize(20);
         textAlign(CENTER);
-        text("PRESS Y", lcX - width * 0.1, setButtonY);
+        text("PRESS B", lcX - width * 0.1, setButtonY);
         if (keyPressed) {
           if (player.isShooting) {
             countCursor ++;
@@ -267,7 +267,7 @@ class Titel {
         rect(rcX, qButtonY, rcW, rcH);
         textSize(20);
         textAlign(CENTER);
-        text("PRESS Y", lcX - width * 0.1, qButtonY);
+        text("PRESS B", lcX - width * 0.1, qButtonY);
         if (keyPressed) {
           if (player.isShooting) {
             exit();
