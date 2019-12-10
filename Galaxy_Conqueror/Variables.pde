@@ -71,8 +71,8 @@ class Variable {
       player.weapon1 = loadImage("Spaceship Weapon 1-1.png");
       player.weapon2 = loadImage("Spaceship Weapon 2-1.png");
       //player.weapon3 = loadImage("Spaceship Weapon 3-1.png");
-      doublepointsPowerup = loadImage("DoublePoints_Powerup.png");
-      speedPowerup = loadImage("Speed_PowerUp.png");
+      doublepointsPowerup = loadImage("Doublepoints_Powerup_Line.png");
+      speedPowerup = loadImage("Speed_Powerup_Line.png");
       screenwipePowerup = loadImage("Energy Orb.png");
       valuesLoaded = true;
     }
