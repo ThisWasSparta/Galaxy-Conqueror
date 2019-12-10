@@ -1,7 +1,7 @@
 /*The code present in this file is written by Sam Spronk, based on the Class Enemies
- All values of times are given in milliseconds
- 1 000 milliseconds is 1 second
- */
+All values of times are given in milliseconds
+1 000 milliseconds is 1 second
+*/
 int lastpower; //time in milliseconds since last powerup
 
 class PowerUp {
@@ -155,16 +155,16 @@ void powerUpdate(int counter) {
       if (power[counter].typePowerup == 3) {                                                     //Screenwipe
         for (int i = 0; i < 20; i++) {                                                           //Cycles through all enemy slots once
           if (enemy[i].isAlive == true) {                                                        //Checks if there are living enemies
-            if (enemy[i].enemyType == 1) {
-              scoreObj.addScore(50 * scoreMultiplier);
+            if (enemy[i].enemyType == 1) {                                                       //Scout
+              scoreObj.addScore(enemy[counter].score * scoreMultiplier);                         //Adds score
               enemy[i].isAlive = false;                                                          //Kills living enemies
             }
-            if (enemy[i].enemyType == 2) {
-              scoreObj.addScore(100 * scoreMultiplier);
+            if (enemy[i].enemyType == 2) {                                                       //Courser
+              scoreObj.addScore(enemy[counter].score * scoreMultiplier);                         //Adds score
               enemy[i].isAlive = false;                                                          //Kills living enemies
             }
-            if (enemy[i].enemyType == 3) {
-              scoreObj.addScore(150 * scoreMultiplier);
+            if (enemy[i].enemyType == 3) {                                                       //Goliath
+              scoreObj.addScore(enemy[counter].score * scoreMultiplier);                         //Adds score
               enemy[i].isAlive = false;                                                          //Kills living enemies
             }
           }
