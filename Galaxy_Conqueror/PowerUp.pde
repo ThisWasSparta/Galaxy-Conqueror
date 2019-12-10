@@ -125,7 +125,7 @@ void powerUpdate(int counter) {
     if (power[counter].pX > player.pX - player.pW/2 && power[counter].pX < player.pX + player.pW/2 && power[counter].pY > player.pY - player.pH/2 && power[counter].pY < player.pY + player.pH/2 && power[counter].isActivated == false) {
       power[counter].isActivated = true;
       power[counter].pY = height * 2;
-      power[counter].spawnTime = millis();  //Sets timer whenever a powerup is activated
+      power[counter].spawnTime = millis();                                                       //Sets timer whenever a powerup is activated
     }
     if (power[counter].isActivated == true) {                                                    //Check if power is activated
       if (power[counter].typePowerup == 1) {                                                     //Double points
@@ -169,8 +169,8 @@ void powerUpdate(int counter) {
             }
           }
         }
-        power[counter].isActivated = false;                                                     //Deactivates power
-        power[counter].isPicked = false;                                                        //Allows the slot of the powerup to be used again
+        power[counter].isActivated = false;                                                      //Deactivates power
+        power[counter].isPicked = false;                                                         //Allows the slot of the powerup to be used again
       }
     }
   }
