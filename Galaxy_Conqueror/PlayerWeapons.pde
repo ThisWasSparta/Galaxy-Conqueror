@@ -55,12 +55,12 @@ class PlayerWeapons {
   int playerLaserDamagePerFrame = 6;
 
   final int PLAYER_ROCKET_PER_SALVO = 2;
-  int playerRocketFireRate = 400;
-  int playerRocketDamage = 30;
+  int playerRocketFireRate = 350;
+  int playerRocketDamage = 35;
   int lowestEnemy;
   int enemyTarget;
   float shortestDistance = 100000;
-  float rocketVelocityFactor = 0.008;
+  float rocketVelocityFactor = 0.012;
   float distanceX;
   float distanceY;
   float distanceXandY;

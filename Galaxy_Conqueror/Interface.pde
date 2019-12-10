@@ -2,16 +2,16 @@
 class Interface {
   void drawInterface() {
     textSize(25);
-     fill(220, 177, 39);
-     text("A", width * 0.95, height * 0.1);
-     fill(255, 255, 255);
-     text("NEXT", width * 0.95, height * 0.15);
-     text("WEAPON", width * 0.95, height * 0.2);
-
     fill(191, 5, 26);
-    text("B", width * 0.8, height * 0.1);
+    text("A", width * 0.15, height * 0.05);
     fill(255, 255, 255);
-    text("SHOOT", width * 0.8, height * 0.15);
+    text("NEXT", width * 0.15, height * 0.1);
+    text("WEAPON", width * 0.15, height * 0.15);
+
+    fill(220, 177, 39);
+    text("B", width * 0.05, height * 0.05);
+    fill(255, 255, 255);
+    text("SHOOT", width * 0.05, height * 0.1);
 
     textSize(15);
     text("HIT THE", width * 0.052, height * 0.91);
