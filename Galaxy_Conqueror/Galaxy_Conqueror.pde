@@ -60,6 +60,7 @@ Variable variables;
 Controls controls;
 Meteoriet meteoriet;
 Sounds sounds;
+Interface userInterface;
 
 Minim minim;
 AudioPlayer bgm;
@@ -107,6 +108,8 @@ void setup() {
   namePicker = new NamePicker();
   letterPicker = new Letterpicker();
   gameover = new GameOver();
+  userInterface = new Interface();
+  
   titel.font();
   Star.sterrenProp();
   for (int i = 0; i < playerBulletNumber; i++) {
@@ -171,6 +174,8 @@ void draw() {
     }
 
     scoreObj.countScore(0, 0, 0); //made by Dylan Kleton
+    
+    userInterface.drawInterface();
 
     player.playerUpdate();                 //updates the position of the player
     player.player();                       //draws the player
@@ -200,6 +205,8 @@ void draw() {
     }
     weapon[0].updatePlayerLaser();
     weapon[0].drawPlayerLaser();
+
+    player.drawWeaponWheel();
 
     heart[0].playerHealth();
 

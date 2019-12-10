@@ -64,16 +64,19 @@ class SpaceShip {
     if (weaponState == 3) {
       weapon1 = loadImage("Spaceship Weapon 1-3.png");
       weapon2 = loadImage("Spaceship Weapon 2-3.png");
+      weapon3 = loadImage("Spaceship Weapon 3-3.png");
       if (frameCount - skinCycle > 30) {weaponState = 1; skinCycle = frameCount;}
     }
     if (weaponState == 2) {
       weapon1 = loadImage("Spaceship Weapon 1-2.png");
       weapon2 = loadImage("Spaceship Weapon 2-2.png");
+      weapon3 = loadImage("Spaceship Weapon 3-2.png");
       if (frameCount - skinCycle > 20) {weaponState = 3;}
     }
     if (weaponState == 1) {
       weapon1 = loadImage("Spaceship Weapon 1-1.png");
       weapon2 = loadImage("Spaceship Weapon 2-1.png");
+      weapon3 = loadImage("Spaceship Weapon 3-1.png");
       if (frameCount - skinCycle > 10) {weaponState = 2;}
     }
   }
@@ -93,7 +96,7 @@ class SpaceShip {
     }
     if (player.nextWeapon) {
       if (weaponCycleCooldown + 250 < millis()) {
-        if (weapon == 2) {
+        if (weapon == 3) {
           weapon = 1;
         } else {
           weapon++;
@@ -106,6 +109,86 @@ class SpaceShip {
     }
     if (exitgame) {
       exit();
+    }
+  }
+  
+  void drawWeaponWheel() {
+    switch (weapon) {
+      case 1:
+        fill(0, 0, 255, 255);
+        rect(width * 0.95, height * 0.9, width * 0.1, height * 0.05);
+        fill(50, 50, 255, 255);
+        rect(width * 0.95, height * 0.9, width * 0.095, height * 0.04);
+        fill(255, 255);
+        textSize(10);
+        text("GATLING GUN", width * 0.95, height * 0.906);
+        
+        fill(0, 0, 255, 128);
+        rect(width * 0.95, height * 0.854, width * 0.1, height * 0.05);
+        fill(50, 50, 255, 128);
+        rect(width * 0.95, height * 0.854, width * 0.095, height * 0.04);
+        fill(255, 128);
+        textSize(10);
+        text("ROCKET LAUNCHER", width * 0.95, height * 0.86);
+        
+        fill(0, 0, 255, 128);
+        rect(width * 0.95, height * 0.946, width * 0.1, height * 0.05);
+        fill(50, 50, 255, 128);
+        rect(width * 0.95, height * 0.946, width * 0.095, height * 0.04);
+        fill(255, 128);
+        textSize(10);
+        text("LASER BEAM", width * 0.95, height * 0.952);
+        break;
+      case 2:
+        fill(0, 0, 255, 255);
+        rect(width * 0.95, height * 0.9, width * 0.1, height * 0.05);
+        fill(50, 50, 255, 255);
+        rect(width * 0.95, height * 0.9, width * 0.095, height * 0.04);
+        fill(255, 255);
+        textSize(10);
+        text("LASER BEAM", width * 0.95, height * 0.906);
+        
+        fill(0, 0, 255, 128);
+        rect(width * 0.95, height * 0.854, width * 0.1, height * 0.05);
+        fill(50, 50, 255, 128);
+        rect(width * 0.95, height * 0.854, width * 0.095, height * 0.04);
+        fill(255, 128);
+        textSize(10);
+        text("GATLING GUN", width * 0.95, height * 0.86);
+        
+        fill(0, 0, 255, 128);
+        rect(width * 0.95, height * 0.946, width * 0.1, height * 0.05);
+        fill(50, 50, 255, 128);
+        rect(width * 0.95, height * 0.946, width * 0.095, height * 0.04);
+        fill(255, 128);
+        textSize(10);
+        text("ROCKET LAUNCHER", width * 0.95, height * 0.952);
+        break;
+      case 3:
+        fill(0, 0, 255, 255);
+        rect(width * 0.95, height * 0.9, width * 0.1, height * 0.05);
+        fill(50, 50, 255, 255);
+        rect(width * 0.95, height * 0.9, width * 0.095, height * 0.04);
+        fill(255, 255);
+        textSize(10);
+        text("ROCKET LAUNCHER", width * 0.95, height * 0.906);
+        
+        fill(0, 0, 255, 128);
+        rect(width * 0.95, height * 0.854, width * 0.1, height * 0.05);
+        fill(50, 50, 255, 128);
+        rect(width * 0.95, height * 0.854, width * 0.095, height * 0.04);
+        fill(255, 128);
+        textSize(10);
+        text("LASER BEAM", width * 0.95, height * 0.86);
+        
+        fill(0, 0, 255, 128);
+        rect(width * 0.95, height * 0.946, width * 0.1, height * 0.05);
+        fill(50, 50, 255, 128);
+        rect(width * 0.95, height * 0.946, width * 0.095, height * 0.04);
+        fill(255, 128);
+        textSize(10);
+        text("GATLING GUN", width * 0.95, height * 0.952);
+        break;
     }
   }
 }

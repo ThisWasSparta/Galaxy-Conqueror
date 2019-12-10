@@ -1,3 +1,4 @@
+//Deze class is geschreven door Noah Verburg
 class EnemyShootParticle {
   float x, y;
   float xVelocity, yVelocity;

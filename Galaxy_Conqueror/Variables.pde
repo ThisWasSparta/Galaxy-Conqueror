@@ -38,6 +38,7 @@ class Variable {
       for (int i = 0; i < playerBulletNumber; i++) {
         weapon[i].lightBullet = loadImage("LightBullet.png");
         weapon[i].laser = loadImage("Player Laser 1.png");
+        weapon[i].rocket = loadImage("Player Rocket.png");
         weapon[i].bX = width/2;
         weapon[i].bY = height * -2;
         wScale = width/1920;
