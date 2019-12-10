@@ -13,7 +13,7 @@ class GameOver {
     textSize(150);
     textAlign(CENTER);
     text("Game Over", tX, tY);
-    for (int i = 0; i < enemyShootParticleNumber; i++) {
+    for (int i = 0; i < ENEMY_SHOOT_PARTICLE_NUMBER; i++) {
       enemyShootParticle[i].opacity = 0;
     }
 

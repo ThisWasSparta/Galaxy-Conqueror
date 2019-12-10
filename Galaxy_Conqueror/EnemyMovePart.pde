@@ -21,7 +21,7 @@ class EnemyMoveParticles {
       enemyMoveParticle[particleTurn].yVelocity = random(-2, 0);
       enemyMoveParticle[particleTurn].opacity = 255;
     }
-    if (particleTurn > enemyMoveParticleNumber - 5) {
+    if (particleTurn > ENEMY_MOVE_PARTICLE_NUMBER - 5) {
       particleTurn = 0;
     } else {
       particleTurn++;

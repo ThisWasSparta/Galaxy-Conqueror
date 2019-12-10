@@ -17,18 +17,18 @@ import de.bezier.data.sql.mapper.*;
  student made the code.*/
 
 
-int playerBulletNumber = 100;
-int enemyNumber = 20;
-int enemyExplosionParticleNumber = 500;
-int enemyBulletNumber = 20;
-int enemyMoveParticleNumber = 200;
-int enemyShootParticleNumber = 25;
+final int PLAYER_BULLET_NUMBER = 100;
+final int ENEMY_NUMBER = 20;
+final int ENEMY_EXPLOSION_PARTICLE_NUMBER = 500;
+final int ENEMY_BULLET_NUMBER = 20;
+final int ENEMY_MOVE_PARTICLE_NUMBER = 200;
+final int ENEMY_SHOOT_PARTICLE_NUMBER = 25;
+final int MAX_POWERUPS = 3; 
 int tX;    //x-waarde van game over text
 int tY;    //y-waarde van game over text
 int heartNumber = 3;
 int stopGameTime;
-int gameOverTimer = 0;
-int maxP = 3;                         //maximum amount of powerups present at the same time
+int gameOverTimer = 0;                        //maximum amount of powerups present at the same time
 int scoreMultiplier = 1;
 
 int timer = millis();                 //contains the time from when the game was launched in milliseconds
@@ -42,7 +42,7 @@ boolean gameOver = false;
 
 boolean nameScreen;
 
-float sizeFactor = 0.8;
+final float sizeFactor = 0.8;
 float wScale;                         //width scale used to adjust the width of images
 float hScale;                         //height scale used to adjust the height of images
 
@@ -75,18 +75,19 @@ DBQueries dbqueries;
 GameOver gameover;
 
 //Aantal sterren
-PlayerWeapons[] weapon = new PlayerWeapons[playerBulletNumber];              //the bullets for the player
-Enemies[] enemy = new Enemies[enemyNumber];                     //three arrays to store data about the 3 different enemy types
-EnemyBullets[] enemyBullets = new EnemyBullets[enemyBulletNumber];
+PlayerWeapons[] weapon = new PlayerWeapons[PLAYER_BULLET_NUMBER];              //the bullets for the player
+Enemies[] enemy = new Enemies[ENEMY_NUMBER];                     //three arrays to store data about the 3 different enemy types
+EnemyBullets[] enemyBullets = new EnemyBullets[ENEMY_BULLET_NUMBER];
 Health[] heart = new Health[heartNumber];
-ExplosionPart[] particle = new ExplosionPart[enemyExplosionParticleNumber];
-EnemyShootParticle[] enemyShootParticle = new EnemyShootParticle[enemyShootParticleNumber];
-EnemyMoveParticles[] enemyMoveParticle = new EnemyMoveParticles[enemyMoveParticleNumber];
-PowerUp[] power = new PowerUp[maxP];
+ExplosionPart[] particle = new ExplosionPart[ENEMY_EXPLOSION_PARTICLE_NUMBER];
+EnemyShootParticle[] enemyShootParticle = new EnemyShootParticle[ENEMY_SHOOT_PARTICLE_NUMBER];
+EnemyMoveParticles[] enemyMoveParticle = new EnemyMoveParticles[ENEMY_MOVE_PARTICLE_NUMBER];
+PowerUp[] power = new PowerUp[MAX_POWERUPS];
 
 void setup() {
   fullScreen(P3D);             //fullscreen and hardware acceleration
   imageMode(CENTER);           //the image is at the center of the given coordinates
+  rectMode(CENTER);
   frameRate(60);
   //Font
   player = new SpaceShip();
@@ -112,28 +113,28 @@ void setup() {
   
   titel.font();
   Star.sterrenProp();
-  for (int i = 0; i < playerBulletNumber; i++) {
+  for (int i = 0; i < PLAYER_BULLET_NUMBER; i++) {
     weapon[i] = new PlayerWeapons();
   }
-  for (int i = 0; i < enemyNumber; i++) {
+  for (int i = 0; i < ENEMY_NUMBER; i++) {
     enemy[i] = new Enemies();
   }
-  for (int i = 0; i < enemyBulletNumber; i++) {
+  for (int i = 0; i < ENEMY_BULLET_NUMBER; i++) {
     enemyBullets[i] = new EnemyBullets();
   }
   for (int i = 0; i < heartNumber; i++) {
     heart[i] = new Health();
   }
-  for (int i = 0; i < enemyExplosionParticleNumber; i++) {
+  for (int i = 0; i < ENEMY_EXPLOSION_PARTICLE_NUMBER; i++) {
     particle[i] = new ExplosionPart();
   }
-  for (int i = 0; i < enemyShootParticleNumber; i++) {
+  for (int i = 0; i < ENEMY_SHOOT_PARTICLE_NUMBER; i++) {
     enemyShootParticle[i] = new EnemyShootParticle();
   }
-  for (int i = 0; i < enemyMoveParticleNumber; i++) {
+  for (int i = 0; i < ENEMY_MOVE_PARTICLE_NUMBER; i++) {
     enemyMoveParticle[i] = new EnemyMoveParticles();
   }
-  for (int i = 0; i < maxP; i++) {
+  for (int i = 0; i < MAX_POWERUPS; i++) {
     power[i] = new PowerUp();
   }
 }
@@ -161,13 +162,13 @@ void draw() {
 
   if (startGame) {    //if the player has pressed start on the menu, the game will start
     obstakel.drawObstakel();
-    for (int i = 0; i < enemyNumber; i++) {      //updates, spawns and draws the enemies
+    for (int i = 0; i < ENEMY_NUMBER; i++) {      //updates, spawns and draws the enemies
       enemyUpdatePosition(i);    //made by Noah Verburg
       enemySpawner();
       drawEnemies(i);
     }
 
-    for (int i = 0; i < enemyBulletNumber; i++) {      //updates, spawns and draws the bullets
+    for (int i = 0; i < ENEMY_BULLET_NUMBER; i++) {      //updates, spawns and draws the bullets
       enemyBullets[i].enemyBulletUpdatePosition(i);
       enemyBullets[i].drawEnemyBullet(i);
       enemyBullets[i].enemyBulletSpawner();
@@ -216,13 +217,13 @@ void draw() {
 
     heart[0].playerHealth();
 
-    for (int i = 0; i < enemyExplosionParticleNumber; i++) {
+    for (int i = 0; i < ENEMY_EXPLOSION_PARTICLE_NUMBER; i++) {
       if (particle[i].isAlive) {
         particle[i].updateParticles(i);
         particle[i].drawParticles(i);
       }
     }
-    for (int i = 0; i < maxP; i++) {
+    for (int i = 0; i < MAX_POWERUPS; i++) {
       powerUpdate(i);
       powerupSpawn(i);
       drawPower(i);

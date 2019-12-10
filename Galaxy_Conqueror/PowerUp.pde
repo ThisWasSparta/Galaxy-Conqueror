@@ -15,7 +15,7 @@ class PowerUp {
   int timerPowerup;
 
   int typePowerup;
-  final int maxP = 3; //Maximum amount of powerups allowed at a time
+  final int MAX_POWERUPS = 3; //Maximum amount of powerups allowed at a time
 
   boolean isPicked;
   boolean isActivated;
@@ -85,7 +85,7 @@ void createPowerup(int powerType) {
 }
 
 int powerRecycle() {
-  for (int counter = 0; counter < maxP; counter++) {
+  for (int counter = 0; counter < MAX_POWERUPS; counter++) {
     if (power[counter].isPicked == false) {
       return counter;
     }
@@ -191,7 +191,7 @@ void drawPower(int counter) {                                                   
 }
 
 void initializePowerupArrays() {
-  for (int i = 0; i < maxP; i++) {
+  for (int i = 0; i < MAX_POWERUPS; i++) {
     power[i] = new PowerUp();
     power[i].isPicked = false;
     power[i].pW = 0;

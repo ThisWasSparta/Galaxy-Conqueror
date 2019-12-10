@@ -46,7 +46,7 @@ class ExplosionPart {
   
   void explosion(float X, float Y, int enemyNr) {
     for (int i = 0; i < particle[0].particlesPerTurn; i++) {
-      if (particleTurn >= enemyExplosionParticleNumber-10) {particleTurn = 0;}
+      if (particleTurn >= ENEMY_EXPLOSION_PARTICLE_NUMBER-10) {particleTurn = 0;}
       if (!enemy[enemyNr].isAlive) {
         //x = random(width * 0.1, width * 0.9);
         //y = random(height * 0.1, height * 0.9);
