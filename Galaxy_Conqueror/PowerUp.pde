@@ -142,13 +142,13 @@ void powerUpdate(int counter) {
       if (power[counter].typePowerup == 2) {                                                     //Speed
         if (power[counter].spawnTime < millis() - power[counter].timePowerup) {                  //Check if time since activation has not exceeded given time in milliseconds
           player.playerVelocityFactor = 0.006;                                                   //Reverts player speed to original value
-          player.pMaxV = player.playerVelocityFactor * width;                                       //Reverts player speed to original value
+          player.pMaxV = player.playerVelocityFactor * width;                                    //Reverts player speed to original value
           power[counter].isActivated = false;                                                    //Deactivates powerup
           power[counter].isPicked = false;                                                       //Allows the slot of the powerup to be used again
           println("Deactivated");
         } else {
           player.playerVelocityFactor = 0.010;                                                   //Increases speed of the player
-          player.pMaxV = player.playerVelocityFactor * width;                                       //Reverts player speed to original value
+          player.pMaxV = player.playerVelocityFactor * width;                                    //Reverts player speed to original value
           println("Powerup activated");
         }
       }
@@ -175,7 +175,7 @@ void powerUpdate(int counter) {
     }
   }
 }
-void drawPower(int counter) {                                                                   //Draws powerups
+void drawPower(int counter) {                                                                    //Draws powerups
   if (power[counter].isPicked == true) {
     fill(255, 0, 0);
     if (power[counter].typePowerup == 1) {

@@ -2,6 +2,7 @@
 class Obstakel {
 
   int meteorietNumber = 6;
+  int meteorScore = 25;
   int time;
   boolean meteorietHit;
   float amountMeteorite = random(5, 8);
@@ -37,7 +38,7 @@ class Obstakel {
           meteorietHit = true;    //als de player bullet de meteoriet raakt, dan is deze boolean true
           if (meteorietHit) {
             meteorieten.remove(i);
-            scoreObj.addScore(25 * scoreMultiplier);
+            scoreObj.addScore(meteorScore * scoreMultiplier);
             if (heartNumber < 3) {
               heartNumber += 1;
             }
@@ -74,7 +75,7 @@ class Obstakel {
           meteorietHit = true;    //als de player bullet de meteoriet raakt, dan is deze boolean true
           if (meteorietHit) {
             meteorieten.remove(i);
-            scoreObj.addScore(25 * scoreMultiplier);
+            scoreObj.addScore(meteorScore * scoreMultiplier);
             if (heartNumber < 3) {
               heartNumber += 1;
             }
