@@ -154,7 +154,7 @@ void createEnemy(int type) { //function to create an enemy
 }
 
 int enemyRecycle() {                       //function that checks to see which element of the array can be recycled to be used to store another enemy
-  for (int counter = 0; counter < 20; counter++) {     //for loop that runs through the array to check each element if it can be recycled or not based on if the enemy has been killed/went offscreen
+  for (int counter = 0; counter < ENEMY_NUMBER; counter++) {     //for loop that runs through the array to check each element if it can be recycled or not based on if the enemy has been killed/went offscreen
     if (enemy[counter].isAlive == false) {
       return counter;                                  //returns the number of the element that was found to be suitable
     }
@@ -267,7 +267,7 @@ int enemyShootCheck() {                       //function that checks to see whic
 
 void initializeEnemyArrays() {
 
-  for (int counter = 0; counter < 20; counter++) {
+  for (int counter = 0; counter < ENEMY_NUMBER; counter++) {
     enemy[counter] = new Enemies();    
     enemy[counter].eW = 0;
     enemy[counter].eH = 0;
