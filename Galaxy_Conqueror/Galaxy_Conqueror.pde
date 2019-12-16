@@ -238,9 +238,9 @@ void draw() {
     }
   }
   if (gameOver) {
-    if (millis() >= gameOverTimer+500) {
+    if (millis() >= gameOverTimer + 500) {
       gameover.GameOverDraw();
-      if (millis() >= gameOverTimer+1000) {
+      if (millis() >= gameOverTimer + 1000) {
         gameover.GameOverTakeName();
       }
       if (player.isShooting) {
@@ -253,17 +253,9 @@ void draw() {
         heartNumber = 3;
         scoreObj.score = 0;
         globalBossTimer = 11500;
-        for (int i = 0; i < 20; i++) {                                                           //Cycles through all enemy slots once
+        for (int i = 0; i < ENEMY_NUMBER; i++) {                                                 //Cycles through all enemy slots once
           if (enemy[i].isAlive == true) {                                                        //Checks if there are living enemies
-            if (enemy[i].enemyType == 1) {
-              enemy[i].isAlive = false;                                                          //Kills living enemies
-            }
-            if (enemy[i].enemyType == 2) {
-              enemy[i].isAlive = false;                                                          //Kills living enemies
-            }
-            if (enemy[i].enemyType == 3) {
-              enemy[i].isAlive = false;                                                          //Kills living enemies
-            }
+            enemy[i].isAlive = false;                                                            //Kills living enemies
           }
         }
       }

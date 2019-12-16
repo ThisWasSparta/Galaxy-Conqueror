@@ -1,7 +1,5 @@
 class Variable {
 
-
-
   void loadGameValues() {   
 
 
