@@ -16,7 +16,7 @@ class Enemies {
   float eSize; //enemy size
   int eHP;     //enemy health value
 
-  
+
   float shieldMaxHP;
   float shieldHP;
   float orbW; //this code was written by Noah Verburg

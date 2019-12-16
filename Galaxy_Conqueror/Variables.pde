@@ -1,10 +1,10 @@
 class Variable {
-  
 
-  
+
+
   void loadGameValues() {   
-    
-    
+
+
     //This function was written by Noah Verburg
     if (!valuesLoaded) {
       player.pX = width/2;                        //here are all the variables that
@@ -36,7 +36,7 @@ class Variable {
         heart[i].heartW = heart[i].defaultHeartWidth * wScale;
         heart[i].heartH = heart[i].defaultHeartHeight * hScale;
       }
-  
+
       for (int i = 0; i < PLAYER_BULLET_NUMBER; i++) {
         weapon[i].lightBullet = loadImage("LightBullet.png");
         weapon[i].laser = loadImage("Player Laser 1.png");
@@ -48,13 +48,13 @@ class Variable {
         weapon[i].bW = weapon[i].DEFAULT_BULLET_WIDTH * wScale;
         weapon[i].bH = weapon[i].DEFAULT_BULLET_HEIGHT * hScale;
         weapon[i].bV = weapon[i].bulletVelocityFactor * width;
-        
+
         weapon[i].lW = weapon[i].DEFAULT_LASER_WIDTH * wScale;
         weapon[i].lH = height;
         weapon[i].lX = width * 2;
         weapon[i].lY1 = height;
         weapon[i].lY2 = 0;
-        
+
         weapon[i].rX = width/2;
         weapon[i].rY = height * -2;
         weapon[i].rW = weapon[i].DEFAULT_ROCKET_WIDTH * wScale;
@@ -67,7 +67,7 @@ class Variable {
         enemyBullets[i].bV = weapon[i].bulletVelocityFactor * width;
         enemyBullets[i].enemyBullet = loadImage("EnemyBullet.png");
       }
-  
+
       player.weapon1 = loadImage("Spaceship Weapon 1-1.png");
       player.weapon2 = loadImage("Spaceship Weapon 2-1.png");
       //player.weapon3 = loadImage("Spaceship Weapon 3-1.png");

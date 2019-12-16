@@ -9,7 +9,7 @@ class EnemyMoveParticles {
   float particleSize;
   int particlesPerTurn = 2;
   int particleTurn = 0;
-  
+
   void spawnParticles(int enemyShipNr, int enemyShipType) {
     if (enemyShipType == 1) {
       enemyMoveParticle[particleTurn].x = enemy[enemyShipNr].eX + random(-enemy[enemyShipNr].defaultScoutWidth/4, enemy[enemyShipNr].defaultScoutWidth/4);
@@ -27,12 +27,10 @@ class EnemyMoveParticles {
       particleTurn++;
     }
   }
-  
+
   void updateParticles(int partNr) {
-    
   }
-  
+
   void drawParticles(int partNr) {
-    
   }
 }

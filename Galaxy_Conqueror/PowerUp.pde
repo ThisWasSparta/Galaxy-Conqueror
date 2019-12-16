@@ -1,7 +1,7 @@
 /*The code present in this file is written by Sam Spronk, based on the Class Enemies
-All values of times are given in milliseconds
-1 000 milliseconds is 1 second
-*/
+ All values of times are given in milliseconds
+ 1 000 milliseconds is 1 second
+ */
 int lastpower; //time in milliseconds since last powerup
 
 class PowerUp {

@@ -22,7 +22,7 @@ class PlayerWeapons {
 
   int laserStrength = 1;
   int laserStrengthTimer = 0;
-  
+
   int projectileType;
 
   boolean bulletIsOnScreen = false;
@@ -299,27 +299,27 @@ class PlayerWeapons {
     if (player.isShooting && !weapon[playerProjectileTurn].rocketIsOnScreen && millis() - PLAYER_ROCKET_FIRERATE > reloadTime) {  //if the shot-button is pressed and the bullet that is supposed to
       reloadTime = millis();                                                                                                //shoot out isnt on screen and the reload timer is done, it fires a bullet
       //for (int i = 0; i < PLAYER_ROCKET_PER_SALVO; i++) {
-        if (playerProjectileTurn%2 == 0) {                                                     //if the current bullet's number is an even number, it spawns  in the
-          weapon[playerProjectileTurn].rX = player.pX + player.DEFAULT_PLAYER_WIDTH / 2 * 0.891;        //left gun, otherwise it spawns in the right turret
-        } else {
-          weapon[playerProjectileTurn].rX = player.pX - player.DEFAULT_PLAYER_WIDTH / 2 * 0.891;
-        }
-        weapon[playerProjectileTurn].rY = player.pY - player.DEFAULT_PLAYER_HEIGHT / 2 * 0.678;
-        weapon[playerProjectileTurn].projectileType = 2;
-        weapon[playerProjectileTurn].rocketIsOnScreen = true;
-        weapon[playerProjectileTurn].shortestDistance = 100000;
-        
-        for (int t = 0; t < ENEMY_NUMBER; t++) {
-          if (enemy[t].isAlive) {
-            enemy[t].individualRocketEnemyDistance = dist(weapon[playerProjectileTurn].rX, weapon[playerProjectileTurn].rY, enemy[t].eX, enemy[t].eY);
-            if (enemy[t].individualRocketEnemyDistance < weapon[playerProjectileTurn].shortestDistance) {
-              weapon[playerProjectileTurn].shortestDistance = enemy[t].individualRocketEnemyDistance;
-              weapon[playerProjectileTurn].enemyTarget = t;
-            }
+      if (playerProjectileTurn%2 == 0) {                                                     //if the current bullet's number is an even number, it spawns  in the
+        weapon[playerProjectileTurn].rX = player.pX + player.DEFAULT_PLAYER_WIDTH / 2 * 0.891;        //left gun, otherwise it spawns in the right turret
+      } else {
+        weapon[playerProjectileTurn].rX = player.pX - player.DEFAULT_PLAYER_WIDTH / 2 * 0.891;
+      }
+      weapon[playerProjectileTurn].rY = player.pY - player.DEFAULT_PLAYER_HEIGHT / 2 * 0.678;
+      weapon[playerProjectileTurn].projectileType = 2;
+      weapon[playerProjectileTurn].rocketIsOnScreen = true;
+      weapon[playerProjectileTurn].shortestDistance = 100000;
+
+      for (int t = 0; t < ENEMY_NUMBER; t++) {
+        if (enemy[t].isAlive) {
+          enemy[t].individualRocketEnemyDistance = dist(weapon[playerProjectileTurn].rX, weapon[playerProjectileTurn].rY, enemy[t].eX, enemy[t].eY);
+          if (enemy[t].individualRocketEnemyDistance < weapon[playerProjectileTurn].shortestDistance) {
+            weapon[playerProjectileTurn].shortestDistance = enemy[t].individualRocketEnemyDistance;
+            weapon[playerProjectileTurn].enemyTarget = t;
           }
         }
-        
-        playerProjectileTurn++;
+      }
+
+      playerProjectileTurn++;
       //}
       if (playerProjectileTurn > 49) {
         playerProjectileTurn = 0;
@@ -344,12 +344,14 @@ class PlayerWeapons {
               weapon[i].distanceY *= -1;
             }
             weapon[i].distanceXandY = weapon[i].distanceX + weapon[i].distanceY;
-            
+
             weapon[i].rocketVelocityFactorX = weapon[i].distanceX / weapon[i].distanceXandY;
             weapon[i].rocketVelocityFactorY = weapon[i].distanceY / weapon[i].distanceXandY;
-            
-            if (weapon[i].rocketVelocityFactorY < 0.2) {weapon[i].rocketVelocityFactorY = 0.2;}
-            
+
+            if (weapon[i].rocketVelocityFactorY < 0.2) {
+              weapon[i].rocketVelocityFactorY = 0.2;
+            }
+
             if (enemy[weapon[i].enemyTarget].eX < weapon[i].rX) {
               weapon[i].rX -= weapon[i].rV * weapon[i].rocketVelocityFactorX;
             }

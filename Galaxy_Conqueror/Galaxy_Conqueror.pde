@@ -110,7 +110,7 @@ void setup() {
   letterPicker = new Letterpicker();
   gameover = new GameOver();
   userInterface = new Interface();
-  
+
   titel.font();
   Star.sterrenProp();
   for (int i = 0; i < PLAYER_BULLET_NUMBER; i++) {
@@ -175,7 +175,7 @@ void draw() {
     }
 
     scoreObj.countScore(0, 0, 0); //made by Dylan Kleton
-    
+
     userInterface.drawInterface();
 
     player.playerUpdate();                 //updates the position of the player
@@ -212,7 +212,7 @@ void draw() {
     }
     weapon[0].updatePlayerRockets();
     weapon[0].drawPlayerRockets();
-    
+
     player.drawWeaponWheel();
 
     heart[0].playerHealth();

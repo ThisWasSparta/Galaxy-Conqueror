@@ -158,15 +158,15 @@ class Boss {
   }
 
   void deathHandler() { //function that's called in to do the cleanup after the boss dies
-  bossAlive = false;
-  currentState = -1;
-  bossX = -width;
-  bossY = -height;
-  bossHealth = BOSS_HEALTH_VALUE;
-  globalBossTimer = 11500;
-  scoreObj.addScore(2500);
-  bgm.rewind();
-  bgm.play();
-  println("Change da world. My final message. Goodbye.");
+    bossAlive = false;
+    currentState = -1;
+    bossX = -width;
+    bossY = -height;
+    bossHealth = BOSS_HEALTH_VALUE;
+    globalBossTimer = 11500;
+    scoreObj.addScore(2500);
+    bgm.rewind();
+    bgm.play();
+    println("Change da world. My final message. Goodbye.");
   }
 }

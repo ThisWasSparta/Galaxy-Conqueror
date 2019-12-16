@@ -7,9 +7,9 @@ class Meteoriet {
   float hitBoxY;
   float hitBoxW;
   float hitBoxH;
-  
+
   PImage meteorite;
- 
+
   Meteoriet() {
     x = random(1, width); 
     y = random(1, 10); //Deze waardes regelen de positie van de meteoriet
@@ -49,5 +49,4 @@ class Meteoriet {
     //ellipse(x, y, size, size);
     image(meteoriet.meteorite, x, y, 62, 48);
   }
- 
 }

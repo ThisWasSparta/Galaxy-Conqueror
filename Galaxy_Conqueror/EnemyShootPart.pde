@@ -15,7 +15,9 @@ class EnemyShootParticle {
   void firing(float X, float Y, int enemyNr) {
     for (int i = 0; i < enemyShootParticle[0].PARTICLES_PER_TURN; i++) {
       if (!enemyShootParticle[particleTurn].isAlive) { 
-        if (particleTurn >= ENEMY_SHOOT_PARTICLE_NUMBER - 5) {particleTurn = 0;}
+        if (particleTurn >= ENEMY_SHOOT_PARTICLE_NUMBER - 5) {
+          particleTurn = 0;
+        }
         //x = random(width * 0.1, width * 0.9);
         //y = random(height * 0.1, height * 0.9);
         x = X;
@@ -25,7 +27,7 @@ class EnemyShootParticle {
       }
     }
   }
-  
+
   void spawnParticles(int currentEnemy, int partNr) {
     enemyShootParticle[partNr].particleSize = random(3, 5);
     enemyShootParticle[partNr].lifetime = millis();
@@ -36,7 +38,7 @@ class EnemyShootParticle {
     enemyShootParticle[partNr].isAlive = true;
     enemyShootParticle[partNr].opacity = 255;
     enemyShootParticle[partNr].particleColorR = random(200, 255);
-    enemyShootParticle[partNr].particleColorG = random(80,200);
+    enemyShootParticle[partNr].particleColorG = random(80, 200);
     enemyShootParticle[partNr].particleColorB = enemyShootParticle[partNr].particleColorG;
   }
 

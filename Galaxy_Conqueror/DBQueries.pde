@@ -1,12 +1,11 @@
 //deze class is geschreven door Dennis
 class DBQueries {
-  
+
   boolean insertQuerieDone = false;
-  
-  DBQueries(){
-    
+
+  DBQueries() {
   }
-  
+
   void dbInsert() {
     if (dbconnect.sql.connect()) {
       dbconnect.sql.query("INSERT INTO Players (Playername) VALUES ('"+namePicker.name+"')");
@@ -14,5 +13,4 @@ class DBQueries {
       insertQuerieDone = true;
     }
   }
-  
 }

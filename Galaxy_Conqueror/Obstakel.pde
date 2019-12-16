@@ -58,7 +58,7 @@ class Obstakel {
       }
       time = millis();
     }
-    
+
     //hier wordt door de array geloopt om de meteoriet op het scherm te laten verschijnen
     for (int i = meteorieten.size() - 1; i > 0; i--) {
       Meteoriet m = meteorieten.get(i);
@@ -84,7 +84,6 @@ class Obstakel {
         }
       }
     }
-    
   }
 
   void drawObstakel() {
