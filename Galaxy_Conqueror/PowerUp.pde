@@ -155,18 +155,8 @@ void powerUpdate(int counter) {
       if (power[counter].typePowerup == 3) {                                                     //Screenwipe
         for (int i = 0; i < 20; i++) {                                                           //Cycles through all enemy slots once
           if (enemy[i].isAlive == true) {                                                        //Checks if there are living enemies
-            if (enemy[i].enemyType == 1) {                                                       //Scout
-              scoreObj.addScore(enemy[counter].score * scoreMultiplier);                         //Adds score
-              enemy[i].isAlive = false;                                                          //Kills living enemies
-            }
-            if (enemy[i].enemyType == 2) {                                                       //Courser
-              scoreObj.addScore(enemy[counter].score * scoreMultiplier);                         //Adds score
-              enemy[i].isAlive = false;                                                          //Kills living enemies
-            }
-            if (enemy[i].enemyType == 3) {                                                       //Goliath
-              scoreObj.addScore(enemy[counter].score * scoreMultiplier);                         //Adds score
-              enemy[i].isAlive = false;                                                          //Kills living enemies
-            }
+            scoreObj.addScore(enemy[i].score * scoreMultiplier);                                 //Adds score for killed enemy based on given variable in Enemies
+            enemy[i].isAlive = false;                                                            //Kills living enemies
           }
         }
         power[counter].isActivated = false;                                                      //Deactivates power
