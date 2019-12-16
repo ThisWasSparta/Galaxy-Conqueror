@@ -2,6 +2,7 @@
 class Obstakel {
 
   int meteorietNumber = 6;
+  int meteorScore = 25;
   int time;
   boolean meteorietHit;
   float amountMeteorite = random(5, 8);
@@ -31,13 +32,13 @@ class Obstakel {
         meteorietHit = false;
       }
 
-      for (int t = 0; t < playerBulletNumber; t++) {
+      for (int t = 0; t < PLAYER_BULLET_NUMBER; t++) {
         if (!meteorietHit && weapon[t].bX < meteorieten.get(i).hitBoxX + meteorieten.get(i).hitBoxW && weapon[t].bX > meteorieten.get(i).hitBoxX && weapon[t].bY < meteorieten.get(i).hitBoxY + meteorieten.get(i).hitBoxH && weapon[t].bY > meteorieten.get(i).hitBoxY)
         {
           meteorietHit = true;    //als de player bullet de meteoriet raakt, dan is deze boolean true
           if (meteorietHit) {
             meteorieten.remove(i);
-            scoreObj.addScore(25 * scoreMultiplier);
+            scoreObj.addScore(meteorScore * scoreMultiplier);
             if (heartNumber < 3) {
               heartNumber += 1;
             }
@@ -57,7 +58,7 @@ class Obstakel {
       }
       time = millis();
     }
-    
+
     //hier wordt door de array geloopt om de meteoriet op het scherm te laten verschijnen
     for (int i = meteorieten.size() - 1; i > 0; i--) {
       Meteoriet m = meteorieten.get(i);
@@ -68,13 +69,13 @@ class Obstakel {
         meteorietHit = false;
       }
 
-      for (int t = 0; t < playerBulletNumber; t++) {
+      for (int t = 0; t < PLAYER_BULLET_NUMBER; t++) {
         if (!meteorietHit && weapon[t].bX < meteorieten.get(i).hitBoxX + meteorieten.get(i).hitBoxW && weapon[t].bX > meteorieten.get(i).hitBoxX && weapon[t].bY < meteorieten.get(i).hitBoxY + meteorieten.get(i).hitBoxH && weapon[t].bY > meteorieten.get(i).hitBoxY)
         {
           meteorietHit = true;    //als de player bullet de meteoriet raakt, dan is deze boolean true
           if (meteorietHit) {
             meteorieten.remove(i);
-            scoreObj.addScore(25 * scoreMultiplier);
+            scoreObj.addScore(meteorScore * scoreMultiplier);
             if (heartNumber < 3) {
               heartNumber += 1;
             }
@@ -83,7 +84,6 @@ class Obstakel {
         }
       }
     }
-    
   }
 
   void drawObstakel() {

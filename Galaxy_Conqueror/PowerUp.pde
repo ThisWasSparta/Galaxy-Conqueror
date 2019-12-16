@@ -1,7 +1,7 @@
 /*The code present in this file is written by Sam Spronk, based on the Class Enemies
-All values of times are given in milliseconds
-1 000 milliseconds is 1 second
-*/
+ All values of times are given in milliseconds
+ 1 000 milliseconds is 1 second
+ */
 int lastpower; //time in milliseconds since last powerup
 
 class PowerUp {
@@ -15,7 +15,7 @@ class PowerUp {
   int timerPowerup;
 
   int typePowerup;
-  final int maxP = 3; //Maximum amount of powerups allowed at a time
+  final int MAX_POWERUPS = 3; //Maximum amount of powerups allowed at a time
 
   boolean isPicked;
   boolean isActivated;
@@ -85,7 +85,7 @@ void createPowerup(int powerType) {
 }
 
 int powerRecycle() {
-  for (int counter = 0; counter < maxP; counter++) {
+  for (int counter = 0; counter < MAX_POWERUPS; counter++) {
     if (power[counter].isPicked == false) {
       return counter;
     }
@@ -125,7 +125,7 @@ void powerUpdate(int counter) {
     if (power[counter].pX > player.pX - player.pW/2 && power[counter].pX < player.pX + player.pW/2 && power[counter].pY > player.pY - player.pH/2 && power[counter].pY < player.pY + player.pH/2 && power[counter].isActivated == false) {
       power[counter].isActivated = true;
       power[counter].pY = height * 2;
-      power[counter].spawnTime = millis();  //Sets timer whenever a powerup is activated
+      power[counter].spawnTime = millis();                                                       //Sets timer whenever a powerup is activated
     }
     if (power[counter].isActivated == true) {                                                    //Check if power is activated
       if (power[counter].typePowerup == 1) {                                                     //Double points
@@ -142,40 +142,30 @@ void powerUpdate(int counter) {
       if (power[counter].typePowerup == 2) {                                                     //Speed
         if (power[counter].spawnTime < millis() - power[counter].timePowerup) {                  //Check if time since activation has not exceeded given time in milliseconds
           player.playerVelocityFactor = 0.006;                                                   //Reverts player speed to original value
-          player.pV = player.playerVelocityFactor * width;                                       //Reverts player speed to original value
+          player.pMaxV = player.playerVelocityFactor * width;                                    //Reverts player speed to original value
           power[counter].isActivated = false;                                                    //Deactivates powerup
           power[counter].isPicked = false;                                                       //Allows the slot of the powerup to be used again
           println("Deactivated");
         } else {
           player.playerVelocityFactor = 0.010;                                                   //Increases speed of the player
-          player.pV = player.playerVelocityFactor * width;                                       //Reverts player speed to original value
+          player.pMaxV = player.playerVelocityFactor * width;                                    //Reverts player speed to original value
           println("Powerup activated");
         }
       }
       if (power[counter].typePowerup == 3) {                                                     //Screenwipe
         for (int i = 0; i < 20; i++) {                                                           //Cycles through all enemy slots once
           if (enemy[i].isAlive == true) {                                                        //Checks if there are living enemies
-            if (enemy[i].enemyType == 1) {                                                       //Scout
-              scoreObj.addScore(enemy[counter].score * scoreMultiplier);                         //Adds score
-              enemy[i].isAlive = false;                                                          //Kills living enemies
-            }
-            if (enemy[i].enemyType == 2) {                                                       //Courser
-              scoreObj.addScore(enemy[counter].score * scoreMultiplier);                         //Adds score
-              enemy[i].isAlive = false;                                                          //Kills living enemies
-            }
-            if (enemy[i].enemyType == 3) {                                                       //Goliath
-              scoreObj.addScore(enemy[counter].score * scoreMultiplier);                         //Adds score
-              enemy[i].isAlive = false;                                                          //Kills living enemies
-            }
+            scoreObj.addScore(enemy[i].score * scoreMultiplier);                                 //Adds score for killed enemy based on given variable in Enemies
+            enemy[i].isAlive = false;                                                            //Kills living enemies
           }
         }
-        power[counter].isActivated = false;                                                     //Deactivates power
-        power[counter].isPicked = false;                                                        //Allows the slot of the powerup to be used again
+        power[counter].isActivated = false;                                                      //Deactivates power
+        power[counter].isPicked = false;                                                         //Allows the slot of the powerup to be used again
       }
     }
   }
 }
-void drawPower(int counter) {                                                                   //Draws powerups
+void drawPower(int counter) {                                                                    //Draws powerups
   if (power[counter].isPicked == true) {
     fill(255, 0, 0);
     if (power[counter].typePowerup == 1) {
@@ -191,7 +181,7 @@ void drawPower(int counter) {                                                   
 }
 
 void initializePowerupArrays() {
-  for (int i = 0; i < maxP; i++) {
+  for (int i = 0; i < MAX_POWERUPS; i++) {
     power[i] = new PowerUp();
     power[i].isPicked = false;
     power[i].pW = 0;

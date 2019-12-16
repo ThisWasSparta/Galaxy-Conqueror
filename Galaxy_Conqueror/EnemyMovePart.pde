@@ -9,7 +9,7 @@ class EnemyMoveParticles {
   float particleSize;
   int particlesPerTurn = 2;
   int particleTurn = 0;
-  
+
   void spawnParticles(int enemyShipNr, int enemyShipType) {
     if (enemyShipType == 1) {
       enemyMoveParticle[particleTurn].x = enemy[enemyShipNr].eX + random(-enemy[enemyShipNr].defaultScoutWidth/4, enemy[enemyShipNr].defaultScoutWidth/4);
@@ -21,18 +21,16 @@ class EnemyMoveParticles {
       enemyMoveParticle[particleTurn].yVelocity = random(-2, 0);
       enemyMoveParticle[particleTurn].opacity = 255;
     }
-    if (particleTurn > enemyMoveParticleNumber - 5) {
+    if (particleTurn > ENEMY_MOVE_PARTICLE_NUMBER - 5) {
       particleTurn = 0;
     } else {
       particleTurn++;
     }
   }
-  
+
   void updateParticles(int partNr) {
-    
   }
-  
+
   void drawParticles(int partNr) {
-    
   }
 }

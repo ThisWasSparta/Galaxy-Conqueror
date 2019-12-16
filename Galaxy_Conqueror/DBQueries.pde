@@ -9,8 +9,8 @@ class DBQueries {
   String score;
   int i;
 
+
   DBQueries() {
-    
   }
 
   void dbInsert() {
@@ -33,4 +33,3 @@ class DBQueries {
       }
     }
   }
-}
