@@ -16,9 +16,9 @@ class Score {
     rect(tX, tY/0.5, SCORE_SIZE, SCORE_SIZE);
     int currentScore1;
     int currentScore2;
-    int countedScore =0;
-    currentScore1=0;
-    currentScore2= score;
+    int countedScore = 0;
+    currentScore1 = 0;
+    currentScore2 = score;
     if (currentScore1 > 0) {
       currentScore1 = countedScore;
     }
@@ -35,6 +35,6 @@ class Score {
 
     fill(255, 255, 0);
     textSize(50);
-    text("Score: " +score, tX, tY/0.5);
+    text("Score: " +score, tX, tY / 0.5);
   }
 }
