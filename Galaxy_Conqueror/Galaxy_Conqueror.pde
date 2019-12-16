@@ -72,6 +72,7 @@ Letterpicker letterPicker;
 DBConnect dbconnect;
 DBQueries dbqueries;
 GameOver gameover;
+HighScore highscore;
 
 //Aantal sterren
 PlayerWeapons[] weapon = new PlayerWeapons[playerBulletNumber];              //the bullets for the player
@@ -107,6 +108,7 @@ void setup() {
   namePicker = new NamePicker();
   letterPicker = new Letterpicker();
   gameover = new GameOver();
+  highscore = new HighScore();
   titel.font();
   Star.sterrenProp();
   for (int i = 0; i < playerBulletNumber; i++) {
@@ -229,26 +231,28 @@ void draw() {
       if (millis() >= gameOverTimer+1000) {
         gameover.GameOverTakeName();
       }
-      if (player.isShooting) {
-        dbqueries.dbInsert();
-        valuesLoaded = false;
-        gameOver = false;
-        startGame = false;
-        valuesLoaded = false;
-        titel.StartGame = true;
-        heartNumber = 3;
-        scoreObj.score = 0;
-        globalBossTimer = 11500;
-        for (int i = 0; i < 20; i++) {                                                           //Cycles through all enemy slots once
-          if (enemy[i].isAlive == true) {                                                        //Checks if there are living enemies
-            if (enemy[i].enemyType == 1) {
-              enemy[i].isAlive = false;                                                          //Kills living enemies
-            }
-            if (enemy[i].enemyType == 2) {
-              enemy[i].isAlive = false;                                                          //Kills living enemies
-            }
-            if (enemy[i].enemyType == 3) {
-              enemy[i].isAlive = false;                                                          //Kills living enemies
+      if (millis() >= gameOverTimer+1000) {
+        if (player.isShooting) {
+          dbqueries.dbInsert();
+          valuesLoaded = false;
+          gameOver = false;
+          startGame = false;
+          valuesLoaded = false;
+          titel.StartGame = true;
+          heartNumber = 3;
+          scoreObj.score = 0;
+          globalBossTimer = 11500;
+          for (int i = 0; i < 20; i++) {                                                           //Cycles through all enemy slots once
+            if (enemy[i].isAlive == true) {                                                        //Checks if there are living enemies
+              if (enemy[i].enemyType == 1) {
+                enemy[i].isAlive = false;                                                          //Kills living enemies
+              }
+              if (enemy[i].enemyType == 2) {
+                enemy[i].isAlive = false;                                                          //Kills living enemies
+              }
+              if (enemy[i].enemyType == 3) {
+                enemy[i].isAlive = false;                                                          //Kills living enemies
+              }
             }
           }
         }

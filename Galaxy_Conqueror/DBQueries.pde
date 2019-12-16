@@ -1,12 +1,18 @@
 //deze class is geschreven door Dennis
 class DBQueries {
-  
+
   boolean insertQuerieDone = false;
-  
-  DBQueries(){
+  boolean getHighScores = false;
+  String []highScores = new String[10];
+  String []names = new String[10];
+  String name;
+  String score;
+  int i;
+
+  DBQueries() {
     
   }
-  
+
   void dbInsert() {
     if (dbconnect.sql.connect()) {
       dbconnect.sql.query("INSERT INTO Players (Playername) VALUES ('"+namePicker.name+"')");
@@ -14,5 +20,17 @@ class DBQueries {
       insertQuerieDone = true;
     }
   }
-  
+
+  void dbSelectHighScores() {
+    if (dbconnect.sql.connect()) {
+      dbconnect.sql.query("SELECT Players.Playername, Highscores.Score FROM Players INNER JOIN Highscores ON Players.Playername = Highscores.Playername ORDER BY Score DESC LIMIT 10");
+      while (dbconnect.sql.next()) {
+        i = 0;
+        names[i] = dbconnect.sql.getString("Playername");
+        highScores[i] = dbconnect.sql.getString("Score");
+        println(names[i] + " - " + highScores[i]);
+        i++;
+      }
+    }
+  }
 }
