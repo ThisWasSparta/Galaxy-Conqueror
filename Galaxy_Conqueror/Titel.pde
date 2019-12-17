@@ -6,31 +6,23 @@ class Titel {
   int textSize = 70;
   int textSizebut = 35;
   int titelX = width/2;
-  float titelY = height/3 * 0.9;
+  int titelY = height/3;
 
   //Start Button
   int staButtonX = width/2;
-  float staButtonY =  height/3 * 1.2;
+  float staButtonY =  height/3 * 1.3;
   int staButtonW = 600;
   int staButtonH = 100;
   int staButtonWinn = 575;
   int staButtonHinn = 75;
 
-  //Highscore Button
+  //highscore Button
   int hiButtonX = width/2;
-  float hiButtonY =  height/3 * 1.5;
+  float hiButtonY =  height/3 * 1.7;
   int hiButtonW = 600;
   int hiButtonH = 100;
   int hiButtonWinn = 575;
   int hiButtonHinn = 75;
-
-  //Achievements Button
-  int aButtonX = width/2;
-  float aButtonY =  height/3 * 1.8;
-  int aButtonW = 600;
-  int aButtonH = 100;
-  int aButtonWinn = 575;
-  int aButtonHinn = 75;
 
   // Settings Button
   int setButtonX = width/2;
@@ -42,7 +34,7 @@ class Titel {
 
   // Quit Button
   int qButtonX = width/2;
-  float qButtonY =  height/3 * 2.4;
+  float qButtonY =  height/3 * 2.5;
   int qButtonW = 600;
   int qButtonH = 100;
   int qButtonWinn = 575;
@@ -104,19 +96,16 @@ class Titel {
 
   boolean StartGame = true;
   boolean HighGame = false;
-  boolean AchGame = false;
   boolean SettingGame = false;
 
   boolean CursorStart = true;
   boolean CursorHigh = false;
   boolean CursorHighBack = false;
-  Boolean CursorAch = false;
-  boolean CursorAchBack = false;
   boolean CursorSetting = false;
+  boolean CursorQuit = false;
   boolean CursorSound = false;
   boolean CursorBright = false;
   boolean CursorBack = false;
-  boolean CursorQuit = false;
 
   boolean goLeft;    //  \
   boolean goRight;   //   \
@@ -136,8 +125,8 @@ class Titel {
   }
 
   void startScreen() {
-    maintheme.play();
     if (StartGame) {
+
       playergatshoot.mute();
       //Titel
       fill(255);
@@ -164,16 +153,6 @@ class Titel {
       fill(255);
       textSize(textSizebut);
       text("Highscores", hiButtonX, hiButtonY + 20);
-
-      //Achievements button
-      rectMode(CENTER);
-      fill(255);
-      rect(aButtonX, aButtonY, aButtonW, aButtonH);
-      fill(0);
-      rect(aButtonX, aButtonY, aButtonWinn, aButtonHinn);
-      fill(255);
-      textSize(textSizebut);
-      text("Achievements", aButtonX, aButtonY + 20);
 
       //Settings Button
       rectMode(CENTER);
@@ -207,7 +186,6 @@ class Titel {
           if (player.isShooting) {
             StartGame = false;
             startGame = true;
-            maintheme.mute();
             bgm.play();
           }
           if (player.goDown) {
@@ -239,7 +217,7 @@ class Titel {
             if (countCursor >= 12) {
               countCursor = 0;
               CursorHigh = false;
-              CursorAch = true;
+              CursorSetting = true;
             }
           } else if (player.goUp) {
             countCursor ++;
@@ -247,39 +225,6 @@ class Titel {
               countCursor = 0;
               CursorHigh = false;
               CursorStart = true;
-            }
-          }
-        }
-      } else if (CursorAch) {
-        rectMode(CENTER);
-        rect(lcX, aButtonY, lcW, lcH);
-        rect(rcX, aButtonY, rcW, rcH);
-        textSize(20);
-        textAlign(CENTER);
-        text("PRESS B", lcX - width * 0.1, aButtonY);
-        if (keyPressed) {
-          if (player.isShooting) {
-            countCursor ++;
-            if (countCursor >= 9) {
-              countCursor = 0;
-              StartGame = false;
-              AchGame = true;
-              CursorAchBack = true;
-            }
-          }
-          if (player.goDown) {
-            countCursor ++;
-            if (countCursor >= 12) {
-              countCursor = 0;
-              CursorAch = false;
-              CursorSetting = true;
-            }
-          } else if (player.goUp) {
-            countCursor ++;
-            if (countCursor >= 12) {
-              countCursor = 0;
-              CursorAch = false;
-              CursorHigh = true;
             }
           }
         }
@@ -312,7 +257,7 @@ class Titel {
             if (countCursor >= 12) {
               countCursor = 0;
               CursorSetting = false;
-              CursorAch = true;
+              CursorHigh = true;
             }
           }
         }
@@ -354,7 +299,7 @@ class Titel {
       rect(qButtonX, qButtonY, bButtonWinn, bButtonHinn);
       fill(255);
       textSize(textSizebut);
-      text("Main menu", qButtonX, qButtonY + 20);
+      text("Back", qButtonX, qButtonY + 20);
 
       //Cursor
       if (CursorHigh) {
@@ -372,50 +317,6 @@ class Titel {
           countCursor ++;
           if (countCursor >= 12) {
             HighGame = false;
-            StartGame = true;
-            countCursor = 0;
-          }
-        }
-      }
-    } else if (AchGame) {
-
-      playergatshoot.mute();
-
-      fill(255);
-      rect(width/2, height/2-100, 1100, 700);
-      fill(0);
-      rect(width/2, height/2-100, 1090, 690);
-      fill(255);
-      textSize(textSizebut);
-      textAlign(CENTER);
-      text("Achievements", width/2, 160);
-
-      //Back button
-      rectMode(CENTER);
-      fill(255);
-      rect(qButtonX, qButtonY+40, bButtonW, bButtonH);
-      fill(0);
-      rect(qButtonX, qButtonY+40, bButtonWinn, bButtonHinn);
-      fill(255);
-      textSize(textSizebut);
-      text("Main menu", qButtonX, qButtonY + 60);
-
-      //Cursor
-      if (CursorAch) {
-        rectMode(CENTER);
-        rect(lcX, qButtonY+40, lcW, lcH);
-        rect(rcX, qButtonY+40, rcW, rcH);
-        textSize(20);
-        textAlign(CENTER);
-        text("PRESS Y", lcX - width * 0.1, qButtonY+40);
-        if (player.nextWeapon) {
-          AchGame = false;
-          StartGame = true;
-        }
-        if (player.isShooting) {
-          countCursor ++;
-          if (countCursor >= 12) {
-            AchGame = false;
             StartGame = true;
             countCursor = 0;
           }
@@ -490,7 +391,7 @@ class Titel {
       rect(bButtonX, bButtonY, bButtonWinn, bButtonHinn);
       fill(255);
       textSize(textSizebut);
-      text("Main menu", bButtonX, bButtonY + 20);
+      text("Back", bButtonX, bButtonY + 20);
 
       //Cursor
       if (CursorSound) {
@@ -553,9 +454,6 @@ class Titel {
         rectMode(CENTER);
         rect(lcX, bButtonY, lcW, lcH);
         rect(rcX, bButtonY, rcW, rcH);
-        textSize(20);
-        textAlign(CENTER);
-        text("PRESS B", lcX - width * 0.1, bButtonY);
         if (player.isShooting) {
           SettingGame = false;
           StartGame = true;

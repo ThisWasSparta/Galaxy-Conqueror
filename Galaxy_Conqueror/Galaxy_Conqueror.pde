@@ -66,7 +66,6 @@ Minim minim;
 AudioPlayer bgm;
 AudioPlayer playergatshoot;
 AudioPlayer enemyshoot;
-AudioPlayer maintheme;
 
 Boss boss;
 NamePicker namePicker;
@@ -105,7 +104,6 @@ void setup() {
   bgm = minim.loadFile("./sound/stagethemefix.wav");
   playergatshoot = minim.loadFile("./sound/gattlingweapon_noise.wav");
   enemyshoot = minim.loadFile("./sound/scout_shootnoise.wav");
-  maintheme = minim.loadFile("./sound/main_theme.wav");
   dbconnect = new DBConnect(this);
   dbqueries = new DBQueries();
   namePicker = new NamePicker();
