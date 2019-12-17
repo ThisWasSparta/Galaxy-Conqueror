@@ -74,6 +74,8 @@ DBConnect dbconnect;
 DBQueries dbqueries;
 GameOver gameover;
 
+Text_Particles textParticles;
+
 //Aantal sterren
 PlayerWeapons[] weapon = new PlayerWeapons[PLAYER_BULLET_NUMBER];              //the bullets for the player
 Enemies[] enemy = new Enemies[ENEMY_NUMBER];                     //three arrays to store data about the 3 different enemy types
@@ -83,6 +85,7 @@ ExplosionPart[] particle = new ExplosionPart[ENEMY_EXPLOSION_PARTICLE_NUMBER];
 EnemyShootParticle[] enemyShootParticle = new EnemyShootParticle[ENEMY_SHOOT_PARTICLE_NUMBER];
 EnemyMoveParticles[] enemyMoveParticle = new EnemyMoveParticles[ENEMY_MOVE_PARTICLE_NUMBER];
 PowerUp[] power = new PowerUp[MAX_POWERUPS];
+
 
 void setup() {
   fullScreen(P3D);             //fullscreen and hardware acceleration
@@ -110,6 +113,8 @@ void setup() {
   letterPicker = new Letterpicker();
   gameover = new GameOver();
   userInterface = new Interface();
+  
+  textParticles = new Text_Particles();
 
   titel.font();
   Star.sterrenProp();
@@ -157,7 +162,6 @@ void draw() {
   titel.startScreen();
   //frameRateDisplay();
   variables.loadGameValues();
-
   timer = millis();
 
   if (startGame) {    //if the player has pressed start on the menu, the game will start
