@@ -5,23 +5,20 @@
 int lastpower; //time in milliseconds since last powerup
 
 class PowerUp {
-  float pW;        //Powerup width
-  float pH;        //Powerup height
-  float pV;        //Powerup Velocity
-  float pX;        //Powerup X coordinate
-  float pY;        //Powerup Y coordinate
+  float pW;                      //Powerup width
+  float pH;                      //Powerup height
+  float pV;                      //Powerup Velocity
+  float pX;                      //Powerup X coordinate
+  float pY;                      //Powerup Y coordinate
+  float timePowerup = 10000;     //Amount of time a powerup will be active in milliseconds
+  float spawnTime;
 
   int startPowerup;
   int timerPowerup;
-
   int typePowerup;
-
 
   boolean isPicked;
   boolean isActivated;
-
-  float timePowerup = 10000;     //Amount of time a powerup will be active in milliseconds
-  float spawnTime;
 }
 void powerupSpawn(int counter) { //function that periodically spawns powerups
   if (startGame) {
