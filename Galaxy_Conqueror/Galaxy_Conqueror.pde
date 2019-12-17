@@ -67,6 +67,7 @@ Minim minim;
 AudioPlayer bgm;
 AudioPlayer playergatshoot;
 AudioPlayer enemyshoot;
+AudioPlayer maintheme;
 
 Boss boss;
 NamePicker namePicker;
@@ -74,6 +75,8 @@ Letterpicker letterPicker;
 DBConnect dbconnect;
 DBQueries dbqueries;
 GameOver gameover;
+
+Text_Particles textParticles;
 
 //Aantal sterren
 PlayerWeapons[] weapon = new PlayerWeapons[PLAYER_BULLET_NUMBER];              //the bullets for the player
@@ -84,6 +87,7 @@ ExplosionPart[] particle = new ExplosionPart[ENEMY_EXPLOSION_PARTICLE_NUMBER];
 EnemyShootParticle[] enemyShootParticle = new EnemyShootParticle[ENEMY_SHOOT_PARTICLE_NUMBER];
 EnemyMoveParticles[] enemyMoveParticle = new EnemyMoveParticles[ENEMY_MOVE_PARTICLE_NUMBER];
 PowerUp[] power = new PowerUp[MAX_POWERUPS];
+
 
 void setup() {
   fullScreen(P3D);             //fullscreen and hardware acceleration
@@ -105,6 +109,7 @@ void setup() {
   bgm = minim.loadFile("./sound/stagethemefix.wav");
   playergatshoot = minim.loadFile("./sound/gattlingweapon_noise.wav");
   enemyshoot = minim.loadFile("./sound/scout_shootnoise.wav");
+  maintheme = minim.loadFile("./sound/main_theme.wav");
   dbconnect = new DBConnect(this);
   dbqueries = new DBQueries();
   namePicker = new NamePicker();
@@ -112,6 +117,8 @@ void setup() {
   gameover = new GameOver();
   userInterface = new Interface();
   visuals = new VisualEffects();
+
+  textParticles = new Text_Particles();
 
   titel.font();
   Star.sterrenProp();
@@ -159,7 +166,6 @@ void draw() {
   titel.startScreen();
   //frameRateDisplay();
   variables.loadGameValues();
-
   timer = millis();
 
   if (startGame) {                                //if the player has pressed start on the menu, the game will start

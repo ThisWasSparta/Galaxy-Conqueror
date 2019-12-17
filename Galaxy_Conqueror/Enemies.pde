@@ -93,6 +93,7 @@ void bossScoutSpawner() { //function called by the boss' backup state to spawn c
       enemy[arrayIndex].eX = convoyOriginX + spawnCounter * 50; 
       enemy[arrayIndex].eY = -enemy[arrayIndex].eH;
       enemy[arrayIndex].eHP = 30;
+      enemy[arrayIndex].penalty = -100;
       enemy[arrayIndex].isAlive = true;
     }
   }
@@ -116,7 +117,6 @@ void createEnemy(int type) { //function to create an enemy
       enemy[scoutCheck].eY = -enemy[scoutCheck].eH;
       enemy[scoutCheck].eHP = 30;
       enemy[scoutCheck].score = 50;
-      enemy[scoutCheck].penalty = -200;
       enemy[scoutCheck].isAlive = true;
     }
     break;
@@ -131,7 +131,7 @@ void createEnemy(int type) { //function to create an enemy
       enemy[courserCheck].eY = -enemy[courserCheck].eH;
       enemy[courserCheck].eHP = 110;
       enemy[courserCheck].score = 100;
-      enemy[courserCheck].penalty = -400;
+      enemy[courserCheck].penalty = -100;
       enemy[courserCheck].isAlive = true;
     }
     break;
@@ -150,7 +150,7 @@ void createEnemy(int type) { //function to create an enemy
       enemy[goliathCheck].shieldHP = 300;
       enemy[goliathCheck].shieldMaxHP = 300;
       enemy[goliathCheck].score = 150;
-      enemy[goliathCheck].penalty = -600;
+      enemy[goliathCheck].penalty = -100;
       enemy[goliathCheck].shieldTintMinimum = 175;
     }
     break;
