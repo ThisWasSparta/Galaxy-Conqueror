@@ -44,7 +44,7 @@ void createPowerup(int powerType) {
       power[doublepointsCheck].pW = doublepointsPowerup.width;
       power[doublepointsCheck].pH = doublepointsPowerup.height;
       power[doublepointsCheck].pV = random(1, 3);
-      power[doublepointsCheck].pX = random(power[doublepointsCheck].pW /2, width - power[doublepointsCheck].pW);
+      power[doublepointsCheck].pX = random(power[doublepointsCheck].pW / 2, width - power[doublepointsCheck].pW);
       power[doublepointsCheck].pY = -power[doublepointsCheck].pH;
       power[doublepointsCheck].startPowerup = 0;
       power[doublepointsCheck].timerPowerup = 0;
@@ -119,7 +119,7 @@ void powerUpdate(int counter) {
     if (power[counter].pY == height + power[counter].pH) {
       power[counter].isPicked = false;
     }
-    if (power[counter].pX > player.pX - player.pW/2 && power[counter].pX < player.pX + player.pW/2 && power[counter].pY > player.pY - player.pH/2 && power[counter].pY < player.pY + player.pH/2 && power[counter].isActivated == false) {
+    if (power[counter].pX > player.pX - player.pW / 2 && power[counter].pX < player.pX + player.pW / 2 && power[counter].pY > player.pY - player.pH / 2 && power[counter].pY < player.pY + player.pH / 2 && power[counter].isActivated == false) {
       power[counter].isActivated = true;
       power[counter].pY = height * 2;
       power[counter].spawnTime = millis();                                                       //Sets timer whenever a powerup is activated
