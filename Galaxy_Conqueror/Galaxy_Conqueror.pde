@@ -171,6 +171,7 @@ void draw() {
   timer = millis();
 
   if (startGame) {                                //if the player has pressed start on the menu, the game will start
+    visuals.screenShake(0, 0, false);
     visuals.updateScreenShake();
     obstakel.drawObstakel();
     for (int i = 0; i < ENEMY_NUMBER; i++) {      //updates, spawns and draws the enemies

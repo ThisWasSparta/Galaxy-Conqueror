@@ -192,7 +192,18 @@ void enemyUpdatePosition(int counter) { //function that updates enemy positions 
     if (enemy[counter].eY > height + enemy[counter].eH) {
       enemy[counter].isAlive = false;
       scoreObj.addScore(enemy[counter].penalty);
+      if (enemy[counter].enemyType == 1) {
+        scoreObj.addScore(-100);
+        textParticles.drawText(enemy[counter].eX, enemy[counter].eY-200);
+      }
+      if (enemy[counter].enemyType == 2) {
+        scoreObj.addScore(-100);
+        textParticles.drawText(enemy[counter].eX, enemy[counter].eY-200);
+      }
+      scoreObj.addScore(enemy[counter].penalty);
       if (enemy[counter].enemyType == 3) {
+        scoreObj.addScore(-100);
+        textParticles.drawText(enemy[counter].eX, enemy[counter].eY-200);
         goliathOnScreen--;
       }
     }
