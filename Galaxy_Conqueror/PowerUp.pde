@@ -166,13 +166,13 @@ void drawPower(int counter) {                                                   
   if (power[counter].isPicked == true) {
     fill(255, 0, 0);
     if (power[counter].typePowerup == 1) {
-      image(doublepointsPowerup, power[counter].pX, power[counter].pY, power[counter].pW, power[counter].pH);
+      image(doublepointsPowerup, power[counter].pX + visuals.maxMagnitudeX, power[counter].pY + visuals.maxMagnitudeY, power[counter].pW, power[counter].pH);
     }
     if (power[counter].typePowerup == 2) {
-      image(speedPowerup, power[counter].pX, power[counter].pY, power[counter].pW, power[counter].pH);
+      image(speedPowerup, power[counter].pX + visuals.maxMagnitudeX, power[counter].pY + visuals.maxMagnitudeY, power[counter].pW, power[counter].pH);
     }
     if (power[counter].typePowerup == 3) {
-      image(screenwipePowerup, power[counter].pX, power[counter].pY, power[counter].pW, power[counter].pH);
+      image(screenwipePowerup, power[counter].pX + visuals.maxMagnitudeX, power[counter].pY + visuals.maxMagnitudeY, power[counter].pW, power[counter].pH);
     }
   }
 }

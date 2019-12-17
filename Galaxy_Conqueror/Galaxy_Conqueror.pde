@@ -61,6 +61,7 @@ Controls controls;
 Meteoriet meteoriet;
 Sounds sounds;
 Interface userInterface;
+VisualEffects visuals;
 
 Minim minim;
 AudioPlayer bgm;
@@ -110,6 +111,7 @@ void setup() {
   letterPicker = new Letterpicker();
   gameover = new GameOver();
   userInterface = new Interface();
+  visuals = new VisualEffects();
 
   titel.font();
   Star.sterrenProp();
@@ -161,6 +163,7 @@ void draw() {
   timer = millis();
 
   if (startGame) {                                //if the player has pressed start on the menu, the game will start
+    visuals.updateScreenShake();
     obstakel.drawObstakel();
     for (int i = 0; i < ENEMY_NUMBER; i++) {      //updates, spawns and draws the enemies
       enemyUpdatePosition(i);                     //made by Noah Verburg

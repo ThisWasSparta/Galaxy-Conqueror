@@ -55,8 +55,8 @@ class PlayerWeapons {
   int playerLaserTurn = 0;
 
   final int PLAYER_ROCKET_PER_SALVO = 2;
-  final int PLAYER_ROCKET_FIRERATE = 300;
-  final int PLAYER_ROCKET_DAMAGE = 25;
+  final int PLAYER_ROCKET_FIRERATE = 800;
+  final int PLAYER_ROCKET_DAMAGE = 55;
   int lowestEnemy;
   int enemyTarget;
   float shortestDistance = 100000;
@@ -173,7 +173,7 @@ class PlayerWeapons {
     for (int i = 0; i < PLAYER_BULLET_NUMBER; i++) {
       if (weapon[i].projectileType == 1) {
         if (weapon[i].bulletIsOnScreen) {
-          image(lightBullet, weapon[i].bX, weapon[i].bY, weapon[i].bW, weapon[i].bH);
+          image(lightBullet, weapon[i].bX + visuals.maxMagnitudeX, weapon[i].bY + visuals.maxMagnitudeY, weapon[i].bW, weapon[i].bH);
         }
       }
     }
@@ -288,7 +288,7 @@ class PlayerWeapons {
   void drawPlayerLaser() {
     for (int i = 0; i < 2; i++) {
       if (weapon[i].laserIsAlive) {
-        image(weapon[i].laser, weapon[i].lX, weapon[i].lY1 - weapon[i].lH/2, weapon[i].lW, weapon[i].lH);
+        image(weapon[i].laser, weapon[i].lX + visuals.maxMagnitudeX, weapon[i].lY1 - weapon[i].lH/2 + visuals.maxMagnitudeY, weapon[i].lW, weapon[i].lH);
       }
     }
   }
@@ -312,7 +312,7 @@ class PlayerWeapons {
       for (int t = 0; t < ENEMY_NUMBER; t++) {
         if (enemy[t].isAlive) {
           enemy[t].individualRocketEnemyDistance = dist(weapon[playerProjectileTurn].rX, weapon[playerProjectileTurn].rY, enemy[t].eX, enemy[t].eY);
-          if (enemy[t].individualRocketEnemyDistance < weapon[playerProjectileTurn].shortestDistance) {
+          if (enemy[t].individualRocketEnemyDistance < weapon[playerProjectileTurn].shortestDistance && enemy[t].individualRocketEnemyDistance < width/3) {
             weapon[playerProjectileTurn].shortestDistance = enemy[t].individualRocketEnemyDistance;
             weapon[playerProjectileTurn].enemyTarget = t;
           }
@@ -431,7 +431,7 @@ class PlayerWeapons {
     for (int i = 0; i < PLAYER_BULLET_NUMBER; i++) {
       if (weapon[i].projectileType == 2) {
         if (weapon[i].rocketIsOnScreen) {
-          image(rocket, weapon[i].rX, weapon[i].rY, weapon[i].rW, weapon[i].rH);
+          image(rocket, weapon[i].rX + visuals.maxMagnitudeX, weapon[i].rY + visuals.maxMagnitudeY, weapon[i].rW, weapon[i].rH);
         }
       }
     }

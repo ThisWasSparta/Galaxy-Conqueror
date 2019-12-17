@@ -6,7 +6,9 @@ class EnemyBullets {
   float bX;          //bullet X-position
   float bY;          //bullet Y-position
   float bSize;       //bullet size
+  float enemyBulletVelocityFactor = 0.008;
   boolean isOnScreen; //whether or not a bullet is on screen and should be used in calculations
+
 
   PImage enemyBullet;
   int lastBulletSpawn;
@@ -40,6 +42,7 @@ class EnemyBullets {
         && enemyBullets[counter].isOnScreen == true) {
         println("ouchie");
         player.damageFlashTint = 200;
+        visuals.screenShake(5, 30, true);
         enemyBullets[counter].bY = height * -2;
         enemyBullets[counter].bX = -1 * width;
         enemyBullets[counter].isOnScreen = false;
@@ -58,7 +61,7 @@ class EnemyBullets {
   void drawEnemyBullet(int counter) { //function that draws enemies on the given x and y coordinates with the right width and height
     if (enemy[counter].isAlive == true && enemyBullets[counter].isOnScreen == true) {
       fill(255, 0, 0);
-      image(enemyBullet, enemyBullets[counter].bX, enemyBullets[counter].bY, enemyBullets[counter].bW, enemyBullets[counter].bH);
+      image(enemyBullet, enemyBullets[counter].bX + visuals.maxMagnitudeX, enemyBullets[counter].bY + visuals.maxMagnitudeY, enemyBullets[counter].bW, enemyBullets[counter].bH);
     }
   }
 
