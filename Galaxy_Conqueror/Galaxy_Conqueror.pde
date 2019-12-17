@@ -42,6 +42,8 @@ boolean gameOver = false;
 
 boolean nameScreen;
 
+boolean tutorial;
+
 final float sizeFactor = 0.8;
 float wScale;                                     //width scale used to adjust the width of images
 float hScale;                                     //height scale used to adjust the height of images
