@@ -2,11 +2,12 @@
 class Health {
   float x;
   float y = height - height / 40;
-  PImage texture;
   float heartW;
   float heartH;
   float defaultHeartWidth = 54 * sizeFactor;
   float defaultHeartHeight = 42 * sizeFactor;
+  
+  PImage texture;
 
   void playerHealth() {
     if (heartNumber == 3) {                                                //displays the number of heartNumber you have left
