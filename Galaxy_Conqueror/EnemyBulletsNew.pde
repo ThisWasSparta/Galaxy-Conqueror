@@ -61,7 +61,7 @@ class EnemyBullets {
   void drawEnemyBullet(int counter) { //function that draws enemies on the given x and y coordinates with the right width and height
     if (enemy[counter].isAlive == true && enemyBullets[counter].isOnScreen == true) {
       fill(255, 0, 0);
-      image(enemyBullet, enemyBullets[counter].bX + visuals.maxMagnitudeX, enemyBullets[counter].bY + visuals.maxMagnitudeY, enemyBullets[counter].bW, enemyBullets[counter].bH);
+      image(enemyBullet, enemyBullets[counter].bX + visuals.magnitudeX, enemyBullets[counter].bY + visuals.magnitudeY, enemyBullets[counter].bW, enemyBullets[counter].bH);
     }
   }
 

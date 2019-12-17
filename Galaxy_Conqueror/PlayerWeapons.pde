@@ -173,7 +173,7 @@ class PlayerWeapons {
     for (int i = 0; i < PLAYER_BULLET_NUMBER; i++) {
       if (weapon[i].projectileType == 1) {
         if (weapon[i].bulletIsOnScreen) {
-          image(lightBullet, weapon[i].bX + visuals.maxMagnitudeX, weapon[i].bY + visuals.maxMagnitudeY, weapon[i].bW, weapon[i].bH);
+          image(lightBullet, weapon[i].bX + visuals.magnitudeX, weapon[i].bY + visuals.magnitudeY, weapon[i].bW, weapon[i].bH);
         }
       }
     }
@@ -288,7 +288,7 @@ class PlayerWeapons {
   void drawPlayerLaser() {
     for (int i = 0; i < 2; i++) {
       if (weapon[i].laserIsAlive) {
-        image(weapon[i].laser, weapon[i].lX + visuals.maxMagnitudeX, weapon[i].lY1 - weapon[i].lH/2 + visuals.maxMagnitudeY, weapon[i].lW, weapon[i].lH);
+        image(weapon[i].laser, weapon[i].lX + visuals.magnitudeX, weapon[i].lY1 - weapon[i].lH/2 + visuals.magnitudeY, weapon[i].lW, weapon[i].lH);
       }
     }
   }
@@ -431,7 +431,7 @@ class PlayerWeapons {
     for (int i = 0; i < PLAYER_BULLET_NUMBER; i++) {
       if (weapon[i].projectileType == 2) {
         if (weapon[i].rocketIsOnScreen) {
-          image(rocket, weapon[i].rX + visuals.maxMagnitudeX, weapon[i].rY + visuals.maxMagnitudeY, weapon[i].rW, weapon[i].rH);
+          image(rocket, weapon[i].rX + visuals.magnitudeX, weapon[i].rY + visuals.magnitudeY, weapon[i].rW, weapon[i].rH);
         }
       }
     }

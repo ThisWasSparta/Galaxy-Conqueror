@@ -171,7 +171,11 @@ void draw() {
   //frameRateDisplay();
   variables.loadGameValues();
   timer = millis();
-
+  
+  if (player.stop) {
+    stop();
+  }
+  
   if (startGame) {                                //if the player has pressed start on the menu, the game will start
     visuals.screenShake(0, 0, false);
     visuals.updateScreenShake();
@@ -279,9 +283,6 @@ void draw() {
       titel.bright();
       //image(boss, width/2, 121, 1000, 242);
       if (player.testBoolean) {
-      }
-      if (player.stop) {
-        stop();
       }
     }
   }

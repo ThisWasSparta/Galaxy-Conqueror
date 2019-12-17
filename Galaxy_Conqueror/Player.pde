@@ -47,7 +47,7 @@ class SpaceShip {
         tint(255, player.damageFlashTint, player.damageFlashTint);
         player.damageFlashTint -= 10;
       }
-      image(weapon1, pX + visuals.maxMagnitudeX, pY + visuals.maxMagnitudeY, pW, pH);
+      image(weapon1, pX + visuals.magnitudeX, pY + visuals.magnitudeY, pW, pH);
       tint(255, 255, 255);
     }
     if (weapon == 2) {
@@ -55,7 +55,7 @@ class SpaceShip {
         tint(255, player.damageFlashTint, player.damageFlashTint);
         player.damageFlashTint -= 10;
       }
-      image(weapon2, pX + visuals.maxMagnitudeX, pY + visuals.maxMagnitudeY, pW, pH);
+      image(weapon2, pX + visuals.magnitudeX, pY + visuals.magnitudeY, pW, pH);
       tint(255, 255, 255);
     }
     if (weapon == 3) {
@@ -63,7 +63,7 @@ class SpaceShip {
         tint(255, player.damageFlashTint, player.damageFlashTint);
         player.damageFlashTint -= 10;
       }
-      image(weapon3, pX + visuals.maxMagnitudeX, pY + visuals.maxMagnitudeY, pW, pH);
+      image(weapon3, pX + visuals.magnitudeX, pY + visuals.magnitudeY, pW, pH);
       tint(255, 255, 255);
     }
     if (weaponState == 3) {
@@ -176,78 +176,78 @@ class SpaceShip {
     switch (weapon) {
     case 1:
       fill(0, 0, 255, 255);
-      rect(weaponWheelX + visuals.maxMagnitudeX, weaponWheelY + visuals.maxMagnitudeY, width * 0.1, height * 0.05);
+      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY + visuals.magnitudeY, width * 0.1, height * 0.05);
       fill(50, 50, 255, 255);
-      rect(weaponWheelX + visuals.maxMagnitudeX, weaponWheelY + visuals.maxMagnitudeY, width * 0.095, height * 0.04);
+      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY + visuals.magnitudeY, width * 0.095, height * 0.04);
       fill(255, 255);
       textSize(10);
-      text("GATLING GUN", weaponWheelX + visuals.maxMagnitudeX, weaponWheelY + height * 0.006 + visuals.maxMagnitudeY);
+      text("GATLING GUN", weaponWheelX + visuals.magnitudeX, weaponWheelY + height * 0.006 + visuals.magnitudeY);
 
       fill(0, 0, 255, 128);
-      rect(weaponWheelX + visuals.maxMagnitudeX, weaponWheelY - height * 0.046 + visuals.maxMagnitudeY, width * 0.1, height * 0.05);
+      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY - height * 0.046 + visuals.magnitudeY, width * 0.1, height * 0.05);
       fill(50, 50, 255, 128);
-      rect(weaponWheelX + visuals.maxMagnitudeX, weaponWheelY - height * 0.046 + visuals.maxMagnitudeY, width * 0.095, height * 0.04);
+      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY - height * 0.046 + visuals.magnitudeY, width * 0.095, height * 0.04);
       fill(255, 128);
       textSize(10);
-      text("ROCKET LAUNCHER", weaponWheelX + visuals.maxMagnitudeX, weaponWheelY - height * 0.04 + visuals.maxMagnitudeY);
+      text("ROCKET LAUNCHER", weaponWheelX + visuals.magnitudeX, weaponWheelY - height * 0.04 + visuals.magnitudeY);
 
       fill(0, 0, 255, 128);
-      rect(weaponWheelX + visuals.maxMagnitudeX, weaponWheelY + height * 0.046 + visuals.maxMagnitudeY, width * 0.1, height * 0.05);
+      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY + height * 0.046 + visuals.magnitudeY, width * 0.1, height * 0.05);
       fill(50, 50, 255, 128);
-      rect(weaponWheelX + visuals.maxMagnitudeX, weaponWheelY + height * 0.046 + visuals.maxMagnitudeY, width * 0.095, height * 0.04);
+      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY + height * 0.046 + visuals.magnitudeY, width * 0.095, height * 0.04);
       fill(255, 128);
       textSize(10);
-      text("LASER BEAM", weaponWheelX + visuals.maxMagnitudeX, weaponWheelY + height * 0.052 + visuals.maxMagnitudeY);
+      text("LASER BEAM", weaponWheelX + visuals.magnitudeX, weaponWheelY + height * 0.052 + visuals.magnitudeY);
       break;
     case 2:
       fill(0, 0, 255, 255);
-      rect(weaponWheelX + visuals.maxMagnitudeX, weaponWheelY + visuals.maxMagnitudeY, width * 0.1, height * 0.05);
+      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY + visuals.magnitudeY, width * 0.1, height * 0.05);
       fill(50, 50, 255, 255);
-      rect(weaponWheelX + visuals.maxMagnitudeX, weaponWheelY + visuals.maxMagnitudeY, width * 0.095, height * 0.04);
+      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY + visuals.magnitudeY, width * 0.095, height * 0.04);
       fill(255, 255);
       textSize(10);
-      text("LASER BEAM", weaponWheelX + visuals.maxMagnitudeX, weaponWheelY + height * 0.006 + visuals.maxMagnitudeY);
+      text("LASER BEAM", weaponWheelX + visuals.magnitudeX, weaponWheelY + height * 0.006 + visuals.magnitudeY);
 
       fill(0, 0, 255, 128);
-      rect(weaponWheelX + visuals.maxMagnitudeX, weaponWheelY - height * 0.046 + visuals.maxMagnitudeY, width * 0.1, height * 0.05);
+      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY - height * 0.046 + visuals.magnitudeY, width * 0.1, height * 0.05);
       fill(50, 50, 255, 128);
-      rect(weaponWheelX + visuals.maxMagnitudeX, weaponWheelY - height * 0.046 + visuals.maxMagnitudeY, width * 0.095, height * 0.04);
+      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY - height * 0.046 + visuals.magnitudeY, width * 0.095, height * 0.04);
       fill(255, 128);
       textSize(10);
-      text("GATLING GUN", weaponWheelX + visuals.maxMagnitudeX, weaponWheelY - height * 0.04 + visuals.maxMagnitudeY);
+      text("GATLING GUN", weaponWheelX + visuals.magnitudeX, weaponWheelY - height * 0.04 + visuals.magnitudeY);
 
       fill(0, 0, 255, 128);
-      rect(weaponWheelX + visuals.maxMagnitudeX, weaponWheelY + height * 0.046 + visuals.maxMagnitudeY, width * 0.1, height * 0.05);
+      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY + height * 0.046 + visuals.magnitudeY, width * 0.1, height * 0.05);
       fill(50, 50, 255, 128);
-      rect(weaponWheelX + visuals.maxMagnitudeX, weaponWheelY + height * 0.046 + visuals.maxMagnitudeY, width * 0.095, height * 0.04);
+      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY + height * 0.046 + visuals.magnitudeY, width * 0.095, height * 0.04);
       fill(255, 128);
       textSize(10);
-      text("ROCKET LAUNCHER", weaponWheelX + visuals.maxMagnitudeX, weaponWheelY + height * 0.052 + visuals.maxMagnitudeY);
+      text("ROCKET LAUNCHER", weaponWheelX + visuals.magnitudeX, weaponWheelY + height * 0.052 + visuals.magnitudeY);
       break;
     case 3:
       fill(0, 0, 255, 255);
-      rect(weaponWheelX + visuals.maxMagnitudeX, weaponWheelY + visuals.maxMagnitudeY, width * 0.1, height * 0.05);
+      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY + visuals.magnitudeY, width * 0.1, height * 0.05);
       fill(50, 50, 255, 255);
-      rect(weaponWheelX + visuals.maxMagnitudeX, weaponWheelY + visuals.maxMagnitudeY, width * 0.095, height * 0.04);
+      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY + visuals.magnitudeY, width * 0.095, height * 0.04);
       fill(255, 255);
       textSize(10);
-      text("ROCKET LAUNCHER", weaponWheelX + visuals.maxMagnitudeX, weaponWheelY + height * 0.006 + visuals.maxMagnitudeY);
+      text("ROCKET LAUNCHER", weaponWheelX + visuals.magnitudeX, weaponWheelY + height * 0.006 + visuals.magnitudeY);
 
       fill(0, 0, 255, 128);
-      rect(weaponWheelX + visuals.maxMagnitudeX, weaponWheelY - height * 0.046 + visuals.maxMagnitudeY, width * 0.1, height * 0.05);
+      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY - height * 0.046 + visuals.magnitudeY, width * 0.1, height * 0.05);
       fill(50, 50, 255, 128);
-      rect(weaponWheelX + visuals.maxMagnitudeX, weaponWheelY - height * 0.046 + visuals.maxMagnitudeY, width * 0.095, height * 0.04);
+      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY - height * 0.046 + visuals.magnitudeY, width * 0.095, height * 0.04);
       fill(255, 128);
       textSize(10);
-      text("LASER BEAM", weaponWheelX + visuals.maxMagnitudeX, weaponWheelY - height * 0.04 + visuals.maxMagnitudeY);
+      text("LASER BEAM", weaponWheelX + visuals.magnitudeX, weaponWheelY - height * 0.04 + visuals.magnitudeY);
 
       fill(0, 0, 255, 128);
-      rect(weaponWheelX + visuals.maxMagnitudeX, weaponWheelY + height * 0.046 + visuals.maxMagnitudeY, width * 0.1, height * 0.05);
+      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY + height * 0.046 + visuals.magnitudeY, width * 0.1, height * 0.05);
       fill(50, 50, 255, 128);
-      rect(weaponWheelX + visuals.maxMagnitudeX, weaponWheelY + height * 0.046 + visuals.maxMagnitudeY, width * 0.095, height * 0.04);
+      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY + height * 0.046 + visuals.magnitudeY, width * 0.095, height * 0.04);
       fill(255, 128);
       textSize(10);
-      text("GATLING GUN", weaponWheelX + visuals.maxMagnitudeX, weaponWheelY + height * 0.052 + visuals.maxMagnitudeY);
+      text("GATLING GUN", weaponWheelX + visuals.magnitudeX, weaponWheelY + height * 0.052 + visuals.magnitudeY);
       break;
     }
   }

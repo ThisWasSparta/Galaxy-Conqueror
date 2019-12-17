@@ -28,19 +28,18 @@ class VisualEffects {
       screenShakeTimer = millis();
       screenShakeStart = false;
     }
+    if (!screenShakeStart) {
+      visuals.magnitudeX = sin(visuals.screenShakeFactor) * visuals.maxMagnitudeX;
+      visuals.magnitudeY = sin(visuals.screenShakeFactor) * visuals.maxMagnitudeY;
+      visuals.maxMagnitudeX *= 0.9;
+      visuals.maxMagnitudeY *= 0.9;
+      visuals.screenShakeFactor += visuals.inc;
+    }
   }
 
   void updateScreenShake() {
     if (screenShakeTest) {
       visuals.screenShake(10, 50, true);
     }
-    visuals.magnitudeX = sin(visuals.screenShakeFactor) * visuals.maxMagnitudeX;
-    visuals.magnitudeY = sin(visuals.screenShakeFactor) * visuals.maxMagnitudeY;
-    visuals.maxMagnitudeX *= 0.95;
-    visuals.maxMagnitudeY *= 0.95;
-    visuals.screenShakeFactor += visuals.inc;
-    println(sin(visuals.screenShakeFactor));
-    println(visuals.maxMagnitudeX);
-    println(magnitudeX);
   }
 }

@@ -219,7 +219,7 @@ void drawEnemies(int counter) { //function that draws enemies on the given x and
         tint(255, enemy[counter].damageFlashTint, enemy[counter].damageFlashTint);
         enemy[counter].damageFlashTint -= 30;
       }
-      image(enemy[counter].scoutEnemy, enemy[counter].eX + visuals.maxMagnitudeX, enemy[counter].eY + visuals.maxMagnitudeY, enemy[counter].eW, enemy[counter].eH);
+      image(enemy[counter].scoutEnemy, enemy[counter].eX + visuals.magnitudeX, enemy[counter].eY + visuals.magnitudeY, enemy[counter].eW, enemy[counter].eH);
       tint(255, 255, 255);
     }
     if (enemy[counter].enemyType == 2) {
@@ -227,7 +227,7 @@ void drawEnemies(int counter) { //function that draws enemies on the given x and
         tint(255, enemy[counter].damageFlashTint, enemy[counter].damageFlashTint);
         enemy[counter].damageFlashTint -= 30;
       }
-      image(enemy[counter].courserEnemy, enemy[counter].eX + visuals.maxMagnitudeX, enemy[counter].eY + visuals.maxMagnitudeY, enemy[counter].eW, enemy[counter].eH);
+      image(enemy[counter].courserEnemy, enemy[counter].eX + visuals.magnitudeX, enemy[counter].eY + visuals.magnitudeY, enemy[counter].eW, enemy[counter].eH);
       tint(255, 255, 255);
     }
     if (enemy[counter].enemyType == 3) {
@@ -238,11 +238,11 @@ void drawEnemies(int counter) { //function that draws enemies on the given x and
       enemy[counter].shieldTintMinimum = 175 * (enemy[counter].shieldHP / enemy[counter].shieldMaxHP);
       enemy[counter].orbSize = enemy[counter].orbW + (enemy[counter].orbW * (1 + sin(enemy[counter].orbSizeFactor)))/12;
       enemy[counter].shieldTint = enemy[counter].shieldTintMinimum + (200 * (1 + sin(enemy[counter].shieldTintFactor)))/12;
-      image(enemy[counter].goliathEnemy, enemy[counter].eX + visuals.maxMagnitudeX, enemy[counter].eY + visuals.maxMagnitudeY, enemy[counter].eW, enemy[counter].eH);
-      image(enemy[counter].goliathOrb, enemy[counter].eX + visuals.maxMagnitudeX, enemy[counter].eY + enemy[counter].eH / 4 - enemy[counter].eH / 11 + visuals.maxMagnitudeY, enemy[counter].orbSize, enemy[counter].orbSize);
+      image(enemy[counter].goliathEnemy, enemy[counter].eX + visuals.magnitudeX, enemy[counter].eY + visuals.magnitudeY, enemy[counter].eW, enemy[counter].eH);
+      image(enemy[counter].goliathOrb, enemy[counter].eX + visuals.magnitudeX, enemy[counter].eY + enemy[counter].eH / 4 - enemy[counter].eH / 11 + visuals.magnitudeY, enemy[counter].orbSize, enemy[counter].orbSize);
       if (enemy[counter].shieldAlive) {
         tint(255, enemy[counter].shieldTint);
-        image(enemy[counter].goliathShield, enemy[counter].eX + visuals.maxMagnitudeX, enemy[counter].eY + enemy[counter].eH / 1.5 - enemy[counter].eH / 11 + visuals.maxMagnitudeY, enemy[counter].shieldW, enemy[counter].shieldH);
+        image(enemy[counter].goliathShield, enemy[counter].eX + visuals.magnitudeX, enemy[counter].eY + enemy[counter].eH / 1.5 - enemy[counter].eH / 11 + visuals.magnitudeY, enemy[counter].shieldW, enemy[counter].shieldH);
       }
       tint(255, 255);
       enemy[counter].orbSizeFactor += enemy[counter].inc;      //this makes the orb pulsate

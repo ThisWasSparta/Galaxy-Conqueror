@@ -35,6 +35,6 @@ class Score {
 
     fill(255, 255, 0);
     textSize(50);
-    text("Score: " +score, tX + visuals.maxMagnitudeX, tY / 0.5 + visuals.maxMagnitudeY);
+    text("Score: " +score, tX + visuals.magnitudeX, tY / 0.5 + visuals.magnitudeY);
   }
 }
