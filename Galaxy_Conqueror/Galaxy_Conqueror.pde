@@ -75,6 +75,7 @@ Letterpicker letterPicker;
 DBConnect dbconnect;
 DBQueries dbqueries;
 GameOver gameover;
+HighScore highscore;
 
 Text_Particles textParticles;
 
@@ -115,6 +116,7 @@ void setup() {
   namePicker = new NamePicker();
   letterPicker = new Letterpicker();
   gameover = new GameOver();
+  highscore = new HighScore();
   userInterface = new Interface();
   visuals = new VisualEffects();
 
@@ -252,29 +254,32 @@ void draw() {
       if (millis() >= gameOverTimer + 1000) {
         gameover.GameOverTakeName();
       }
-      if (player.isShooting) {
-        dbqueries.dbInsert();
-        valuesLoaded = false;
-        gameOver = false;
-        startGame = false;
-        valuesLoaded = false;
-        titel.StartGame = true;
-        heartNumber = 3;
-        scoreObj.score = 0;
-        globalBossTimer = 11500;
-        for (int i = 0; i < ENEMY_NUMBER; i++) {                                                 //Cycles through all enemy slots once
-          if (enemy[i].isAlive == true) {                                                        //Checks if there are living enemies
-            enemy[i].isAlive = false;                                                            //Kills living enemies
+
+      if (millis() >= gameOverTimer+1000) {
+        if (player.isShooting) {
+          dbqueries.dbInsert();
+          valuesLoaded = false;
+          gameOver = false;
+          startGame = false;
+          valuesLoaded = false;
+          titel.StartGame = true;
+          heartNumber = 3;
+          scoreObj.score = 0;
+          globalBossTimer = 11500;
+          for (int i = 0; i < ENEMY_NUMBER; i++) {                                                 //Cycles through all enemy slots once
+            if (enemy[i].isAlive == true) {                                                        //Checks if there are living enemies
+              enemy[i].isAlive = false;                                                            //Kills living enemies
+            }
           }
         }
       }
+      titel.bright();
+      //image(boss, width/2, 121, 1000, 242);
+      if (player.testBoolean) {
+      }
+      if (player.stop) {
+        stop();
+      }
     }
-  }
-  titel.bright();
-  //image(boss, width/2, 121, 1000, 242);
-  if (player.testBoolean) {
-  }
-  if (player.stop) {
-    stop();
   }
 }
