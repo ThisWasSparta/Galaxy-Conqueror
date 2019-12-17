@@ -125,6 +125,7 @@ class Titel {
   }
 
   void startScreen() {
+    maintheme.play();
     if (StartGame) {
 
       playergatshoot.mute();
@@ -186,6 +187,7 @@ class Titel {
           if (player.isShooting) {
             StartGame = false;
             startGame = true;
+            maintheme.mute();
             bgm.play();
           }
           if (player.goDown) {
