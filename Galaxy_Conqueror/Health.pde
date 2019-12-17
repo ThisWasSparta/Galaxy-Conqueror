@@ -6,7 +6,7 @@ class Health {
   float heartH;
   float defaultHeartWidth = 54 * sizeFactor;
   float defaultHeartHeight = 42 * sizeFactor;
-  
+
   PImage texture;
 
   void playerHealth() {
