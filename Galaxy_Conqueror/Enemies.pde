@@ -63,6 +63,7 @@ class Enemies {
   int enemyType;
   int damageFlashTint = 0;
   int score;
+  int penalty;
 
   boolean isAlive; //whether or not the enemy is alive
   boolean shieldAlive;
@@ -92,6 +93,7 @@ void bossScoutSpawner() { //function called by the boss' backup state to spawn c
       enemy[arrayIndex].eX = convoyOriginX + spawnCounter * 50; 
       enemy[arrayIndex].eY = -enemy[arrayIndex].eH;
       enemy[arrayIndex].eHP = 30;
+      enemy[arrayIndex].penalty = -100;
       enemy[arrayIndex].isAlive = true;
     }
   }
@@ -129,6 +131,7 @@ void createEnemy(int type) { //function to create an enemy
       enemy[courserCheck].eY = -enemy[courserCheck].eH;
       enemy[courserCheck].eHP = 110;
       enemy[courserCheck].score = 100;
+      enemy[courserCheck].penalty = -100;
       enemy[courserCheck].isAlive = true;
     }
     break;
@@ -147,6 +150,7 @@ void createEnemy(int type) { //function to create an enemy
       enemy[goliathCheck].shieldHP = 300;
       enemy[goliathCheck].shieldMaxHP = 300;
       enemy[goliathCheck].score = 150;
+      enemy[goliathCheck].penalty = -100;
       enemy[goliathCheck].shieldTintMinimum = 175;
     }
     break;
@@ -184,17 +188,8 @@ void enemyUpdatePosition(int counter) { //function that updates enemy positions 
     enemy[counter].eY = enemy[counter].eY + enemy[counter].eV;
     if (enemy[counter].eY > height + enemy[counter].eH) {
       enemy[counter].isAlive = false;
-      if (enemy[counter].enemyType == 1) {
-        scoreObj.addScore(-100);
-        textParticles.drawText(enemy[counter].eX, enemy[counter].eY-200);
-      }
-      if (enemy[counter].enemyType == 2) {
-        scoreObj.addScore(-100);
-        textParticles.drawText(enemy[counter].eX, enemy[counter].eY-200);
-      }
+      scoreObj.addScore(enemy[counter].penalty);
       if (enemy[counter].enemyType == 3) {
-        scoreObj.addScore(-100);
-        textParticles.drawText(enemy[counter].eX, enemy[counter].eY-200);
         goliathOnScreen--;
       }
     }
