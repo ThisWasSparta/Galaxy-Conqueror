@@ -117,6 +117,7 @@ void createEnemy(int type) { //function to create an enemy
       enemy[scoutCheck].eY = -enemy[scoutCheck].eH;
       enemy[scoutCheck].eHP = 30;
       enemy[scoutCheck].score = 50;
+      enemy[scoutCheck].penalty = -100;
       enemy[scoutCheck].isAlive = true;
     }
     break;
