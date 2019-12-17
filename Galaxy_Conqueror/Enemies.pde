@@ -199,7 +199,6 @@ void enemyUpdatePosition(int counter) { //function that updates enemy positions 
     }
   }
 }
-}
 
 void drawEnemies(int counter) { //function that draws enemies on the given x and y coordinates with the right width and height
   if (enemy[counter].isAlive == true) {
