@@ -33,9 +33,29 @@ class Obstakel {
       }
 
       for (int t = 0; t < PLAYER_BULLET_NUMBER; t++) {
-        if (!meteorietHit && weapon[t].bX < meteorieten.get(i).hitBoxX + meteorieten.get(i).hitBoxW && weapon[t].bX > meteorieten.get(i).hitBoxX && weapon[t].bY < meteorieten.get(i).hitBoxY + meteorieten.get(i).hitBoxH && weapon[t].bY > meteorieten.get(i).hitBoxY)
-        {
+        if (!meteorietHit && weapon[t].bX < meteorieten.get(i).hitBoxX + meteorieten.get(i).hitBoxW && weapon[t].bX > meteorieten.get(i).hitBoxX && weapon[t].bY < meteorieten.get(i).hitBoxY + meteorieten.get(i).hitBoxH && weapon[t].bY > meteorieten.get(i).hitBoxY) {
           meteorietHit = true;    //als de player bullet de meteoriet raakt, dan is deze boolean true
+          if (meteorietHit) {
+            meteorieten.remove(i);
+            scoreObj.addScore(meteorScore * scoreMultiplier);
+            if (heartNumber < 3) {
+              heartNumber += 1;
+            }
+            break;
+          }
+        }
+        if (!meteorietHit && weapon[t].lX - weapon[t].lW/2 < meteorieten.get(i).hitBoxX + meteorieten.get(i).hitBoxW && weapon[t].lX + weapon[t].lW/2 > meteorieten.get(i).hitBoxX && weapon[i].laserIsAlive) {
+          meteorietHit = true;    //als de player bullet de meteoriet raakt, dan is deze boolean true
+          if (meteorietHit) {
+            meteorieten.remove(i);
+            scoreObj.addScore(meteorScore * scoreMultiplier);
+            if (heartNumber < 3) {
+              heartNumber += 1;
+            }
+            break;
+          }
+        }
+        if (!meteorietHit && weapon[t].rX < meteorieten.get(i).hitBoxX + meteorieten.get(i).hitBoxW && weapon[t].rX > meteorieten.get(i).hitBoxX && weapon[t].rY < meteorieten.get(i).hitBoxY + meteorieten.get(i).hitBoxH && weapon[t].rY > meteorieten.get(i).hitBoxY) {
           if (meteorietHit) {
             meteorieten.remove(i);
             scoreObj.addScore(meteorScore * scoreMultiplier);
