@@ -94,6 +94,7 @@ void bossScoutSpawner() { //function called by the boss' backup state to spawn c
       enemy[arrayIndex].eX = convoyOriginX + spawnCounter * 50; 
       enemy[arrayIndex].eY = -enemy[arrayIndex].eH;
       enemy[arrayIndex].eHP = 30;
+      enemy[arrayIndex].score = 50;
       enemy[arrayIndex].penalty = defaultPenalty;
       enemy[arrayIndex].isAlive = true;
     }

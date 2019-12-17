@@ -2,7 +2,7 @@
  All values of times are given in milliseconds
  1 000 milliseconds is 1 second
  */
-int lastpower; //time in milliseconds since last powerup
+int lastpower;                   //time in milliseconds since last powerup
 
 class PowerUp {
   float pW;                      //Powerup width
