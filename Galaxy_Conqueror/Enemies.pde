@@ -63,6 +63,7 @@ class Enemies {
   int enemyType;
   int damageFlashTint = 0;
   int score;
+  int penalty;
 
   boolean isAlive; //whether or not the enemy is alive
   boolean shieldAlive;
@@ -115,6 +116,7 @@ void createEnemy(int type) { //function to create an enemy
       enemy[scoutCheck].eY = -enemy[scoutCheck].eH;
       enemy[scoutCheck].eHP = 30;
       enemy[scoutCheck].score = 50;
+      enemy[scoutCheck].penalty = -200;
       enemy[scoutCheck].isAlive = true;
     }
     break;
@@ -129,6 +131,7 @@ void createEnemy(int type) { //function to create an enemy
       enemy[courserCheck].eY = -enemy[courserCheck].eH;
       enemy[courserCheck].eHP = 110;
       enemy[courserCheck].score = 100;
+      enemy[courserCheck].penalty = -400;
       enemy[courserCheck].isAlive = true;
     }
     break;
@@ -147,6 +150,7 @@ void createEnemy(int type) { //function to create an enemy
       enemy[goliathCheck].shieldHP = 300;
       enemy[goliathCheck].shieldMaxHP = 300;
       enemy[goliathCheck].score = 150;
+      enemy[goliathCheck].penalty = -600;
       enemy[goliathCheck].shieldTintMinimum = 175;
     }
     break;
@@ -184,14 +188,8 @@ void enemyUpdatePosition(int counter) { //function that updates enemy positions 
     enemy[counter].eY = enemy[counter].eY + enemy[counter].eV;
     if (enemy[counter].eY > height + enemy[counter].eH) {
       enemy[counter].isAlive = false;
-      if (enemy[counter].enemyType == 1) {
-        scoreObj.addScore(-200);
-      }
-      if (enemy[counter].enemyType == 2) {
-        scoreObj.addScore(-400);
-      }
+      scoreObj.addScore(enemy[counter].penalty);
       if (enemy[counter].enemyType == 3) {
-        scoreObj.addScore(-600);
         goliathOnScreen--;
       }
     }
