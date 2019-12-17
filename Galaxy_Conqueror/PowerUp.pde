@@ -15,7 +15,7 @@ class PowerUp {
   int timerPowerup;
 
   int typePowerup;
-  final int MAX_POWERUPS = 3; //Maximum amount of powerups allowed at a time
+
 
   boolean isPicked;
   boolean isActivated;
