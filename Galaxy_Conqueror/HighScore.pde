@@ -8,8 +8,9 @@
       dbqueries.dbSelectHighScores();
       for(int i = 0; i < 10; i ++){
         text(dbqueries.names[i] + " " + dbqueries.highScores[i], 200, i*100);
+        println(dbqueries.names[i]);
       }
-      dbqueries.getHighScores = true;
+
     }
   }
 }

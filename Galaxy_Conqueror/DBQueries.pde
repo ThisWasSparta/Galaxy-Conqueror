@@ -3,8 +3,9 @@ class DBQueries {
 
   boolean insertQuerieDone = false;
   boolean getHighScores = false;
-  String []highScores = new String[10];
-  String []names = new String[10];
+  int highScoreSize = 10;
+  String []highScores = new String[highScoreSize];
+  String []names = new String[highScoreSize];
   String name;
   String score;
   int i;
@@ -23,6 +24,7 @@ class DBQueries {
 
   void dbSelectHighScores() {
     if (dbconnect.sql.connect()) {
+      
       dbconnect.sql.query("SELECT Players.Playername, Highscores.Score FROM Players INNER JOIN Highscores ON Players.Playername = Highscores.Playername ORDER BY Score DESC LIMIT 10");
       while (dbconnect.sql.next()) {
         i = 0;
@@ -30,6 +32,8 @@ class DBQueries {
         highScores[i] = dbconnect.sql.getString("Score");
         println(names[i] + " - " + highScores[i]);
         i++;
+        dbqueries.getHighScores = true;
       }
     }
   }
+}

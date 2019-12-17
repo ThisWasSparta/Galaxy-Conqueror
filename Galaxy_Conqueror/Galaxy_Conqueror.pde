@@ -245,7 +245,7 @@ void draw() {
       if (millis() >= gameOverTimer + 1000) {
         gameover.GameOverTakeName();
       }
-      
+
       if (millis() >= gameOverTimer+1000) {
         if (player.isShooting) {
           dbqueries.dbInsert();
@@ -257,43 +257,20 @@ void draw() {
           heartNumber = 3;
           scoreObj.score = 0;
           globalBossTimer = 11500;
-          for (int i = 0; i < 20; i++) {                                                           //Cycles through all enemy slots once
+          for (int i = 0; i < ENEMY_NUMBER; i++) {                                                 //Cycles through all enemy slots once
             if (enemy[i].isAlive == true) {                                                        //Checks if there are living enemies
-              if (enemy[i].enemyType == 1) {
-                enemy[i].isAlive = false;                                                          //Kills living enemies
-              }
-              if (enemy[i].enemyType == 2) {
-                enemy[i].isAlive = false;                                                          //Kills living enemies
-              }
-              if (enemy[i].enemyType == 3) {
-                enemy[i].isAlive = false;                                                          //Kills living enemies
-              }
+              enemy[i].isAlive = false;                                                            //Kills living enemies
             }
-            
-      if (player.isShooting) {
-        dbqueries.dbInsert();
-        valuesLoaded = false;
-        gameOver = false;
-        startGame = false;
-        valuesLoaded = false;
-        titel.StartGame = true;
-        heartNumber = 3;
-        scoreObj.score = 0;
-        globalBossTimer = 11500;
-        for (int i = 0; i < ENEMY_NUMBER; i++) {                                                 //Cycles through all enemy slots once
-          if (enemy[i].isAlive == true) {                                                        //Checks if there are living enemies
-            enemy[i].isAlive = false;                                                            //Kills living enemies
-
           }
         }
       }
+      titel.bright();
+      //image(boss, width/2, 121, 1000, 242);
+      if (player.testBoolean) {
+      }
+      if (player.stop) {
+        stop();
+      }
     }
-  }
-  titel.bright();
-  //image(boss, width/2, 121, 1000, 242);
-  if (player.testBoolean) {
-  }
-  if (player.stop) {
-    stop();
   }
 }

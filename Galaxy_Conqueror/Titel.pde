@@ -300,6 +300,8 @@ class Titel {
       fill(255);
       textSize(textSizebut);
       text("Back", qButtonX, qButtonY + 20);
+      
+      highscore.GetHighScore();
 
       //Cursor
       if (CursorHigh) {
