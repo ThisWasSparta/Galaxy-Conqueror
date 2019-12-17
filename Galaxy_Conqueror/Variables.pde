@@ -60,9 +60,9 @@ class Variable {
         weapon[i].rV = weapon[i].rocketVelocityFactor * width;
       }
       for (int i = 0; i < ENEMY_BULLET_NUMBER; i++) {
-        enemyBullets[i].bW = weapon[i].DEFAULT_BULLET_WIDTH * wScale * 1.2;
-        enemyBullets[i].bH = weapon[i].DEFAULT_BULLET_HEIGHT * hScale * 1.2;
-        enemyBullets[i].bV = weapon[i].bulletVelocityFactor * width;
+        enemyBullets[i].bW = weapon[i].DEFAULT_BULLET_WIDTH * wScale * 1.5;
+        enemyBullets[i].bH = weapon[i].DEFAULT_BULLET_HEIGHT * hScale * 1.5;
+        enemyBullets[i].bV = enemyBullets[0].enemyBulletVelocityFactor * width;
         enemyBullets[i].enemyBullet = loadImage("EnemyBullet.png");
       }
 

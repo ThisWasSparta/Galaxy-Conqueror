@@ -58,7 +58,7 @@ class EnemyShootParticle {
   void drawParticles() {
     for (int i = 0; i < ENEMY_SHOOT_PARTICLE_NUMBER; i++) {
       fill(enemyShootParticle[i].particleColorR, enemyShootParticle[i].particleColorG, enemyShootParticle[i].particleColorB, enemyShootParticle[i].opacity);
-      square(enemyShootParticle[i].x, enemyShootParticle[i].y, enemyShootParticle[i].particleSize);
+      square(enemyShootParticle[i].x + visuals.maxMagnitudeX, enemyShootParticle[i].y + visuals.maxMagnitudeY, enemyShootParticle[i].particleSize);
     }
   }
 }

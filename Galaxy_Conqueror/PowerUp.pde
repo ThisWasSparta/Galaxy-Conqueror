@@ -2,7 +2,7 @@
  All values of times are given in milliseconds
  1 000 milliseconds is 1 second
  */
-int lastpower; //time in milliseconds since last powerup
+int lastpower;                   //time in milliseconds since last powerup
 
 class PowerUp {
   float pW;                      //Powerup width
@@ -166,13 +166,13 @@ void drawPower(int counter) {                                                   
   if (power[counter].isPicked == true) {
     fill(255, 0, 0);
     if (power[counter].typePowerup == 1) {
-      image(doublepointsPowerup, power[counter].pX, power[counter].pY, power[counter].pW, power[counter].pH);
+      image(doublepointsPowerup, power[counter].pX + visuals.maxMagnitudeX, power[counter].pY + visuals.maxMagnitudeY, power[counter].pW, power[counter].pH);
     }
     if (power[counter].typePowerup == 2) {
-      image(speedPowerup, power[counter].pX, power[counter].pY, power[counter].pW, power[counter].pH);
+      image(speedPowerup, power[counter].pX + visuals.maxMagnitudeX, power[counter].pY + visuals.maxMagnitudeY, power[counter].pW, power[counter].pH);
     }
     if (power[counter].typePowerup == 3) {
-      image(screenwipePowerup, power[counter].pX, power[counter].pY, power[counter].pW, power[counter].pH);
+      image(screenwipePowerup, power[counter].pX + visuals.maxMagnitudeX, power[counter].pY + visuals.maxMagnitudeY, power[counter].pW, power[counter].pH);
     }
   }
 }
@@ -184,7 +184,7 @@ void initializePowerupArrays() {
     power[i].pW = 0;
     power[i].pH = 0;
     power[i].pV = 0;
-    power[i].pX = 0-10;
+    power[i].pX = 0 - 10;
     power[i].pY = 0;
   }
 }
