@@ -184,7 +184,7 @@ void initializePowerupArrays() {
     power[i].pW = 0;
     power[i].pH = 0;
     power[i].pV = 0;
-    power[i].pX = 0-10;
+    power[i].pX = 0 - 10;
     power[i].pY = 0;
   }
 }
