@@ -4,12 +4,13 @@ class DBQueries {
   boolean insertQuerieDone = false;
   boolean getHighScores = false;
   int highScoreSize = 10;
-  String []highScores = new String[highScoreSize];
-  String []names = new String[highScoreSize];
+  String highScores[] = new String[highScoreSize];
+  String names[] = new String[highScoreSize];
   String name;
   String score;
   int i;
-
+  float textStartPosition = 300;
+  float Distance = 50;
 
   DBQueries() {
   }
@@ -23,17 +24,31 @@ class DBQueries {
   }
 
   void dbSelectHighScores() {
-    if (dbconnect.sql.connect()) {
-      
-      dbconnect.sql.query("SELECT Players.Playername, Highscores.Score FROM Players INNER JOIN Highscores ON Players.Playername = Highscores.Playername ORDER BY Score DESC LIMIT 10");
-      while (dbconnect.sql.next()) {
+    if (getHighScores == false) {
+      if (dbconnect.sql.connect()) {
+        dbconnect.sql.query("SELECT Players.Playername, Highscores.Score FROM Players INNER JOIN Highscores ON Players.Playername = Highscores.Playername ORDER BY Score DESC LIMIT 10");
         i = 0;
-        names[i] = dbconnect.sql.getString("Playername");
-        highScores[i] = dbconnect.sql.getString("Score");
-        println(names[i] + " - " + highScores[i]);
-        i++;
-        dbqueries.getHighScores = true;
+        while (dbconnect.sql.next()) {
+          names[i] = dbconnect.sql.getString("Playername");
+          highScores[i] = dbconnect.sql.getString("Score");
+          i++;
+        }
       }
+      getHighScores = true;
     }
+  }
+}
+
+
+void GetHighScore() {
+  dbqueries.dbSelectHighScores();
+  for (int i = 0; i < 10; i ++) {
+    if (dbqueries.names[i] == null) {
+      dbqueries.names[i] = "--";
+    }
+    if (dbqueries.highScores[i] == null) {
+      dbqueries.highScores[i] = "--";
+    }
+    text(dbqueries.names[i] + " " + dbqueries.highScores[i], width/2, dbqueries.textStartPosition+i*dbqueries.Distance);
   }
 }

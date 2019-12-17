@@ -127,7 +127,8 @@ class Titel {
   void startScreen() {
     maintheme.play();
     if (StartGame) {
-
+      
+      dbqueries.getHighScores = false;
       playergatshoot.mute();
       //Titel
       fill(255);
@@ -302,8 +303,8 @@ class Titel {
       fill(255);
       textSize(textSizebut);
       text("Back", qButtonX, qButtonY + 20);
-      
-      highscore.GetHighScore();
+
+      highscore.DisplayHighScore();
 
       //Cursor
       if (CursorHigh) {
