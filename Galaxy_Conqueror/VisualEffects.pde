@@ -6,6 +6,8 @@ class VisualEffects {
   float maxMagnitudeY;
   float inc = TWO_PI/25;
   float screenShakeFactor = 0.0;
+  
+  boolean screenShakeTest;
 
   void screenShake(int screenShakeMin, int screenShakeMax, boolean screenShakeStart) {
     if (screenShakeStart && millis() - 100  > screenShakeTimer) {
@@ -29,10 +31,16 @@ class VisualEffects {
   }
 
   void updateScreenShake() {
+    if (screenShakeTest) {
+      visuals.screenShake(10, 50, true);
+    }
     visuals.magnitudeX = sin(visuals.screenShakeFactor) * visuals.maxMagnitudeX;
     visuals.magnitudeY = sin(visuals.screenShakeFactor) * visuals.maxMagnitudeY;
-    visuals.maxMagnitudeX *= 0.99;
-    visuals.maxMagnitudeY *= 0.99;
+    visuals.maxMagnitudeX *= 0.95;
+    visuals.maxMagnitudeY *= 0.95;
     visuals.screenShakeFactor += visuals.inc;
+    println(sin(visuals.screenShakeFactor));
+    println(visuals.maxMagnitudeX);
+    println(magnitudeX);
   }
 }

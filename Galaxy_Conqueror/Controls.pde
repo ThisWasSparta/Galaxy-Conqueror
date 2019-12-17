@@ -29,7 +29,7 @@ class Controls {
       return player.suicide = b;
 
     case 'i':
-      return nameScreen = b;
+      return visuals.screenShakeTest = b;
 
     default:
       return b;
