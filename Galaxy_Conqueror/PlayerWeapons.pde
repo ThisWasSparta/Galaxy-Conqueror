@@ -35,8 +35,8 @@ class PlayerWeapons {
   final float DEFAULT_LASER_WIDTH = 10 * sizeFactor;
   final float DEFAULT_LASER_HEIGHT = 60 * sizeFactor;
 
-  final float DEFAULT_ROCKET_WIDTH = 10 * sizeFactor;
-  final float DEFAULT_ROCKET_HEIGHT = 36 * sizeFactor;  
+  final float DEFAULT_ROCKET_WIDTH = 20 * sizeFactor;
+  final float DEFAULT_ROCKET_HEIGHT = 72 * sizeFactor;  
 
   PImage lightBullet;                   //sprite for the regular bullet of weapon1
   PImage laser;
@@ -55,12 +55,12 @@ class PlayerWeapons {
   int playerLaserTurn = 0;
 
   final int PLAYER_ROCKET_PER_SALVO = 2;
-  final int PLAYER_ROCKET_FIRERATE = 800;
+  final int PLAYER_ROCKET_FIRERATE = 700;
   final int PLAYER_ROCKET_DAMAGE = 55;
   int lowestEnemy;
   int enemyTarget;
   float shortestDistance = 100000;
-  float rocketVelocityFactor = 0.012;
+  float rocketVelocityFactor = 0.01;
   float distanceX;
   float distanceY;
   float distanceXandY;

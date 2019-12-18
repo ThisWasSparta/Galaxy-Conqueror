@@ -18,7 +18,7 @@ import de.bezier.data.sql.mapper.*;
 
 
 final int PLAYER_BULLET_NUMBER = 100;
-final int ENEMY_NUMBER = 20;
+final int ENEMY_NUMBER = 40;
 final int ENEMY_EXPLOSION_PARTICLE_NUMBER = 500;
 final int ENEMY_BULLET_NUMBER = 20;
 final int ENEMY_MOVE_PARTICLE_NUMBER = 200;
@@ -64,6 +64,7 @@ Meteoriet meteoriet;
 Sounds sounds;
 Interface userInterface;
 VisualEffects visuals;
+RandomEvents events;
 
 Minim minim;
 AudioPlayer bgm;
@@ -121,6 +122,7 @@ void setup() {
   highscore = new HighScore();
   userInterface = new Interface();
   visuals = new VisualEffects();
+  events = new RandomEvents();
 
   textParticles = new Text_Particles();
 
@@ -179,6 +181,8 @@ void draw() {
   if (startGame) {                                //if the player has pressed start on the menu, the game will start
     visuals.screenShake(0, 0, false);
     visuals.updateScreenShake();
+    events.selectEvent();
+    events.executeEvent();
     obstakel.drawObstakel();
     for (int i = 0; i < ENEMY_NUMBER; i++) {      //updates, spawns and draws the enemies
       enemyUpdatePosition(i);                     //made by Noah Verburg

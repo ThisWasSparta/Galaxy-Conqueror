@@ -70,8 +70,54 @@ class Enemies {
   boolean shieldAlive;
 }
 
+void scoutSwarmEventSpawner() {    //this function was written by Noah Verburg
+  if (startGame) {
+    createSwarmScouts();
+  }
+}
+
+void createSwarmScouts() {
+  int scoutCheck;
+  int swarmType = int(random(1,3));
+  
+  for (int i = 0; i < 18; i++) {
+    scoutCheck = enemyRecycle();
+    if (scoutCheck != -1) { //check to see if the returned element of the array wasn't either in use or something went wrong
+      enemy[scoutCheck].enemyType = 1;
+      enemy[scoutCheck].eSize = 40;
+      enemy[scoutCheck].eW = enemy[scoutCheck].defaultScoutWidth * wScale;
+      enemy[scoutCheck].eH = enemy[scoutCheck].defaultScoutHeight * hScale;
+      enemy[scoutCheck].eV = enemy[scoutCheck].scoutEnemyVelocityFactor * width;
+      enemy[scoutCheck].eHP = 30;
+      enemy[scoutCheck].score = 50;
+      enemy[scoutCheck].penalty = defaultPenalty;
+      enemy[scoutCheck].isAlive = true;
+      switch (swarmType) {
+        case 1:
+          if (i < 9) {
+            enemy[scoutCheck].eX = width * 0.275 + 0.05 * width * i;
+            enemy[scoutCheck].eY = -enemy[scoutCheck].eH * (i+1);
+          }
+          if (i >= 9) {
+            enemy[scoutCheck].eX = width * 0.725 - 0.05 * width * (i - 9);
+            enemy[scoutCheck].eY = -enemy[scoutCheck].eH * (i+1);
+          }
+        case 2:
+          if (i < 9) {
+            enemy[scoutCheck].eX = width * 0.725 - 0.05 * width * i;
+            enemy[scoutCheck].eY = -enemy[scoutCheck].eH * (i+1);
+          }
+          if (i >= 9) {
+            enemy[scoutCheck].eX = width * 0.275 + 0.05 * width * (i - 9);
+            enemy[scoutCheck].eY = -enemy[scoutCheck].eH * (i+1);
+          }
+      }
+    }
+  }
+}
+
 void enemySpawner() { //function that periodically causes enemies to appear on screen
-  if (startGame && boss.bossAlive == false) {
+  if (startGame && !boss.bossAlive && !events.eventActive) {
     if (startTime <= timer - 10000) {// wait 10 seconds until enemies spawn
       if (lastSpawn <= timer - random(minTime, maxTime)) {
         lastSpawn = timer;

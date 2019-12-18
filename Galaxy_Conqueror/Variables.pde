@@ -1,9 +1,7 @@
+//this class was mainly written by Noah Verburg
 class Variable {
 
   void loadGameValues() {   
-
-
-    //This function was written by Noah Verburg
     if (!valuesLoaded) {
       player.pX = width/2;                        //here are all the variables that
       player.pY = height - height / 5;            //can't be defined in setup() or are
@@ -17,6 +15,7 @@ class Variable {
       tY= height/2;
       player.weaponWheelX = 0.95 * width;
       player.weaponWheelY = 0.1 * height;
+      events.randomTimeBetweenEvents = int(random(events.timeBetweenEventsMin, events.timeBetweenEventsMax));
       meteoriet.meteorite = loadImage("Meteorite 1.png");
       for (int i = 0; i < ENEMY_NUMBER; i++) {
         enemy[i].orbW = enemy[i].defaultGoliathOrbSize * wScale;

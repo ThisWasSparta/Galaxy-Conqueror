@@ -1,3 +1,4 @@
+//this class was written by Noah Verburg
 class VisualEffects {
   int screenShakeTimer = 0;
   float magnitudeX;
