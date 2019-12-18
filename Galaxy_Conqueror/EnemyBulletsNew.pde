@@ -42,7 +42,7 @@ class EnemyBullets {
         && enemyBullets[counter].isOnScreen == true) {
         println("ouchie");
         player.damageFlashTint = 200;
-        visuals.screenShake(5, 30, true);
+        visuals.screenShake(8, 40, true);
         enemyBullets[counter].bY = height * -2;
         enemyBullets[counter].bX = -1 * width;
         enemyBullets[counter].isOnScreen = false;

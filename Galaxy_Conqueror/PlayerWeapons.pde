@@ -42,8 +42,8 @@ class PlayerWeapons {
   PImage laser;
   PImage rocket;
 
-  final int PLAYER_BULLET_PER_SALVO = 2;
-  final int PLAYER_BULLET_FIRERATE = 100;
+  final int PLAYER_BULLET_PER_SALVO = 1;
+  final int PLAYER_BULLET_FIRERATE = 50;
   final int PLAYER_BULLET_DAMAGE = 10;
   int playerProjectileTurn = 0;
   int reloadTime = 0;                   //time it takes for the ship to be able to shoot again
@@ -126,6 +126,7 @@ class PlayerWeapons {
               scoreObj.addScore(enemy[t].score * scoreMultiplier);
               particle[0].particlesPerTurn = 20;
               particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
+              visuals.screenShake(5, 15, true);
             }
           }
           if (enemy[t].enemyType == 2 && weapon[i].bX < enemy[t].eX + enemy[t].courserHitboxX && weapon[i].bX > enemy[t].eX - enemy[t].courserHitboxX && weapon[i].bY < enemy[t].eY + enemy[t].courserHitboxY && weapon[i].bY > enemy[t].eY - enemy[t].courserHitboxY && enemy[t].isAlive == true) {
@@ -138,6 +139,7 @@ class PlayerWeapons {
               scoreObj.addScore(enemy[t].score * scoreMultiplier);
               particle[0].particlesPerTurn = 40;
               particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
+              visuals.screenShake(10, 25, true);
             }
           }
           if (enemy[t].shieldAlive) {
@@ -160,6 +162,7 @@ class PlayerWeapons {
                 goliathOnScreen--;
                 particle[0].particlesPerTurn = 60;
                 particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
+                visuals.screenShake(15, 35, true);
               }
             }
           }
@@ -257,6 +260,7 @@ class PlayerWeapons {
             scoreObj.addScore(enemy[t].score * scoreMultiplier);
             particle[0].particlesPerTurn = 20;
             particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
+            visuals.screenShake(5, 15, true);
           }
         }
         if (enemy[t].enemyType == 2 && weapon[i].lX - weapon[i].lW/2 < enemy[t].eX + enemy[t].courserHitboxX && weapon[i].lX + weapon[i].lW/2 > enemy[t].eX - enemy[t].courserHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
@@ -268,6 +272,7 @@ class PlayerWeapons {
             scoreObj.addScore(enemy[t].score * scoreMultiplier);
             particle[0].particlesPerTurn = 40;
             particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
+            visuals.screenShake(10, 25, true);
           }
         } 
         if (enemy[t].enemyType == 3 && weapon[i].lX - weapon[i].lW/2 < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].lX + weapon[i].lW/2 > enemy[t].eX - enemy[t].goliathHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
@@ -279,6 +284,7 @@ class PlayerWeapons {
             scoreObj.addScore(enemy[t].score * scoreMultiplier);
             particle[0].particlesPerTurn = 60;
             particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
+            visuals.screenShake(15, 35, true);
           }
         }
       }
@@ -384,6 +390,7 @@ class PlayerWeapons {
               scoreObj.addScore(enemy[t].score * scoreMultiplier);
               particle[0].particlesPerTurn = 20;
               particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
+              visuals.screenShake(5, 15, true);
             }
           }
           if (enemy[t].enemyType == 2 && weapon[i].rX < enemy[t].eX + enemy[t].courserHitboxX && weapon[i].rX > enemy[t].eX - enemy[t].courserHitboxX && weapon[i].rY < enemy[t].eY + enemy[t].courserHitboxY && weapon[i].rY > enemy[t].eY - enemy[t].courserHitboxY && enemy[t].isAlive == true) {
@@ -396,6 +403,7 @@ class PlayerWeapons {
               scoreObj.addScore(enemy[t].score * scoreMultiplier);
               particle[0].particlesPerTurn = 40;
               particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
+              visuals.screenShake(10, 25, true);
             }
           }
           if (enemy[t].shieldAlive) {
@@ -418,6 +426,7 @@ class PlayerWeapons {
                 goliathOnScreen--;
                 particle[0].particlesPerTurn = 60;
                 particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
+                visuals.screenShake(15, 35, true);
               }
             }
           }
