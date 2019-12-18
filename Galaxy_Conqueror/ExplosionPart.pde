@@ -41,7 +41,7 @@ class ExplosionPart {
 
   void drawParticles(int counter) {
     fill(255, particle[counter].particleColor, 0, particle[counter].opacity);
-    square(particle[counter].x + visuals.maxMagnitudeX, particle[counter].y + visuals.maxMagnitudeY, particle[counter].particleSize);
+    square(particle[counter].x + visuals.magnitudeX, particle[counter].y + visuals.magnitudeY, particle[counter].particleSize);
   }
 
   void explosion(float X, float Y, int enemyNr) {

@@ -42,6 +42,8 @@ boolean gameOver = false;
 
 boolean nameScreen;
 
+boolean tutorial;
+
 final float sizeFactor = 0.8;
 float wScale;                                     //width scale used to adjust the width of images
 float hScale;                                     //height scale used to adjust the height of images
@@ -169,8 +171,13 @@ void draw() {
   //frameRateDisplay();
   variables.loadGameValues();
   timer = millis();
-
+  
+  if (player.stop) {
+    stop();
+  }
+  
   if (startGame) {                                //if the player has pressed start on the menu, the game will start
+    visuals.screenShake(0, 0, false);
     visuals.updateScreenShake();
     obstakel.drawObstakel();
     for (int i = 0; i < ENEMY_NUMBER; i++) {      //updates, spawns and draws the enemies
@@ -276,9 +283,6 @@ void draw() {
       titel.bright();
       //image(boss, width/2, 121, 1000, 242);
       if (player.testBoolean) {
-      }
-      if (player.stop) {
-        stop();
       }
     }
   }

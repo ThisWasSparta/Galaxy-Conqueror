@@ -47,6 +47,6 @@ class Meteoriet {
     rect(hitBoxX, hitBoxY, hitBoxW, hitBoxH);
     //fill(131,69,46);
     //ellipse(x, y, size, size);
-    image(meteoriet.meteorite, x + visuals.maxMagnitudeX, y + visuals.maxMagnitudeY, 62, 48);
+    image(meteoriet.meteorite, x + visuals.magnitudeX, y + visuals.magnitudeY, 62, 48);
   }
 }
