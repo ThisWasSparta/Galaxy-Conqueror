@@ -14,7 +14,8 @@ class Score {
     }
     fill (0);
     rect(tX, tY/0.5, SCORE_SIZE, SCORE_SIZE);
-    int currentScore1;
+    
+  /*  int currentScore1;
     int currentScore2;
     int countedScore = 0;
     currentScore1 = 0;
@@ -22,13 +23,14 @@ class Score {
     if (currentScore1 > 0) {
       currentScore1 = countedScore;
     }
-    countScore(currentScore1, currentScore2, countedScore);
+    countScore(currentScore1, currentScore2, countedScore); */
   }
+  
   //Method countScore is meant to display the current score
-  void countScore (int currentScore1, int currentScore2, int countedScore) {
+  void countScore (/*int currentScore1, int currentScore2, int countedScore*/) {
 
-    countedScore = currentScore1;
-    countedScore = countedScore + currentScore2;
+   /* countedScore = currentScore1;
+    countedScore = countedScore + currentScore2; */
 
 
     //Score text that displayes the score the player got and what the highscore is

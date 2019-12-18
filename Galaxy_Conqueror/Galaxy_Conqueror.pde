@@ -196,7 +196,7 @@ void draw() {
       enemyBullets[i].enemyBulletSpawner();
     }
 
-    scoreObj.countScore(0, 0, 0); //made by Dylan Kleton
+    scoreObj.countScore(/*0, 0, 0*/); //made by Dylan Kleton
 
     userInterface.drawInterface();
 
