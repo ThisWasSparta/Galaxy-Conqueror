@@ -617,7 +617,7 @@ class Titel {
     }
   }
   void bright() {
-    float bright = dist(bBX+bBW/2, bBY, bSX, bSY)/5;
+    float bright = dist(bBX+bBW/2, bBY, bSX, bSY)/4.2;
     fill(0, 0, 0, bright);
     rectMode(CENTER);
     rect(width/2, height/2, width, height);

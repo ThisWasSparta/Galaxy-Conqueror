@@ -286,10 +286,11 @@ void draw() {
           }
         }
       }
-      titel.bright();
+      //titel.bright();
       //image(boss, width/2, 121, 1000, 242);
       if (player.testBoolean) {
       }
     }
   }
+  titel.bright();
 }
