@@ -127,7 +127,7 @@ class Titel {
   void startScreen() {
     maintheme.play();
     if (StartGame) {
-      
+
       dbqueries.getHighScores = false;
       playergatshoot.mute();
       //Titel
@@ -293,18 +293,28 @@ class Titel {
       textSize(textSizebut);
       textAlign(CENTER);
       text("Highscores", width/2, 160);
+      highscore.DisplayHighScore();
+
 
       //Back button
       rectMode(CENTER);
       fill(255);
-      rect(qButtonX, qButtonY, bButtonW, bButtonH);
+      rect(qButtonX+bButtonW/4+20, qButtonY, bButtonW/2+5, bButtonH);
       fill(0);
-      rect(qButtonX, qButtonY, bButtonWinn, bButtonHinn);
+      rect(qButtonX+bButtonW/4+20, qButtonY, bButtonWinn/2, bButtonHinn);
       fill(255);
-      textSize(textSizebut);
-      text("Back", qButtonX, qButtonY + 20);
+      textSize(20);
+      text("Back", qButtonX+bButtonW/4+20, qButtonY + 10);
 
-      highscore.DisplayHighScore();
+      //Back button
+      rectMode(CENTER);
+      fill(255);
+      rect(qButtonX-bButtonW/4-20, qButtonY, bButtonW/2+5, bButtonH);
+      fill(0);
+      rect(qButtonX-bButtonW/4-20, qButtonY, bButtonWinn/2, bButtonHinn);
+      fill(255);
+      textSize(20);
+      text("Achievements", qButtonX-bButtonW/4-20, qButtonY + 10);
 
       //Cursor
       if (CursorHigh) {
