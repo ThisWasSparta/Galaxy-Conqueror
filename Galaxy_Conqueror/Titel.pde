@@ -153,7 +153,7 @@ class Titel {
       fill(255);
       textSize(textSize);
       textAlign(CENTER);
-      text("Galaxy Conquerer", titelX, titelY);
+      text("Galaxy Conqueror", titelX, titelY);
 
       //Start button
       rectMode(CENTER);
