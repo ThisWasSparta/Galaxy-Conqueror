@@ -179,11 +179,7 @@ void draw() {
   if (player.stop) {
     stop();
   }
-  
-  if (!startGame) {
-    events.eventTimer = millis();
-  }
-  
+
   if (startGame) {                                //if the player has pressed start on the menu, the game will start
     visuals.screenShake(0, 0, false);
     visuals.updateScreenShake();

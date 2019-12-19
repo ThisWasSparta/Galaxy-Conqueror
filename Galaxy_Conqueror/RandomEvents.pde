@@ -16,7 +16,7 @@ class RandomEvents {
       eventTimer = millis();
     }
     if (events.randomEventsHappen) {
-      if (millis() - randomTimeBetweenEvents > eventTimer) {
+      if (millis() - randomTimeBetweenEvents > eventTimer * 0.7) {
         eventActive = true;
       }
       if  (millis() - randomTimeBetweenEvents > eventTimer) {
@@ -32,7 +32,7 @@ class RandomEvents {
   void executeEvent() {
     switch (currentEvent) {
     case 0:
-      if (millis() - 4000 > activeEventTimer) {
+      if (millis() - 2000 > activeEventTimer) {
         eventActive = false;
       }
       break;

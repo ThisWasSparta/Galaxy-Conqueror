@@ -35,28 +35,28 @@ class PlayerWeapons {
   final float DEFAULT_LASER_WIDTH = 10 * sizeFactor;
   final float DEFAULT_LASER_HEIGHT = 60 * sizeFactor;
 
-  final float DEFAULT_ROCKET_WIDTH = 18 * sizeFactor;
-  final float DEFAULT_ROCKET_HEIGHT = 64.8 * sizeFactor;  
+  final float DEFAULT_ROCKET_WIDTH = 20 * sizeFactor;
+  final float DEFAULT_ROCKET_HEIGHT = 72 * sizeFactor;  
 
   PImage lightBullet;                   //sprite for the regular bullet of weapon1
   PImage laser;
   PImage rocket;
 
   final int PLAYER_BULLET_PER_SALVO = 1;
-  final int PLAYER_BULLET_FIRERATE = 45;
+  final int PLAYER_BULLET_FIRERATE = 50;
   final int PLAYER_BULLET_DAMAGE = 10;
   int playerProjectileTurn = 0;
   int reloadTime = 0;                   //time it takes for the ship to be able to shoot again
   float bulletVelocityFactor = 0.01;    //factor which is used to get the desired bullet velocity compared to the width of the screen
 
   final int PLAYER_LASER_PER_SALVO = 2;
-  final int PLAYER_LASER_FIRERATE = 1600;
+  final int PLAYER_LASER_FIRERATE = 1400;
   final int PLAYER_LASER_DAMAGE_PER_FRAME = 6;
   int playerLaserTurn = 0;
 
   final int PLAYER_ROCKET_PER_SALVO = 2;
-  final int PLAYER_ROCKET_FIRERATE = 180;
-  final int PLAYER_ROCKET_DAMAGE = 15;
+  final int PLAYER_ROCKET_FIRERATE = 700;
+  final int PLAYER_ROCKET_DAMAGE = 55;
   int lowestEnemy;
   int enemyTarget;
   float shortestDistance = 100000;
@@ -106,7 +106,7 @@ class PlayerWeapons {
         }
         if (weapon[i].bX < boss.bossX + boss.bossW/2 && weapon[i].bX > boss.bossX - boss.bossW/2 && weapon[i].bY < boss.bossY + boss.bossH/2 && weapon[i].bY > boss.bossY - boss.bossH/2 && boss.bossAlive == true) {
           weapon[i].bY -= height;
-          boss.bossHealth -= PLAYER_BULLET_DAMAGE + 5;
+          boss.bossHealth -= PLAYER_BULLET_DAMAGE;
           if (boss.bossHealth <= 0) {
             boss.deathHandler();
           }
@@ -241,7 +241,7 @@ class PlayerWeapons {
       }
       if (weapon[i].lX - weapon[i].lW/2 < boss.bossX + boss.bossX/2 && weapon[i].lX + weapon[i].lW/2 > boss.bossX - boss.bossX/2 && boss.bossAlive && weapon[i].laserIsAlive) {
         weapon[i].bY -= height;
-        boss.bossHealth -= PLAYER_LASER_DAMAGE_PER_FRAME - 2;
+        boss.bossHealth -= 15;
         if (boss.bossHealth <= 0) {
           boss.deathHandler();
         }
@@ -249,7 +249,7 @@ class PlayerWeapons {
       for (int t = 0; t < ENEMY_NUMBER; t++) {
         if (enemy[t].enemyType == 1 && weapon[i].lX - weapon[i].lW/2 < enemy[t].eX + enemy[t].scoutHitboxX && weapon[i].lX + weapon[i].lW/2 > enemy[t].eX - enemy[t].scoutHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
           weapon[i].bY -= height;
-          enemy[t].eHP -= PLAYER_LASER_DAMAGE_PER_FRAME;
+          enemy[t].eHP = enemy[t].eHP - PLAYER_LASER_DAMAGE_PER_FRAME;
           enemy[t].damageFlashTint = 100;
           if (enemy[t].eHP <= 0) {
             enemy[t].isAlive = false;
@@ -370,7 +370,7 @@ class PlayerWeapons {
         }
         if (weapon[i].rX < boss.bossX + boss.bossW/2 && weapon[i].rX > boss.bossX - boss.bossW/2 && weapon[i].rY < boss.bossY + boss.bossH/2 && weapon[i].rY > boss.bossY - boss.bossH/2 && boss.bossAlive == true) {
           weapon[i].rY -= height;
-          boss.bossHealth -= PLAYER_ROCKET_DAMAGE + 10;
+          boss.bossHealth -= PLAYER_ROCKET_DAMAGE;
           if (boss.bossHealth <= 0) {
             boss.deathHandler();
           }
