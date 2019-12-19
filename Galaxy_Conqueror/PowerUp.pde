@@ -144,7 +144,7 @@ void powerUpdate(int counter) {
           power[counter].isPicked = false;                                                       //Allows the slot of the powerup to be used again
           println("Deactivated");
         } else {
-          player.playerVelocityFactor = 0.010;                                                   //Increases speed of the player
+          player.playerVelocityFactor = 0.008;                                                   //Increases speed of the player
           player.pMaxV = player.playerVelocityFactor * width;                                    //Reverts player speed to original value
           println("Powerup activated");
         }
