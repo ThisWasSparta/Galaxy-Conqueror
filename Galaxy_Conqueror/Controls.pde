@@ -1,38 +1,38 @@
 class Controls {
-  boolean setAction(int k, boolean b) {    //this boolean function detects the input of keys, and makes the other booleans true or false accordingly
-    switch (k) {
+  boolean setAction(int keyNumber, boolean completeAction) {    //this boolean function detects the input of keys, and makes the other booleans true or false accordingly
+    switch (keyNumber) {
     case 'w':
-      return player.goUp = b;
+      return player.goUp = completeAction;
 
     case 'a':
-      return player.goLeft = b;
+      return player.goLeft = completeAction;
 
     case 's':
-      return player.goDown = b;
+      return player.goDown = completeAction;
 
     case 'd':
-      return player.goRight = b;
+      return player.goRight = completeAction;
 
     case 'j':
-      return player.isShooting = b;
+      return player.isShooting = completeAction;
 
     case 'l':
-      return player.nextWeapon = b;
+      return player.nextWeapon = completeAction;
 
     case 't':
-      return player.stop = b;
+      return player.stop = completeAction;
 
     case 'k':
-      return player.exitgame = b;
+      return player.exitgame = completeAction;
 
     case 'p':
-      return player.suicide = b;
+      return player.suicide = completeAction;
 
     case 'i':
-      return visuals.screenShakeTest = b;
+      return visuals.screenShakeTest = completeAction;
 
     default:
-      return b;
+      return completeAction;
     }
   }
 }
