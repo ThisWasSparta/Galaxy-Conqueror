@@ -79,6 +79,7 @@ DBConnect dbconnect;
 DBQueries dbqueries;
 GameOver gameover;
 HighScore highscore;
+Achievements achievements;
 
 Text_Particles textParticles;
 
@@ -120,6 +121,7 @@ void setup() {
   letterPicker = new Letterpicker();
   gameover = new GameOver();
   highscore = new HighScore();
+  achievements = new Achievements();
   userInterface = new Interface();
   visuals = new VisualEffects();
   events = new RandomEvents();
