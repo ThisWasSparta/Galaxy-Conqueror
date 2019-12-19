@@ -15,6 +15,7 @@ class NamePicker {
   boolean second = false;
   boolean third = false;
   boolean change = false;
+  int highLightOffset = 100;
 
   NamePicker() {
     letterX2 = width/2;
@@ -35,7 +36,7 @@ class NamePicker {
       }
     }
 
-    if (highLightX > letterX1 && highLightX < letterX3-100) { //boolean to check if you are selecting the second letter
+    if (highLightX > letterX1 && highLightX < letterX3-highLightOffset) { //boolean to check if you are selecting the second letter
       first = false;
       second = true;
       third = false;
@@ -52,8 +53,13 @@ class NamePicker {
       letterpicker.Alphabet1[letterpicker.num1] = letter1;
     }
 
-    if (first) {
 
+    if (resetName){
+      letter1 = "A";
+      letter2 = "A";
+      letter3 = "A";
+    }
+    if (first) {
       ellipse(highLightX, highLightY, 20, 20);
       letterpicker.DrawLetterpicker1();
       letter1 = letterpicker.Alphabet1[letterpicker.num1];

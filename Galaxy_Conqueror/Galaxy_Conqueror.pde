@@ -40,6 +40,8 @@ boolean valuesLoaded = false;
 
 boolean gameOver = false;
 
+boolean resetName = false;
+
 boolean nameScreen;
 
 boolean tutorial;
@@ -279,6 +281,7 @@ void draw() {
           heartNumber = 3;
           scoreObj.score = 0;
           globalBossTimer = 11500;
+          resetName = true;
           for (int i = 0; i < ENEMY_NUMBER; i++) {                                                 //Cycles through all enemy slots once
             if (enemy[i].isAlive == true) {                                                        //Checks if there are living enemies
               enemy[i].isAlive = false;                                                            //Kills living enemies
