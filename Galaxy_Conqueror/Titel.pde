@@ -384,27 +384,28 @@ class Titel {
       playergatshoot.mute();
 
       fill(255);
-      rect(width/2, height/2-100, 1400, 700);
+      rect(width/2, height/2-60, 1500, 850);
       fill(0);
-      rect(width/2, height/2-100, 1390, 690);
+      rect(width/2, height/2-60, 1490, 840);
       fill(255);
       textSize(textSizebut);
       textAlign(CENTER);
-      text("Achievements", width/2, 160);
+      text("Achievements", width/2, 110);
       achievements.DisplayAch();
 
 
       //Back button
       rectMode(CENTER);
       fill(255);
-      rect(qButtonX, qButtonY, bButtonW, bButtonH);
+      rect(qButtonX, qButtonY+100, bButtonW, bButtonH);
       fill(0);
-      rect(qButtonX, qButtonY, bButtonWinn, bButtonHinn);
+      rect(qButtonX, qButtonY+100, bButtonWinn, bButtonHinn);
       fill(255);
       textSize(20);
-      text("Back", qButtonX, qButtonY + 10);
-      rect(lcX, qButtonY, lcW, lcH);
-      rect(rcX, qButtonY, rcW, rcH);
+      textAlign(CENTER);
+      text("Back", qButtonX, qButtonY + 110);
+      rect(lcX, qButtonY+100, lcW, lcH);
+      rect(rcX, qButtonY+100, rcW, rcH);
 
       if (player.nextWeapon) {
         countCursor ++;
