@@ -5,7 +5,7 @@ class DBQueries {
   boolean getHighScores = false;
   boolean getAch = false;
   int highScoreSize = 10;
-  int achievementSize = 13;
+  int achievementSize = 12;
   String highScores[] = new String[highScoreSize];
   String names[] = new String[highScoreSize];
   String killCount[] = new String[highScoreSize];
@@ -18,6 +18,7 @@ class DBQueries {
   int i;
   float textStartPosition = 300;
   float Distance = 50;
+  float DistanceAch = 64;
 
   DBQueries() {
   }
@@ -83,6 +84,8 @@ void GetAch() {
     if (dbqueries.descsAch[i] == null) {
       dbqueries.descsAch[i] = "--";
     }
-    text(dbqueries.namesAch[i] + " " + dbqueries.descsAch[i], width/2, dbqueries.textStartPosition+i*dbqueries.Distance);
+    textSize(25);
+    textAlign(LEFT);
+    text(dbqueries.namesAch[i] + " - " + dbqueries.descsAch[i], width/2-600, dbqueries.textStartPosition-135+i*dbqueries.DistanceAch);
   }
 }

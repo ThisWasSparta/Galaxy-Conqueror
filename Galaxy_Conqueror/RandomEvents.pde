@@ -28,21 +28,21 @@ class RandomEvents {
       }
     }
   }
-  
+
   void executeEvent() {
     switch (currentEvent) {
-      case 0:
+    case 0:
       if (millis() - 2000 > activeEventTimer) {
         eventActive = false;
       }
-        break;
-      case 1:
-        scoutSwarmEventSpawner();
-        currentEvent = 0;
-      case 2:
-        currentEvent = 0;
-      case 3:
-        currentEvent = 0;
+      break;
+    case 1:
+      scoutSwarmEventSpawner();
+      currentEvent = 0;
+    case 2:
+      currentEvent = 0;
+    case 3:
+      currentEvent = 0;
     }
   }
 }

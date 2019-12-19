@@ -19,6 +19,7 @@ class SpaceShip {
 
   final float DEFAULT_PLAYER_WIDTH = 128 * sizeFactor;
   final float DEFAULT_PLAYER_HEIGHT = 118 * sizeFactor;
+  final float playerDefaultVelocityFactor = 0.006;            //Default velocity factor
   float pW;    //player width
   float pH;    //player height
   float pXV = 0;   //player X velocity
@@ -26,7 +27,7 @@ class SpaceShip {
   float pMaxV = 0; //player maximal velocity
   float pX;    //player X-position
   float pY;    //player Y-position
-  float playerVelocityFactor = 0.006;   //factor which is used to get the desired player velocity compared to the width of the screen
+  float playerVelocityFactor = playerDefaultVelocityFactor;   //factor which is used to get the desired player velocity compared to the width of the screen
 
   float weaponWheelX;
   float weaponWheelY;
