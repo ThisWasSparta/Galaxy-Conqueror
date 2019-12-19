@@ -431,10 +431,9 @@ class Titel {
       image(ach8,width/2-650,598,achS,achS);
       image(ach9,width/2-650,662,achS,achS);
       image(ach10,width/2-650,726,achS,achS);
+      //image(ach11,width/2-650,918,30,30);
       image(ach12,width/2-650,790,achS,achS);
       image(ach13,width/2-650,854,achS,achS);
-      //image(ach11,width/2-650,918,30,30);
-
 
       //Back button
       rectMode(CENTER);
@@ -468,7 +467,6 @@ class Titel {
     } else if (SettingGame) {
 
       playergatshoot.mute();
-
 
       float sSx = constrain(sSX, sBX-sBWinn/2, sBX+sBWinn/2);
       float bSx = constrain(bSX, bBX-bBWinn/2, bBX+bBWinn/2);
