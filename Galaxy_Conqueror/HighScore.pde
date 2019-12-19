@@ -1,10 +1,8 @@
 class HighScore {
-  
-
   HighScore() {
   }
 
-  void DisplayHighScore(){
+  void DisplayHighScore() {
     GetHighScore();
   }
 }

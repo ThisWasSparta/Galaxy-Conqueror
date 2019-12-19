@@ -78,8 +78,8 @@ void scoutSwarmEventSpawner() {    //this function was written by Noah Verburg
 
 void createSwarmScouts() {
   int scoutCheck;
-  int swarmType = int(random(1,3));
-  
+  int swarmType = int(random(1, 3));
+
   for (int i = 0; i < 18; i++) {
     scoutCheck = enemyRecycle();
     if (scoutCheck != -1) { //check to see if the returned element of the array wasn't either in use or something went wrong
@@ -93,24 +93,24 @@ void createSwarmScouts() {
       enemy[scoutCheck].penalty = defaultPenalty;
       enemy[scoutCheck].isAlive = true;
       switch (swarmType) {
-        case 1:
-          if (i < 9) {
-            enemy[scoutCheck].eX = width * 0.275 + 0.05 * width * i;
-            enemy[scoutCheck].eY = -enemy[scoutCheck].eH * (i+1);
-          }
-          if (i >= 9) {
-            enemy[scoutCheck].eX = width * 0.725 - 0.05 * width * (i - 9);
-            enemy[scoutCheck].eY = -enemy[scoutCheck].eH * (i+1);
-          }
-        case 2:
-          if (i < 9) {
-            enemy[scoutCheck].eX = width * 0.725 - 0.05 * width * i;
-            enemy[scoutCheck].eY = -enemy[scoutCheck].eH * (i+1);
-          }
-          if (i >= 9) {
-            enemy[scoutCheck].eX = width * 0.275 + 0.05 * width * (i - 9);
-            enemy[scoutCheck].eY = -enemy[scoutCheck].eH * (i+1);
-          }
+      case 1:
+        if (i < 9) {
+          enemy[scoutCheck].eX = width * 0.275 + 0.05 * width * i;
+          enemy[scoutCheck].eY = -enemy[scoutCheck].eH * (i+1);
+        }
+        if (i >= 9) {
+          enemy[scoutCheck].eX = width * 0.725 - 0.05 * width * (i - 9);
+          enemy[scoutCheck].eY = -enemy[scoutCheck].eH * (i+1);
+        }
+      case 2:
+        if (i < 9) {
+          enemy[scoutCheck].eX = width * 0.725 - 0.05 * width * i;
+          enemy[scoutCheck].eY = -enemy[scoutCheck].eH * (i+1);
+        }
+        if (i >= 9) {
+          enemy[scoutCheck].eX = width * 0.275 + 0.05 * width * (i - 9);
+          enemy[scoutCheck].eY = -enemy[scoutCheck].eH * (i+1);
+        }
       }
     }
   }
@@ -238,7 +238,7 @@ void enemyUpdatePosition(int counter) { //function that updates enemy positions 
     if (enemy[counter].eY > height + enemy[counter].eH) {
       enemy[counter].isAlive = false;
       scoreObj.addScore(enemy[counter].penalty);
-      textParticles.drawText(enemy[counter].eX, enemy[counter].eY-200);
+      textParticles.drawText();
       if (enemy[counter].enemyType == 3) {
         goliathOnScreen--;
       }

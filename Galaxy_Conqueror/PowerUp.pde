@@ -23,7 +23,7 @@ class PowerUp {
 void powerupSpawn(int counter) { //function that periodically spawns powerups
   if (startGame) {
     if (startTime <= timer - 20000) {
-      if (lastpower <= timer - random(1000, 5000)) {
+      if (lastpower <= timer - random(5000, 10000)) {
         lastpower = timer;
         createPowerup(powerSelector());
       }
@@ -93,7 +93,7 @@ int powerRecycle() {
 int powerSelector() {                                                          //rolls for powerup
   int firstDice = (int)random(1, 100);                                         //First roll
   if (firstDice >= 1 && firstDice <= 70) {                                     //If first roll is 70 or less, there will be no powerup
-    return 0;
+    return -1;
   }
   if (firstDice >= 71 && firstDice <= 100) {                                   //If the first roll is 71 or higher, there will be new powerup
     int secondDice = (int)random(1, 100);                                      //The second dice roll decides the powerup
@@ -109,7 +109,7 @@ int powerSelector() {                                                          /
       }
     }
   }
-  return 0;
+  return -1;
 }
 
 void powerUpdate(int counter) {
@@ -118,6 +118,7 @@ void powerUpdate(int counter) {
     power[counter].pY = power[counter].pY + power[counter].pV;
     if (power[counter].pY == height + power[counter].pH) {
       power[counter].isPicked = false;
+      resetPowerUp(counter);
     }
     if (power[counter].pX > player.pX - player.pW / 2 && power[counter].pX < player.pX + player.pW / 2 && power[counter].pY > player.pY - player.pH / 2 && power[counter].pY < player.pY + player.pH / 2 && power[counter].isActivated == false) {
       power[counter].isActivated = true;
@@ -130,6 +131,7 @@ void powerUpdate(int counter) {
           scoreMultiplier = 1;                                                                   //Reverts score multiplier
           power[counter].isActivated = false;                                                    //Deactivates powerup
           power[counter].isPicked = false;                                                       //Allows the slot of the powerup to be used again
+          resetPowerUp(counter);
           println("Deactivated");
         } else {
           scoreMultiplier = 2;                                                                   //Changes score multiplier for double points
@@ -138,13 +140,14 @@ void powerUpdate(int counter) {
       }
       if (power[counter].typePowerup == 2) {                                                     //Speed
         if (power[counter].spawnTime < millis() - power[counter].timePowerup) {                  //Check if time since activation has not exceeded given time in milliseconds
-          player.playerVelocityFactor = 0.006;                                                   //Reverts player speed to original value
+          player.playerVelocityFactor = player.playerDefaultVelocityFactor;                      //Reverts player speed to original value
           player.pMaxV = player.playerVelocityFactor * width;                                    //Reverts player speed to original value
           power[counter].isActivated = false;                                                    //Deactivates powerup
           power[counter].isPicked = false;                                                       //Allows the slot of the powerup to be used again
+          resetPowerUp(counter);
           println("Deactivated");
         } else {
-          player.playerVelocityFactor = 0.010;                                                   //Increases speed of the player
+          player.playerVelocityFactor = 0.008;                                                   //Increases speed of the player
           player.pMaxV = player.playerVelocityFactor * width;                                    //Reverts player speed to original value
           println("Powerup activated");
         }
@@ -158,6 +161,7 @@ void powerUpdate(int counter) {
         }
         power[counter].isActivated = false;                                                      //Deactivates power
         power[counter].isPicked = false;                                                         //Allows the slot of the powerup to be used again
+        resetPowerUp(counter);
       }
     }
   }
@@ -177,14 +181,11 @@ void drawPower(int counter) {                                                   
   }
 }
 
-void initializePowerupArrays() {
-  for (int i = 0; i < MAX_POWERUPS; i++) {
-    power[i] = new PowerUp();
-    power[i].isPicked = false;
-    power[i].pW = 0;
-    power[i].pH = 0;
-    power[i].pV = 0;
-    power[i].pX = 0 - 10;
-    power[i].pY = 0;
-  }
+void resetPowerUp(int count) {
+  power[count].typePowerup = 0;
+  power[count].pY = -50;
+  power[count].pX = 0;
+  power[count].pV = 0;
+  power[count].pH = 0;
+  power[count].pW = 0;
 }

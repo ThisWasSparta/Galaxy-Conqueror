@@ -7,7 +7,7 @@ class VisualEffects {
   float maxMagnitudeY;
   float inc = TWO_PI/25;
   float screenShakeFactor = 0.0;
-  
+
   boolean screenShakeTest;
 
   void screenShake(int screenShakeMin, int screenShakeMax, boolean screenShakeStart) {

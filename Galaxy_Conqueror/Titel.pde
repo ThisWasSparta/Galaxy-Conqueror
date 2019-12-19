@@ -96,11 +96,14 @@ class Titel {
 
   boolean StartGame = true;
   boolean HighGame = false;
+  boolean AchGame = false;
   boolean SettingGame = false;
 
   boolean CursorStart = true;
   boolean CursorHigh = false;
   boolean CursorHighBack = false;
+  boolean CursorAch = false;
+  boolean CursorAchBack = false;
   boolean CursorSetting = false;
   boolean CursorQuit = false;
   boolean CursorSound = false;
@@ -115,6 +118,7 @@ class Titel {
 
   float soundDigit;
   float soundBright;
+  int cTimer = 9;
 
 
   //Font
@@ -127,7 +131,7 @@ class Titel {
   void startScreen() {
     maintheme.play();
     if (StartGame) {
-      
+
       dbqueries.getHighScores = false;
       playergatshoot.mute();
       //Titel
@@ -208,23 +212,23 @@ class Titel {
         if (keyPressed) {
           if (player.isShooting) {
             countCursor ++;
-            if (countCursor >= 9) {
+            if (countCursor >= cTimer) {
               countCursor = 0;
               StartGame = false;
               HighGame = true;
-              CursorHighBack = true;
+              CursorAch = true;
             }
           }
           if (player.goDown) {
             countCursor ++;
-            if (countCursor >= 12) {
+            if (countCursor >= cTimer) {
               countCursor = 0;
               CursorHigh = false;
               CursorSetting = true;
             }
           } else if (player.goUp) {
             countCursor ++;
-            if (countCursor >= 12) {
+            if (countCursor >= cTimer) {
               countCursor = 0;
               CursorHigh = false;
               CursorStart = true;
@@ -241,7 +245,7 @@ class Titel {
         if (keyPressed) {
           if (player.isShooting) {
             countCursor ++;
-            if (countCursor >= 9) {
+            if (countCursor >= cTimer) {
               countCursor = 0;
               StartGame = false;
               SettingGame = true;
@@ -250,14 +254,14 @@ class Titel {
           }
           if (player.goDown) {
             countCursor ++;
-            if (countCursor >= 12) {
+            if (countCursor >= cTimer) {
               countCursor = 0;
               CursorSetting = false;
               CursorQuit = true;
             }
           } else if (player.goUp) {
             countCursor ++;
-            if (countCursor >= 12) {
+            if (countCursor >= cTimer) {
               countCursor = 0;
               CursorSetting = false;
               CursorHigh = true;
@@ -293,6 +297,102 @@ class Titel {
       textSize(textSizebut);
       textAlign(CENTER);
       text("Highscores", width/2, 160);
+      highscore.DisplayHighScore();
+
+
+      //Back button
+      rectMode(CENTER);
+      fill(255);
+      rect(qButtonX+bButtonW/4+20, qButtonY, bButtonW/2+5, bButtonH);
+      fill(0);
+      rect(qButtonX+bButtonW/4+20, qButtonY, bButtonWinn/2, bButtonHinn);
+      fill(255);
+      textSize(20);
+      text("Back", qButtonX+bButtonW/4+20, qButtonY + 10);
+
+      //Achievement button
+      rectMode(CENTER);
+      fill(255);
+      rect(qButtonX-bButtonW/4-20, qButtonY, bButtonW/2+5, bButtonH);
+      fill(0);
+      rect(qButtonX-bButtonW/4-20, qButtonY, bButtonWinn/2, bButtonHinn);
+      fill(255);
+      textSize(20);
+      text("Achievements", qButtonX-bButtonW/4-20, qButtonY + 10);
+
+      //Cursor
+      if (CursorAch) {
+        rectMode(CENTER);
+        rect(qButtonX-bButtonW/4-20, qButtonY+80, 200, 20);
+        if (player.nextWeapon) {
+          countCursor ++;
+          if (countCursor >= cTimer) {
+            countCursor = 0;
+            HighGame = false;
+            StartGame = true;
+          }
+        }
+        if (player.isShooting) {
+          countCursor ++;
+          if (countCursor >= cTimer) {
+            HighGame = false;
+            AchGame = true;
+            countCursor = 0;
+          }
+        }
+        if (player.goRight) {
+          countCursor++;
+          if (countCursor > cTimer) {
+            countCursor = 0;
+            CursorAch = false;
+            CursorHighBack = true;
+          }
+        }
+      }
+      if (CursorHighBack) {
+        rectMode(CENTER);
+        rect(qButtonX+bButtonW/4+20, qButtonY+80, 200, 20);
+        if (player.nextWeapon) {
+          countCursor ++;
+          if (countCursor >= cTimer) {
+            countCursor = 0;
+            HighGame = false;
+            StartGame = true;
+            CursorHighBack = false;
+          }
+        }
+        if (player.isShooting) {
+          countCursor ++;
+          if (countCursor >= cTimer) {
+            countCursor = 0;
+            HighGame = false;
+            StartGame = true;
+            CursorHighBack = false;
+          }
+        }
+        if (player.goLeft) {
+          countCursor++;
+          if (countCursor > cTimer) {
+            countCursor = 0;
+            CursorAch = true;
+            CursorHighBack = false;
+          }
+        }
+      }
+    } else if (AchGame) {
+
+      playergatshoot.mute();
+
+      fill(255);
+      rect(width/2, height/2-100, 1400, 700);
+      fill(0);
+      rect(width/2, height/2-100, 1390, 690);
+      fill(255);
+      textSize(textSizebut);
+      textAlign(CENTER);
+      text("Achievements", width/2, 160);
+      achievements.DisplayAch();
+
 
       //Back button
       rectMode(CENTER);
@@ -301,30 +401,25 @@ class Titel {
       fill(0);
       rect(qButtonX, qButtonY, bButtonWinn, bButtonHinn);
       fill(255);
-      textSize(textSizebut);
-      text("Back", qButtonX, qButtonY + 20);
+      textSize(20);
+      text("Back", qButtonX, qButtonY + 10);
+      rect(lcX, qButtonY, lcW, lcH);
+      rect(rcX, qButtonY, rcW, rcH);
 
-      highscore.DisplayHighScore();
-
-      //Cursor
-      if (CursorHigh) {
-        rectMode(CENTER);
-        rect(lcX, qButtonY, lcW, lcH);
-        rect(rcX, qButtonY, rcW, rcH);
-        textSize(20);
-        textAlign(CENTER);
-        text("PRESS Y", lcX - width * 0.1, qButtonY);
-        if (player.nextWeapon) {
-          HighGame = false;
-          StartGame = true;
+      if (player.nextWeapon) {
+        countCursor ++;
+        if (countCursor >= cTimer) {
+          countCursor = 0;
+          AchGame = false;
+          HighGame = true;
         }
-        if (player.isShooting) {
-          countCursor ++;
-          if (countCursor >= 12) {
-            HighGame = false;
-            StartGame = true;
-            countCursor = 0;
-          }
+      }
+      if (player.isShooting) {
+        countCursor ++;
+        if (countCursor >= cTimer) {
+          countCursor = 0;
+          HighGame = true;
+          AchGame = false;
         }
       }
     } else if (SettingGame) {
@@ -405,8 +500,12 @@ class Titel {
         rect(sBX + sBW/2 + 70, sBY, rcW, rcH);    
         if (keyPressed) {
           if (player.nextWeapon) {
-            SettingGame = false;
-            StartGame = true;
+            countCursor ++;
+            if (countCursor >= cTimer) {
+              countCursor = 0;
+              SettingGame = false;
+              StartGame = true;
+            }
           }
           if (player.goLeft) {
             sSX -= 10;
@@ -436,7 +535,7 @@ class Titel {
           }
           if (player.goDown) {
             countCursor ++;
-            if (countCursor >= 12) {
+            if (countCursor >= cTimer) {
               countCursor = 0;
               CursorBright = false;
               CursorBack = true;

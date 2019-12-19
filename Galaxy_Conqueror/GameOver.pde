@@ -21,7 +21,7 @@ class GameOver {
       gameOverTimer = millis();
     }
 
-    scoreObj.countScore(0, 0, 0);
+    scoreObj.countScore(/*0, 0, 0*/);
   }
 
   void GameOverTakeName() {
