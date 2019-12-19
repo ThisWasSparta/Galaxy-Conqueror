@@ -6,6 +6,5 @@ class Text_Particles { //This class is about the score's text display when an en
     fill(255, 0, 0);
     textSize(65);
     text("-100", tX + visuals.magnitudeX+100, tY / 0.5 + visuals.magnitudeY -50);
-    
   }
 }
