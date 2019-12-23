@@ -54,7 +54,7 @@ class NamePicker {
     }
 
 
-    if (resetName) {
+    if (resetName){
       letter1 = "A";
       letter2 = "A";
       letter3 = "A";

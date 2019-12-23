@@ -39,7 +39,7 @@ class DBQueries {
         while (dbconnect.sql.next()) {
           names[i] = dbconnect.sql.getString("Playername");
           highScores[i] = dbconnect.sql.getString("Score");
-
+          
           i++;
         }
       }
