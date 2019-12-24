@@ -10,8 +10,6 @@ import ddf.minim.ugens.*;
 import de.bezier.data.sql.*;
 import de.bezier.data.sql.mapper.*;
 
-
-
 /* This code is written by group 3 of IG-101 FYS project. It is a game called
  Space Conqueror, and is similar to space invaders and galaga. Where possible it is shown which
  student made the code.*/
@@ -42,9 +40,9 @@ boolean gameOver = false;
 
 boolean resetName = false;
 
-boolean nameScreen;
+boolean tutorial = false;
 
-boolean tutorial;
+boolean nameScreen;
 
 final float sizeFactor = 0.8;
 float wScale;                                     //width scale used to adjust the width of images
@@ -188,39 +186,40 @@ void draw() {
     events.selectEvent();
     events.executeEvent();
     obstakel.drawObstakel();
-    for (int i = 0; i < ENEMY_NUMBER; i++) {      //updates, spawns and draws the enemies
-      enemyUpdatePosition(i);                     //made by Noah Verburg
-      enemySpawner();
-      drawEnemies(i);
-    }
+    if (tutorial) {
+      for (int i = 0; i < ENEMY_NUMBER; i++) {      //updates, spawns and draws the enemies
+        enemyUpdatePosition(i);                     //made by Noah Verburg
+        enemySpawner();
+        drawEnemies(i);
+      }
 
-    for (int i = 0; i < ENEMY_BULLET_NUMBER; i++) {      //updates, spawns and draws the bullets
-      enemyBullets[i].enemyBulletUpdatePosition(i);
-      enemyBullets[i].drawEnemyBullet(i);
-      enemyBullets[i].enemyBulletSpawner();
+      for (int i = 0; i < ENEMY_BULLET_NUMBER; i++) {      //updates, spawns and draws the bullets
+        enemyBullets[i].enemyBulletUpdatePosition(i);
+        enemyBullets[i].drawEnemyBullet(i);
+        enemyBullets[i].enemyBulletSpawner();
+      }
     }
-
     scoreObj.countScore(/*0, 0, 0*/); //made by Dylan Kleton
 
     userInterface.drawInterface();
 
     player.playerUpdate();                 //updates the position of the player
     player.player();                       //draws the player
+    if (tutorial) {
+      if (globalBossTimer <= 0 && boss.currentState == -1) {
+        boss.bossSpawn();
+      }
 
-    if (globalBossTimer <= 0 && boss.currentState == -1) {
-      boss.bossSpawn();
+      globalBossTimer--;
+      //text(globalBossTimer, 120, 60);
+      //text(boss.currentState, 120, 160);
+
+      if (boss.currentState != -1) {
+        boss.bossUpdatePosition();
+        boss.bossUpdateBehaviour();
+        boss.bossDraw();
+      }
     }
-
-    globalBossTimer--;
-    //text(globalBossTimer, 120, 60);
-    //text(boss.currentState, 120, 160);
-
-    if (boss.currentState != -1) {
-      boss.bossUpdatePosition();
-      boss.bossUpdateBehaviour();
-      boss.bossDraw();
-    }
-
     if (player.weapon == 1) {
       weapon[0].spawnPlayerBullets();        //spawns player bullets using a for-loop built into the function
     }
@@ -249,10 +248,12 @@ void draw() {
         particle[i].drawParticles(i);
       }
     }
-    for (int i = 0; i < MAX_POWERUPS; i++) {
-      powerUpdate(i);
-      powerupSpawn(i);
-      drawPower(i);
+    if (tutorial) {
+      for (int i = 0; i < MAX_POWERUPS; i++) {
+        powerUpdate(i);
+        powerupSpawn(i);
+        drawPower(i);
+      }
     }
     enemyShootParticle[0].updateParticles();
     enemyShootParticle[0].drawParticles();
@@ -278,6 +279,7 @@ void draw() {
           startGame = false;
           valuesLoaded = false;
           titel.StartGame = true;
+          tutorial = false;
           heartNumber = 3;
           scoreObj.score = 0;
           globalBossTimer = 11500;

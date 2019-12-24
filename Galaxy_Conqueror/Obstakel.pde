@@ -17,9 +17,12 @@ class Obstakel {
 
   void placeMeteorite() {
     //op een random moment (voor zover je dit random kunt noemen) wordt er een meteoriet toegevoegd aan de arraylist
-    if (millis() > time+random(5000, 15000)) {
-      meteorieten.add(new Meteoriet());
+    if (tutorial) {
       time = millis();
+      if (millis() > time+random(5000, 15000)) {
+        meteorieten.add(new Meteoriet());
+        time = millis();
+      }
     }
 
     //hier wordt door de array geloopt om de meteoriet op het scherm te laten verschijnen

@@ -30,7 +30,8 @@ class Controls {
 
     case 'i':
       return visuals.screenShakeTest = completeAction;
-
+    case 'y':
+      return tutorial = true;
     default:
       return completeAction;
     }

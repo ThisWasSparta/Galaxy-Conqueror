@@ -22,10 +22,12 @@ class PowerUp {
 }
 void powerupSpawn(int counter) { //function that periodically spawns powerups
   if (startGame) {
-    if (startTime <= timer - 20000) {
-      if (lastpower <= timer - random(5000, 10000)) {
-        lastpower = timer;
-        createPowerup(powerSelector());
+    if (tutorial) {
+      if (startTime <= timer - 20000) {
+        if (lastpower <= timer - random(5000, 10000)) {
+          lastpower = timer;
+          createPowerup(powerSelector());
+        }
       }
     }
   }

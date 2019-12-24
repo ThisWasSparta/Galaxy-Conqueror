@@ -117,7 +117,7 @@ void createSwarmScouts() {
 }
 
 void enemySpawner() { //function that periodically causes enemies to appear on screen
-  if (startGame && !boss.bossAlive && !events.eventActive) {
+  if (startGame && !boss.bossAlive && !events.eventActive && tutorial) {
     if (startTime <= timer - 10000) {// wait 10 seconds until enemies spawn
       if (lastSpawn <= timer - random(minTime, maxTime)) {
         lastSpawn = timer;
