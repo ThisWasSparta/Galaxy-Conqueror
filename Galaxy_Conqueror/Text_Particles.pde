@@ -3,25 +3,19 @@ class Text_Particles { //This class is about the score's text display when an en
   boolean duringTextTimer;
   void drawText ()
   {
-    if (millis()-3000 >= textTimer) {
-      duringTextTimer = true;
-    } else {
+    if (millis() - 750 > textTimer) {
       duringTextTimer = false;
-      textTimer = millis();
+    } else {
+      duringTextTimer = true;
     }
-    /*if (duringTextTimer) {
+    if (duringTextTimer) {
      fill(255, 0, 0);
      textSize(65);
      text("-100", tX + visuals.magnitudeX+100, tY / 0.5 + visuals.magnitudeY -50);
-     }*/
+     }
   }
 
   void spawnText() {
-    textTimer=millis();
-    if (duringTextTimer) {
-      fill(255, 0, 0);
-      textSize(65);
-      text("-100", tX + visuals.magnitudeX+100, tY / 0.5 + visuals.magnitudeY -50);
-    }
+    textTimer = millis();
   }
 }
