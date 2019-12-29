@@ -236,6 +236,7 @@ void enemyUpdatePosition(int counter) { //function that updates enemy positions 
   if (enemy[counter].isAlive == true) {
     enemy[counter].eY = enemy[counter].eY + enemy[counter].eV;
     if (enemy[counter].eY > height + enemy[counter].eH) {
+      visuals.screenShake(8, 40, true);
       enemy[counter].isAlive = false;
       scoreObj.addScore(enemy[counter].penalty);
       textParticles.spawnText();
