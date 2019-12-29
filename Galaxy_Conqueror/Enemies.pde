@@ -239,6 +239,7 @@ void enemyUpdatePosition(int counter) { //function that updates enemy positions 
       enemy[counter].isAlive = false;
       scoreObj.addScore(enemy[counter].penalty);
       textParticles.spawnText();
+      visuals.screenShake(8, 40, true);
       if (enemy[counter].enemyType == 3) {
         goliathOnScreen--;
       }
