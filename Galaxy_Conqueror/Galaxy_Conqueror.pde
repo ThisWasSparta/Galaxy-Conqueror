@@ -175,6 +175,7 @@ void draw() {
   //frameRateDisplay();
   variables.loadGameValues();
   timer = millis();
+  textParticles.drawText();
 
   if (player.stop) {
     stop();
