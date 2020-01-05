@@ -13,8 +13,10 @@ class Variable {
       player.isShooting = false;
       tX= width/2;
       tY= height/2;
-      player.weaponWheelX = 0.95 * width;
+      player.weaponWheelX = 0.925 * width;
       player.weaponWheelY = 0.1 * height;
+      player.weaponWheelSelectorY = player.weaponWheelY - 0.2 * player.weaponWheelSize;
+      player.weaponWheelSize = player.DEFAULT_WEAPON_WHEEL_SIZE * ((wScale + hScale)/2) * 1.8;
       events.randomTimeBetweenEvents = int(random(events.timeBetweenEventsMin, events.timeBetweenEventsMax));
       meteoriet.meteorite = loadImage("Meteorite 1.png");
       for (int i = 0; i < ENEMY_NUMBER; i++) {
@@ -67,7 +69,9 @@ class Variable {
 
       player.weapon1 = loadImage("Spaceship Weapon 1-1.png");
       player.weapon2 = loadImage("Spaceship Weapon 2-1.png");
-      //player.weapon3 = loadImage("Spaceship Weapon 3-1.png");
+      player.weapon3 = loadImage("Spaceship Weapon 3-1.png");
+      player.weaponWheel = loadImage("Weapon Wheel 1.png");
+      player.weaponWheelSelector = loadImage("Weapon Wheel 2.png");
       doublepointsPowerup = loadImage("Doublepoints_Powerup_Line.png");
       speedPowerup = loadImage("Speed_Powerup_Line.png");
       screenwipePowerup = loadImage("Energy Orb.png");

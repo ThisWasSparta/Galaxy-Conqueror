@@ -19,7 +19,8 @@ class SpaceShip {
 
   final float DEFAULT_PLAYER_WIDTH = 128 * sizeFactor;
   final float DEFAULT_PLAYER_HEIGHT = 118 * sizeFactor;
-  final float playerDefaultVelocityFactor = 0.006;            //Default velocity factor
+  final float PLAYER_DEFAULT_VELOCITY_FACTOR = 0.006;            //Default velocity factor
+  final float DEFAULT_WEAPON_WHEEL_SIZE = 198 * sizeFactor;
   float pW;    //player width
   float pH;    //player height
   float pXV = 0;   //player X velocity
@@ -27,10 +28,13 @@ class SpaceShip {
   float pMaxV = 0; //player maximal velocity
   float pX;    //player X-position
   float pY;    //player Y-position
-  float playerVelocityFactor = playerDefaultVelocityFactor;   //factor which is used to get the desired player velocity compared to the width of the screen
+  float playerVelocityFactor = PLAYER_DEFAULT_VELOCITY_FACTOR;   //factor which is used to get the desired player velocity compared to the width of the screen
 
   float weaponWheelX;
   float weaponWheelY;
+  float weaponWheelSelectorX;
+  float weaponWheelSelectorY;
+  float weaponWheelSize;
 
   int weapon = 1;
   int weaponState = 1;
@@ -41,6 +45,9 @@ class SpaceShip {
   PImage weapon1;                       //weapon1, weapon2 and weapon3 are the sprites for the player depending on what gun they are using
   PImage weapon2;
   PImage weapon3;
+  
+  PImage weaponWheel;
+  PImage weaponWheelSelector;
 
   void player() {          //this code detects what weapon the player is currently using
     if (weapon == 1) {
@@ -172,84 +179,44 @@ class SpaceShip {
       exit();
     }
   }
-
-  void drawWeaponWheel() {
+  
+  void updateWeaponWheel() {
     switch (weapon) {
-    case 1:
-      fill(0, 0, 255, 255);
-      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY + visuals.magnitudeY, width * 0.1, height * 0.05);
-      fill(50, 50, 255, 255);
-      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY + visuals.magnitudeY, width * 0.095, height * 0.04);
-      fill(255, 255);
-      textSize(10);
-      text("GATLING GUN", weaponWheelX + visuals.magnitudeX, weaponWheelY + height * 0.006 + visuals.magnitudeY);
-
-      fill(0, 0, 255, 128);
-      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY - height * 0.046 + visuals.magnitudeY, width * 0.1, height * 0.05);
-      fill(50, 50, 255, 128);
-      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY - height * 0.046 + visuals.magnitudeY, width * 0.095, height * 0.04);
-      fill(255, 128);
-      textSize(10);
-      text("ROCKET LAUNCHER", weaponWheelX + visuals.magnitudeX, weaponWheelY - height * 0.04 + visuals.magnitudeY);
-
-      fill(0, 0, 255, 128);
-      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY + height * 0.046 + visuals.magnitudeY, width * 0.1, height * 0.05);
-      fill(50, 50, 255, 128);
-      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY + height * 0.046 + visuals.magnitudeY, width * 0.095, height * 0.04);
-      fill(255, 128);
-      textSize(10);
-      text("LASER BEAM", weaponWheelX + visuals.magnitudeX, weaponWheelY + height * 0.052 + visuals.magnitudeY);
-      break;
-    case 2:
-      fill(0, 0, 255, 255);
-      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY + visuals.magnitudeY, width * 0.1, height * 0.05);
-      fill(50, 50, 255, 255);
-      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY + visuals.magnitudeY, width * 0.095, height * 0.04);
-      fill(255, 255);
-      textSize(10);
-      text("LASER BEAM", weaponWheelX + visuals.magnitudeX, weaponWheelY + height * 0.006 + visuals.magnitudeY);
-
-      fill(0, 0, 255, 128);
-      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY - height * 0.046 + visuals.magnitudeY, width * 0.1, height * 0.05);
-      fill(50, 50, 255, 128);
-      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY - height * 0.046 + visuals.magnitudeY, width * 0.095, height * 0.04);
-      fill(255, 128);
-      textSize(10);
-      text("GATLING GUN", weaponWheelX + visuals.magnitudeX, weaponWheelY - height * 0.04 + visuals.magnitudeY);
-
-      fill(0, 0, 255, 128);
-      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY + height * 0.046 + visuals.magnitudeY, width * 0.1, height * 0.05);
-      fill(50, 50, 255, 128);
-      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY + height * 0.046 + visuals.magnitudeY, width * 0.095, height * 0.04);
-      fill(255, 128);
-      textSize(10);
-      text("ROCKET LAUNCHER", weaponWheelX + visuals.magnitudeX, weaponWheelY + height * 0.052 + visuals.magnitudeY);
-      break;
-    case 3:
-      fill(0, 0, 255, 255);
-      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY + visuals.magnitudeY, width * 0.1, height * 0.05);
-      fill(50, 50, 255, 255);
-      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY + visuals.magnitudeY, width * 0.095, height * 0.04);
-      fill(255, 255);
-      textSize(10);
-      text("ROCKET LAUNCHER", weaponWheelX + visuals.magnitudeX, weaponWheelY + height * 0.006 + visuals.magnitudeY);
-
-      fill(0, 0, 255, 128);
-      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY - height * 0.046 + visuals.magnitudeY, width * 0.1, height * 0.05);
-      fill(50, 50, 255, 128);
-      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY - height * 0.046 + visuals.magnitudeY, width * 0.095, height * 0.04);
-      fill(255, 128);
-      textSize(10);
-      text("LASER BEAM", weaponWheelX + visuals.magnitudeX, weaponWheelY - height * 0.04 + visuals.magnitudeY);
-
-      fill(0, 0, 255, 128);
-      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY + height * 0.046 + visuals.magnitudeY, width * 0.1, height * 0.05);
-      fill(50, 50, 255, 128);
-      rect(weaponWheelX + visuals.magnitudeX, weaponWheelY + height * 0.046 + visuals.magnitudeY, width * 0.095, height * 0.04);
-      fill(255, 128);
-      textSize(10);
-      text("GATLING GUN", weaponWheelX + visuals.magnitudeX, weaponWheelY + height * 0.052 + visuals.magnitudeY);
-      break;
+      case 1:
+        weaponWheelSelectorX = weaponWheelX;
+        if (weaponWheelSelectorY > weaponWheelY - 0.2 * weaponWheelSize) {
+          weaponWheelSelectorY -= 5;
+        }
+        if (weaponWheelSelectorY < weaponWheelY - 0.199 * weaponWheelSize) {
+          weaponWheelSelectorY = weaponWheelY - 0.2 * weaponWheelSize;
+        }
+       // weaponWheelSelectorY = weaponWheelY - 0.2 * weaponWheelSize;
+        break;
+      case 2:
+        weaponWheelSelectorX = weaponWheelX;
+        if (weaponWheelSelectorY < weaponWheelY) {
+          weaponWheelSelectorY += 4;
+        }
+        if (weaponWheelSelectorY > weaponWheelY - 0.001 * weaponWheelSize) {
+          weaponWheelSelectorY = weaponWheelY;
+        }
+        //weaponWheelSelectorY = weaponWheelY;
+        break;
+      case 3:
+        weaponWheelSelectorX = weaponWheelX;
+        if (weaponWheelSelectorY < weaponWheelY + 0.2 * weaponWheelSize) {
+          weaponWheelSelectorY += 4;
+        }
+        if (weaponWheelSelectorY > weaponWheelY + 0.199 * weaponWheelSize) {
+          weaponWheelSelectorY = weaponWheelY + 0.2 * weaponWheelSize;
+        }
+        //weaponWheelSelectorY = weaponWheelY + 0.2 * weaponWheelSize;
+        break;
     }
+  }
+  
+  void drawWeaponWheel() {
+    image(weaponWheel, weaponWheelX + visuals.magnitudeX, weaponWheelY + visuals.magnitudeY, weaponWheelSize, weaponWheelSize);
+    image(weaponWheelSelector, weaponWheelSelectorX + visuals.magnitudeX, weaponWheelSelectorY + visuals.magnitudeY, weaponWheelSize, weaponWheelSize);
   }
 }

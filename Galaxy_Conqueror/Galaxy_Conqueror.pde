@@ -239,7 +239,8 @@ void draw() {
     }
     weapon[0].updatePlayerRockets();
     weapon[0].drawPlayerRockets();
-
+    
+    player.updateWeaponWheel();
     player.drawWeaponWheel();
 
     heart[0].playerHealth();
