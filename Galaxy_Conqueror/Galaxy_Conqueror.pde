@@ -65,6 +65,7 @@ Sounds sounds;
 Interface userInterface;
 VisualEffects visuals;
 RandomEvents events;
+Difficulty difficulty;
 
 Minim minim;
 AudioPlayer bgm;

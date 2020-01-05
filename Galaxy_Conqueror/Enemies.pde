@@ -16,6 +16,9 @@ class Enemies {
   float eY = 0;    //enemy Y-position
   float eSize; //enemy size
   int eHP;     //enemy health value
+  int sH = 30; //Enemy Scout health variable (created by Dylan Kleton)
+  int cH = 110; //Enemy Courser health variable (created by Dylan Kleton)
+  int gH = 300; // Enemy Goliath Health variable (created by Dylan Kleton)
 
 
   float shieldMaxHP;
@@ -88,7 +91,7 @@ void createSwarmScouts() {
       enemy[scoutCheck].eW = enemy[scoutCheck].defaultScoutWidth * wScale;
       enemy[scoutCheck].eH = enemy[scoutCheck].defaultScoutHeight * hScale;
       enemy[scoutCheck].eV = enemy[scoutCheck].scoutEnemyVelocityFactor * width;
-      enemy[scoutCheck].eHP = 30;
+      enemy[scoutCheck].eHP = enemy[scoutCheck].sH;
       enemy[scoutCheck].score = 50;
       enemy[scoutCheck].penalty = defaultPenalty;
       enemy[scoutCheck].isAlive = true;
@@ -139,7 +142,7 @@ void bossScoutSpawner() { //function called by the boss' backup state to spawn c
       enemy[arrayIndex].eV = enemy[arrayIndex].scoutEnemyVelocityFactor * width;
       enemy[arrayIndex].eX = convoyOriginX + spawnCounter * 50; 
       enemy[arrayIndex].eY = -enemy[arrayIndex].eH;
-      enemy[arrayIndex].eHP = 30;
+      enemy[arrayIndex].eHP = enemy[arrayIndex].sH;
       enemy[arrayIndex].score = 50;
       enemy[arrayIndex].penalty = defaultPenalty;
       enemy[arrayIndex].isAlive = true;
@@ -151,7 +154,41 @@ void createEnemy(int type) { //function to create an enemy
   int scoutCheck = enemyRecycle();
   int courserCheck = enemyRecycle();
   int goliathCheck = enemyRecycle();
-
+  
+  difficulty.checkScore();
+//This statement makes sure the enemies get changed once the difficulty changes. Each difficulty will change the enemies' stats. These if statements were created by Dylan Kleton.
+if(difficulty.newDifficultyCounter == 0){ 
+enemy[scoutCheck].sH = 20;
+enemy[scoutCheck].scoutEnemyVelocityFactor = 0.0015;
+enemy[courserCheck].cH = 70;
+enemy[courserCheck].courserEnemyVelocityFactor = 0.00085;
+enemy[goliathCheck].gH = 350;
+enemy[goliathCheck].goliathEnemyVelocityFactor = 0.00065;
+}
+if(difficulty.newDifficultyCounter == 1){
+enemy[scoutCheck].sH = 30;
+enemy[scoutCheck].scoutEnemyVelocityFactor = 0.0025;
+enemy[courserCheck].cH = 110;
+enemy[courserCheck].courserEnemyVelocityFactor = 0.0015;
+enemy[goliathCheck].gH = 500;
+enemy[goliathCheck].goliathEnemyVelocityFactor = 0.00085;
+}
+if(difficulty.newDifficultyCounter == 2){
+enemy[scoutCheck].sH = 50;
+enemy[scoutCheck].scoutEnemyVelocityFactor = 0.0035;
+enemy[courserCheck].cH = 140;
+enemy[courserCheck].courserEnemyVelocityFactor = 0.0025;
+enemy[goliathCheck].gH = 530;
+enemy[goliathCheck].goliathEnemyVelocityFactor = 0.00095;
+}
+if(difficulty.newDifficultyCounter == 3){
+enemy[scoutCheck].sH = 70;
+enemy[scoutCheck].scoutEnemyVelocityFactor = 0.0045;
+enemy[courserCheck].cH = 170;
+enemy[courserCheck].courserEnemyVelocityFactor = 0.0035;
+enemy[goliathCheck].gH = 560;
+enemy[goliathCheck].goliathEnemyVelocityFactor = 0.0005;
+}
 
   switch(type) {
   case 1:
@@ -163,7 +200,7 @@ void createEnemy(int type) { //function to create an enemy
       enemy[scoutCheck].eV = enemy[scoutCheck].scoutEnemyVelocityFactor * width;
       enemy[scoutCheck].eX = random(enemy[scoutCheck].eW / 2, width - enemy[scoutCheck].eW);
       enemy[scoutCheck].eY = -enemy[scoutCheck].eH;
-      enemy[scoutCheck].eHP = 30;
+      enemy[scoutCheck].eHP = enemy[scoutCheck].sH;
       enemy[scoutCheck].score = 50;
       enemy[scoutCheck].penalty = defaultPenalty;
       enemy[scoutCheck].isAlive = true;
@@ -178,7 +215,7 @@ void createEnemy(int type) { //function to create an enemy
       enemy[courserCheck].eV = enemy[courserCheck].courserEnemyVelocityFactor * width;
       enemy[courserCheck].eX = random(enemy[courserCheck].eW / 2, width - enemy[courserCheck].eW);
       enemy[courserCheck].eY = -enemy[courserCheck].eH;
-      enemy[courserCheck].eHP = 110;
+      enemy[courserCheck].eHP = enemy[courserCheck].cH;
       enemy[courserCheck].score = 100;
       enemy[courserCheck].penalty = -100;
       enemy[courserCheck].isAlive = true;
@@ -193,7 +230,7 @@ void createEnemy(int type) { //function to create an enemy
       enemy[goliathCheck].eV = enemy[goliathCheck].goliathEnemyVelocityFactor * width;
       enemy[goliathCheck].eX = random(enemy[goliathCheck].eW / 2, width - enemy[goliathCheck].eW);
       enemy[goliathCheck].eY = -enemy[goliathCheck].eH;
-      enemy[goliathCheck].eHP = 300;
+      enemy[goliathCheck].eHP = enemy[goliathCheck].gH;
       enemy[goliathCheck].isAlive = true;
       enemy[goliathCheck].shieldAlive = true;
       enemy[goliathCheck].shieldHP = 300;
