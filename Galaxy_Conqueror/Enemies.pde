@@ -154,41 +154,41 @@ void createEnemy(int type) { //function to create an enemy
   int scoutCheck = enemyRecycle();
   int courserCheck = enemyRecycle();
   int goliathCheck = enemyRecycle();
-  
+
   difficulty.checkScore();
-//This statement makes sure the enemies get changed once the difficulty changes. Each difficulty will change the enemies' stats. These if statements were created by Dylan Kleton.
-if(difficulty.newDifficultyCounter == 0){ 
-enemy[scoutCheck].sH = 20;
-enemy[scoutCheck].scoutEnemyVelocityFactor = 0.0015;
-enemy[courserCheck].cH = 70;
-enemy[courserCheck].courserEnemyVelocityFactor = 0.00085;
-enemy[goliathCheck].gH = 350;
-enemy[goliathCheck].goliathEnemyVelocityFactor = 0.00065;
-}
-if(difficulty.newDifficultyCounter == 1){
-enemy[scoutCheck].sH = 30;
-enemy[scoutCheck].scoutEnemyVelocityFactor = 0.0025;
-enemy[courserCheck].cH = 110;
-enemy[courserCheck].courserEnemyVelocityFactor = 0.0015;
-enemy[goliathCheck].gH = 500;
-enemy[goliathCheck].goliathEnemyVelocityFactor = 0.00085;
-}
-if(difficulty.newDifficultyCounter == 2){
-enemy[scoutCheck].sH = 50;
-enemy[scoutCheck].scoutEnemyVelocityFactor = 0.0035;
-enemy[courserCheck].cH = 140;
-enemy[courserCheck].courserEnemyVelocityFactor = 0.0025;
-enemy[goliathCheck].gH = 530;
-enemy[goliathCheck].goliathEnemyVelocityFactor = 0.00095;
-}
-if(difficulty.newDifficultyCounter == 3){
-enemy[scoutCheck].sH = 70;
-enemy[scoutCheck].scoutEnemyVelocityFactor = 0.0045;
-enemy[courserCheck].cH = 170;
-enemy[courserCheck].courserEnemyVelocityFactor = 0.0035;
-enemy[goliathCheck].gH = 560;
-enemy[goliathCheck].goliathEnemyVelocityFactor = 0.0005;
-}
+  //This statement makes sure the enemies get changed once the difficulty changes. Each difficulty will change the enemies' stats. These if statements were created by Dylan Kleton.
+  if (difficulty.newDifficultyCounter == 0) { 
+    //enemy[scoutCheck].sH = 20;
+    enemy[scoutCheck].scoutEnemyVelocityFactor = 0.0015;
+    //enemy[courserCheck].cH = 70;
+    enemy[courserCheck].courserEnemyVelocityFactor = 0.00085;
+    //enemy[goliathCheck].gH = 350;
+    enemy[goliathCheck].goliathEnemyVelocityFactor = 0.00065;
+  }
+  if (difficulty.newDifficultyCounter == 1) {
+    //enemy[scoutCheck].sH = 30;
+    enemy[scoutCheck].scoutEnemyVelocityFactor = 0.0025;
+    //enemy[courserCheck].cH = 110;
+    enemy[courserCheck].courserEnemyVelocityFactor = 0.0015;
+    //enemy[goliathCheck].gH = 500;
+    enemy[goliathCheck].goliathEnemyVelocityFactor = 0.00085;
+  }
+  if (difficulty.newDifficultyCounter == 2) {
+    //enemy[scoutCheck].sH = 50;
+    enemy[scoutCheck].scoutEnemyVelocityFactor = 0.0035;
+    //enemy[courserCheck].cH = 140;
+    enemy[courserCheck].courserEnemyVelocityFactor = 0.0025;
+    //enemy[goliathCheck].gH = 530;
+    enemy[goliathCheck].goliathEnemyVelocityFactor = 0.00095;
+  }
+  if (difficulty.newDifficultyCounter == 3) {
+    //enemy[scoutCheck].sH = 70;
+    enemy[scoutCheck].scoutEnemyVelocityFactor = 0.0045;
+    //enemy[courserCheck].cH = 170;
+    enemy[courserCheck].courserEnemyVelocityFactor = 0.0035;
+    //enemy[goliathCheck].gH = 560;
+    enemy[goliathCheck].goliathEnemyVelocityFactor = 0.0005;
+  }
 
   switch(type) {
   case 1:

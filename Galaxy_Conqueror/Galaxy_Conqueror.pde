@@ -112,10 +112,6 @@ void setup() {
   boss = new Boss();
   sounds = new Sounds(this);
   minim = new Minim(this);
-  bgm = minim.loadFile("./sound/stagethemefix.wav");
-  playergatshoot = minim.loadFile("./sound/gattlingweapon_noise.wav");
-  enemyshoot = minim.loadFile("./sound/scout_shootnoise.wav");
-  maintheme = minim.loadFile("./sound/main_theme.wav");
   dbconnect = new DBConnect(this);
   dbqueries = new DBQueries();
   namePicker = new NamePicker();
@@ -126,6 +122,7 @@ void setup() {
   userInterface = new Interface();
   visuals = new VisualEffects();
   events = new RandomEvents();
+  difficulty = new Difficulty();
 
   textParticles = new Text_Particles();
 
@@ -168,13 +165,13 @@ void keyPressed() {               //This function was written by Noah Verburg
 }
 
 void draw() {
+  variables.loadGameValues();
   //fill(0, 220);
   //rect(0, 0, width, height);
   background(0);
   Star.sterrenShow();
   titel.startScreen();
   //frameRateDisplay();
-  variables.loadGameValues();
   timer = millis();
   textParticles.drawText();
 
