@@ -79,6 +79,8 @@ class Variable {
       doublepointsPowerup = loadImage("Doublepoints_Powerup_Line.png");
       speedPowerup = loadImage("Speed_Powerup_Line.png");
       screenwipePowerup = loadImage("Energy Orb.png");
+      enemyBullet = loadImage("EnemyBullet.png");
+      bossRocketSprite = loadImage("BossRocket.png");
       valuesLoaded = true;
     }
   }

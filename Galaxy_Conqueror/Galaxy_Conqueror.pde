@@ -19,6 +19,8 @@ final int PLAYER_BULLET_NUMBER = 100;
 final int ENEMY_NUMBER = 40;
 final int ENEMY_EXPLOSION_PARTICLE_NUMBER = 500;
 final int ENEMY_BULLET_NUMBER = 20;
+final int BOSS_BULLET_NUMBER = 20;
+final int BOSS_ROCKET_NUMBER = 10;
 final int ENEMY_MOVE_PARTICLE_NUMBER = 200;
 final int ENEMY_SHOOT_PARTICLE_NUMBER = 25;
 final int MAX_POWERUPS = 3; 
@@ -52,6 +54,8 @@ PImage bossSprite;
 PImage doublepointsPowerup;
 PImage speedPowerup;
 PImage screenwipePowerup;
+PImage enemyBullet;
+PImage bossRocketSprite;
 
 Obstakel obstakel;                                //Dit is de meteoriet
 SpaceShip player;                                 //Dit is de player
@@ -88,6 +92,8 @@ Text_Particles textParticles;
 PlayerWeapons[] weapon = new PlayerWeapons[PLAYER_BULLET_NUMBER];              //the bullets for the player
 Enemies[] enemy = new Enemies[ENEMY_NUMBER];                                   //three arrays to store data about the 3 different enemy types
 EnemyBullets[] enemyBullets = new EnemyBullets[ENEMY_BULLET_NUMBER];
+BossBullet[] bossBullets = new BossBullet[BOSS_BULLET_NUMBER];
+BossRocket[] bossRockets = new BossRocket[BOSS_ROCKET_NUMBER];
 Health[] heart = new Health[heartNumber];
 ExplosionPart[] particle = new ExplosionPart[ENEMY_EXPLOSION_PARTICLE_NUMBER];
 EnemyShootParticle[] enemyShootParticle = new EnemyShootParticle[ENEMY_SHOOT_PARTICLE_NUMBER];
@@ -136,6 +142,12 @@ void setup() {
   }
   for (int i = 0; i < ENEMY_BULLET_NUMBER; i++) {
     enemyBullets[i] = new EnemyBullets();
+  }
+  for (int i = 0; i < BOSS_BULLET_NUMBER; i++) {
+    bossBullets[i] = new BossBullet();
+  }
+  for (int i = 0; i < BOSS_ROCKET_NUMBER; i++) {
+    bossRockets[i] = new BossRocket();
   }
   for (int i = 0; i < heartNumber; i++) {
     heart[i] = new Health();
@@ -217,6 +229,12 @@ void draw() {
         boss.bossUpdatePosition();
         boss.bossUpdateBehaviour();
         boss.bossDraw();
+        for (int i = 0; i < BOSS_ROCKET_NUMBER; i++) {
+          boss.playerBossRocketCollisionCheck(i);
+        }
+        for (int i = 0; i < BOSS_BULLET_NUMBER; i++) {
+          boss.playerBossBulletCollisionCheck(i);
+        }
       }
     }
     if (player.weapon == 1) {
@@ -236,7 +254,7 @@ void draw() {
     }
     weapon[0].updatePlayerRockets();
     weapon[0].drawPlayerRockets();
-    
+
     player.updateWeaponWheel();
     player.drawWeaponWheel();
 
