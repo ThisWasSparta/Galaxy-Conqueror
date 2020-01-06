@@ -406,7 +406,6 @@ class Titel {
       textSize(textSizebut);
       textAlign(CENTER);
       text("Achievements", width/2, 110);
-      achievements.DisplayAch();
       ach1 = loadImage("./1kill.png");
       ach2 = loadImage("./50kill.png");
       ach3 = loadImage("./100kill.png");
@@ -434,6 +433,8 @@ class Titel {
       //image(ach11,width/2-650,918,30,30);
       image(ach12, width/2-650, 790, achS, achS);
       image(ach13, width/2-650, 854, achS, achS);
+      achievements.DisplayAch();
+
 
       //Back button
       rectMode(CENTER);
