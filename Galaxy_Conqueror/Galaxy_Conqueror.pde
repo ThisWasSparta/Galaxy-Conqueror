@@ -30,6 +30,7 @@ int heartNumber = 3;
 int stopGameTime;
 int gameOverTimer = 0;                            //maximum amount of powerups present at the same time
 int scoreMultiplier = 1;
+int tutorialTimer = 0;
 
 int timer = millis();                             //contains the time from when the game was launched in milliseconds
 int startTime;                                    //contains the time when start was pressed in milliseconds
@@ -197,7 +198,14 @@ void draw() {
     events.selectEvent();
     events.executeEvent();
     obstakel.drawObstakel();
+    if (!tutorial) {
+      tutorialTimer++;
+    }
+    if (tutorialTimer >= 1000) {
+      tutorial = true;
+    }
     if (tutorial) {
+      tutorialTimer = 0;
       for (int i = 0; i < ENEMY_NUMBER; i++) {      //updates, spawns and draws the enemies
         enemyUpdatePosition(i);                     //made by Noah Verburg
         enemySpawner();
