@@ -1,16 +1,16 @@
 //This code was written by Dylan Kleton
-int score = 0;
 
 class Score {
   //This is the score that will eventually be shown in the game-over screen
+  int score = 0;
   final int SCORE_SIZE = 100;
   //This method has the purpose of adding numbers to the score
 
   void addScore (int scoreAmount) {
 
-    score += scoreAmount;
-    if (score < 0) {
-      score = 0;
+    this.score += scoreAmount;
+    if (this.score < 0) {
+      this.score = 0;
     }
     fill (0);
     rect(tX, tY/0.5, SCORE_SIZE, SCORE_SIZE);

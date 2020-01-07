@@ -11,7 +11,7 @@ class RandomEvents {
   boolean eventActive = false;
 
   void selectEvent() {
-    if (!randomEventsHappen && score >= 1000 && !boss.bossAlive) {
+    if (!randomEventsHappen && scoreObj.score >= 1000 && !boss.bossAlive) {
       randomEventsHappen = true;
       eventTimer = millis();
     }
