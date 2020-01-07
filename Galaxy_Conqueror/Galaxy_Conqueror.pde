@@ -35,6 +35,7 @@ int survivaltimer = 0;
 
 int timer = millis();                             //contains the time from when the game was launched in milliseconds
 int startTime;                                    //contains the time when start was pressed in milliseconds
+int endTime;                                      //contains the time when player dies
 
 boolean startGame = false;                        //whether the game has started or not
 
@@ -311,6 +312,8 @@ void draw() {
     }
   }
   if (gameOver) {
+    endTime = timer - startTime;
+    println(endTime);
     if (millis() >= gameOverTimer + 500) {
       gameover.GameOverDraw();
       if (millis() >= gameOverTimer + 1000) {
