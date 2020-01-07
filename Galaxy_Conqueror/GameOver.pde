@@ -56,8 +56,12 @@ class GameOver {
       if (gatkills < 50 || laserkills < 50 || rockkills < 50) {
         rect(width/2, height/2+360, sAch, sAch);
       }
-      rect(width/2+60, height/2+360, sAch, sAch);
-      rect(width/2-60, height/2+420, sAch, sAch);
+      if (survivaltimer < 18000) {
+        rect(width/2+60, height/2+360, sAch, sAch);
+      }
+      if (survivaltimer < 108000) {
+        rect(width/2-60, height/2+420, sAch, sAch);
+      }
       if (score > 0) {
         rect(width/2, height/2+420, sAch, sAch);
       }
