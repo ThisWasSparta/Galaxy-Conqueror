@@ -81,6 +81,20 @@ class Variable {
       screenwipePowerup = loadImage("Energy Orb.png");
       enemyBullet = loadImage("EnemyBullet.png");
       bossRocketSprite = loadImage("BossRocket.png");
+      ach1 = loadImage("./1kill.png");
+      ach2 = loadImage("./50kill.png");
+      ach3 = loadImage("./100kill.png");
+      ach4 = loadImage("./500kill.png");
+      ach5 = loadImage("./1kkill.png");
+      ach6 = loadImage("./10kkill.png");
+      ach7 = loadImage("./jack.png");
+      ach8 = loadImage("./master.png");
+      ach9 = loadImage("./diehard.png");
+      ach10 = loadImage("./eternity.png");
+      ach11 = loadImage("./1die.png");
+      ach12 = loadImage("./loser.png");
+      ach13 = loadImage("./killboss.png");
+      ach14 = loadImage("./killboss3.png");
       valuesLoaded = true;
     }
   }
