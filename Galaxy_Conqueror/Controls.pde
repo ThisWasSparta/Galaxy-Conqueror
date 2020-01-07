@@ -25,15 +25,13 @@ class Controls {
     case 'k':
       return player.exitgame = completeAction;
 
-    case 'o':
+    case 'p':
       return player.suicide = completeAction;
 
     case 'i':
       return visuals.screenShakeTest = completeAction;
     case 'y':
       return tutorial = true;
-    case 'p':
-      return pause = true;
     default:
       return completeAction;
     }
