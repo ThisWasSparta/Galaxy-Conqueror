@@ -263,6 +263,8 @@ void draw() {
     weapon[0].updatePlayerRockets();
     weapon[0].drawPlayerRockets();
 
+    weapon[0].reloadTimerBar();
+
     player.updateWeaponWheel();
     player.drawWeaponWheel();
 

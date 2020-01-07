@@ -46,7 +46,7 @@ class PlayerWeapons {
   final int PLAYER_BULLET_FIRERATE = 50;
   final int PLAYER_BULLET_DAMAGE = 10;
   int playerProjectileTurn = 0;
-  int reloadTime = 0;                   //time it takes for the ship to be able to shoot again
+  float reloadTime = 0;                   //time it takes for the ship to be able to shoot again
   float bulletVelocityFactor = 0.01;    //factor which is used to get the desired bullet velocity compared to the width of the screen
 
   final int PLAYER_LASER_PER_SALVO = 2;
@@ -69,15 +69,52 @@ class PlayerWeapons {
   float reloadTimerBarHeight;
   float reloadTimerBarXposition;
   float reloadTimerBarYposition;
+  //float reloadTimerBarStartTime;
   
   //Player bullet functions
   
   void reloadTimerBar() {
+    rectMode(CORNER);
     switch (player.weapon) {
       case 1:
-        
+        if (reloadTime + PLAYER_BULLET_FIRERATE > millis()) {
+          reloadTimerBarWidth = 80 * ((millis() - reloadTime) / PLAYER_BULLET_FIRERATE);
+          reloadTimerBarHeight = 5;
+          reloadTimerBarXposition = player.pX - 40;
+          reloadTimerBarYposition = player.pY + player.pH * 0.8;
+          fill(200);
+          rect(reloadTimerBarXposition, reloadTimerBarYposition, 80, reloadTimerBarHeight);
+          fill(255, 242, 56);
+          rect(reloadTimerBarXposition, reloadTimerBarYposition, reloadTimerBarWidth, reloadTimerBarHeight);
+        }
+        break;
+      case 2:
+        if (reloadTime + PLAYER_LASER_FIRERATE > millis()) {
+          reloadTimerBarWidth = 80 * ((millis() - reloadTime) / PLAYER_LASER_FIRERATE);
+          reloadTimerBarHeight = 5;
+          reloadTimerBarXposition = player.pX - 40;
+          reloadTimerBarYposition = player.pY + player.pH * 0.8;
+          fill(200);
+          rect(reloadTimerBarXposition, reloadTimerBarYposition, 80, reloadTimerBarHeight);
+          fill(255, 248, 148);
+          rect(reloadTimerBarXposition, reloadTimerBarYposition, reloadTimerBarWidth, reloadTimerBarHeight);
+        }
+        break;
+        case 3:
+        if (reloadTime + PLAYER_ROCKET_FIRERATE > millis()) {
+          reloadTimerBarWidth = 80 * ((millis() - reloadTime) / PLAYER_ROCKET_FIRERATE);
+          reloadTimerBarHeight = 5;
+          reloadTimerBarXposition = player.pX - 40;
+          reloadTimerBarYposition = player.pY + player.pH * 0.8;
+          fill(200);
+          rect(reloadTimerBarXposition, reloadTimerBarYposition, 80, reloadTimerBarHeight);
+          fill(26, 30, 153);
+          rect(reloadTimerBarXposition, reloadTimerBarYposition, reloadTimerBarWidth, reloadTimerBarHeight);
+        }
+        break;
+      }
+      rectMode(CENTER);
     }
-  }
   
   void spawnPlayerBullets() {//This function was written bulletYposition Noah Verburg
     //playergatshoot.setVolume(0.1);
