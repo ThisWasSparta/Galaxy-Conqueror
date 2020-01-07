@@ -1,3 +1,6 @@
+
+float achS = 40;
+
 class Titel {
 
   // Main titel180
@@ -117,23 +120,6 @@ class Titel {
   float soundDigit;
   float soundBright;
   int cTimer = 9;
-
-  PImage ach1;
-  PImage ach2;
-  PImage ach3;
-  PImage ach4;
-  PImage ach5;
-  PImage ach6;
-  PImage ach7;
-  PImage ach8;
-  PImage ach9;
-  PImage ach10;
-  PImage ach11;
-  PImage ach12;
-  PImage ach13;
-  PImage ach14;
-
-  float achS = 40;
 
 
   //Font
@@ -406,20 +392,6 @@ class Titel {
       textSize(textSizebut);
       textAlign(CENTER);
       text("Achievements", width/2, 110);
-      ach1 = loadImage("./1kill.png");
-      ach2 = loadImage("./50kill.png");
-      ach3 = loadImage("./100kill.png");
-      ach4 = loadImage("./500kill.png");
-      ach5 = loadImage("./1kkill.png");
-      ach6 = loadImage("./10kkill.png");
-      ach7 = loadImage("./jack.png");
-      ach8 = loadImage("./master.png");
-      ach9 = loadImage("./diehard.png");
-      ach10 = loadImage("./eternity.png");
-      ach11 = loadImage("./1die.png");
-      ach12 = loadImage("./loser.png");
-      ach13 = loadImage("./killboss.png");
-      ach14 = loadImage("./killboss3.png");
       image(ach1, width/2-650, 150, achS, achS);
       image(ach2, width/2-650, 214, achS, achS);
       image(ach3, width/2-650, 278, achS, achS);

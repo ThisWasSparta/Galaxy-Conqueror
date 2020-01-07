@@ -30,7 +30,6 @@ int heartNumber = 3;
 int stopGameTime;
 int gameOverTimer = 0;                            //maximum amount of powerups present at the same time
 int scoreMultiplier = 1;
-int tutorialTimer = 0;
 
 int timer = millis();                             //contains the time from when the game was launched in milliseconds
 int startTime;                                    //contains the time when start was pressed in milliseconds
@@ -57,6 +56,21 @@ PImage speedPowerup;
 PImage screenwipePowerup;
 PImage enemyBullet;
 PImage bossRocketSprite;
+
+PImage ach1;
+PImage ach2;
+PImage ach3;
+PImage ach4;
+PImage ach5;
+PImage ach6;
+PImage ach7;
+PImage ach8;
+PImage ach9;
+PImage ach10;
+PImage ach11;
+PImage ach12;
+PImage ach13;
+PImage ach14;
 
 Obstakel obstakel;                                //Dit is de meteoriet
 SpaceShip player;                                 //Dit is de player
@@ -198,14 +212,7 @@ void draw() {
     events.selectEvent();
     events.executeEvent();
     obstakel.drawObstakel();
-    if (!tutorial) {
-      tutorialTimer++;
-    }
-    if (tutorialTimer >= 1000) {
-      tutorial = true;
-    }
     if (tutorial) {
-      tutorialTimer = 0;
       for (int i = 0; i < ENEMY_NUMBER; i++) {      //updates, spawns and draws the enemies
         enemyUpdatePosition(i);                     //made by Noah Verburg
         enemySpawner();
@@ -263,8 +270,6 @@ void draw() {
     weapon[0].updatePlayerRockets();
     weapon[0].drawPlayerRockets();
 
-    weapon[0].reloadTimerBar();
-
     player.updateWeaponWheel();
     player.drawWeaponWheel();
 
@@ -309,7 +314,7 @@ void draw() {
           titel.StartGame = true;
           tutorial = false;
           heartNumber = 3;
-          scoreObj.score = 0;
+          score = 0;
           globalBossTimer = 11500;
           resetName = true;
           for (int i = 0; i < ENEMY_NUMBER; i++) {                                                 //Cycles through all enemy slots once
