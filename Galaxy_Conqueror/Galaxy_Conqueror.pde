@@ -59,6 +59,20 @@ PImage speedPowerup;
 PImage screenwipePowerup;
 PImage enemyBullet;
 PImage bossRocketSprite;
+PImage ach1;
+PImage ach2;
+PImage ach3;
+PImage ach4;
+PImage ach5;
+PImage ach6;
+PImage ach7;
+PImage ach8;
+PImage ach9;
+PImage ach10;
+PImage ach11;
+PImage ach12;
+PImage ach13;
+PImage ach14;
 
 Obstakel obstakel;                                //Dit is de meteoriet
 SpaceShip player;                                 //Dit is de player
