@@ -311,7 +311,7 @@ void draw() {
           titel.StartGame = true;
           tutorial = false;
           heartNumber = 3;
-          scoreObj.score = 0;
+          score = 0;
           globalBossTimer = 11500;
           resetName = true;
           for (int i = 0; i < ENEMY_NUMBER; i++) {                                                 //Cycles through all enemy slots once
