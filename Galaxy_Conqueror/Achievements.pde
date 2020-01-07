@@ -6,5 +6,4 @@ class Achievements {
   void DisplayAch() {
     GetAch();
   }
-
 }
