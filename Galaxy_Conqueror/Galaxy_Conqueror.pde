@@ -45,6 +45,8 @@ boolean resetName = false;
 
 boolean tutorial = false;
 
+boolean pause = false;
+
 boolean nameScreen;
 
 final float sizeFactor = 0.8;
