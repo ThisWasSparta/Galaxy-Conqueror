@@ -1,5 +1,5 @@
-//This class was written bulletYposition Noah Verburg
-class PlayerocketWidtheapons {
+//This class was written by Noah Verburg
+class PlayerWeapons {
   float bulletWidth;          //bullet width
   float bulletHeight;          //bullet height
   float bulletVelocity;          //bullet velocity
@@ -64,7 +64,12 @@ class PlayerocketWidtheapons {
   float distanceX;
   float distanceY;
   float distanceXandY;
-
+  
+  float reloadTimerBarWidth;
+  float reloadTimerBarHeight;
+  float reloadTimerBarXposition;
+  float reloadTimerBarYposition;
+  
   //Player bullet functions
   
   void reloadTimerBar() {
@@ -132,7 +137,7 @@ class PlayerocketWidtheapons {
               visuals.screenShake(5, 15, true);
             }
           }
-          if (enemy[t].enemyType == 2 && weapon[i].bulletXposition < enemy[t].eX + enemy[t].courserocketHeightitboxX && weapon[i].bulletXposition > enemy[t].eX - enemy[t].courserocketHeightitboxX && weapon[i].bulletYposition < enemy[t].eY + enemy[t].courserocketHeightitboxY && weapon[i].bulletYposition > enemy[t].eY - enemy[t].courserocketHeightitboxY && enemy[t].isAlive == true) {
+          if (enemy[t].enemyType == 2 && weapon[i].bulletXposition < enemy[t].eX + enemy[t].courserHitboxX && weapon[i].bulletXposition > enemy[t].eX - enemy[t].courserHitboxX && weapon[i].bulletYposition < enemy[t].eY + enemy[t].courserHitboxY && weapon[i].bulletYposition > enemy[t].eY - enemy[t].courserHitboxY && enemy[t].isAlive == true) {
             weapon[i].bulletYposition -= height;
             enemy[t].eHP -= PLAYER_BULLET_DAMAGE;
             enemy[t].damageFlashTint = 255;
@@ -200,7 +205,7 @@ class PlayerocketWidtheapons {
             weapon[playerLaserTurn].laserXposition = player.pX - player.DEFAULT_PLAYER_WIDTH / 2 * 0.891;
           }
           weapon[playerLaserTurn].laserYposition1 = player.pY - player.DEFAULT_PLAYER_HEIGHT / 2 * 0.758;
-          weapon[playerLaserTurn].laserYposition2 = weapon[playerLaserTurn].laserYposition1 - laserocketHeighteight;
+          weapon[playerLaserTurn].laserYposition2 = weapon[playerLaserTurn].laserYposition1 - laserHeight;
           weapon[playerLaserTurn].laserIsAlive = true;
           playerLaserTurn++;
         }
@@ -220,7 +225,7 @@ class PlayerocketWidtheapons {
           weapon[i].laserXposition = player.pX - player.DEFAULT_PLAYER_WIDTH / 2 * 0.891;
         }
         weapon[i].laserYposition1 = player.pY - player.DEFAULT_PLAYER_HEIGHT / 2 * 0.758;
-        weapon[i].laserYposition2 = weapon[i].laserYposition1 - laserocketHeighteight;
+        weapon[i].laserYposition2 = weapon[i].laserYposition1 - laserHeight;
 
         if (weapon[i].laserStrengthTimer + 100 < millis()) {
           if (weapon[i].laserStrength == 1) {
@@ -246,7 +251,7 @@ class PlayerocketWidtheapons {
           }
         }
       }
-      if (weapon[i].laserXposition - weapon[i].laserocketWidthidth/2 < boss.bossX + boss.bossX/2 && weapon[i].laserXposition + weapon[i].laserocketWidthidth/2 > boss.bossX - boss.bossX/2 && boss.bossAlive && weapon[i].laserIsAlive) {
+      if (weapon[i].laserXposition - weapon[i].laserWidth/2 < boss.bossX + boss.bossX/2 && weapon[i].laserXposition + weapon[i].laserWidth/2 > boss.bossX - boss.bossX/2 && boss.bossAlive && weapon[i].laserIsAlive) {
         weapon[i].bulletYposition -= height;
         boss.bossHealth -= 15;
         if (boss.bossHealth <= 0) {
@@ -254,7 +259,7 @@ class PlayerocketWidtheapons {
         }
       }
       for (int t = 0; t < ENEMY_NUMBER; t++) {
-        if (enemy[t].enemyType == 1 && weapon[i].laserXposition - weapon[i].laserocketWidthidth/2 < enemy[t].eX + enemy[t].scoutHitboxX && weapon[i].laserXposition + weapon[i].laserocketWidthidth/2 > enemy[t].eX - enemy[t].scoutHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
+        if (enemy[t].enemyType == 1 && weapon[i].laserXposition - weapon[i].laserWidth/2 < enemy[t].eX + enemy[t].scoutHitboxX && weapon[i].laserXposition + weapon[i].laserWidth/2 > enemy[t].eX - enemy[t].scoutHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
           weapon[i].bulletYposition -= height;
           enemy[t].eHP = enemy[t].eHP - PLAYER_LASER_DAMAGE_PER_FRAME;
           enemy[t].damageFlashTint = 100;
@@ -266,7 +271,7 @@ class PlayerocketWidtheapons {
             visuals.screenShake(5, 15, true);
           }
         }
-        if (enemy[t].enemyType == 2 && weapon[i].laserXposition - weapon[i].laserocketWidthidth/2 < enemy[t].eX + enemy[t].courserocketHeightitboxX && weapon[i].laserXposition + weapon[i].laserocketWidthidth/2 > enemy[t].eX - enemy[t].courserocketHeightitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
+        if (enemy[t].enemyType == 2 && weapon[i].laserXposition - weapon[i].laserWidth/2 < enemy[t].eX + enemy[t].courserHitboxX && weapon[i].laserXposition + weapon[i].laserWidth/2 > enemy[t].eX - enemy[t].courserHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
           weapon[i].bulletYposition -= height;
           enemy[t].eHP = enemy[t].eHP - PLAYER_LASER_DAMAGE_PER_FRAME;
           enemy[t].damageFlashTint = 100;
@@ -278,7 +283,7 @@ class PlayerocketWidtheapons {
             visuals.screenShake(10, 25, true);
           }
         } 
-        if (enemy[t].enemyType == 3 && weapon[i].laserXposition - weapon[i].laserocketWidthidth/2 < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].laserXposition + weapon[i].laserocketWidthidth/2 > enemy[t].eX - enemy[t].goliathHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
+        if (enemy[t].enemyType == 3 && weapon[i].laserXposition - weapon[i].laserWidth/2 < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].laserXposition + weapon[i].laserWidth/2 > enemy[t].eX - enemy[t].goliathHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
           weapon[i].bulletYposition -= height;
           enemy[t].eHP = enemy[t].eHP - PLAYER_LASER_DAMAGE_PER_FRAME;
           enemy[t].damageFlashTint = 100;
@@ -297,7 +302,7 @@ class PlayerocketWidtheapons {
   void drawPlayerLaser() {
     for (int i = 0; i < 2; i++) {
       if (weapon[i].laserIsAlive) {
-        image(weapon[i].laser, weapon[i].laserXposition + visuals.magnitudeX, weapon[i].laserYposition1 - weapon[i].laserocketHeighteight/2 + visuals.magnitudeY, weapon[i].laserocketWidthidth, weapon[i].laserocketHeighteight);
+        image(weapon[i].laser, weapon[i].laserXposition + visuals.magnitudeX, weapon[i].laserYposition1 - weapon[i].laserHeight/2 + visuals.magnitudeY, weapon[i].laserWidth, weapon[i].laserHeight);
       }
     }
   }
@@ -396,7 +401,7 @@ class PlayerocketWidtheapons {
               visuals.screenShake(5, 15, true);
             }
           }
-          if (enemy[t].enemyType == 2 && weapon[i].rocketXposition < enemy[t].eX + enemy[t].courserocketHeightitboxX && weapon[i].rocketXposition > enemy[t].eX - enemy[t].courserocketHeightitboxX && weapon[i].rocketYposition < enemy[t].eY + enemy[t].courserocketHeightitboxY && weapon[i].rocketYposition > enemy[t].eY - enemy[t].courserocketHeightitboxY && enemy[t].isAlive == true) {
+          if (enemy[t].enemyType == 2 && weapon[i].rocketXposition < enemy[t].eX + enemy[t].courserHitboxX && weapon[i].rocketXposition > enemy[t].eX - enemy[t].courserHitboxX && weapon[i].rocketYposition < enemy[t].eY + enemy[t].courserHitboxY && weapon[i].rocketYposition > enemy[t].eY - enemy[t].courserHitboxY && enemy[t].isAlive == true) {
             weapon[i].rocketYposition -= height;
             enemy[t].eHP -= PLAYER_ROCKET_DAMAGE;
             enemy[t].damageFlashTint = 255;

@@ -311,8 +311,8 @@ class Boss {
         && bossRockets[counter].isOnScreen == true) {
         println("ouchie");
         player.damageFlashTint = 200;
-        enemyBullets[counter].bY = height * -2;
-        enemyBullets[counter].bX = -1 * width;
+        enemyBullets[counter].bulletYposition = height * -2;
+        enemyBullets[counter].bulletXposition = -1 * width;
         enemyBullets[counter].isOnScreen = false;
         lastCollision = millis();
         heartNumber -= 1;
@@ -329,8 +329,8 @@ class Boss {
         && bossBullets[counter].isOnScreen == true) {
         println("ouchie");
         player.damageFlashTint = 200;
-        enemyBullets[counter].bY = height * -2;
-        enemyBullets[counter].bX = -1 * width;
+        enemyBullets[counter].bulletYposition = height * -2;
+        enemyBullets[counter].bulletXposition = -1 * width;
         enemyBullets[counter].isOnScreen = false;
         lastCollision = millis();
         heartNumber -= 1;

@@ -46,28 +46,28 @@ class Variable {
         weapon[i].rocket = loadImage("Player Rocket.png");
         wScale = width/1920;
         hScale = height/1080;
-        weapon[i].bX = width/2;
-        weapon[i].bY = height * -2;
-        weapon[i].bW = weapon[i].DEFAULT_BULLET_WIDTH * wScale;
-        weapon[i].bH = weapon[i].DEFAULT_BULLET_HEIGHT * hScale;
-        weapon[i].bV = weapon[i].bulletVelocityFactor * width;
+        weapon[i].bulletXposition = width/2;
+        weapon[i].bulletYposition = height * -2;
+        weapon[i].bulletWidth = weapon[i].DEFAULT_BULLET_WIDTH * wScale;
+        weapon[i].bulletHeight = weapon[i].DEFAULT_BULLET_HEIGHT * hScale;
+        weapon[i].bulletVelocity = weapon[i].bulletVelocityFactor * width;
 
-        weapon[i].lW = weapon[i].DEFAULT_LASER_WIDTH * wScale;
-        weapon[i].lH = height;
-        weapon[i].lX = width * 2;
-        weapon[i].lY1 = height;
-        weapon[i].lY2 = 0;
+        weapon[i].laserWidth = weapon[i].DEFAULT_LASER_WIDTH * wScale;
+        weapon[i].laserHeight = height;
+        weapon[i].laserXposition = width * 2;
+        weapon[i].laserYposition1 = height;
+        weapon[i].laserYposition2 = 0;
 
-        weapon[i].rX = width/2;
-        weapon[i].rY = height * -2;
-        weapon[i].rW = weapon[i].DEFAULT_ROCKET_WIDTH * wScale;
-        weapon[i].rH = weapon[i].DEFAULT_ROCKET_HEIGHT * hScale;
-        weapon[i].rV = weapon[i].rocketVelocityFactor * width;
+        weapon[i].rocketXposition = width/2;
+        weapon[i].rocketYposition = height * -2;
+        weapon[i].rocketWidth = weapon[i].DEFAULT_ROCKET_WIDTH * wScale;
+        weapon[i].rocketHeight = weapon[i].DEFAULT_ROCKET_HEIGHT * hScale;
+        weapon[i].rocketVelocity = weapon[i].rocketVelocityFactor * width;
       }
       for (int i = 0; i < ENEMY_BULLET_NUMBER; i++) {
-        enemyBullets[i].bW = weapon[i].DEFAULT_BULLET_WIDTH * wScale * 1.5;
-        enemyBullets[i].bH = weapon[i].DEFAULT_BULLET_HEIGHT * hScale * 1.5;
-        enemyBullets[i].bV = enemyBullets[0].enemyBulletVelocityFactor * width;
+        enemyBullets[i].bulletWidth = weapon[i].DEFAULT_BULLET_WIDTH * wScale * 1.5;
+        enemyBullets[i].bulletHeight = weapon[i].DEFAULT_BULLET_HEIGHT * hScale * 1.5;
+        enemyBullets[i].bulletVelocity = enemyBullets[0].enemyBulletVelocityFactor * width;
         enemyBullets[i].enemyBullet = loadImage("EnemyBullet.png");
       }
 

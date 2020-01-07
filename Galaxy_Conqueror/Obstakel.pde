@@ -47,7 +47,7 @@ class Obstakel {
             break;
           }
         }
-        if (!meteorietHit && weapon[t].laserXposition - weapon[t].laserocketWidthidth/2 < meteorieten.get(i).hitBoxX + meteorieten.get(i).hitBoxW && weapon[t].laserXposition + weapon[t].laserocketWidthidth/2 > meteorieten.get(i).hitBoxX && weapon[i].laserIsAlive) {
+        if (!meteorietHit && weapon[t].laserXposition - weapon[t].laserWidth/2 < meteorieten.get(i).hitBoxX + meteorieten.get(i).hitBoxW && weapon[t].laserXposition + weapon[t].laserWidth/2 > meteorieten.get(i).hitBoxX && weapon[i].laserIsAlive) {
           meteorietHit = true;    //als de player bullet de meteoriet raakt, dan is deze boolean true
           if (meteorietHit) {
             meteorieten.remove(i);
