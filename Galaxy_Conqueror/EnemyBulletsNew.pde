@@ -1,10 +1,10 @@
 //This pde file was written by Floris Kuiper
 class EnemyBullets {
-  float bW;          //bullet width
-  float bH;          //bullet height
-  float bV;          //bullet velocity
-  float bX;          //bullet X-position
-  float bY;          //bullet Y-position
+  float bulletWidth;          //bullet width
+  float bulletHeight;          //bullet height
+  float bulletVelocity;          //bullet velocity
+  float bulletXposition;          //bullet X-position
+  float bulletYposition;          //bullet Y-position
   float bSize;       //bullet size
   float enemyBulletVelocityFactor = 0.008;
   boolean isOnScreen; //whether or not a bullet is on screen and should be used in calculations
@@ -17,42 +17,42 @@ class EnemyBullets {
   void initializeEnemyBulletArray() {
     for (int counter = 0; counter < 20; counter++) {
       enemyBullets[counter] = new EnemyBullets();    
-      enemyBullets[counter].bW = 5;
-      enemyBullets[counter].bH = 10;
-      enemyBullets[counter].bV = 0;
-      enemyBullets[counter].bX = width * -2;
-      enemyBullets[counter].bY = width * -2;
+      enemyBullets[counter].bulletWidth = 5;
+      enemyBullets[counter].bulletHeight = 10;
+      enemyBullets[counter].bulletVelocity = 0;
+      enemyBullets[counter].bulletXposition = width * -2;
+      enemyBullets[counter].bulletYposition = width * -2;
       enemyBullets[counter].isOnScreen = false; //whether or not a bullet is "alive" or not
     }
   }
 
   void enemyBulletUpdatePosition(int counter) { //function that updates bullet positions accordingly to their given speed values and "kills" them when they cross the bottom of the screen
     if (enemyBullets[counter].isOnScreen == true) {
-      enemyBullets[counter].bY = enemyBullets[counter].bY + enemyBullets[counter].bV;
+      enemyBullets[counter].bulletYposition = enemyBullets[counter].bulletYposition + enemyBullets[counter].bulletVelocity;
       playerCollisionCheck(counter);
     }
   }
 
   void playerCollisionCheck(int counter) {
     if (lastCollision <= (timer - 3000)) {
-      if (enemyBullets[counter].bX - enemyBullets[counter].bW/2 > player.pX - player.pW/2
-        && enemyBullets[counter].bX + enemyBullets[counter].bW/2 < player.pX + player.pW/2
-        && enemyBullets[counter].bY - enemyBullets[counter].bH/2 > player.pY - player.pH/2
-        && enemyBullets[counter].bY + enemyBullets[counter].bH/2 < player.pY + player.pH/2
+      if (enemyBullets[counter].bulletXposition - enemyBullets[counter].bulletWidth/2 > player.pX - player.pW/2
+        && enemyBullets[counter].bulletXposition + enemyBullets[counter].bulletWidth/2 < player.pX + player.pW/2
+        && enemyBullets[counter].bulletYposition - enemyBullets[counter].bulletHeight/2 > player.pY - player.pH/2
+        && enemyBullets[counter].bulletYposition + enemyBullets[counter].bulletHeight/2 < player.pY + player.pH/2
         && enemyBullets[counter].isOnScreen == true) {
         println("ouchie");
         player.damageFlashTint = 200;
         visuals.screenShake(8, 40, true);
-        enemyBullets[counter].bY = height * -2;
-        enemyBullets[counter].bX = -1 * width;
+        enemyBullets[counter].bulletYposition = height * -2;
+        enemyBullets[counter].bulletXposition = -1 * width;
         enemyBullets[counter].isOnScreen = false;
         lastCollision = millis();
         heartNumber -= 1;
       }
-      if (enemyBullets[counter].bY > height + enemyBullets[counter].bH && enemyBullets[counter].isOnScreen == true) {
+      if (enemyBullets[counter].bulletYposition > height + enemyBullets[counter].bulletHeight && enemyBullets[counter].isOnScreen == true) {
         println("my planet doesn't need me anymore");
-        enemyBullets[counter].bX = -1 * width;
-        enemyBullets[counter].bY = height * -2;
+        enemyBullets[counter].bulletXposition = -1 * width;
+        enemyBullets[counter].bulletYposition = height * -2;
         enemyBullets[counter].isOnScreen = false;
       }
     }
@@ -61,7 +61,7 @@ class EnemyBullets {
   void drawEnemyBullet(int counter) { //function that draws enemies on the given x and y coordinates with the right width and height
     if (enemy[counter].isAlive == true && enemyBullets[counter].isOnScreen == true) {
       fill(255, 0, 0);
-      image(enemyBullet, enemyBullets[counter].bX + visuals.magnitudeX, enemyBullets[counter].bY + visuals.magnitudeY, enemyBullets[counter].bW, enemyBullets[counter].bH);
+      image(enemyBullet, enemyBullets[counter].bulletXposition + visuals.magnitudeX, enemyBullets[counter].bulletYposition + visuals.magnitudeY, enemyBullets[counter].bulletWidth, enemyBullets[counter].bulletHeight);
     }
   }
 
@@ -92,8 +92,8 @@ class EnemyBullets {
     int bulletCheck = bulletRecycle();
     int enemyShooter = enemyShootCheck();
     if (bulletCheck != -1 && enemyShooter != -1) { //check to see if the returned element of the array wasn't either in use or something went wrong
-      enemyBullets[bulletCheck].bX = enemy[enemyShooter].eX;
-      enemyBullets[bulletCheck].bY = enemy[enemyShooter].eY;
+      enemyBullets[bulletCheck].bulletXposition = enemy[enemyShooter].eX;
+      enemyBullets[bulletCheck].bulletYposition = enemy[enemyShooter].eY;
       enemyBullets[bulletCheck].isOnScreen = true;
       enemyShootParticle[0].firing(enemy[enemyShooter].eX, enemy[enemyShooter].eY, enemyShooter);
       enemyshoot.unmute();
