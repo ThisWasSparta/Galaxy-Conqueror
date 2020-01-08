@@ -321,7 +321,6 @@ void drawEnemies(int counter) { //function that draws enemies on the given x and
       tint(255, 255);
       enemy[counter].orbSizeFactor += enemy[counter].inc;      //this makes the orb pulsate
       enemy[counter].shieldTintFactor += enemy[counter].inc;   //this makes the shields transparency pulsate
-      //println(enemy[counter].orbSizeFactor);
       tint(255, 255, 255);
     }
   }

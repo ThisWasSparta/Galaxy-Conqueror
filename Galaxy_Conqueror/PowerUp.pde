@@ -134,10 +134,8 @@ void powerUpdate(int counter) {
           power[counter].isActivated = false;                                                    //Deactivates powerup
           power[counter].isPicked = false;                                                       //Allows the slot of the powerup to be used again
           resetPowerUp(counter);
-          println("Deactivated");
         } else {
           scoreMultiplier = 2;                                                                   //Changes score multiplier for double points
-          println("Powerup activated");
         }
       }
       if (power[counter].typePowerup == 2) {                                                     //Speed
@@ -147,11 +145,9 @@ void powerUpdate(int counter) {
           power[counter].isActivated = false;                                                    //Deactivates powerup
           power[counter].isPicked = false;                                                       //Allows the slot of the powerup to be used again
           resetPowerUp(counter);
-          println("Deactivated");
         } else {
           player.playerVelocityFactor = 0.008;                                                   //Increases speed of the player
           player.pMaxV = player.playerVelocityFactor * width;                                    //Reverts player speed to original value
-          println("Powerup activated");
         }
       }
       if (power[counter].typePowerup == 3) {                                                     //Screenwipe

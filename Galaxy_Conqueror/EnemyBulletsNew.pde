@@ -40,7 +40,6 @@ class EnemyBullets {
         && enemyBullets[counter].bulletYposition - enemyBullets[counter].bulletHeight/2 > player.pY - player.pH/2
         && enemyBullets[counter].bulletYposition + enemyBullets[counter].bulletHeight/2 < player.pY + player.pH/2
         && enemyBullets[counter].isOnScreen == true) {
-        println("ouchie");
         player.damageFlashTint = 200;
         visuals.screenShake(8, 40, true);
         enemyBullets[counter].bulletYposition = height * -2;
@@ -50,7 +49,6 @@ class EnemyBullets {
         heartNumber -= 1;
       }
       if (enemyBullets[counter].bulletYposition > height + enemyBullets[counter].bulletHeight && enemyBullets[counter].isOnScreen == true) {
-        println("my planet doesn't need me anymore");
         enemyBullets[counter].bulletXposition = -1 * width;
         enemyBullets[counter].bulletYposition = height * -2;
         enemyBullets[counter].isOnScreen = false;
