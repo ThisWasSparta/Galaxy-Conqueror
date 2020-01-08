@@ -86,7 +86,7 @@ class PlayerWeapons {
         reloadTimerBarWidth = 80 * ((millis() - reloadTime) / PLAYER_BULLET_FIRERATE);
         reloadTimerBarHeight = 5;
         reloadTimerBarXposition = player.pX - 40;
-        reloadTimerBarYposition = player.pY + player.pH * 0.8;
+        reloadTimerBarYposition = player.pY + player.pH * 0.6;
         fill(200);
         rect(reloadTimerBarXposition, reloadTimerBarYposition, 80, reloadTimerBarHeight);
         fill(255, 242, 56);
