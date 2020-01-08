@@ -177,7 +177,7 @@ class PlayerWeapons {
               scoreObj.addScore(enemy[t].score * scoreMultiplier);
               particle[0].particlesPerTurn = 20;
               particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
-              visuals.screenShake(5, 15, true);
+              visuals.screenShake(15, 20, true);
             }
           }
           if (enemy[t].enemyType == 2 && weapon[i].bulletXposition < enemy[t].eX + enemy[t].courserHitboxX && weapon[i].bulletXposition > enemy[t].eX - enemy[t].courserHitboxX && weapon[i].bulletYposition < enemy[t].eY + enemy[t].courserHitboxY && weapon[i].bulletYposition > enemy[t].eY - enemy[t].courserHitboxY && enemy[t].isAlive == true) {
@@ -191,7 +191,7 @@ class PlayerWeapons {
               scoreObj.addScore(enemy[t].score * scoreMultiplier);
               particle[0].particlesPerTurn = 40;
               particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
-              visuals.screenShake(10, 25, true);
+              visuals.screenShake(25, 30, true);
             }
           }
           if (enemy[t].shieldAlive) {
@@ -215,7 +215,7 @@ class PlayerWeapons {
                 goliathOnScreen--;
                 particle[0].particlesPerTurn = 60;
                 particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
-                visuals.screenShake(15, 35, true);
+                visuals.screenShake(35, 40, true);
               }
             }
           }
@@ -315,7 +315,7 @@ class PlayerWeapons {
             scoreObj.addScore(enemy[t].score * scoreMultiplier);
             particle[0].particlesPerTurn = 20;
             particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
-            visuals.screenShake(5, 15, true);
+            visuals.screenShake(15, 20, true);
           }
         }
         if (enemy[t].enemyType == 2 && weapon[i].laserXposition - weapon[i].laserWidth/2 < enemy[t].eX + enemy[t].courserHitboxX && weapon[i].laserXposition + weapon[i].laserWidth/2 > enemy[t].eX - enemy[t].courserHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
@@ -329,7 +329,7 @@ class PlayerWeapons {
             scoreObj.addScore(enemy[t].score * scoreMultiplier);
             particle[0].particlesPerTurn = 40;
             particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
-            visuals.screenShake(10, 25, true);
+            visuals.screenShake(25, 30, true);
           }
         } 
         if (enemy[t].enemyType == 3 && weapon[i].laserXposition - weapon[i].laserWidth/2 < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].laserXposition + weapon[i].laserWidth/2 > enemy[t].eX - enemy[t].goliathHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
@@ -343,7 +343,7 @@ class PlayerWeapons {
             scoreObj.addScore(enemy[t].score * scoreMultiplier);
             particle[0].particlesPerTurn = 60;
             particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
-            visuals.screenShake(15, 35, true);
+            visuals.screenShake(35, 40, true);
           }
         }
       }
@@ -450,7 +450,7 @@ class PlayerWeapons {
               scoreObj.addScore(enemy[t].score * scoreMultiplier);
               particle[0].particlesPerTurn = 20;
               particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
-              visuals.screenShake(5, 15, true);
+              visuals.screenShake(15, 20, true);
             }
           }
           if (enemy[t].enemyType == 2 && weapon[i].rocketXposition < enemy[t].eX + enemy[t].courserHitboxX && weapon[i].rocketXposition > enemy[t].eX - enemy[t].courserHitboxX && weapon[i].rocketYposition < enemy[t].eY + enemy[t].courserHitboxY && weapon[i].rocketYposition > enemy[t].eY - enemy[t].courserHitboxY && enemy[t].isAlive == true) {
@@ -464,7 +464,7 @@ class PlayerWeapons {
               scoreObj.addScore(enemy[t].score * scoreMultiplier);
               particle[0].particlesPerTurn = 40;
               particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
-              visuals.screenShake(10, 25, true);
+              visuals.screenShake(25, 30, true);
             }
           }
           if (enemy[t].shieldAlive) {
@@ -488,7 +488,7 @@ class PlayerWeapons {
                 goliathOnScreen--;
                 particle[0].particlesPerTurn = 60;
                 particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
-                visuals.screenShake(15, 35, true);
+                visuals.screenShake(35, 40, true);
               }
             }
           }
