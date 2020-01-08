@@ -247,7 +247,6 @@ class Boss {
     scoreObj.addScore(2500);
     bgm.rewind();
     bgm.play();
-    println("I am sleep now fren");
   }
 
   void createBossBulletSalvo() { //function to create the bullets the boss fires
@@ -309,7 +308,6 @@ class Boss {
         && bossRockets[counter].bossRocketY - bossRockets[counter].bossRocketH/2 > player.pY - player.pH/2
         && bossRockets[counter].bossRocketY + bossRockets[counter].bossRocketH/2 < player.pY + player.pH/2
         && bossRockets[counter].isOnScreen == true) {
-        println("ouchie");
         player.damageFlashTint = 200;
         enemyBullets[counter].bulletYposition = height * -2;
         enemyBullets[counter].bulletXposition = -1 * width;
@@ -327,7 +325,6 @@ class Boss {
         && bossBullets[counter].bossBulletY - bossBullets[counter].bossBulletH/2 > player.pY - player.pH/2
         && bossBullets[counter].bossBulletY + bossBullets[counter].bossBulletH/2 < player.pY + player.pH/2
         && bossBullets[counter].isOnScreen == true) {
-        println("ouchie");
         player.damageFlashTint = 200;
         enemyBullets[counter].bulletYposition = height * -2;
         enemyBullets[counter].bulletXposition = -1 * width;

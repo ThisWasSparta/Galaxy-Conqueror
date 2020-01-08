@@ -62,7 +62,7 @@ class GameOver {
       if (survivaltimer < 108000) {
         rect(width/2-60, height/2+420, sAch, sAch);
       }
-      if (score > 0) {
+      if (scoreObj.score > 0) {
         rect(width/2, height/2+420, sAch, sAch);
       }
       if (!boss.bossAlive) {

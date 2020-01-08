@@ -54,11 +54,7 @@ class NamePicker {
     }
 
 
-    if (resetName) {
-      letter1 = "A";
-      letter2 = "A";
-      letter3 = "A";
-    }
+    
     if (first) {
       ellipse(highLightX, highLightY, 20, 20);
       letterpicker.DrawLetterpicker1();

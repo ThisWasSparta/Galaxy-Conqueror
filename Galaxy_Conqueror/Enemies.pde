@@ -192,7 +192,7 @@ void createEnemy(int type) { //function to create an enemy
 
   switch(type) {
   case 1:
-    if (scoutCheck != -1 && score >= 500) { //check to see if the returned element of the array wasn't either in use or something went wrong
+    if (scoutCheck != -1 && scoreObj.score >= 500) { //check to see if the returned element of the array wasn't either in use or something went wrong
       enemy[scoutCheck].enemyType = 1;
       enemy[scoutCheck].eSize = 40;
       enemy[scoutCheck].eW = enemy[scoutCheck].defaultScoutWidth * wScale;
@@ -207,7 +207,7 @@ void createEnemy(int type) { //function to create an enemy
     }
     break;
   case 2:
-    if (courserCheck != -1 && score >= 0) {
+    if (courserCheck != -1 && scoreObj.score >= 0) {
       enemy[courserCheck].enemyType = 2;
       enemy[courserCheck].eSize = 60;
       enemy[courserCheck].eW = enemy[courserCheck].defaultCourserWidth * wScale;
@@ -222,7 +222,7 @@ void createEnemy(int type) { //function to create an enemy
     }
     break;
   case 3:
-    if (goliathCheck != -1 && score >= 1000) {
+    if (goliathCheck != -1 && scoreObj.score >= 1000) {
       enemy[goliathCheck].enemyType = 3;
       enemy[goliathCheck].eSize = 70;
       enemy[goliathCheck].eW = enemy[goliathCheck].defaultGoliathWidth * wScale;
@@ -321,7 +321,6 @@ void drawEnemies(int counter) { //function that draws enemies on the given x and
       tint(255, 255);
       enemy[counter].orbSizeFactor += enemy[counter].inc;      //this makes the orb pulsate
       enemy[counter].shieldTintFactor += enemy[counter].inc;   //this makes the shields transparency pulsate
-      //println(enemy[counter].orbSizeFactor);
       tint(255, 255, 255);
     }
   }

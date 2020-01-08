@@ -9,7 +9,6 @@ class DBQueries {
   String highScores[] = new String[highScoreSize];
   String names[] = new String[highScoreSize];
   String killCount[] = new String[highScoreSize];
-  String name;
   String score;
   String namesAch[] = new String[achievementSize];
   String descsAch[] = new String[achievementSize];
@@ -26,7 +25,8 @@ class DBQueries {
   void dbInsert() {
     if (dbconnect.sql.connect()) {
       dbconnect.sql.query("INSERT INTO Players (Playername) VALUES ('"+namePicker.name+"')");
-      dbconnect.sql.query("INSERT INTO Highscores (Score, Playername, PlayerKillCount) VALUES ("+ score +", '" + namePicker.name + "', '" + killcount + "')");
+      dbconnect.sql.query("INSERT INTO Highscores (Score) VALUES ("+ scoreObj.score +")");
+      //dbconnect.sql.query("INSERT INTO PlayerStatistics (PlayerkillCount, PlayerSurvivalTime) VALUES (" + killcount + " , " + survivalTime + ")");
       insertQuerieDone = true;
     }
   }
@@ -34,7 +34,7 @@ class DBQueries {
   void dbSelectHighScores() {
     if (getHighScores == false) {
       if (dbconnect.sql.connect()) {
-        dbconnect.sql.query("SELECT Players.Playername, Highscores.Score, Highscores.playerkillCount FROM Players INNER JOIN Highscores ON Players.Playernumber = Highscores.Playernumber ORDER BY Score DESC LIMIT 10");
+        dbconnect.sql.query("SELECT Players.Playername, Highscores.Score FROM Players INNER JOIN Highscores ON Players.Playernumber = Highscores.Playernumber ORDER BY Score DESC LIMIT 10");
         i = 0;
         while (dbconnect.sql.next()) {
           names[i] = dbconnect.sql.getString("Playername");
