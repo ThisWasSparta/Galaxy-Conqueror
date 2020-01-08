@@ -13,8 +13,6 @@ class Letterpicker {
     num2 = 0;
     num3 = 0;
   }
-
-
   void DrawLetterpicker1() {
     if (keyPressed) {
       if (key == 's') {//if key 's' is pressed
@@ -27,6 +25,9 @@ class Letterpicker {
       }
       if (num1 < 0) {
         num1 = 25;
+      }
+      if (resetName) {
+        num1 = 0;
       }
     }
     keyPressed = false;
@@ -44,6 +45,9 @@ class Letterpicker {
       if (num2 < 0) {
         num2 = 25;
       }
+      if (resetName) {
+        num2 = 0;
+      }
     }
     keyPressed = false;
   }
@@ -59,6 +63,9 @@ class Letterpicker {
       }
       if (num3 < 0) {
         num3 = 25;
+      }
+      if (resetName) {
+        num3 = 0;
       }
     }
     keyPressed = false;

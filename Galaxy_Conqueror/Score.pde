@@ -1,9 +1,10 @@
 //This code was written by Dylan Kleton
-int score = 0;
+
 
 class Score {
   //This is the score that will eventually be shown in the game-over screen
   final int SCORE_SIZE = 100;
+  int score = 0;
   //This method has the purpose of adding numbers to the score
 
   void addScore (int scoreAmount) {

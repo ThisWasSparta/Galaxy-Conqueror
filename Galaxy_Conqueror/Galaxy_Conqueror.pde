@@ -36,6 +36,7 @@ int survivaltimer = 0;
 int timer = millis();                             //contains the time from when the game was launched in milliseconds
 int startTime;                                    //contains the time when start was pressed in milliseconds
 int endTime;                                      //contains the time when player dies
+int survivalTime;                                 //contains the time how long the player has played
 
 boolean startGame = false;                        //whether the game has started or not
 
@@ -50,6 +51,10 @@ boolean tutorial = false;
 boolean pause = false;
 
 boolean nameScreen;
+
+boolean getStartTime = false;
+
+boolean getEndTime = false;
 
 final float sizeFactor = 0.8;
 float wScale;                                     //width scale used to adjust the width of images
@@ -217,6 +222,7 @@ void draw() {
     events.executeEvent();
     obstakel.drawObstakel();
     survivaltimer++;
+    
     if (!tutorial) {
       tutorialTimer++;
     }
@@ -312,8 +318,13 @@ void draw() {
     }
   }
   if (gameOver) {
-    endTime = timer - startTime;
-    println(endTime);
+    if (!getEndTime){
+      endTime = timer;
+      getEndTime = true;
+    }
+    
+    survivalTime = endTime - startTime;
+    
     if (millis() >= gameOverTimer + 500) {
       gameover.GameOverDraw();
       if (millis() >= gameOverTimer + 1000) {
@@ -330,9 +341,9 @@ void draw() {
           titel.StartGame = true;
           tutorial = false;
           heartNumber = 3;
-          score = 0;
+          scoreObj.score = 0;
           globalBossTimer = 11500;
-          resetName = true;
+          //resetName = true;
           for (int i = 0; i < ENEMY_NUMBER; i++) {                                                 //Cycles through all enemy slots once
             if (enemy[i].isAlive == true) {                                                        //Checks if there are living enemies
               enemy[i].isAlive = false;                                                            //Kills living enemies

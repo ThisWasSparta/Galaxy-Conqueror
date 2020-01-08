@@ -54,11 +54,7 @@ class NamePicker {
     }
 
 
-    if (resetName) {
-      letter1 = "A";
-      letter2 = "A";
-      letter3 = "A";
-    }
+    
     if (first) {
       ellipse(highLightX, highLightY, 20, 20);
       letterpicker.DrawLetterpicker1();
@@ -78,6 +74,7 @@ class NamePicker {
     text(letter2, letterX2, letterY);
     text(letter3, letterX3, letterY);
     name = ""+letter1+letter2+letter3+"";
+    println(name);
     keyPressed = false;
   }
 }
