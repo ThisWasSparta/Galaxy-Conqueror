@@ -74,7 +74,6 @@ class NamePicker {
     text(letter2, letterX2, letterY);
     text(letter3, letterX3, letterY);
     name = ""+letter1+letter2+letter3+"";
-    println(name);
     keyPressed = false;
   }
 }

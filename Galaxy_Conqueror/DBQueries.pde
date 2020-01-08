@@ -24,9 +24,10 @@ class DBQueries {
 
   void dbInsert() {
     if (dbconnect.sql.connect()) {
+      //println(namePicker.name);
       dbconnect.sql.query("INSERT INTO Players (Playername) VALUES ('"+namePicker.name+"')");
       dbconnect.sql.query("INSERT INTO Highscores (Score) VALUES ("+ scoreObj.score +")");
-      dbconnect.sql.query("INSERT INTO PlayerStatistics (PlayerkillCount, PlayerSurvivalTime) VALUES (" + killcount + " , " + survivalTime + ")");
+      //dbconnect.sql.query("INSERT INTO PlayerStatistics (PlayerkillCount, PlayerSurvivalTime) VALUES (" + killcount + " , " + survivalTime + ")");
       insertQuerieDone = true;
     }
   }
