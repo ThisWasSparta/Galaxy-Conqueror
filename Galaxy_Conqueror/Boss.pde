@@ -85,7 +85,6 @@ class Boss {
   final int MIDDLE_OF_SCREEN = width / 2;
 
   void bossSpawn() {
-    bgm.mute();
     bossAlive = true; //marks the boss as being alive, which turns off the spawning of random enemies while keeping the drawing enabled
     currentState = 0;
     bossX = width / 2;
@@ -245,8 +244,6 @@ class Boss {
     bossHealth = BOSS_HEALTH_VALUE;
     globalBossTimer = 11500;
     scoreObj.addScore(2500);
-    bgm.rewind();
-    bgm.play();
   }
 
   void createBossBulletSalvo() { //function to create the bullets the boss fires
@@ -265,8 +262,6 @@ class Boss {
             lastShotTime = millis();
           }
         }
-        enemyshoot.unmute();
-        enemyshoot.loop(1);
       }
     }
   }

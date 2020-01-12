@@ -1,3 +1,5 @@
+float soundVolume = 1;
+
 class Titel {
 
   // Main titel180
@@ -130,9 +132,9 @@ class Titel {
   void startScreen() {
     maintheme.play();
     if (StartGame) {
+      bgm.mute();
 
       dbqueries.getHighScores = false;
-      playergatshoot.mute();
       //Titel
       fill(255);
       textSize(textSize);
@@ -191,8 +193,14 @@ class Titel {
           if (player.isShooting) {
             StartGame = false;
             startGame = true;
+            maintheme.rewind();
             maintheme.mute();
-            bgm.play();
+            maintheme.pause();
+            if (startGame) {
+              bgm.rewind();
+              bgm.unmute();
+              bgm.play();
+            }
           }
           if (player.goDown) {
             countCursor = 0;
@@ -285,8 +293,7 @@ class Titel {
         }
       }
     } else if (HighGame) {
-
-      playergatshoot.mute();
+      bgm.mute();
 
       fill(255);
       rect(width/2, height/2-100, 700, 700);
@@ -379,8 +386,7 @@ class Titel {
         }
       }
     } else if (AchGame) {
-
-      playergatshoot.mute();
+      bgm.mute();
 
       fill(255);
       rect(width/2, height/2-60, 1500, 850);
@@ -436,8 +442,7 @@ class Titel {
         }
       }
     } else if (SettingGame) {
-
-      playergatshoot.mute();
+      bgm.mute();
 
       float sSx = constrain(sSX, sBX-sBWinn/2, sBX+sBWinn/2);
       float bSx = constrain(bSX, bBX-bBWinn/2, bBX+bBWinn/2);

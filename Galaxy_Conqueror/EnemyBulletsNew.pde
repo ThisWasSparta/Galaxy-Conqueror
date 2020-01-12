@@ -86,7 +86,6 @@ class EnemyBullets {
   }
 
   void createEnemyBullet() { //function to create an enemy bullet
-    enemyshoot.mute();
     int bulletCheck = bulletRecycle();
     int enemyShooter = enemyShootCheck();
     if (bulletCheck != -1 && enemyShooter != -1) { //check to see if the returned element of the array wasn't either in use or something went wrong
@@ -94,8 +93,7 @@ class EnemyBullets {
       enemyBullets[bulletCheck].bulletYposition = enemy[enemyShooter].eY;
       enemyBullets[bulletCheck].isOnScreen = true;
       enemyShootParticle[0].firing(enemy[enemyShooter].eX, enemy[enemyShooter].eY, enemyShooter);
-      enemyshoot.unmute();
-      enemyshoot.loop(1);
+      enemyshoot.play(30);
     }
   }
 }

@@ -164,9 +164,7 @@ class SpaceShip {
       if (weaponCycleCooldown + 250 < millis()) {
         if (weapon == 3) {
           weapon = 1;
-          playergatshoot.unmute();
         } else {
-          playergatshoot.mute();
           weapon++;
         }
         weaponCycleCooldown = millis();

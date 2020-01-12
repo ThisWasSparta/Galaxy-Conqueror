@@ -122,10 +122,7 @@ class PlayerWeapons {
   }
 
   void spawnPlayerBullets() {//This function was written bulletYposition Noah Verburg
-    //playergatshoot.setVolume(0.1);
     if (player.isShooting && !weapon[playerProjectileTurn].bulletIsOnScreen && millis() - PLAYER_BULLET_FIRERATE > reloadTime) {  //if the shot-button is pressed and the bullet that is supposed to
-      //sounds.playergatshoot.play();
-      //playergatshoot.loop();
       reloadTime = millis();                                                                                                //shoot out isnt on screen and the reload timer is done, it fires a bullet
       for (int i = 0; i < PLAYER_BULLET_PER_SALVO; i++) {
         if (playerProjectileTurn%2 == 0) {                                                     //if the current bullet's number is an even number, it spawns  in the
@@ -137,6 +134,8 @@ class PlayerWeapons {
         weapon[playerProjectileTurn].projectileType = 1;
         weapon[playerProjectileTurn].bulletIsOnScreen = true;
         playerProjectileTurn++;
+        playergatshoot.setVolume(soundVolume);
+        playergatshoot.play(120);
       }
       if (playerProjectileTurn > 49) {
         playerProjectileTurn = 0;
