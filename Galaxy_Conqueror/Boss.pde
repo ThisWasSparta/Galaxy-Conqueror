@@ -7,7 +7,8 @@ class BossBullet {
   int bossBulletY = -height;
   int bossBulletW = 12;
   int bossBulletH = 25;
-  int bossBulletV = 15;
+  float bossBulletXV = 0;
+  int bossBulletYV = 15;
   boolean isOnScreen = false;
 }
 
@@ -83,6 +84,10 @@ class Boss {
   final int DEATHRAY_CHARGE_TIME = 500;
   final int BOSS_ROCKET_Y_VELOCITY = 12;
   final int MIDDLE_OF_SCREEN = width / 2;
+  final int POSITIVE_BULLET_SPEED = -2;
+  final int NEGATIVE_BULLET_SPEED = 2;
+  final int NO_HORIZONTAL_SPEED = 0;
+  final int BOSS_SPRITE_HEIGHT = 121;
 
   void bossSpawn() {
     bossAlive = true; //marks the boss as being alive, which turns off the spawning of random enemies while keeping the drawing enabled
@@ -99,18 +104,17 @@ class Boss {
   void bossUpdatePosition() { //function that updates the boss' position/position of his projectiles
     //ang = radians(angle); < probably redundant, just want to be sure before i remove it
     //jbossY = bossY + (10 * sin(dx * inc));
-    if (bossY < 121) {
+    if (bossY < BOSS_SPRITE_HEIGHT) {
       bossY++;
     }
     bossProjectileUpdatePosition();
-    //angle += 2; < ditto
-    //TODO: add in a line that makes the boss move left and right when firing the deathray
   }
 
   void bossProjectileUpdatePosition() {
     for (int i = 0; i < bossBullets.length; i++) {
       if (bossBullets[i].isOnScreen == true) {
-        bossBullets[i].bossBulletY += bossBullets[i].bossBulletV;
+        bossBullets[i].bossBulletY += bossBullets[i].bossBulletYV;
+        bossBullets[i].bossBulletX += bossBullets[i].bossBulletXV;
       }
       if (bossBullets[i].bossBulletY > height + bossBullets[i].bossBulletH) {
         bossBullets[i].isOnScreen = false;
@@ -148,8 +152,8 @@ class Boss {
     deathrayCooldown--;
     int randomNumber = 0;
     randomNumber = (int)random(0, 100);
-    if (currentState == 3) {
-      currentStateTimer = 4000;
+    if (bossY < BOSS_SPRITE_HEIGHT) {
+      currentStateTimer = 2000;
       return IDLE_STATE;
     }
     if (randomNumber >= 0 && randomNumber <= 20 && currentState != IDLE_STATE) {
@@ -157,7 +161,7 @@ class Boss {
       return IDLE_STATE;
     }
     if (randomNumber > 20 && randomNumber <= 50 && currentState != MISSILE_STATE) {
-      currentStateTimer = 12000;
+      currentStateTimer = 6000;
       return MISSILE_STATE;
     }
     if (randomNumber > 50 && randomNumber <= 90 && currentState != GATLING_GUN_STATE) {
@@ -165,7 +169,7 @@ class Boss {
       return GATLING_GUN_STATE;
     }
     if (randomNumber > 90 && randomNumber <= 100 && deathrayCooldown <= 0) {
-      currentStateTimer = 14000;
+      currentStateTimer = 10000;
       return DEATHRAY_STATE;
     }
     currentStateTimer = 4000;
@@ -202,6 +206,7 @@ class Boss {
         if (deathrayLength <= DEATHRAY_MAX_LENGTH) {
           deathrayLength += 15;
         }
+        playerDeathrayCollisionCheck();
       }
       //play charge sound + have a charging particle effect?
       //time until sound played
@@ -295,7 +300,7 @@ class Boss {
     }
     return -1;
   }
-  
+
   void playerBossRocketCollisionCheck(int counter) {
     if (lastCollision <= (timer - 3000)) {
       if (bossRockets[counter].bossRocketX - bossRockets[counter].bossRocketW/2 > player.pX - player.pW/2
@@ -312,7 +317,7 @@ class Boss {
       }
     }
   }
-  
+
   void playerBossBulletCollisionCheck(int counter) {
     if (lastCollision <= (timer - 3000)) {
       if (bossBullets[counter].bossBulletX - bossBullets[counter].bossBulletW/2 > player.pX - player.pW/2
@@ -327,33 +332,51 @@ class Boss {
         lastCollision = millis();
         heartNumber -= 1;
       }
-    }    
+    }
   }
+
+  void playerDeathrayCollisionCheck() {
+    if (lastCollision <= (timer - 3000)) {
+      if (player.pX > MIDDLE_OF_SCREEN - (DEATHRAY_SIZE / 2) 
+        && player.pX < MIDDLE_OF_SCREEN + (DEATHRAY_SIZE / 2)
+        && player.pY < deathrayLength) {
+        player.damageFlashTint = 200;
+        lastCollision = millis();
+        heartNumber -= 1;
+      }
+    }
+  }  
 
   void bulletXposCoordinator(int arrayElement) { //function that supplies the "create bullet" function with the right x positions to put the bullet based on which gun is the current one that's suppsed to be firing
     switch (currentGunX) {
     case 0:
       bossBullets[arrayElement].bossBulletX = GUN1_XPOS;
+      bossBullets[arrayElement].bossBulletXV = NEGATIVE_BULLET_SPEED; //this makes the x velocity of the bullet negative so that it fires in a pattern instead of firing every bullet straight aheaed
       currentGunX++;
       break;
     case 1:
       bossBullets[arrayElement].bossBulletX = GUN2_XPOS;
+      bossBullets[arrayElement].bossBulletXV = NO_HORIZONTAL_SPEED;
       currentGunX++;
       break;
     case 2:
       bossBullets[arrayElement].bossBulletX = GUN3_XPOS;
+      bossBullets[arrayElement].bossBulletXV = POSITIVE_BULLET_SPEED; //ditto, but this makes the velocity positive so it flies outward
       currentGunX++;
       break;
     case 3:
       bossBullets[arrayElement].bossBulletX = GUN4_XPOS;
+      bossBullets[arrayElement].bossBulletXV = NEGATIVE_BULLET_SPEED;
       currentGunX++;
       break;
     case 4:
       bossBullets[arrayElement].bossBulletX = GUN5_XPOS;
+      bossBullets[arrayElement].bossBulletXV = NO_HORIZONTAL_SPEED;
       currentGunX++;
       break;
     case 5:
       bossBullets[arrayElement].bossBulletX = GUN6_XPOS;
+      bossBullets[arrayElement].bossBulletXV = POSITIVE_BULLET_SPEED;
       currentGunX = -1;
       break;
     }
