@@ -8,9 +8,9 @@ class ExplosionPart {
   float particleColor;
   float particleSize;
   int particlesPerTurn = 10;
-  int particleTurn = 0;
+  int particleTurn = 0;    //this is a variable that saves the number of the current particle being spawned which is used to assign it values.
 
-  void spawnParticles(int partNr) {
+  void spawnParticles(int partNr) {    //this function give every particle that is going to be used their starting values.
     particle[partNr].particleSize = random(10, 15);
     particle[partNr].lifetime = millis();
     particle[partNr].x = x;
@@ -22,7 +22,7 @@ class ExplosionPart {
     particle[partNr].particleColor = random(0, 255);
   }
 
-  void updateParticles(int counter) {
+  void updateParticles(int counter) {    //this function updates the particles' positions, visibility, lifetime and size.
     particle[counter].x += particle[counter].xVelocity;
     particle[counter].y += particle[counter].yVelocity;
     particle[counter].opacity -= 5;
@@ -44,14 +44,12 @@ class ExplosionPart {
     square(particle[counter].x + visuals.magnitudeX, particle[counter].y + visuals.magnitudeY, particle[counter].particleSize);
   }
 
-  void explosion(float X, float Y, int enemyNr) {
+  void explosion(float X, float Y, int enemyNr) {    //this function is called when an enemy explodes, it spawns a fixed amount of particles at the location of the dead enemy.
     for (int i = 0; i < particle[0].particlesPerTurn; i++) {
       if (particleTurn >= ENEMY_EXPLOSION_PARTICLE_NUMBER-10) {
         particleTurn = 0;
       }
       if (!enemy[enemyNr].isAlive) {
-        //x = random(width * 0.1, width * 0.9);
-        //y = random(height * 0.1, height * 0.9);
         x = X;
         y = Y;
         spawnParticles(particleTurn);

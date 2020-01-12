@@ -308,7 +308,7 @@ void draw() {
       gameOverTimer = millis();
     }
   }
-  
+
   // Als de player dood is komt de gameover scherm
   if (gameOver) {
     if (!getEndTime) {

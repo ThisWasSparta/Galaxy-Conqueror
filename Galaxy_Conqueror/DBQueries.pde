@@ -45,7 +45,7 @@ class DBQueries {
       getHighScores = true;      //boolean word op true gezet zodat de data niet steeds opnieuw word opgehaald terwijl je op de highscore pagina bent
     }
   }
-  
+
   void dbSelectAch() {
     if (getAch == false) {          //boolean om te checken of de achievements al opgehaald zijn
       if (dbconnect.sql.connect()) {

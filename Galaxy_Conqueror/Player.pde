@@ -5,13 +5,13 @@ class SpaceShip {
   boolean goUp;      //    \
   boolean goDown;    //     -direction of player movement
 
-  boolean isShooting;  //whether the player is shooting or not
+  boolean isShooting;  //wether the player is shooting or not
 
   boolean testBoolean;
 
-  boolean stop;
+  boolean stop;  //used for debug stop button
 
-  boolean nextWeapon;
+  boolean nextWeapon;  //wether the button for the next weapon is pressed
 
   boolean exitgame;
 
@@ -21,13 +21,13 @@ class SpaceShip {
   final float DEFAULT_PLAYER_HEIGHT = 118 * sizeFactor;
   final float PLAYER_DEFAULT_VELOCITY_FACTOR = 0.006;            //Default velocity factor
   final float DEFAULT_WEAPON_WHEEL_SIZE = 198 * sizeFactor;
-  float pW;    //player width
-  float pH;    //player height
-  float pXV = 0;   //player X velocity
-  float pYV = 0;   //player Y velocity
-  float pMaxV = 0; //player maximal velocity
-  float pX;    //player X-position
-  float pY;    //player Y-position
+  float playerWidth;
+  float playerHeight;
+  float playerXvelocity = 0;
+  float playerYvelocity = 0;
+  float playerMaxVelocity = 0;
+  float playerXposition;    //player X-position
+  float playerYposition;    //player Y-position
   float playerVelocityFactor = PLAYER_DEFAULT_VELOCITY_FACTOR;   //factor which is used to get the desired player velocity compared to the width of the screen
 
   float weaponWheelX;
@@ -45,7 +45,7 @@ class SpaceShip {
   PImage weapon1;                       //weapon1, weapon2 and weapon3 are the sprites for the player depending on what gun they are using
   PImage weapon2;
   PImage weapon3;
-  
+
   PImage weaponWheel;
   PImage weaponWheelSelector;
 
@@ -55,7 +55,7 @@ class SpaceShip {
         tint(255, player.damageFlashTint, player.damageFlashTint);
         player.damageFlashTint -= 10;
       }
-      image(weapon1, pX + visuals.magnitudeX, pY + visuals.magnitudeY, pW, pH);
+      image(weapon1, playerXposition + visuals.magnitudeX, playerYposition + visuals.magnitudeY, playerWidth, playerHeight);
       tint(255, 255, 255);
     }
     if (weapon == 2) {
@@ -63,7 +63,7 @@ class SpaceShip {
         tint(255, player.damageFlashTint, player.damageFlashTint);
         player.damageFlashTint -= 10;
       }
-      image(weapon2, pX + visuals.magnitudeX, pY + visuals.magnitudeY, pW, pH);
+      image(weapon2, playerXposition + visuals.magnitudeX, playerYposition + visuals.magnitudeY, playerWidth, playerHeight);
       tint(255, 255, 255);
     }
     if (weapon == 3) {
@@ -71,7 +71,7 @@ class SpaceShip {
         tint(255, player.damageFlashTint, player.damageFlashTint);
         player.damageFlashTint -= 10;
       }
-      image(weapon3, pX + visuals.magnitudeX, pY + visuals.magnitudeY, pW, pH);
+      image(weapon3, playerXposition + visuals.magnitudeX, playerYposition + visuals.magnitudeY, playerWidth, playerHeight);
       tint(255, 255, 255);
     }
     if (weaponState == 3) {
@@ -103,62 +103,62 @@ class SpaceShip {
 
   void playerUpdate() {    //This function was written by Noah Verburg
     if (player.goLeft || player.goRight || player.goUp || player.goDown) {
-      if (player.goLeft && player.pX > player.pW/2) {
-        if (player.pXV > -player.pMaxV ) {
-          player.pXV -= 0.1 * pMaxV;
+      if (player.goLeft && player.playerXposition > player.playerWidth/2) {
+        if (player.playerXvelocity > -player.playerMaxVelocity ) {
+          player.playerXvelocity -= 0.1 * playerMaxVelocity;
         }
       }
-      if (player.goRight && player.pX < width - player.pW/2) {
-        if (player.pXV < player.pMaxV ) {
-          player.pXV += 0.1 * player.pMaxV;
+      if (player.goRight && player.playerXposition < width - player.playerWidth/2) {
+        if (player.playerXvelocity < player.playerMaxVelocity ) {
+          player.playerXvelocity += 0.1 * player.playerMaxVelocity;
         }
       }
-      if (player.goUp && player.pY > height * 0.75) {
-        if (player.pYV > -player.pMaxV ) {
-          player.pYV -= 0.1 * player.pMaxV;
+      if (player.goUp && player.playerYposition > height * 0.75) {
+        if (player.playerYvelocity > -player.playerMaxVelocity ) {
+          player.playerYvelocity -= 0.1 * player.playerMaxVelocity;
         }
       }
-      if (player.goDown && player.pY < height/1.01 - player.pH/2) {
-        if (player.pYV < player.pMaxV ) {
-          player.pYV += 0.1 * player.pMaxV;
+      if (player.goDown && player.playerYposition < height/1.01 - player.playerHeight/2) {
+        if (player.playerYvelocity < player.playerMaxVelocity ) {
+          player.playerYvelocity += 0.1 * player.playerMaxVelocity;
         }
       }
     } else {
-      if (player.pXV < 0) {
-        player.pXV += 0.1 * pMaxV;
+      if (player.playerXvelocity < 0) {
+        player.playerXvelocity += 0.1 * playerMaxVelocity;
       }
-      if (player.pXV > 0) {
-        player.pXV -= 0.1 * pMaxV;
+      if (player.playerXvelocity > 0) {
+        player.playerXvelocity -= 0.1 * playerMaxVelocity;
       }
-      if (player.pXV < 0.99 && player.pXV > -0.09) {
-        player.pXV = 0;
+      if (player.playerXvelocity < 0.99 && player.playerXvelocity > -0.09) {
+        player.playerXvelocity = 0;
       }
-      if (player.pYV < 0) {
-        player.pYV += 0.1 * pMaxV;
+      if (player.playerYvelocity < 0) {
+        player.playerYvelocity += 0.1 * playerMaxVelocity;
       }
-      if (player.pYV > 0 ) {
-        player.pYV -= 0.1 * pMaxV;
+      if (player.playerYvelocity > 0 ) {
+        player.playerYvelocity -= 0.1 * playerMaxVelocity;
       }
-      if (player.pYV < 0.09 && player.pYV > -0.09) {
-        player.pYV = 0;
+      if (player.playerYvelocity < 0.09 && player.playerYvelocity > -0.09) {
+        player.playerYvelocity = 0;
       }
     }
 
-    if (pXV < 0 && player.pX < player.pW/2) {
-      pXV = 0;
+    if (playerXvelocity < 0 && player.playerXposition < player.playerWidth/2) {
+      playerXvelocity = 0;
     }
-    if (pXV > 0 && player.pX > width - player.pW/2) {
-      pXV = 0;
+    if (playerXvelocity > 0 && player.playerXposition > width - player.playerWidth/2) {
+      playerXvelocity = 0;
     }
-    if (pYV < 0 && player.pY < height * 0.75) {
-      pYV = 0;
+    if (playerYvelocity < 0 && player.playerYposition < height * 0.75) {
+      playerYvelocity = 0;
     }
-    if (pYV > 0 && player.pY > height/1.01 - player.pH/2) {
-      pYV = 0;
+    if (playerYvelocity > 0 && player.playerYposition > height/1.01 - player.playerHeight/2) {
+      playerYvelocity = 0;
     }
 
-    player.pX += player.pXV;
-    player.pY += player.pYV;
+    player.playerXposition += player.playerXvelocity;
+    player.playerYposition += player.playerYvelocity;
 
     if (player.nextWeapon) {
       if (weaponCycleCooldown + 250 < millis()) {
@@ -177,42 +177,42 @@ class SpaceShip {
       exit();
     }
   }
-  
+
   void updateWeaponWheel() {
     switch (weapon) {
-      case 1:
-        weaponWheelSelectorX = weaponWheelX;
-        if (weaponWheelSelectorY > weaponWheelY - 0.2 * weaponWheelSize) {
-          weaponWheelSelectorY -= 5;
-        }
-        if (weaponWheelSelectorY < weaponWheelY - 0.199 * weaponWheelSize) {
-          weaponWheelSelectorY = weaponWheelY - 0.2 * weaponWheelSize;
-        }
-       // weaponWheelSelectorY = weaponWheelY - 0.2 * weaponWheelSize;
-        break;
-      case 2:
-        weaponWheelSelectorX = weaponWheelX;
-        if (weaponWheelSelectorY < weaponWheelY) {
-          weaponWheelSelectorY += 4;
-        }
-        if (weaponWheelSelectorY > weaponWheelY - 0.001 * weaponWheelSize) {
-          weaponWheelSelectorY = weaponWheelY;
-        }
-        //weaponWheelSelectorY = weaponWheelY;
-        break;
-      case 3:
-        weaponWheelSelectorX = weaponWheelX;
-        if (weaponWheelSelectorY < weaponWheelY + 0.2 * weaponWheelSize) {
-          weaponWheelSelectorY += 4;
-        }
-        if (weaponWheelSelectorY > weaponWheelY + 0.199 * weaponWheelSize) {
-          weaponWheelSelectorY = weaponWheelY + 0.2 * weaponWheelSize;
-        }
-        //weaponWheelSelectorY = weaponWheelY + 0.2 * weaponWheelSize;
-        break;
+    case 1:
+      weaponWheelSelectorX = weaponWheelX;
+      if (weaponWheelSelectorY > weaponWheelY - 0.2 * weaponWheelSize) {
+        weaponWheelSelectorY -= 5;
+      }
+      if (weaponWheelSelectorY < weaponWheelY - 0.199 * weaponWheelSize) {
+        weaponWheelSelectorY = weaponWheelY - 0.2 * weaponWheelSize;
+      }
+      // weaponWheelSelectorY = weaponWheelY - 0.2 * weaponWheelSize;
+      break;
+    case 2:
+      weaponWheelSelectorX = weaponWheelX;
+      if (weaponWheelSelectorY < weaponWheelY) {
+        weaponWheelSelectorY += 4;
+      }
+      if (weaponWheelSelectorY > weaponWheelY - 0.001 * weaponWheelSize) {
+        weaponWheelSelectorY = weaponWheelY;
+      }
+      //weaponWheelSelectorY = weaponWheelY;
+      break;
+    case 3:
+      weaponWheelSelectorX = weaponWheelX;
+      if (weaponWheelSelectorY < weaponWheelY + 0.2 * weaponWheelSize) {
+        weaponWheelSelectorY += 4;
+      }
+      if (weaponWheelSelectorY > weaponWheelY + 0.199 * weaponWheelSize) {
+        weaponWheelSelectorY = weaponWheelY + 0.2 * weaponWheelSize;
+      }
+      //weaponWheelSelectorY = weaponWheelY + 0.2 * weaponWheelSize;
+      break;
     }
   }
-  
+
   void drawWeaponWheel() {
     image(weaponWheel, weaponWheelX + visuals.magnitudeX, weaponWheelY + visuals.magnitudeY, weaponWheelSize, weaponWheelSize);
     image(weaponWheelSelector, weaponWheelSelectorX + visuals.magnitudeX, weaponWheelSelectorY + visuals.magnitudeY, weaponWheelSize, weaponWheelSize);

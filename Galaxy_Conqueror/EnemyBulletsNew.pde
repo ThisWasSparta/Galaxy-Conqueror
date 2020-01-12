@@ -35,10 +35,10 @@ class EnemyBullets {
 
   void playerCollisionCheck(int counter) {
     if (lastCollision <= (timer - 3000)) {
-      if (enemyBullets[counter].bulletXposition - enemyBullets[counter].bulletWidth/2 > player.pX - player.pW/2
-        && enemyBullets[counter].bulletXposition + enemyBullets[counter].bulletWidth/2 < player.pX + player.pW/2
-        && enemyBullets[counter].bulletYposition - enemyBullets[counter].bulletHeight/2 > player.pY - player.pH/2
-        && enemyBullets[counter].bulletYposition + enemyBullets[counter].bulletHeight/2 < player.pY + player.pH/2
+      if (enemyBullets[counter].bulletXposition - enemyBullets[counter].bulletWidth/2 > player.playerXposition - player.playerWidth/2
+        && enemyBullets[counter].bulletXposition + enemyBullets[counter].bulletWidth/2 < player.playerXposition + player.playerWidth/2
+        && enemyBullets[counter].bulletYposition - enemyBullets[counter].bulletHeight/2 > player.playerYposition - player.playerHeight/2
+        && enemyBullets[counter].bulletYposition + enemyBullets[counter].bulletHeight/2 < player.playerYposition + player.playerHeight/2
         && enemyBullets[counter].isOnScreen == true) {
         player.damageFlashTint = 200;
         visuals.screenShake(8, 40, true);

@@ -17,7 +17,7 @@ class Text_Particles { //This class is about the score's text display when an en
       // The -100 stands for the score decreasement. Sicne all enemies decrease the score by -100 I decided to not make it a seperate variable.
     }
   }
-//This method activates the timer for spawning the score decresement text.
+  //This method activates the timer for spawning the score decresement text.
   void spawnText() {
     textTimer = millis();
   }
