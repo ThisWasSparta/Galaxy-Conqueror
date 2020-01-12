@@ -27,21 +27,20 @@ class Meteoriet {
   void update() {
 
     y += speed;
-    hitBoxY += speed;
+    hitBoxY += speed;          //hier word de snelheid van de meteoriet geregeld
 
-    if (startX > width/2) {
+    if (startX > width/2) {    //als de startpositie rechts is van het scherm dan is de richting van de meteoriet links
       x -= speed/2;
       hitBoxX -= speed/2;
     }
 
-    if (startX < width/2) {
+    if (startX < width/2) {    //als de startpositie links is van het scherm dan is de richting van de meteoriet rechts
       x += speed;
       hitBoxX += speed;
     }
   }
 
-  //tekent de meteoriet
-  void drawM() {
+  void drawM() {                  //tekent de meteoriet
     noStroke();
     fill(255, 255, 255, 0);
     rect(hitBoxX, hitBoxY, hitBoxW, hitBoxH);

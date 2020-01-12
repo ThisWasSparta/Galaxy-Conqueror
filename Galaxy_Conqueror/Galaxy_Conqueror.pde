@@ -315,22 +315,19 @@ void draw() {
       endTime = timer;
       getEndTime = true;
     }
-
     survivalTime = endTime - startTime;
 
-    if (millis() >= gameOverTimer + 500) {
-      gameover.GameOverDraw();
+    if (millis() >= gameOverTimer + 500) {        //na 500 ms nadat je dood bent komt de game over tekst in beeld
+      gameover.GameOverDraw();                    //na 1 sec nadat je dood bent komt de takename functie en kan de player zijn/haar naam invullen
       if (millis() >= gameOverTimer + 1000) {
         gameover.GameOverTakeName();
       }
 
-      if (millis() >= gameOverTimer+1000) {
-        if (player.isShooting) {
-          //dbqueries.dbInsert();
-          gameover.resetGameValues();
+      if (millis() >= gameOverTimer+3000) {      //pas 3 sec nadat je dood bent kun je verder klikken
+        if (player.isShooting) {                 //als de player schiet worden de volgende functies uitgevoerd
+          dbqueries.dbInsert();                  //functie die de insert queries uitvoert
+          gameover.resetGameValues();            //functie die de gameplay values reset
         }
-      }
-      if (player.testBoolean) {
       }
     }
   }

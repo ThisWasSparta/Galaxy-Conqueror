@@ -23,55 +23,55 @@ class DBQueries {
   }
 
   void dbInsert() {
-    if (dbconnect.sql.connect()) {
-      dbconnect.sql.query("INSERT INTO Players (Playername) VALUES ('"+namePicker.name+"')");
-      dbconnect.sql.query("INSERT INTO Highscores (Score) VALUES ("+ scoreObj.score +")");
-      //dbconnect.sql.query("INSERT INTO PlayerStatistics (PlayerkillCount, PlayerSurvivalTime) VALUES (" + killcount + " , " + survivalTime + ")");
+    if (dbconnect.sql.connect()) {      //als er een connectie is met de database worden de queries uitgevoerd
+      dbconnect.sql.query("INSERT INTO Players (Playername) VALUES ('"+namePicker.name+"')");                                                                //Insert query voor playertable
+      dbconnect.sql.query("INSERT INTO Highscores (Score) VALUES ("+ scoreObj.score +")");                                                                   //Insert query voor Highscorestable
+      dbconnect.sql.query("INSERT INTO PlayerStatistics (PlayerkillCount, PlayerSurvivalTime) VALUES (" + killcount + " , " + survivalTime + ")");           //Insert query voor playerstatstable
       insertQuerieDone = true;
     }
   }
 
   void dbSelectHighScores() {
-    if (getHighScores == false) {
+    if (getHighScores == false) {    //boolean om te checken of de highscores al zijn opgehaald
       if (dbconnect.sql.connect()) {
-        dbconnect.sql.query("SELECT Players.Playername, Highscores.Score FROM Players INNER JOIN Highscores ON Players.Playernumber = Highscores.Playernumber ORDER BY Score DESC LIMIT 10");
+        dbconnect.sql.query("SELECT Players.Playername, Highscores.Score FROM Players INNER JOIN Highscores ON Players.Playernumber = Highscores.Playernumber ORDER BY Score DESC LIMIT 10");  //Select query om de highscores op te halen
         i = 0;
-        while (dbconnect.sql.next()) {
-          names[i] = dbconnect.sql.getString("Playername");
-          highScores[i] = dbconnect.sql.getString("Score");
-
+        while (dbconnect.sql.next()) {                           //deze loop blijft doorgaan zolang er een volgende row gevonden word in de database
+          names[i] = dbconnect.sql.getString("Playername");      //bij elke row die gevonden is word Playername in de array names gezet
+          highScores[i] = dbconnect.sql.getString("Score");      //hier word score in de array highScores gezet
           i++;
         }
       }
-      getHighScores = true;
+      getHighScores = true;      //boolean word op true gezet zodat de data niet steeds opnieuw word opgehaald terwijl je op de highscore pagina bent
     }
   }
+  
   void dbSelectAch() {
-    if (getAch == false) {
+    if (getAch == false) {          //boolean om te checken of de achievements al opgehaald zijn
       if (dbconnect.sql.connect()) {
-        dbconnect.sql.query("SELECT achievementName, achievementDescription FROM Achievements");
+        dbconnect.sql.query("SELECT achievementName, achievementDescription FROM Achievements");      //Select query om de achievements op te halen
         i = 0;
-        while (dbconnect.sql.next()) {
-          namesAch[i] = dbconnect.sql.getString("achievementName");
-          descsAch[i] = dbconnect.sql.getString("achievementDescription");
+        while (dbconnect.sql.next()) {                                            //deze loop blijft doorgaan zolang er een volgende row gevonden word in de database
+          namesAch[i] = dbconnect.sql.getString("achievementName");               //bij elke row word achievementName in de array nameAch gezet
+          descsAch[i] = dbconnect.sql.getString("achievementDescription");        //bij elke row word achievementDescription in de array descAch gezet
           i++;
         }
       }
-      getAch = true;
+      getAch = true;             //boolean word op true gezet zodat de data niet steeds opnieuw word opgehaald terwijl je op de achievements pagina bent
     }
   }
 }
 
 void GetHighScore() {
-  dbqueries.dbSelectHighScores();
-  for (int i = 0; i < dbqueries.highScoreSize; i ++) {
-    if (dbqueries.names[i] == null) {
+  dbqueries.dbSelectHighScores();                              //method word aangeroepen die de highscores data ophaald
+  for (int i = 0; i < dbqueries.highScoreSize; i ++) {         //hier word door de highscore array geloopt
+    if (dbqueries.names[i] == null) {                          //op de plekken waar de array leeg is worden er streepjes gezet
       dbqueries.names[i] = "--";
     }
-    if (dbqueries.highScores[i] == null) {
+    if (dbqueries.highScores[i] == null) {                     //op de plekken waar de array leeg is worden er streepjes gezet
       dbqueries.highScores[i] = "--";
     }
-    text(dbqueries.names[i] + " " + dbqueries.highScores[i], width/2, dbqueries.textStartPosition+i*dbqueries.Distance);
+    text(dbqueries.names[i] + " " + dbqueries.highScores[i], width/2, dbqueries.textStartPosition+i*dbqueries.Distance);      //hier wordt de highscore text gemaakt die op de highscore pagina word gezet
   }
 }
 
