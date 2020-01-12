@@ -10,6 +10,8 @@ import ddf.minim.ugens.*;
 import de.bezier.data.sql.*;
 import de.bezier.data.sql.mapper.*;
 
+
+
 /* This code is written by group 3 of IG-101 FYS project. It is a game called
  Space Conqueror, and is similar to space invaders and galaga. Where possible it is shown which
  student made the code.*/
@@ -19,8 +21,6 @@ final int PLAYER_BULLET_NUMBER = 100;
 final int ENEMY_NUMBER = 40;
 final int ENEMY_EXPLOSION_PARTICLE_NUMBER = 500;
 final int ENEMY_BULLET_NUMBER = 20;
-final int BOSS_BULLET_NUMBER = 20;
-final int BOSS_ROCKET_NUMBER = 10;
 final int ENEMY_MOVE_PARTICLE_NUMBER = 200;
 final int ENEMY_SHOOT_PARTICLE_NUMBER = 25;
 final int MAX_POWERUPS = 3; 
@@ -30,13 +30,9 @@ int heartNumber = 3;
 int stopGameTime;
 int gameOverTimer = 0;                            //maximum amount of powerups present at the same time
 int scoreMultiplier = 1;
-int tutorialTimer = 0;
-int survivaltimer = 0;
 
 int timer = millis();                             //contains the time from when the game was launched in milliseconds
 int startTime;                                    //contains the time when start was pressed in milliseconds
-int endTime;                                      //contains the time when player dies
-int survivalTime;                                 //contains the time how long the player has played
 
 boolean startGame = false;                        //whether the game has started or not
 
@@ -46,15 +42,9 @@ boolean gameOver = false;
 
 boolean resetName = false;
 
-boolean tutorial = false;
-
-boolean pause = false;
-
 boolean nameScreen;
 
-boolean getStartTime = false;
-
-boolean getEndTime = false;
+boolean tutorial;
 
 final float sizeFactor = 0.8;
 float wScale;                                     //width scale used to adjust the width of images
@@ -64,22 +54,6 @@ PImage bossSprite;
 PImage doublepointsPowerup;
 PImage speedPowerup;
 PImage screenwipePowerup;
-PImage enemyBullet;
-PImage bossRocketSprite;
-PImage ach1;
-PImage ach2;
-PImage ach3;
-PImage ach4;
-PImage ach5;
-PImage ach6;
-PImage ach7;
-PImage ach8;
-PImage ach9;
-PImage ach10;
-PImage ach11;
-PImage ach12;
-PImage ach13;
-PImage ach14;
 
 Obstakel obstakel;                                //Dit is de meteoriet
 SpaceShip player;                                 //Dit is de player
@@ -89,10 +63,10 @@ Score scoreObj;
 Variable variables;
 Controls controls;
 Meteoriet meteoriet;
+Sounds sounds;
 Interface userInterface;
 VisualEffects visuals;
 RandomEvents events;
-Difficulty difficulty;
 
 Minim minim;
 AudioPlayer bgm;
@@ -115,8 +89,6 @@ Text_Particles textParticles;
 PlayerWeapons[] weapon = new PlayerWeapons[PLAYER_BULLET_NUMBER];              //the bullets for the player
 Enemies[] enemy = new Enemies[ENEMY_NUMBER];                                   //three arrays to store data about the 3 different enemy types
 EnemyBullets[] enemyBullets = new EnemyBullets[ENEMY_BULLET_NUMBER];
-BossBullet[] bossBullets = new BossBullet[BOSS_BULLET_NUMBER];
-BossRocket[] bossRockets = new BossRocket[BOSS_ROCKET_NUMBER];
 Health[] heart = new Health[heartNumber];
 ExplosionPart[] particle = new ExplosionPart[ENEMY_EXPLOSION_PARTICLE_NUMBER];
 EnemyShootParticle[] enemyShootParticle = new EnemyShootParticle[ENEMY_SHOOT_PARTICLE_NUMBER];
@@ -139,7 +111,12 @@ void setup() {
   controls = new Controls();
   Star = new BackgroundStars();
   boss = new Boss();
+  sounds = new Sounds(this);
   minim = new Minim(this);
+  bgm = minim.loadFile("./sound/stagethemefix.wav");
+  playergatshoot = minim.loadFile("./sound/gattlingweapon_noise.wav");
+  enemyshoot = minim.loadFile("./sound/scout_shootnoise.wav");
+  maintheme = minim.loadFile("./sound/main_theme.wav");
   dbconnect = new DBConnect(this);
   dbqueries = new DBQueries();
   namePicker = new NamePicker();
@@ -150,7 +127,6 @@ void setup() {
   userInterface = new Interface();
   visuals = new VisualEffects();
   events = new RandomEvents();
-  difficulty = new Difficulty();
 
   textParticles = new Text_Particles();
 
@@ -164,12 +140,6 @@ void setup() {
   }
   for (int i = 0; i < ENEMY_BULLET_NUMBER; i++) {
     enemyBullets[i] = new EnemyBullets();
-  }
-  for (int i = 0; i < BOSS_BULLET_NUMBER; i++) {
-    bossBullets[i] = new BossBullet();
-  }
-  for (int i = 0; i < BOSS_ROCKET_NUMBER; i++) {
-    bossRockets[i] = new BossRocket();
   }
   for (int i = 0; i < heartNumber; i++) {
     heart[i] = new Health();
@@ -199,70 +169,58 @@ void keyPressed() {               //This function was written by Noah Verburg
 }
 
 void draw() {
-  variables.loadGameValues();
+  //fill(0, 220);
+  //rect(0, 0, width, height);
   background(0);
   Star.sterrenShow();
   titel.startScreen();
+  //frameRateDisplay();
+  variables.loadGameValues();
   timer = millis();
-  textParticles.drawText();
-
+  
   if (player.stop) {
     stop();
   }
-
+  
   if (startGame) {                                //if the player has pressed start on the menu, the game will start
     visuals.screenShake(0, 0, false);
     visuals.updateScreenShake();
     events.selectEvent();
     events.executeEvent();
     obstakel.drawObstakel();
-    survivaltimer++;
+    for (int i = 0; i < ENEMY_NUMBER; i++) {      //updates, spawns and draws the enemies
+      enemyUpdatePosition(i);                     //made by Noah Verburg
+      enemySpawner();
+      drawEnemies(i);
+    }
 
-    if (!tutorial) {
-      tutorialTimer++;
+    for (int i = 0; i < ENEMY_BULLET_NUMBER; i++) {      //updates, spawns and draws the bullets
+      enemyBullets[i].enemyBulletUpdatePosition(i);
+      enemyBullets[i].drawEnemyBullet(i);
+      enemyBullets[i].enemyBulletSpawner();
     }
-    if (tutorialTimer >= 1000) {
-      tutorial = true;
-    }
-    if (tutorial) {
-      tutorialTimer = 0;
-      for (int i = 0; i < ENEMY_NUMBER; i++) {      //updates, spawns and draws the enemies
-        enemyUpdatePosition(i);                     //made by Noah Verburg
-        enemySpawner();
-        drawEnemies(i);
-      }
 
-      for (int i = 0; i < ENEMY_BULLET_NUMBER; i++) {      //updates, spawns and draws the bullets
-        enemyBullets[i].enemyBulletUpdatePosition(i);
-        enemyBullets[i].drawEnemyBullet(i);
-        enemyBullets[i].enemyBulletSpawner();
-      }
-    }
     scoreObj.countScore(/*0, 0, 0*/); //made by Dylan Kleton
 
     userInterface.drawInterface();
 
     player.playerUpdate();                 //updates the position of the player
     player.player();                       //draws the player
-    if (tutorial) {
-      if (globalBossTimer <= 0 && boss.currentState == -1) {
-        boss.bossSpawn();
-      }
 
-      globalBossTimer--;
-
-      if (boss.currentState != -1) {
-        boss.bossUpdatePosition();
-        boss.bossUpdateBehaviour();
-        boss.bossDraw();
-        for (int i = 0; i < BOSS_ROCKET_NUMBER; i++) {
-          boss.playerBossRocketCollisionCheck(i);
-        }
-        for (int i = 0; i < BOSS_BULLET_NUMBER; i++) {
-          boss.playerBossBulletCollisionCheck(i);
-        }
-      }
+    if (globalBossTimer <= 0 && boss.currentState == -1) {
+      boss.bossSpawn();
     }
+
+    globalBossTimer--;
+    //text(globalBossTimer, 120, 60);
+    //text(boss.currentState, 120, 160);
+
+    if (boss.currentState != -1) {
+      boss.bossUpdatePosition();
+      boss.bossUpdateBehaviour();
+      boss.bossDraw();
+    }
+
     if (player.weapon == 1) {
       weapon[0].spawnPlayerBullets();        //spawns player bullets using a for-loop built into the function
     }
@@ -281,9 +239,6 @@ void draw() {
     weapon[0].updatePlayerRockets();
     weapon[0].drawPlayerRockets();
 
-    weapon[0].reloadTimerBar();
-
-    player.updateWeaponWheel();
     player.drawWeaponWheel();
 
     heart[0].playerHealth();
@@ -294,12 +249,10 @@ void draw() {
         particle[i].drawParticles(i);
       }
     }
-    if (tutorial) {
-      for (int i = 0; i < MAX_POWERUPS; i++) {
-        powerUpdate(i);
-        powerupSpawn(i);
-        drawPower(i);
-      }
+    for (int i = 0; i < MAX_POWERUPS; i++) {
+      powerUpdate(i);
+      powerupSpawn(i);
+      drawPower(i);
     }
     enemyShootParticle[0].updateParticles();
     enemyShootParticle[0].drawParticles();
@@ -310,31 +263,35 @@ void draw() {
       gameOverTimer = millis();
     }
   }
-  
-  // Als de player dood is komt de gameover scherm
   if (gameOver) {
-    if (!getEndTime) {
-      endTime = timer;
-      getEndTime = true;
-    }
-
-    survivalTime = endTime - startTime;
-
     if (millis() >= gameOverTimer + 500) {
       gameover.GameOverDraw();
       if (millis() >= gameOverTimer + 1000) {
         gameover.GameOverTakeName();
       }
-
       if (millis() >= gameOverTimer+1000) {
         if (player.isShooting) {
-          //dbqueries.dbInsert();
-          gameover.resetGameValues();
+          dbqueries.dbInsert();
+          valuesLoaded = false;
+          gameOver = false;
+          startGame = false;
+          valuesLoaded = false;
+          titel.StartGame = true;
+          heartNumber = 3;
+          scoreObj.score = 0;
+          globalBossTimer = 11500;
+          resetName = true;
+          for (int i = 0; i < ENEMY_NUMBER; i++) {                                                 //Cycles through all enemy slots once
+            if (enemy[i].isAlive == true) {                                                        //Checks if there are living enemies
+              enemy[i].isAlive = false;                                                            //Kills living enemies
+            }
+          }
         }
       }
+      titel.bright();
+      //image(boss, width/2, 121, 1000, 242);
       if (player.testBoolean) {
       }
     }
   }
-  titel.bright();
 }
