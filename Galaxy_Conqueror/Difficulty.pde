@@ -11,7 +11,7 @@ class Difficulty { //This class is supposed to add a difficulty to the game, by 
     changeDifficulty(3);
   }
   
-  
+  //'This method takes the number given and uses it to change the difficulty. 
   void changeDifficulty(int difficultyCounter) {
     newDifficultyCounter = difficultyCounter;
   }
