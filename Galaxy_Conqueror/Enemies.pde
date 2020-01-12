@@ -74,7 +74,7 @@ class Enemies {
 }
 
 void scoutSwarmEventSpawner() {    //this function was written by Noah Verburg
-  if (startGame) {
+  if (startGame && !boss.bossAlive) {
     createSwarmScouts();
   }
 }
