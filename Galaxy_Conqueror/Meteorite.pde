@@ -13,9 +13,9 @@ class Meteoriet {
   Meteoriet() {
     x = random(1, width); 
     y = random(1, 10); //Deze waardes regelen de positie van de meteoriet
+    size = random(40, 60);  // size word random geregeld tussen 40 en 60
     startY = y;
     startX = x; //Deze waardes regelen de startpositie van de meteoriet
-    size = random(40, 60);  // size word random geregeld tussen 40 en 60
     hitBoxX = x;
     hitBoxY = y; //deze waardes zijn voor de hitbox positie
     hitBoxH = size;
@@ -27,26 +27,23 @@ class Meteoriet {
   void update() {
 
     y += speed;
-    hitBoxY += speed;
+    hitBoxY += speed;          //hier word de snelheid van de meteoriet geregeld
 
-    if (startX > width/2) {
+    if (startX > width/2) {    //als de startpositie rechts is van het scherm dan is de richting van de meteoriet links
       x -= speed/2;
       hitBoxX -= speed/2;
     }
 
-    if (startX < width/2) {
+    if (startX < width/2) {    //als de startpositie links is van het scherm dan is de richting van de meteoriet rechts
       x += speed;
       hitBoxX += speed;
     }
   }
 
-  //tekent de meteoriet
-  void drawM() {
+  void drawM() {                  //tekent de meteoriet
     noStroke();
     fill(255, 255, 255, 0);
     rect(hitBoxX, hitBoxY, hitBoxW, hitBoxH);
-    //fill(131,69,46);
-    //ellipse(x, y, size, size);
     image(meteoriet.meteorite, x + visuals.magnitudeX, y + visuals.magnitudeY, 62, 48);
   }
 }

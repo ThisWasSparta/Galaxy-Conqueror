@@ -81,4 +81,24 @@ class GameOver {
   void GameOverTakeName() {
     namePicker.DrawNamePicker();
   }
+
+  void resetGameValues() {                             //This function resets all gameplay values
+    valuesLoaded = false;
+    gameOver = false;
+    startGame = false;
+    valuesLoaded = false;
+    titel.StartGame = true;
+    tutorial = false;
+    heartNumber = 3;
+    scoreObj.score = 0;
+    globalBossTimer = 11500;
+    bgm.mute();
+    difficulty.newDifficultyCounter = 0;
+    for (int i = 0; i < ENEMY_NUMBER; i++) {           //Cycles through all enemy slots once
+      if (enemy[i].isAlive == true) {                  //Checks if there are living enemies
+        enemy[i].isAlive = false;                      //Kills living enemies
+      }
+    }
+    setup();
+  }
 }

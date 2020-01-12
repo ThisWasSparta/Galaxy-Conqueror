@@ -285,7 +285,7 @@ class Boss {
     if (bossRocketCheck != -1) {
       bossRockets[bossRocketCheck].bossRocketX = width / 2;
       bossRockets[bossRocketCheck].bossRocketY = -bossRockets[bossRocketCheck].bossRocketH;
-      float playerToRocketDistance = bossRockets[bossRocketCheck].bossRocketX - player.pX;
+      float playerToRocketDistance = bossRockets[bossRocketCheck].bossRocketX - player.playerXposition;
       bossRockets[bossRocketCheck].bossRocketXV = -(playerToRocketDistance / 120);
       bossRockets[bossRocketCheck].bossRocketYV = BOSS_ROCKET_Y_VELOCITY;
       bossRockets[bossRocketCheck].isOnScreen = true;
@@ -303,10 +303,10 @@ class Boss {
 
   void playerBossRocketCollisionCheck(int counter) {
     if (lastCollision <= (timer - 3000)) {
-      if (bossRockets[counter].bossRocketX - bossRockets[counter].bossRocketW/2 > player.pX - player.pW/2
-        && bossRockets[counter].bossRocketX + bossRockets[counter].bossRocketW/2 < player.pX + player.pW/2
-        && bossRockets[counter].bossRocketY - bossRockets[counter].bossRocketH/2 > player.pY - player.pH/2
-        && bossRockets[counter].bossRocketY + bossRockets[counter].bossRocketH/2 < player.pY + player.pH/2
+      if (bossRockets[counter].bossRocketX - bossRockets[counter].bossRocketW/2 > player.playerXposition - player.playerWidth/2
+        && bossRockets[counter].bossRocketX + bossRockets[counter].bossRocketW/2 < player.playerXposition + player.playerWidth/2
+        && bossRockets[counter].bossRocketY - bossRockets[counter].bossRocketH/2 > player.playerYposition - player.playerHeight/2
+        && bossRockets[counter].bossRocketY + bossRockets[counter].bossRocketH/2 < player.playerYposition + player.playerHeight/2
         && bossRockets[counter].isOnScreen == true) {
         player.damageFlashTint = 200;
         enemyBullets[counter].bulletYposition = height * -2;
@@ -320,10 +320,10 @@ class Boss {
 
   void playerBossBulletCollisionCheck(int counter) {
     if (lastCollision <= (timer - 3000)) {
-      if (bossBullets[counter].bossBulletX - bossBullets[counter].bossBulletW/2 > player.pX - player.pW/2
-        && bossBullets[counter].bossBulletX + bossBullets[counter].bossBulletW/2 < player.pX + player.pW/2
-        && bossBullets[counter].bossBulletY - bossBullets[counter].bossBulletH/2 > player.pY - player.pH/2
-        && bossBullets[counter].bossBulletY + bossBullets[counter].bossBulletH/2 < player.pY + player.pH/2
+      if (bossBullets[counter].bossBulletX - bossBullets[counter].bossBulletW/2 > player.playerXposition - player.playerWidth/2
+        && bossBullets[counter].bossBulletX + bossBullets[counter].bossBulletW/2 < player.playerXposition + player.playerWidth/2
+        && bossBullets[counter].bossBulletY - bossBullets[counter].bossBulletH/2 > player.playerYposition - player.playerHeight/2
+        && bossBullets[counter].bossBulletY + bossBullets[counter].bossBulletH/2 < player.playerYposition + player.playerHeight/2
         && bossBullets[counter].isOnScreen == true) {
         player.damageFlashTint = 200;
         enemyBullets[counter].bulletYposition = height * -2;
