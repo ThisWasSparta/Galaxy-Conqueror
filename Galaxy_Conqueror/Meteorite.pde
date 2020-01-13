@@ -18,8 +18,8 @@ class Meteoriet {
     startX = x; //Deze waardes regelen de startpositie van de meteoriet
     hitBoxX = x;
     hitBoxY = y; //deze waardes zijn voor de hitbox positie
-    hitBoxH = size;
-    hitBoxW = size; //deze waardes regelen de grootte van de hitbox
+    hitBoxH = size+size/10;
+    hitBoxW = size+size/10; //deze waardes regelen de grootte van de hitbox
     rectMode(CENTER);
   }
 
