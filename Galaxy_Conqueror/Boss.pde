@@ -95,10 +95,7 @@ class Boss {
     bossX = width / 2;
     bossY = -bossH;
     bossHealth = BOSS_HEALTH_VALUE;
-    image(bossSprite, bossX, bossY, bossW, bossH);
-    //spawn the boss above the screen, slowly move him down into view
-    //fade out level music
-    //kick in the music
+    image(bossSprite, bossX, bossY, bossW, bossH); //draws the boss
   }
 
   void bossUpdatePosition() { //function that updates the boss' position/position of his projectiles
@@ -110,7 +107,7 @@ class Boss {
     bossProjectileUpdatePosition();
   }
 
-  void bossProjectileUpdatePosition() {
+  void bossProjectileUpdatePosition() { //updates the position of all of the boss' relevent projectiles
     for (int i = 0; i < bossBullets.length; i++) {
       if (bossBullets[i].isOnScreen == true) {
         bossBullets[i].bossBulletY += bossBullets[i].bossBulletYV;
@@ -134,7 +131,7 @@ class Boss {
   void bossDraw() { //function that draws the boss and his projectiles on the given positions
     if (bossAlive == true) {
       image(bossSprite, bossX, bossY, bossW, bossH);
-      for (int i = 0; i < bossBullets.length; i++) {
+      for (int i = 0; i < bossBullets.length; i++) { //two for loops to draw the rockets/bullets
         image(enemyBullet, bossBullets[i].bossBulletX, bossBullets[i].bossBulletY, bossBullets[i].bossBulletW, bossBullets[i].bossBulletH);
       }
       for (int i = 0; i < bossRockets.length; i++) {
@@ -148,7 +145,7 @@ class Boss {
     stateSwitcher();
   }
 
-  int statePicker() {
+  int statePicker() { //function that picks a new state by rolling a dice
     deathrayCooldown--;
     int randomNumber = 0;
     randomNumber = (int)random(0, 100);
@@ -176,7 +173,7 @@ class Boss {
     return 0;
   }
 
-  void stateHandler() { //function that is called every draw to determine what the boss does next
+  void stateHandler() { //function that is called every draw to determine what the boss does
     switch(currentState) {
     case IDLE_STATE:
       break;
@@ -187,9 +184,6 @@ class Boss {
         rocketSalvoDelay = ROCKET_SALVO_DELAY;
       }
       rocketSalvoDelay--;
-      //call missilespawner to continuously summon a group of three missiles from the top of the screen
-      //do this every 2 seconds until the state ends
-      //end the state after... 15 seconds? something like that
       break;
 
     case GATLING_GUN_STATE: //case that handles the firing of the boss' guns
@@ -208,11 +202,6 @@ class Boss {
         }
         playerDeathrayCollisionCheck();
       }
-      //play charge sound + have a charging particle effect?
-      //time until sound played
-      //shoot laser + play laser sound
-      //time until laser should stop
-      //go to idle state to give the player some time to readjust
       break;
     }
   }
@@ -301,7 +290,7 @@ class Boss {
     return -1;
   }
 
-  void playerBossRocketCollisionCheck(int counter) {
+  void playerBossRocketCollisionCheck(int counter) { //function that checks if the player is colliding with a rocket
     if (lastCollision <= (timer - 3000)) {
       if (bossRockets[counter].bossRocketX - bossRockets[counter].bossRocketW/2 > player.playerXposition - player.playerWidth/2
         && bossRockets[counter].bossRocketX + bossRockets[counter].bossRocketW/2 < player.playerXposition + player.playerWidth/2
@@ -318,7 +307,7 @@ class Boss {
     }
   }
 
-  void playerBossBulletCollisionCheck(int counter) {
+  void playerBossBulletCollisionCheck(int counter) { //function that checks if the player is colliding with a bullet
     if (lastCollision <= (timer - 3000)) {
       if (bossBullets[counter].bossBulletX - bossBullets[counter].bossBulletW/2 > player.playerXposition - player.playerWidth/2
         && bossBullets[counter].bossBulletX + bossBullets[counter].bossBulletW/2 < player.playerXposition + player.playerWidth/2
@@ -335,11 +324,11 @@ class Boss {
     }
   }
 
-  void playerDeathrayCollisionCheck() {
+  void playerDeathrayCollisionCheck() { //function that checks if the player is colliding with the boss' deathray
     if (lastCollision <= (timer - 3000)) {
-      if (player.pX > MIDDLE_OF_SCREEN - (DEATHRAY_SIZE / 2) 
-        && player.pX < MIDDLE_OF_SCREEN + (DEATHRAY_SIZE / 2)
-        && player.pY < deathrayLength) {
+      if (player.playerXposition > MIDDLE_OF_SCREEN - (DEATHRAY_SIZE / 2) 
+        && player.playerXposition < MIDDLE_OF_SCREEN + (DEATHRAY_SIZE / 2)
+        && player.playerYposition < deathrayLength) {
         player.damageFlashTint = 200;
         lastCollision = millis();
         heartNumber -= 1;
