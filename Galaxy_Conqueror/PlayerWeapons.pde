@@ -134,8 +134,7 @@ class PlayerWeapons {
         weapon[playerProjectileTurn].projectileType = 1;
         weapon[playerProjectileTurn].bulletIsOnScreen = true;
         playerProjectileTurn++;
-        playergatshoot.setVolume(soundVolume);
-        playergatshoot.play(120);
+        playergatshoot.play((int)random(110,130));
       }
       if (playerProjectileTurn > 49) {
         playerProjectileTurn = 0;

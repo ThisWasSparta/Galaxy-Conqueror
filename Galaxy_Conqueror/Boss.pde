@@ -96,6 +96,8 @@ class Boss {
     bossY = -bossH;
     bossHealth = BOSS_HEALTH_VALUE;
     image(bossSprite, bossX, bossY, bossW, bossH); //draws the boss
+    bgm.rewind();
+    bgm.pause();
   }
 
   void bossUpdatePosition() { //function that updates the boss' position/position of his projectiles
@@ -238,6 +240,7 @@ class Boss {
     bossHealth = BOSS_HEALTH_VALUE;
     globalBossTimer = 11500;
     scoreObj.addScore(2500);
+    bgm.play();
   }
 
   void createBossBulletSalvo() { //function to create the bullets the boss fires

@@ -7,7 +7,8 @@ class Variable {
       playergatshoot = minim.loadFile("./sound/gattlingweapon_noise.wav");
       enemyshoot = minim.loadFile("./sound/scout_shootnoise.wav");
       maintheme = minim.loadFile("./sound/main_theme.wav");
-      bosstheme = minim.loadFile("./sound/bossfight.wav");
+      //bossMusic = minim.loadFile("./sound/bossMusic.mp3");
+
       player.playerXposition = width/2;                        //here are all the variables that
       player.playerYposition = height - height / 5;            //can't be defined in setup() or are
       wScale = width/1920;                           //easier to find in here than in setup()

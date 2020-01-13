@@ -10,6 +10,7 @@ class BackgroundStars {
   float []tran = new float[aSter];
 
   void sterrenProp () {
+    //Properties van de sterren worden hier gemaakt
     for (int i = 0; i < aSter; i++) {
       x[i] = random(0, width);
       y[i] = random(0, height);
