@@ -20,14 +20,11 @@ class Letterpicker {
       } else if (key == 'w') {//if key 'w' is pressed
         num1--;
       }
-      if (num1 >= 26) {
+      if (num1 >= 26) {//als num1 over 26 of gelijk is aan 26 dan is het buiten de array en gaat hij terug naar 0
         num1 = 0;
       }
-      if (num1 < 0) {
+      if (num1 < 0) {//als num1 onder de nul komt gaat hij terug naar 25
         num1 = 25;
-      }
-      if (resetName) {
-        num1 = 0;
       }
     }
     keyPressed = false;
@@ -39,14 +36,11 @@ class Letterpicker {
       } else if (key == 'w') {//if key 'w' is pressed
         num2--;
       }
-      if (num2 >= 26) {
+      if (num2 >= 26) {//als num2 over 26 of gelijk is aan 26 dan is het buiten de array en gaat hij terug naar 0
         num2 = 0;
       }
-      if (num2 < 0) {
+      if (num2 < 0) {//als num1 onder de nul komt gaat hij terug naar 25
         num2 = 25;
-      }
-      if (resetName) {
-        num2 = 0;
       }
     }
     keyPressed = false;
@@ -58,14 +52,11 @@ class Letterpicker {
       } else if (key == 'w') {//if key 'w' is pressed
         num3--;
       }
-      if (num3 >= 26) {
+      if (num3 >= 26) {//als num3 over 26 of gelijk is aan 26 dan is het buiten de array en gaat hij terug naar 0
         num3 = 0;
       }
-      if (num3 < 0) {
+      if (num3 < 0) {//als num1 onder de nul komt gaat hij terug naar 25
         num3 = 25;
-      }
-      if (resetName) {
-        num3 = 0;
       }
     }
     keyPressed = false;
