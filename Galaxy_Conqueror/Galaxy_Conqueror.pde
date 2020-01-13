@@ -97,6 +97,7 @@ AudioPlayer bgm;
 AudioPlayer playergatshoot;
 AudioPlayer enemyshoot;
 AudioPlayer maintheme;
+AudioPlayer bosstheme;
 
 Boss boss;
 NamePicker namePicker;
