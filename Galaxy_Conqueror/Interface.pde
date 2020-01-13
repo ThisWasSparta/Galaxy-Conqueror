@@ -49,7 +49,7 @@ class Interface {
       fill(255, 255, 255);
       text("Shoot", width * 0.54 + visuals.magnitudeX, height * 0.66 + visuals.magnitudeY);
       fill(0, 255, 0);
-      text("Y", width * 0.46 + visuals.magnitudeX, height * 0.70 + visuals.magnitudeY);
+      text("Y", width * 0.4575 + visuals.magnitudeX, height * 0.70 + visuals.magnitudeY);
       fill(255, 255, 255);
       text("Skip tutorial", width * 0.6125 + visuals.magnitudeX, height * 0.70 + visuals.magnitudeY);
     }
