@@ -41,7 +41,7 @@ class EnemyBullets {
         && enemyBullets[counter].bulletYposition + enemyBullets[counter].bulletHeight/2 < player.playerYposition + player.playerHeight/2
         && enemyBullets[counter].isOnScreen == true) {
         player.damageFlashTint = 200;
-        visuals.screenShake(8, 40, true);
+        visuals.screenShake(30, 40, true);
         enemyBullets[counter].bulletYposition = height * -2;
         enemyBullets[counter].bulletXposition = -1 * width;
         enemyBullets[counter].isOnScreen = false;

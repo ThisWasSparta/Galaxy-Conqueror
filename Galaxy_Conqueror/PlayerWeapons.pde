@@ -161,6 +161,7 @@ class PlayerWeapons {
         if (weapon[i].bulletXposition < boss.bossX + boss.bossW/2 && weapon[i].bulletXposition > boss.bossX - boss.bossW/2 && weapon[i].bulletYposition < boss.bossY + boss.bossH/2 && weapon[i].bulletYposition > boss.bossY - boss.bossH/2 && boss.bossAlive == true) {
           weapon[i].bulletYposition -= height;
           boss.bossHealth -= PLAYER_BULLET_DAMAGE;
+          visuals.screenShake(20, 30, true);
           if (boss.bossHealth <= 0) {
             boss.deathHandler();
           }
@@ -305,6 +306,9 @@ class PlayerWeapons {
       if (weapon[i].laserXposition - weapon[i].laserWidth/2 < boss.bossX + boss.bossX/2 && weapon[i].laserXposition + weapon[i].laserWidth/2 > boss.bossX - boss.bossX/2 && boss.bossAlive && weapon[i].laserIsAlive) {
         weapon[i].bulletYposition -= height;
         boss.bossHealth -= 15;
+        if (weapon[i].laserStrength == 5) {
+          visuals.screenShake(50, 60, true);
+        }
         if (boss.bossHealth <= 0) {
           boss.deathHandler();
         }
@@ -451,6 +455,7 @@ class PlayerWeapons {
         if (weapon[i].rocketXposition < boss.bossX + boss.bossW/2 && weapon[i].rocketXposition > boss.bossX - boss.bossW/2 && weapon[i].rocketYposition < boss.bossY + boss.bossH/2 && weapon[i].rocketYposition > boss.bossY - boss.bossH/2 && boss.bossAlive == true) {
           weapon[i].rocketYposition -= height;
           boss.bossHealth -= PLAYER_ROCKET_DAMAGE;
+          visuals.screenShake(40, 50, true);
           if (boss.bossHealth <= 0) {
             boss.deathHandler();
           }

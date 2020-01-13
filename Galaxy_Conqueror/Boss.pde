@@ -1,5 +1,5 @@
 //this pde file was written by Floris Kuiper
-int globalBossTimer = 115;
+int globalBossTimer = 11500;
 int scoutDelay = 3000;
 
 class BossBullet {
@@ -78,7 +78,7 @@ class Boss {
   final int DEATHRAY_SIZE = 60;
   final int DEATHRAY_TIME = 4000;
   final int DEATHRAY_MAX_LENGTH = height * 2;
-  final int BOSS_HEALTH_VALUE = 140;
+  final int BOSS_HEALTH_VALUE = 14000;
   final int BULLET_DELAY = 60;
   final int BULLET_SALVO_DELAY = 100;
   final int ROCKET_SALVO_DELAY = 50;
@@ -104,7 +104,7 @@ class Boss {
   void bossUpdatePosition() { //function that updates the boss' position/position of his projectiles
     //ang = radians(angle); < probably redundant, just want to be sure before i remove it
     //jbossY = bossY + (10 * sin(dx * inc));
-    if (bossY < BOSS_SPRITE_HEIGHT) {
+    if (bossY < BOSS_SPRITE_HEIGHT * 0.9) {
       bossY++;
     }
     bossProjectileUpdatePosition();
@@ -133,7 +133,7 @@ class Boss {
 
   void bossDraw() { //function that draws the boss and his projectiles on the given positions
     if (bossAlive == true) {
-      image(bossSprite, bossX, bossY, bossW, bossH);
+      image(bossSprite, bossX + visuals.magnitudeX, bossY + visuals.magnitudeY, bossW, bossH);
       for (int i = 0; i < bossBullets.length; i++) { //two for loops to draw the rockets/bullets
         image(enemyBullet, bossBullets[i].bossBulletX, bossBullets[i].bossBulletY, bossBullets[i].bossBulletW, bossBullets[i].bossBulletH);
       }
@@ -152,7 +152,7 @@ class Boss {
     deathrayCooldown--;
     int randomNumber = 0;
     randomNumber = (int)random(0, 100);
-    if (bossY < BOSS_SPRITE_HEIGHT) {
+    if (bossY < BOSS_SPRITE_HEIGHT * 0.9) {
       currentStateTimer = 2000;
       return IDLE_STATE;
     }
@@ -241,7 +241,7 @@ class Boss {
     bossHealth = BOSS_HEALTH_VALUE;
     globalBossTimer = 11500;
     scoreObj.addScore(2500);
-    
+
     visuals.screenShake(200, 250, true);
     bossDied = true;
     bgm.play();
@@ -310,6 +310,7 @@ class Boss {
         enemyBullets[counter].isOnScreen = false;
         lastCollision = millis();
         heartNumber -= 1;
+        visuals.screenShake(30, 40, true);
       }
     }
   }
@@ -327,6 +328,7 @@ class Boss {
         enemyBullets[counter].isOnScreen = false;
         lastCollision = millis();
         heartNumber -= 1;
+        visuals.screenShake(30, 40, true);
       }
     }
   }
