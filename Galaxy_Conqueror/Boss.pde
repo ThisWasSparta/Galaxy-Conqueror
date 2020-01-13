@@ -53,6 +53,7 @@ class Boss {
   int rocketSalvoDelay = 100;
   int lastShotTime = 0;
   boolean bossAlive = false;
+  boolean bossDied = false;
 
   final int GUN1_XPOS = width/3 + 8;
   final int GUN2_XPOS = width/3 - 35;
@@ -238,6 +239,9 @@ class Boss {
     bossHealth = BOSS_HEALTH_VALUE;
     globalBossTimer = 11500;
     scoreObj.addScore(2500);
+    
+    bossDied = true;
+    visuals.screenShake(100, 120, true);
   }
 
   void createBossBulletSalvo() { //function to create the bullets the boss fires

@@ -179,7 +179,7 @@ class PlayerWeapons {
               scoreObj.addScore(enemy[t].score * scoreMultiplier);
               particle[0].particlesPerTurn = 20;
               particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
-              visuals.screenShake(15, 20, true);
+              visuals.screenShake(20, 30, true);
             }
           }
           
@@ -195,7 +195,7 @@ class PlayerWeapons {
               scoreObj.addScore(enemy[t].score * scoreMultiplier);
               particle[0].particlesPerTurn = 40;
               particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
-              visuals.screenShake(25, 30, true);
+              visuals.screenShake(35, 45, true);
             }
           }
           
@@ -221,7 +221,7 @@ class PlayerWeapons {
                 goliathOnScreen--;
                 particle[0].particlesPerTurn = 60;
                 particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
-                visuals.screenShake(35, 40, true);
+                visuals.screenShake(50, 60, true);
               }
             }
           }
@@ -324,7 +324,7 @@ class PlayerWeapons {
             scoreObj.addScore(enemy[t].score * scoreMultiplier);
             particle[0].particlesPerTurn = 20;
             particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
-            visuals.screenShake(15, 20, true);
+            visuals.screenShake(20, 30, true);
           }
         }
         
@@ -340,7 +340,7 @@ class PlayerWeapons {
             scoreObj.addScore(enemy[t].score * scoreMultiplier);
             particle[0].particlesPerTurn = 40;
             particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
-            visuals.screenShake(25, 30, true);
+            visuals.screenShake(35, 45, true);
           }
         } 
         
@@ -356,7 +356,7 @@ class PlayerWeapons {
             scoreObj.addScore(enemy[t].score * scoreMultiplier);
             particle[0].particlesPerTurn = 60;
             particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
-            visuals.screenShake(35, 40, true);
+            visuals.screenShake(50, 60, true);
           }
         }
       }
@@ -469,7 +469,7 @@ class PlayerWeapons {
               scoreObj.addScore(enemy[t].score * scoreMultiplier);
               particle[0].particlesPerTurn = 20;
               particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
-              visuals.screenShake(15, 20, true);
+              visuals.screenShake(20, 30, true);
             }
           }
           
@@ -485,7 +485,7 @@ class PlayerWeapons {
               scoreObj.addScore(enemy[t].score * scoreMultiplier);
               particle[0].particlesPerTurn = 40;
               particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
-              visuals.screenShake(25, 30, true);
+              visuals.screenShake(35, 45, true);
             }
           }
           
@@ -511,7 +511,7 @@ class PlayerWeapons {
                 goliathOnScreen--;
                 particle[0].particlesPerTurn = 60;
                 particle[0].explosion(enemy[t].eX, enemy[t].eY, t);
-                visuals.screenShake(35, 40, true);
+                visuals.screenShake(50, 60, true);
               }
             }
           }
