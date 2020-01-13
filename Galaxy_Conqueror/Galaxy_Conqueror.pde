@@ -42,8 +42,6 @@ boolean valuesLoaded = false;
 
 boolean gameOver = false;
 
-boolean resetName = false;
-
 boolean tutorial = false;
 
 boolean pause = false;
@@ -97,7 +95,7 @@ AudioPlayer bgm;
 AudioPlayer playergatshoot;
 AudioPlayer enemyshoot;
 AudioPlayer maintheme;
-AudioPlayer bosstheme;
+AudioPlayer bossMusic;
 
 Boss boss;
 NamePicker namePicker;
@@ -150,7 +148,7 @@ void setup() {
   visuals = new VisualEffects();
   events = new RandomEvents();
   difficulty = new Difficulty();
-
+  
   textParticles = new Text_Particles();
 
   titel.font();

@@ -1,5 +1,5 @@
 //this pde file was written by Floris Kuiper
-int globalBossTimer = 11500;
+int globalBossTimer = 115;
 int scoutDelay = 3000;
 
 class BossBullet {
@@ -78,7 +78,7 @@ class Boss {
   final int DEATHRAY_SIZE = 60;
   final int DEATHRAY_TIME = 4000;
   final int DEATHRAY_MAX_LENGTH = height * 2;
-  final int BOSS_HEALTH_VALUE = 14000;
+  final int BOSS_HEALTH_VALUE = 140;
   final int BULLET_DELAY = 60;
   final int BULLET_SALVO_DELAY = 100;
   final int ROCKET_SALVO_DELAY = 50;
@@ -97,6 +97,8 @@ class Boss {
     bossY = -bossH;
     bossHealth = BOSS_HEALTH_VALUE;
     image(bossSprite, bossX, bossY, bossW, bossH); //draws the boss
+    bgm.rewind();
+    bgm.pause();
   }
 
   void bossUpdatePosition() { //function that updates the boss' position/position of his projectiles
@@ -240,8 +242,9 @@ class Boss {
     globalBossTimer = 11500;
     scoreObj.addScore(2500);
     
+    visuals.screenShake(200, 250, true);
     bossDied = true;
-    visuals.screenShake(100, 120, true);
+    bgm.play();
   }
 
   void createBossBulletSalvo() { //function to create the bullets the boss fires
