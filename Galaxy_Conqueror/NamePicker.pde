@@ -6,6 +6,7 @@ class NamePicker {
   float letterY;
   float highLightY;
   float highLightX;
+  float highLightSize;
   String letter1 = "A";
   String letter2 = "A";
   String letter3 = "A";
@@ -24,14 +25,15 @@ class NamePicker {
     letterY = height/2;
     highLightY = letterY+100;
     highLightX = letterX1-5;
+    highLightSize = 20;
     letterpicker = new Letterpicker();
   }
 
   void DrawNamePicker() {
     if (keyPressed) {
-      if (key == 'd' && highLightX < letterX3-100) {
+      if (key == 'd' && highLightX < letterX3-100) {            //als de juiste key wordt ingedrukt en hij staat niet voorbij de laatste letter dan schuift de highlight 200 pixels naar rechts
         highLightX += 200;
-      } else if (key == 'a' && highLightX > letterX1) {
+      } else if (key == 'a' && highLightX > letterX1) {         //als de juiste key wordt ingedrukt en hij staat niet voorbij de eerste letter dan schuift de highlight 200 pixels naar links
         highLightX -= 200;
       }
     }
@@ -55,25 +57,25 @@ class NamePicker {
 
 
 
-    if (first) {
-      ellipse(highLightX, highLightY, 20, 20);
+    if (first) {                                                            //als first true is dan is de eerste letter geselecteerd en wordt alleen die aangepast
+      ellipse(highLightX, highLightY, highLightSize, highLightSize);
       letterpicker.DrawLetterpicker1();
       letter1 = letterpicker.Alphabet1[letterpicker.num1];
-    } else if (second) {
-      ellipse(highLightX, highLightY, 20, 20);
+    } else if (second) {                                                    //als second true is dan is de tweede letter geselecteerd en wordt alleen die aangepast
+      ellipse(highLightX, highLightY, highLightSize, highLightSize);
       letterpicker.DrawLetterpicker2();
       letter2 = letterpicker.Alphabet2[letterpicker.num2];
-    } else if (third) {
-      ellipse(highLightX, highLightY, 20, 20);
+    } else if (third) {                                                     //als third true is dan is de derde letter geselecteerd en wordt alleen die aangepast
+      ellipse(highLightX, highLightY, highLightSize, highLightSize);
       letterpicker.DrawLetterpicker3();
       letter3 = letterpicker.Alphabet3[letterpicker.num3];
     }
 
     textSize(80);
-    text(letter1, letterX1, letterY);
-    text(letter2, letterX2, letterY);
-    text(letter3, letterX3, letterY);
-    name = ""+letter1+letter2+letter3+"";
-    keyPressed = false;
+    text(letter1, letterX1, letterY);                            //letter1 wordt getekend
+    text(letter2, letterX2, letterY);                            //letter2 wordt getekend
+    text(letter3, letterX3, letterY);                            //letter3 wordt getekend
+    name = ""+letter1+letter2+letter3+"";                        //de letters worden als 1 string opgeslagen als name
+    keyPressed = false;                                          //keypressed word op false gezet
   }
 }
