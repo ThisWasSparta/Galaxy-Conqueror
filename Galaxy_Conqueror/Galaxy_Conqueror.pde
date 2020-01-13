@@ -42,8 +42,6 @@ boolean valuesLoaded = false;
 
 boolean gameOver = false;
 
-boolean resetName = false;
-
 boolean tutorial = false;
 
 boolean pause = false;

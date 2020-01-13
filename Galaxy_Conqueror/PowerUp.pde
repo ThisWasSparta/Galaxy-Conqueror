@@ -5,11 +5,11 @@
 int lastpower;                   //time in milliseconds since last powerup
 
 class PowerUp {
-  float playerWidth;                      //Powerup width
-  float playerHeight;                      //Powerup height
+  float pW;                      //Powerup width
+  float pH;                      //Powerup height
   float pV;                      //Powerup Velocity
-  float playerXposition;                      //Powerup X coordinate
-  float playerYposition;                      //Powerup Y coordinate
+  float pX;                      //Powerup X coordinate
+  float pY;                      //Powerup Y coordinate
   float timePowerup = 10000;     //Amount of time a powerup will be active in milliseconds
   float spawnTime;
 
@@ -43,11 +43,11 @@ void createPowerup(int powerType) {
       power[doublepointsCheck].typePowerup = 1;                                                                    //Double points
       power[doublepointsCheck].isPicked = true;
       power[doublepointsCheck].isActivated = false;
-      power[doublepointsCheck].playerWidth = doublepointsPowerup.width;
-      power[doublepointsCheck].playerHeight = doublepointsPowerup.height;
+      power[doublepointsCheck].pW = doublepointsPowerup.width * 2;
+      power[doublepointsCheck].pH = doublepointsPowerup.height * 2;
       power[doublepointsCheck].pV = random(1, 3);
-      power[doublepointsCheck].playerXposition = random(power[doublepointsCheck].playerWidth / 2, width - power[doublepointsCheck].playerWidth);
-      power[doublepointsCheck].playerYposition = -power[doublepointsCheck].playerHeight;
+      power[doublepointsCheck].pX = random(power[doublepointsCheck].pW / 2, width - power[doublepointsCheck].pW);
+      power[doublepointsCheck].pY = -power[doublepointsCheck].pH;
       power[doublepointsCheck].startPowerup = 0;
       power[doublepointsCheck].timerPowerup = 0;
     }
@@ -57,11 +57,11 @@ void createPowerup(int powerType) {
       power[speedCheck].typePowerup = 2;                                                                           //Speed
       power[speedCheck].isPicked = true;
       power[speedCheck].isActivated = false;
-      power[speedCheck].playerWidth = speedPowerup.width;
-      power[speedCheck].playerHeight = speedPowerup.height;
+      power[speedCheck].pW = speedPowerup.width * 2;
+      power[speedCheck].pH = speedPowerup.height * 2;
       power[speedCheck].pV = random(1, 3);
-      power[speedCheck].playerXposition = random(power[speedCheck].playerWidth / 2, width - power[speedCheck].playerWidth);
-      power[speedCheck].playerYposition = -power[speedCheck].playerHeight;
+      power[speedCheck].pX = random(power[speedCheck].pW / 2, width - power[speedCheck].pW);
+      power[speedCheck].pY = -power[speedCheck].pH;
       power[speedCheck].startPowerup = 0;
       power[speedCheck].timerPowerup = 0;
     }
@@ -71,11 +71,11 @@ void createPowerup(int powerType) {
       power[screenwipeCheck].typePowerup = 3;                                                                      //Screenwipe
       power[screenwipeCheck].isPicked = true;
       power[screenwipeCheck].isActivated = false;
-      power[screenwipeCheck].playerWidth = screenwipePowerup.height;
-      power[screenwipeCheck].playerHeight = screenwipePowerup.width;
+      power[screenwipeCheck].pH = screenwipePowerup.width * 2;
+      power[screenwipeCheck].pW = screenwipePowerup.height * 2;
       power[screenwipeCheck].pV = random(1, 3);
-      power[screenwipeCheck].playerXposition = random(power[screenwipeCheck].playerWidth / 2, width - power[screenwipeCheck].playerWidth);
-      power[screenwipeCheck].playerYposition = -power[screenwipeCheck].playerHeight;
+      power[screenwipeCheck].pX = random(power[screenwipeCheck].pW / 2, width - power[screenwipeCheck].pW);
+      power[screenwipeCheck].pY = -power[screenwipeCheck].pH;
       power[screenwipeCheck].startPowerup = 0;
       power[screenwipeCheck].timerPowerup = 0;
     }
@@ -117,14 +117,14 @@ int powerSelector() {                                                          /
 void powerUpdate(int counter) {
 
   if (power[counter].isPicked == true) {
-    power[counter].playerYposition = power[counter].playerYposition + power[counter].pV;
-    if (power[counter].playerYposition == height + power[counter].playerHeight) {
+    power[counter].pY = power[counter].pY + power[counter].pV;
+    if (power[counter].pY == height + power[counter].pH) {
       power[counter].isPicked = false;
       resetPowerUp(counter);
     }
-    if (power[counter].playerXposition > player.playerXposition - player.playerWidth / 2 && power[counter].playerXposition < player.playerXposition + player.playerWidth / 2 && power[counter].playerYposition > player.playerYposition - player.playerHeight / 2 && power[counter].playerYposition < player.playerYposition + player.playerHeight / 2 && power[counter].isActivated == false) {
+    if (power[counter].pX > player.playerXposition - player.playerWidth / 2 && power[counter].pX < player.playerXposition + player.playerWidth / 2 && power[counter].pY > player.playerYposition - player.playerHeight / 2 && power[counter].pY < player.playerYposition + player.playerHeight / 2 && power[counter].isActivated == false) {
       power[counter].isActivated = true;
-      power[counter].playerYposition = height * 2;
+      power[counter].pY = height * 2;
       power[counter].spawnTime = millis();                                                       //Sets timer whenever a powerup is activated
     }
     if (power[counter].isActivated == true) {                                                    //Check if power is activated
@@ -141,13 +141,13 @@ void powerUpdate(int counter) {
       if (power[counter].typePowerup == 2) {                                                     //Speed
         if (power[counter].spawnTime < millis() - power[counter].timePowerup) {                  //Check if time since activation has not exceeded given time in milliseconds
           player.playerVelocityFactor = player.PLAYER_DEFAULT_VELOCITY_FACTOR;                   //Reverts player speed to original value
-          player.playerMaxVelocity = player.playerVelocityFactor * width;                                    //Reverts player speed to original value
+          player.playerMaxVelocity = player.playerVelocityFactor * width;                        //Reverts player speed to original value
           power[counter].isActivated = false;                                                    //Deactivates powerup
           power[counter].isPicked = false;                                                       //Allows the slot of the powerup to be used again
           resetPowerUp(counter);
         } else {
           player.playerVelocityFactor = 0.008;                                                   //Increases speed of the player
-          player.playerMaxVelocity = player.playerVelocityFactor * width;                                    //Reverts player speed to original value
+          player.playerMaxVelocity = player.playerVelocityFactor * width;                        //Reverts player speed to original value
         }
       }
       if (power[counter].typePowerup == 3) {                                                     //Screenwipe
@@ -168,22 +168,22 @@ void drawPower(int counter) {                                                   
   if (power[counter].isPicked == true) {
     fill(255, 0, 0);
     if (power[counter].typePowerup == 1) {
-      image(doublepointsPowerup, power[counter].playerXposition + visuals.magnitudeX, power[counter].playerYposition + visuals.magnitudeY, power[counter].playerWidth, power[counter].playerHeight);
+      image(doublepointsPowerup, power[counter].pX + visuals.magnitudeX, power[counter].pY + visuals.magnitudeY, power[counter].pW, power[counter].pH);
     }
     if (power[counter].typePowerup == 2) {
-      image(speedPowerup, power[counter].playerXposition + visuals.magnitudeX, power[counter].playerYposition + visuals.magnitudeY, power[counter].playerWidth, power[counter].playerHeight);
+      image(speedPowerup, power[counter].pX + visuals.magnitudeX, power[counter].pY + visuals.magnitudeY, power[counter].pW, power[counter].pH);
     }
     if (power[counter].typePowerup == 3) {
-      image(screenwipePowerup, power[counter].playerXposition + visuals.magnitudeX, power[counter].playerYposition + visuals.magnitudeY, power[counter].playerWidth, power[counter].playerHeight);
+      image(screenwipePowerup, power[counter].pX + visuals.magnitudeX, power[counter].pY + visuals.magnitudeY, power[counter].pW, power[counter].pH);
     }
   }
 }
 
 void resetPowerUp(int count) {
   power[count].typePowerup = 0;
-  power[count].playerYposition = -50;
-  power[count].playerXposition = 0;
+  power[count].pY = -50;
+  power[count].pX = 0;
   power[count].pV = 0;
-  power[count].playerHeight = 0;
-  power[count].playerWidth = 0;
+  power[count].pH = 0;
+  power[count].pW = 0;
 }

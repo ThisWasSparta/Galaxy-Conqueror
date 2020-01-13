@@ -14,7 +14,7 @@ class GameOver {
     textSize(150);
     textAlign(CENTER);
     text("Game Over", tX, tY);
-    for (int i = 0; i < ENEMY_SHOOT_PARTICLE_NUMBER; i++) {
+    for (int i = 0; i < ENEMY_SHOOT_PARTICLE_NUMBER; i++) {            //loop die door de achievements heen loopt
       enemyShootParticle[i].opacity = 0;
       bgm.mute();
       textSize(50);
