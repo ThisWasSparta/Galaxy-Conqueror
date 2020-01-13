@@ -43,8 +43,8 @@ void createPowerup(int powerType) {
       power[doublepointsCheck].typePowerup = 1;                                                                    //Double points
       power[doublepointsCheck].isPicked = true;
       power[doublepointsCheck].isActivated = false;
-      power[doublepointsCheck].pW = doublepointsPowerup.width;
-      power[doublepointsCheck].pH = doublepointsPowerup.height;
+      power[doublepointsCheck].pW = doublepointsPowerup.width * 2;
+      power[doublepointsCheck].pH = doublepointsPowerup.height * 2;
       power[doublepointsCheck].pV = random(1, 3);
       power[doublepointsCheck].pX = random(power[doublepointsCheck].pW / 2, width - power[doublepointsCheck].pW);
       power[doublepointsCheck].pY = -power[doublepointsCheck].pH;
@@ -57,8 +57,8 @@ void createPowerup(int powerType) {
       power[speedCheck].typePowerup = 2;                                                                           //Speed
       power[speedCheck].isPicked = true;
       power[speedCheck].isActivated = false;
-      power[speedCheck].pW = speedPowerup.width;
-      power[speedCheck].pH = speedPowerup.height;
+      power[speedCheck].pW = speedPowerup.width * 2;
+      power[speedCheck].pH = speedPowerup.height * 2;
       power[speedCheck].pV = random(1, 3);
       power[speedCheck].pX = random(power[speedCheck].pW / 2, width - power[speedCheck].pW);
       power[speedCheck].pY = -power[speedCheck].pH;
@@ -71,8 +71,8 @@ void createPowerup(int powerType) {
       power[screenwipeCheck].typePowerup = 3;                                                                      //Screenwipe
       power[screenwipeCheck].isPicked = true;
       power[screenwipeCheck].isActivated = false;
-      power[screenwipeCheck].pW = screenwipePowerup.height;
-      power[screenwipeCheck].pH = screenwipePowerup.width;
+      power[screenwipeCheck].pH = screenwipePowerup.width * 2;
+      power[screenwipeCheck].pW = screenwipePowerup.height * 2;
       power[screenwipeCheck].pV = random(1, 3);
       power[screenwipeCheck].pX = random(power[screenwipeCheck].pW / 2, width - power[screenwipeCheck].pW);
       power[screenwipeCheck].pY = -power[screenwipeCheck].pH;
@@ -141,13 +141,13 @@ void powerUpdate(int counter) {
       if (power[counter].typePowerup == 2) {                                                     //Speed
         if (power[counter].spawnTime < millis() - power[counter].timePowerup) {                  //Check if time since activation has not exceeded given time in milliseconds
           player.playerVelocityFactor = player.PLAYER_DEFAULT_VELOCITY_FACTOR;                   //Reverts player speed to original value
-          player.playerMaxVelocity = player.playerVelocityFactor * width;                                    //Reverts player speed to original value
+          player.playerMaxVelocity = player.playerVelocityFactor * width;                        //Reverts player speed to original value
           power[counter].isActivated = false;                                                    //Deactivates powerup
           power[counter].isPicked = false;                                                       //Allows the slot of the powerup to be used again
           resetPowerUp(counter);
         } else {
           player.playerVelocityFactor = 0.008;                                                   //Increases speed of the player
-          player.playerMaxVelocity = player.playerVelocityFactor * width;                                    //Reverts player speed to original value
+          player.playerMaxVelocity = player.playerVelocityFactor * width;                        //Reverts player speed to original value
         }
       }
       if (power[counter].typePowerup == 3) {                                                     //Screenwipe
