@@ -89,6 +89,8 @@ class Boss {
   final int NEGATIVE_BULLET_SPEED = 2;
   final int NO_HORIZONTAL_SPEED = 0;
   final int BOSS_SPRITE_HEIGHT = 121;
+  final int DEATHRAY_LENGTH_INCREMENT = 15;
+  final int BOSSTIMER_STARTVALUE = 11500;
 
   void bossSpawn() {
     bossAlive = true; //marks the boss as being alive, which turns off the spawning of random enemies while keeping the drawing enabled
@@ -102,8 +104,6 @@ class Boss {
   }
 
   void bossUpdatePosition() { //function that updates the boss' position/position of his projectiles
-    //ang = radians(angle); < probably redundant, just want to be sure before i remove it
-    //jbossY = bossY + (10 * sin(dx * inc));
     if (bossY < BOSS_SPRITE_HEIGHT * 0.9) {
       bossY++;
     }
@@ -201,7 +201,7 @@ class Boss {
         fill(173, 216, 230);
         rect(bossX, bossY + DEATHRAY_VERTICAL_OFFSET, DEATHRAY_SIZE, deathrayLength);
         if (deathrayLength <= DEATHRAY_MAX_LENGTH) {
-          deathrayLength += 15;
+          deathrayLength += DEATHRAY_LENGTH_INCREMENT;
         }
         playerDeathrayCollisionCheck();
       }
@@ -239,7 +239,7 @@ class Boss {
     bossX = -width;
     bossY = -height;
     bossHealth = BOSS_HEALTH_VALUE;
-    globalBossTimer = 11500;
+    globalBossTimer = BOSSTIMER_STARTVALUE;
     scoreObj.addScore(2500);
 
     visuals.screenShake(200, 250, true);
