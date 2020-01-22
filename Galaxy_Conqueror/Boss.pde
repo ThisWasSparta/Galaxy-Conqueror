@@ -92,6 +92,11 @@ class Boss {
   final int BOSS_SPRITE_HEIGHT = 121;
   final int DEATHRAY_LENGTH_INCREMENT = 15;
   final int BOSSTIMER_STARTVALUE = 11500;
+  final int BOSS_SPAWN_DELAY = 2000;
+  final int IDLE_STATE_TIMER = 4000;
+  final int MISSILE_STATE_TIMER = 6000;
+  final int GATLINGGUN_STATE_TIMER = 9000;
+  final int DEATHRAY_STATE_TIMER = 10000;
 
   void bossSpawn() {
     bossAlive = true; //marks the boss as being alive, which turns off the spawning of random enemies while keeping the drawing enabled
@@ -114,7 +119,7 @@ class Boss {
   void bossProjectileUpdatePosition() { //updates the position of all of the boss' relevent projectiles
     for (int i = 0; i < bossBullets.length; i++) {
       if (bossBullets[i].isOnScreen == true) {
-        bossBullets[i].bossBulletY += bossBullets[i].bossBulletYV;
+        bossBullets[i].bossBulletY += bossBullets[i].bossBulletYV; //these lines update the x and y positions of the boss' bullets
         bossBullets[i].bossBulletX += bossBullets[i].bossBulletXV;
       }
       if (bossBullets[i].bossBulletY > height + bossBullets[i].bossBulletH) {
@@ -123,7 +128,7 @@ class Boss {
     }
     for (int i = 0; i < bossRockets.length; i++) {
       if (bossRockets[i].isOnScreen == true) {
-        bossRockets[i].bossRocketY += bossRockets[i].bossRocketYV;
+        bossRockets[i].bossRocketY += bossRockets[i].bossRocketYV; //these lines update the x and y positions of the boss' rockets
         bossRockets[i].bossRocketX += bossRockets[i].bossRocketXV;
       }
       if (bossRockets[i].bossRocketY > height + bossRockets[i].bossRocketH) {
@@ -136,17 +141,17 @@ class Boss {
     if (bossAlive == true) {
       image(bossSprite, bossX + visuals.magnitudeX, bossY + visuals.magnitudeY, bossW, bossH);
       for (int i = 0; i < bossBullets.length; i++) { //two for loops to draw the rockets/bullets
-        image(enemyBullet, bossBullets[i].bossBulletX, bossBullets[i].bossBulletY, bossBullets[i].bossBulletW, bossBullets[i].bossBulletH);
+        image(enemyBullet, bossBullets[i].bossBulletX, bossBullets[i].bossBulletY, bossBullets[i].bossBulletW, bossBullets[i].bossBulletH); //this loops through the bullet array and draws them on the given x and y coordinates
       }
       for (int i = 0; i < bossRockets.length; i++) {
-        image(bossRocketSprite, bossRockets[i].bossRocketX, bossRockets[i].bossRocketY, bossRockets[i].bossRocketW, bossRockets[i].bossRocketH);
+        image(bossRocketSprite, bossRockets[i].bossRocketX, bossRockets[i].bossRocketY, bossRockets[i].bossRocketW, bossRockets[i].bossRocketH); //this loops through the rocket array and draws them on the given x and y coordinates
       }
     }
   }
 
   void bossUpdateBehaviour() { //function that calls every necessary action for the boss to switch states and act accordingly
-    stateHandler();
-    stateSwitcher();
+    stateHandler(); //this function tells the boss what to do on each given frame
+    stateSwitcher(); //this functions switches the boss' behaviour when the given timer runs out
   }
 
   int statePicker() { //function that picks a new state by rolling a dice
@@ -154,26 +159,26 @@ class Boss {
     int randomNumber = 0;
     randomNumber = (int)random(0, 100);
     if (bossY < BOSS_SPRITE_HEIGHT * 0.9) {
-      currentStateTimer = 2000;
+      currentStateTimer = BOSS_SPAWN_DELAY;
       return IDLE_STATE;
     }
-    if (randomNumber >= 0 && randomNumber <= 20 && currentState != IDLE_STATE) {
-      currentStateTimer = 4000;
+    if (randomNumber >= 0 && randomNumber <= 20 && currentState != IDLE_STATE) { 
+      currentStateTimer = IDLE_STATE_TIMER;
       return IDLE_STATE;
     }
     if (randomNumber > 20 && randomNumber <= 50 && currentState != MISSILE_STATE) {
-      currentStateTimer = 6000;
+      currentStateTimer = MISSILE_STATE_TIMER;
       return MISSILE_STATE;
     }
     if (randomNumber > 50 && randomNumber <= 90 && currentState != GATLING_GUN_STATE) {
-      currentStateTimer = 9000;
+      currentStateTimer = GATLINGGUN_STATE_TIMER;
       return GATLING_GUN_STATE;
     }
     if (randomNumber > 90 && randomNumber <= 100 && deathrayCooldown <= 0) {
-      currentStateTimer = 10000;
+      currentStateTimer = DEATHRAY_STATE_TIMER;
       return DEATHRAY_STATE;
     }
-    currentStateTimer = 4000;
+    currentStateTimer = IDLE_STATE_TIMER;
     return 0;
   }
 
