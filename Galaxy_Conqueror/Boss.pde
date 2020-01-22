@@ -1,5 +1,5 @@
 //this pde file was written by Floris Kuiper
-int globalBossTimer = 60;
+int globalBossTimer = 11500;
 int scoutDelay = 3000;
 boolean bossKilled = false;
 
