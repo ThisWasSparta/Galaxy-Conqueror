@@ -2,13 +2,13 @@ float soundVolume = 1;
 
 class Titel {
 
-  // Main titel180
-  int textSize = 70;
+  // Main titel Stats
+  int textSize = 70;          
   int textSizebut = 35;
   int titelX = width/2;
   int titelY = height/3;
 
-  //Start Button
+  //Start Button Stats
   int staButtonX = width/2;
   float staButtonY =  height/3 * 1.3;
   int staButtonW = 600;
@@ -16,7 +16,7 @@ class Titel {
   int staButtonWinn = 575;
   int staButtonHinn = 75;
 
-  //highscore Button
+  //highscore Button Stats
   int hiButtonX = width/2;
   float hiButtonY =  height/3 * 1.7;
   int hiButtonW = 600;
@@ -24,7 +24,7 @@ class Titel {
   int hiButtonWinn = 575;
   int hiButtonHinn = 75;
 
-  // Settings Button
+  // Settings Button Stats
   int setButtonX = width/2;
   float setButtonY =  height/3 * 2.1;
   int setButtonW = 600;
@@ -32,7 +32,7 @@ class Titel {
   int setButtonWinn = 575;
   int setButtonHinn = 75;
 
-  // Quit Button
+  // Quit Button Stats
   int qButtonX = width/2;
   float qButtonY =  height/3 * 2.5;
   int qButtonW = 600;
@@ -40,7 +40,7 @@ class Titel {
   int qButtonWinn = 575;
   int qButtonHinn = 75;
 
-  //SoundBar
+  //SoundBar Stats
   int sBX = width/2;
   float sBY =  height/3 * 1.1;
   int sBW = 1010;
@@ -48,7 +48,7 @@ class Titel {
   int sBWinn = 1000;
   int sBHinn = 10;
 
-  //Soundslider
+  //Soundslider Stats
   int sSX = sBX + sBWinn/2;
   float sSY =  sBY;
   int sSW = 40;
@@ -56,7 +56,7 @@ class Titel {
   int sSWinn = 20;
   int sSHinn = 60;
 
-  //BrightnessBar
+  //BrightnessBar Stats
   int bBX = width/2;
   float bBY =  height/3 * 1.8;
   int bBW = 1010;
@@ -64,7 +64,7 @@ class Titel {
   int bBWinn = 1000;
   int bBHinn = 10;
 
-  //BrightnessSlider
+  //BrightnessSlider Stats
   int bSX = bBX + bBWinn/2;
   float bSY =  bBY;
   int bSW = 40;
@@ -72,7 +72,7 @@ class Titel {
   int bSWinn = 20;
   int bSHinn = 60;
 
-  //Back button
+  //Back button Stats
   int bButtonX = width/2;
   float bButtonY =  height/3 * 2.3;
   int bButtonW = 600;
@@ -80,13 +80,13 @@ class Titel {
   int bButtonWinn = 575;
   int bButtonHinn = 75;
 
-  //Left Cursor
+  //Left Cursor Stats
   float lcX = staButtonX - 400;
   float lcY = staButtonY;
   float lcH = 20;
   float lcW = 80;
 
-  //Right Cursor
+  //Right Cursor Stats
   float rcX = staButtonX + 400;
   float rcY = staButtonY;
   float rcH = 20;
@@ -94,26 +94,26 @@ class Titel {
 
   int countCursor = 0;
 
-  boolean StartGame = true;
-  boolean HighGame = false;
-  boolean AchGame = false;
-  boolean SettingGame = false;
+  boolean StartGame = true;      //Mainscreen status
+  boolean HighGame = false;      //Highscorescreen status
+  boolean AchGame = false;       //Achievementscreen status
+  boolean SettingGame = false;   //Settingscreen status
 
-  boolean CursorStart = true;
-  boolean CursorHigh = false;
-  boolean CursorHighBack = false;
-  boolean CursorAch = false;
-  boolean CursorAchBack = false;
-  boolean CursorSetting = false;
-  boolean CursorQuit = false;
-  boolean CursorSound = false;
-  boolean CursorBright = false;
-  boolean CursorBack = false;
+  boolean CursorStart = true;      //Cursor to start the game status
+  boolean CursorHigh = false;      //Cursor to go to highscorescreen status
+  boolean CursorHighBack = false;  //Cursor to go back to mainscreen status
+  boolean CursorAch = false;       //Cursor to go to achievementscreen status
+  boolean CursorAchBack = false;   //Cursor to go back to highscorescreen status
+  boolean CursorSetting = false;   //Cursor to go to settingscreen status
+  boolean CursorQuit = false;      //Cursor to quit the game status
+  boolean CursorSound = false;     //Cursor to select soundbar status
+  boolean CursorBright = false;    //Cursor to select brightnessbar status
+  boolean CursorBack = false;      //Cursor to go back to mainscreen status
 
-  boolean goLeft;    //  \
-  boolean goRight;   //   \
-  boolean goUp;      //    \
-  boolean goDown;    //     -direction of player movement
+  boolean goLeft;    //      -direction of player movement
+  boolean goRight;   //      -direction of player movement
+  boolean goUp;      //      -direction of player movement
+  boolean goDown;    //      -direction of player movement
   boolean isShooting;  //whether the player is shooting or not
 
   float soundDigit;
