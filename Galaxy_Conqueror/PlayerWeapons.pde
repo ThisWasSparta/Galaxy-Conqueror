@@ -83,7 +83,7 @@ class PlayerWeapons {
     switch (player.weapon) {
     case 1:
       if (reloadTime + PLAYER_BULLET_FIRERATE > millis()) {
-        reloadTimerBarWidth = 80 * ((millis() - reloadTime) / PLAYER_BULLET_FIRERATE);
+        reloadTimerBarWidth = 80 * ((millis() - reloadTime) / PLAYER_BULLET_FIRERATE);  //this calculates the width of the reloadbar using the remaining time until the gun can be fired again.
         reloadTimerBarHeight = 5;
         reloadTimerBarXposition = player.playerXposition - 40;
         reloadTimerBarYposition = player.playerYposition + player.playerHeight * 0.6;
@@ -95,7 +95,7 @@ class PlayerWeapons {
       break;
     case 2:
       if (reloadTime + PLAYER_LASER_FIRERATE > millis()) {
-        reloadTimerBarWidth = 80 * ((millis() - reloadTime) / PLAYER_LASER_FIRERATE);
+        reloadTimerBarWidth = 80 * ((millis() - reloadTime) / PLAYER_LASER_FIRERATE);  //this calculates the width of the reloadbar using the remaining time until the gun can be fired again.
         reloadTimerBarHeight = 5;
         reloadTimerBarXposition = player.playerXposition - 40;
         reloadTimerBarYposition = player.playerYposition + player.playerHeight * 0.8;
@@ -107,7 +107,7 @@ class PlayerWeapons {
       break;
     case 3:
       if (reloadTime + PLAYER_ROCKET_FIRERATE > millis()) {
-        reloadTimerBarWidth = 80 * ((millis() - reloadTime) / PLAYER_ROCKET_FIRERATE);
+        reloadTimerBarWidth = 80 * ((millis() - reloadTime) / PLAYER_ROCKET_FIRERATE);  //this calculates the width of the reloadbar using the remaining time until the gun can be fired again.
         reloadTimerBarHeight = 5;
         reloadTimerBarXposition = player.playerXposition - 40;
         reloadTimerBarYposition = player.playerYposition + player.playerHeight * 0.8;

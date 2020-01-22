@@ -24,7 +24,8 @@ class VisualEffects {
       visuals.maxMagnitudeY = yDirection * screenShakeMax;  //decides randomly if the screen shakes up or down first.
       visuals.minMagnitudeX = xDirection * screenShakeMin;
       visuals.minMagnitudeY = yDirection * screenShakeMin;
-
+      
+      //making sure the values used for calculation of the magnitude are positive, or the calculation won't work properly
       if (visuals.maxMagnitudeX < screenShakeMin && visuals.maxMagnitudeX > 0) {
         visuals.maxMagnitudeX = screenShakeMin;
       }
@@ -37,24 +38,25 @@ class VisualEffects {
       if (visuals.maxMagnitudeY > -screenShakeMin && visuals.maxMagnitudeY < 0) {
         visuals.maxMagnitudeY = - screenShakeMin;
       }
-
+      
+      //these will determine the final magnitude of the screenshake
       randomMagnitudeX = random(visuals.minMagnitudeX, visuals.maxMagnitudeX);
       randomMagnitudeY = random(visuals.minMagnitudeY, visuals.maxMagnitudeY);
       screenShakeTimer = millis();
       screenShakeStart = false;
     }
     if (!screenShakeStart && !boss.bossDied) {  //this makes the screen shake less and less until it stops.
-      visuals.magnitudeX = sin(visuals.screenShakeFactor) * randomMagnitudeX;
+      visuals.magnitudeX = sin(visuals.screenShakeFactor) * randomMagnitudeX;  //the sinus function is the thing that makes the screen shake back and forth
       visuals.magnitudeY = sin(visuals.screenShakeFactor) * randomMagnitudeY;
-      visuals.randomMagnitudeX *= 0.92;
+      visuals.randomMagnitudeX *= 0.92;  //these make sure the screenshake magnitude reduces over time
       visuals.randomMagnitudeY *= 0.92;
       visuals.screenShakeFactor += visuals.inc;
     }
 
-    if (!screenShakeStart && boss.bossDied) {
-      visuals.magnitudeX = sin(visuals.screenShakeFactor) * randomMagnitudeX;
+    if (!screenShakeStart && boss.bossDied) {  //this function is only for the boss' screenshake, and makes it shake less and less until it stops.
+      visuals.magnitudeX = sin(visuals.screenShakeFactor) * randomMagnitudeX;  //the sinus function is the thing that makes the screen shake back and forth
       visuals.magnitudeY = sin(visuals.screenShakeFactor) * randomMagnitudeY;
-      visuals.randomMagnitudeX *= 0.985;
+      visuals.randomMagnitudeX *= 0.985;  //these make sure the screenshake magnitude reduces over time, though slower than normal
       visuals.randomMagnitudeY *= 0.985;
       visuals.screenShakeFactor += visuals.inc;
       if (visuals.randomMagnitudeX > -1 && visuals.randomMagnitudeY < 1) {
