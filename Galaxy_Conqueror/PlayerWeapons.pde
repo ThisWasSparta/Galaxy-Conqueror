@@ -85,8 +85,8 @@ class PlayerWeapons {
       if (reloadTime + PLAYER_BULLET_FIRERATE > millis()) {
         reloadTimerBarWidth = 80 * ((millis() - reloadTime) / PLAYER_BULLET_FIRERATE);  //this calculates the width of the reloadbar using the remaining time until the gun can be fired again.
         reloadTimerBarHeight = 5;
-        reloadTimerBarXposition = player.playerXposition - 40;
-        reloadTimerBarYposition = player.playerYposition + player.playerHeight * 0.6;
+        reloadTimerBarXposition = player.playerXposition - 40;  //this sets the x-position of the bar to the players x-position
+        reloadTimerBarYposition = player.playerYposition + player.playerHeight * 0.6;  //this sets the y-position of the bar to below the players y-position
         fill(200);
         rect(reloadTimerBarXposition, reloadTimerBarYposition, 80, reloadTimerBarHeight);
         fill(255, 242, 56);
@@ -97,8 +97,8 @@ class PlayerWeapons {
       if (reloadTime + PLAYER_LASER_FIRERATE > millis()) {
         reloadTimerBarWidth = 80 * ((millis() - reloadTime) / PLAYER_LASER_FIRERATE);  //this calculates the width of the reloadbar using the remaining time until the gun can be fired again.
         reloadTimerBarHeight = 5;
-        reloadTimerBarXposition = player.playerXposition - 40;
-        reloadTimerBarYposition = player.playerYposition + player.playerHeight * 0.8;
+        reloadTimerBarXposition = player.playerXposition - 40;  //this sets the x-position of the bar to the players x-position
+        reloadTimerBarYposition = player.playerYposition + player.playerHeight * 0.6;  //this sets the y-position of the bar to below the players y-position
         fill(200);
         rect(reloadTimerBarXposition, reloadTimerBarYposition, 80, reloadTimerBarHeight);
         fill(255, 248, 148);
@@ -109,8 +109,8 @@ class PlayerWeapons {
       if (reloadTime + PLAYER_ROCKET_FIRERATE > millis()) {
         reloadTimerBarWidth = 80 * ((millis() - reloadTime) / PLAYER_ROCKET_FIRERATE);  //this calculates the width of the reloadbar using the remaining time until the gun can be fired again.
         reloadTimerBarHeight = 5;
-        reloadTimerBarXposition = player.playerXposition - 40;
-        reloadTimerBarYposition = player.playerYposition + player.playerHeight * 0.8;
+        reloadTimerBarXposition = player.playerXposition - 40;  //this sets the x-position of the bar to the players x-position
+        reloadTimerBarYposition = player.playerYposition + player.playerHeight * 0.6;  //this sets the y-position of the bar to below the players y-position
         fill(200);
         rect(reloadTimerBarXposition, reloadTimerBarYposition, 80, reloadTimerBarHeight);
         fill(26, 30, 153);
@@ -125,12 +125,12 @@ class PlayerWeapons {
     if (player.isShooting && !weapon[playerProjectileTurn].bulletIsOnScreen && millis() - PLAYER_BULLET_FIRERATE > reloadTime) {  //if the shot-button is pressed and the bullet that is supposed to
       reloadTime = millis();                                                                                                //shoot out isnt on screen and the reload timer is done, it fires a bullet
       for (int i = 0; i < PLAYER_BULLET_PER_SALVO; i++) {
-        if (playerProjectileTurn%2 == 0) {                                                     //if the current bullet's number is an even number, it spawns  in the
-          weapon[playerProjectileTurn].bulletXposition = player.playerXposition + player.DEFAULT_PLAYER_WIDTH / 2 * 0.891;        //left gun, otherocketWidthise it spawns in the right turret
+        if (playerProjectileTurn%2 == 0) {                                                     
+          weapon[playerProjectileTurn].bulletXposition = player.playerXposition + player.DEFAULT_PLAYER_WIDTH / 2 * 0.891;  //if the current bullet's number is an even number, it spawns  in the left turret
         } else {
-          weapon[playerProjectileTurn].bulletXposition = player.playerXposition - player.DEFAULT_PLAYER_WIDTH / 2 * 0.891;
+          weapon[playerProjectileTurn].bulletXposition = player.playerXposition - player.DEFAULT_PLAYER_WIDTH / 2 * 0.891;  //if the current bullet's number is an odd number, it spawns  in the right turret
         }
-        weapon[playerProjectileTurn].bulletYposition = player.playerYposition - player.DEFAULT_PLAYER_HEIGHT / 2 * 0.678;
+        weapon[playerProjectileTurn].bulletYposition = player.playerYposition - player.DEFAULT_PLAYER_HEIGHT / 2 * 0.678;  //this sets the correct y-value for the spawn position of the bullets
         weapon[playerProjectileTurn].projectileType = 1;
         weapon[playerProjectileTurn].bulletIsOnScreen = true;
         playerProjectileTurn++;
