@@ -10,7 +10,7 @@ class Health {
   PImage texture;
 
   void playerHealth() {
-    if (heartNumber == 3) {                                                //displays the number of heartNumber you have left
+    if (heartNumber == 3) {                                                //displays the number of hearts you have left
       for (int i = 0; i < 3; i++) {
         heart[i].x = width / 60 + width / 100 * 3 * i;
         image(heart[i].texture, heart[i].x + visuals.magnitudeX, heart[i].y + visuals.magnitudeY, heart[i].heartW, heart[i].heartH);
