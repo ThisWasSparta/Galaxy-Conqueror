@@ -13,7 +13,7 @@ class VisualEffects {
   float screenShakeFactor = 0.0;
   float xDirection;
   float yDirection;
-  
+
   boolean screenShakeTest;
 
   void screenShake(int screenShakeMin, int screenShakeMax, boolean screenShakeStart) {  //this function makes the screen shake by changing the x & y positions of almost every object on screen.
@@ -24,7 +24,7 @@ class VisualEffects {
       visuals.maxMagnitudeY = yDirection * screenShakeMax;  //decides randomly if the screen shakes up or down first.
       visuals.minMagnitudeX = xDirection * screenShakeMin;
       visuals.minMagnitudeY = yDirection * screenShakeMin;
-      
+
       if (visuals.maxMagnitudeX < screenShakeMin && visuals.maxMagnitudeX > 0) {
         visuals.maxMagnitudeX = screenShakeMin;
       }
@@ -37,7 +37,7 @@ class VisualEffects {
       if (visuals.maxMagnitudeY > -screenShakeMin && visuals.maxMagnitudeY < 0) {
         visuals.maxMagnitudeY = - screenShakeMin;
       }
-      
+
       randomMagnitudeX = random(visuals.minMagnitudeX, visuals.maxMagnitudeX);
       randomMagnitudeY = random(visuals.minMagnitudeY, visuals.maxMagnitudeY);
       screenShakeTimer = millis();
@@ -50,7 +50,7 @@ class VisualEffects {
       visuals.randomMagnitudeY *= 0.92;
       visuals.screenShakeFactor += visuals.inc;
     }
-    
+
     if (!screenShakeStart && boss.bossDied) {
       visuals.magnitudeX = sin(visuals.screenShakeFactor) * randomMagnitudeX;
       visuals.magnitudeY = sin(visuals.screenShakeFactor) * randomMagnitudeY;
@@ -63,7 +63,7 @@ class VisualEffects {
     }
   }
 
-  void updateScreenShake() {
+  void testScreenShake() {
     if (screenShakeTest) {
       visuals.screenShake(10, 50, true);
     }

@@ -134,7 +134,7 @@ class PlayerWeapons {
         weapon[playerProjectileTurn].projectileType = 1;
         weapon[playerProjectileTurn].bulletIsOnScreen = true;
         playerProjectileTurn++;
-        playergatshoot.play((int)random(110,130));
+        playergatshoot.play((int)random(110, 130));
       }
       if (playerProjectileTurn > 49) {
         playerProjectileTurn = 0;
@@ -156,7 +156,7 @@ class PlayerWeapons {
         if (!weapon[i].bulletIsOnScreen) {
           weapon[i].bulletYposition = height * -2;
         }
-        
+
         //this is the hitbox detection of the boss.
         if (weapon[i].bulletXposition < boss.bossX + boss.bossW/2 && weapon[i].bulletXposition > boss.bossX - boss.bossW/2 && weapon[i].bulletYposition < boss.bossY + boss.bossH/2 && weapon[i].bulletYposition > boss.bossY - boss.bossH/2 && boss.bossAlive == true) {
           weapon[i].bulletYposition -= height;
@@ -182,7 +182,7 @@ class PlayerWeapons {
               visuals.screenShake(20, 30, true);
             }
           }
-          
+
           //this is the hitbox detection of coursers.
           if (enemy[t].enemyType == 2 && weapon[i].bulletXposition < enemy[t].eX + enemy[t].courserHitboxX && weapon[i].bulletXposition > enemy[t].eX - enemy[t].courserHitboxX && weapon[i].bulletYposition < enemy[t].eY + enemy[t].courserHitboxY && weapon[i].bulletYposition > enemy[t].eY - enemy[t].courserHitboxY && enemy[t].isAlive == true) {
             weapon[i].bulletYposition -= height;
@@ -198,7 +198,7 @@ class PlayerWeapons {
               visuals.screenShake(35, 45, true);
             }
           }
-          
+
           //this is the hitbox detection of the goliath shield.
           if (enemy[t].shieldAlive) {
             if (enemy[t].enemyType == 3 && weapon[i].bulletXposition < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].bulletXposition > enemy[t].eX - enemy[t].goliathHitboxX && weapon[i].bulletYposition < enemy[t].eY + enemy[t].goliathHitboxY  * 1.4 && weapon[i].bulletYposition > enemy[t].eY + enemy[t].goliathHitboxY * -1 && enemy[t].isAlive == true) {
@@ -313,7 +313,7 @@ class PlayerWeapons {
           boss.deathHandler();
         }
       }
-      
+
       //this if statement detects if the laser collides with the scouts' hitbox.
       for (int t = 0; t < ENEMY_NUMBER; t++) {
         if (enemy[t].enemyType == 1 && weapon[i].laserXposition - weapon[i].laserWidth/2 < enemy[t].eX + enemy[t].scoutHitboxX && weapon[i].laserXposition + weapon[i].laserWidth/2 > enemy[t].eX - enemy[t].scoutHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
@@ -330,7 +330,7 @@ class PlayerWeapons {
             visuals.screenShake(20, 30, true);
           }
         }
-        
+
         //this if statement detects if the laser collides with the coursers' hitbox.
         if (enemy[t].enemyType == 2 && weapon[i].laserXposition - weapon[i].laserWidth/2 < enemy[t].eX + enemy[t].courserHitboxX && weapon[i].laserXposition + weapon[i].laserWidth/2 > enemy[t].eX - enemy[t].courserHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
           weapon[i].bulletYposition -= height;
@@ -346,7 +346,7 @@ class PlayerWeapons {
             visuals.screenShake(35, 45, true);
           }
         } 
-        
+
         //this if statement detects if the laser collides with the goliaths' hitbox. Not the shields', because the laser pierces the shield.
         if (enemy[t].enemyType == 3 && weapon[i].laserXposition - weapon[i].laserWidth/2 < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].laserXposition + weapon[i].laserWidth/2 > enemy[t].eX - enemy[t].goliathHitboxX && enemy[t].isAlive && weapon[i].laserIsAlive) {
           weapon[i].bulletYposition -= height;
@@ -414,7 +414,7 @@ class PlayerWeapons {
         if (weapon[i].rocketYposition < 0 - weapon[i].rocketHeight || weapon[i].rocketYposition > height + weapon[i].rocketHeight || weapon[i].rocketXposition < 0 - weapon[i].rocketWidth || weapon[i].rocketXposition > width + weapon[i].rocketWidth) {
           weapon[i].rocketIsOnScreen = false;
         }
-        
+
         //this if-statement is very important, it keeps track of the distance between the target enemy and the rocket, and adjusts the rockets' course according to it.
         if (weapon[i].rocketIsOnScreen) {
           if (enemy[weapon[i].enemyTarget].isAlive) {
@@ -446,11 +446,11 @@ class PlayerWeapons {
             weapon[i].rocketYposition -= weapon[i].rocketVelocity;
           }
         }
-        
+
         if (!weapon[i].rocketIsOnScreen) {
           weapon[i].rocketYposition = height * -2;
         }
-        
+
         //this if-statement detects if the rocket hits the boss' hitbox.
         if (weapon[i].rocketXposition < boss.bossX + boss.bossW/2 && weapon[i].rocketXposition > boss.bossX - boss.bossW/2 && weapon[i].rocketYposition < boss.bossY + boss.bossH/2 && weapon[i].rocketYposition > boss.bossY - boss.bossH/2 && boss.bossAlive == true) {
           weapon[i].rocketYposition -= height;
@@ -476,7 +476,7 @@ class PlayerWeapons {
               visuals.screenShake(20, 30, true);
             }
           }
-          
+
           //this if-statement detects if the rocket hits the coursers' hitbox.
           if (enemy[t].enemyType == 2 && weapon[i].rocketXposition < enemy[t].eX + enemy[t].courserHitboxX && weapon[i].rocketXposition > enemy[t].eX - enemy[t].courserHitboxX && weapon[i].rocketYposition < enemy[t].eY + enemy[t].courserHitboxY && weapon[i].rocketYposition > enemy[t].eY - enemy[t].courserHitboxY && enemy[t].isAlive == true) {
             weapon[i].rocketYposition -= height;
@@ -492,7 +492,7 @@ class PlayerWeapons {
               visuals.screenShake(35, 45, true);
             }
           }
-          
+
           //this if-statement detects if the rocket hits the goliath shields' hitbox.
           if (enemy[t].shieldAlive) {
             if (enemy[t].enemyType == 3 && weapon[i].rocketXposition < enemy[t].eX + enemy[t].goliathHitboxX && weapon[i].rocketXposition > enemy[t].eX - enemy[t].goliathHitboxX && weapon[i].rocketYposition < enemy[t].eY + enemy[t].goliathHitboxY  * 1.4 && weapon[i].rocketYposition > enemy[t].eY + enemy[t].goliathHitboxY * -1 && enemy[t].isAlive == true) {

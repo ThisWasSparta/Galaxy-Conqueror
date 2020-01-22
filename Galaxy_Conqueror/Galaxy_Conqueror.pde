@@ -148,7 +148,7 @@ void setup() {
   visuals = new VisualEffects();
   events = new RandomEvents();
   difficulty = new Difficulty();
-  
+
   textParticles = new Text_Particles();
 
   titel.font();
@@ -209,7 +209,7 @@ void draw() {
 
   if (startGame) {                                //if the player has pressed start on the menu, the game will start
     visuals.screenShake(0, 0, false);
-    visuals.updateScreenShake();
+    visuals.testScreenShake();
     events.selectEvent();
     events.executeEvent();
     obstakel.drawObstakel();
