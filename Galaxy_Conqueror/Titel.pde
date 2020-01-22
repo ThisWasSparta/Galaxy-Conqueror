@@ -1,94 +1,95 @@
+//This class was made by Lucas van Wonderen
 class Titel {
 
   // Main titel Stats
-  int textSize = 70;          
-  int textSizebut = 35;
-  int titelX = width/2;
-  int titelY = height/3;
+  final int textSize = 70;          
+  final int textSizebut = 35;
+  final int titelX = width/2;
+  final int titelY = height/3;
 
   //Start Button Stats
-  int staButtonX = width/2;
-  float staButtonY =  height/3 * 1.3;
-  int staButtonW = 600;
-  int staButtonH = 100;
-  int staButtonWinn = 575;
-  int staButtonHinn = 75;
+  final int staButtonX = width/2;
+  final float staButtonY =  height/3 * 1.3;
+  final int staButtonW = 600;
+  final int staButtonH = 100;
+  final int staButtonWinn = 575;
+  final int staButtonHinn = 75;
 
   //highscore Button Stats
-  int hiButtonX = width/2;
-  float hiButtonY =  height/3 * 1.7;
-  int hiButtonW = 600;
-  int hiButtonH = 100;
-  int hiButtonWinn = 575;
-  int hiButtonHinn = 75;
+  final int hiButtonX = width/2;
+  final float hiButtonY =  height/3 * 1.7;
+  final int hiButtonW = 600;
+  final int hiButtonH = 100;
+  final int hiButtonWinn = 575;
+  final int hiButtonHinn = 75;
 
   // Settings Button Stats
-  int setButtonX = width/2;
-  float setButtonY =  height/3 * 2.1;
-  int setButtonW = 600;
-  int setButtonH = 100;
-  int setButtonWinn = 575;
-  int setButtonHinn = 75;
+  final int setButtonX = width/2;
+  final float setButtonY =  height/3 * 2.1;
+  final int setButtonW = 600;
+  final int setButtonH = 100;
+  final int setButtonWinn = 575;
+  final int setButtonHinn = 75;
 
   // Quit Button Stats
-  int qButtonX = width/2;
-  float qButtonY =  height/3 * 2.5;
-  int qButtonW = 600;
-  int qButtonH = 100;
-  int qButtonWinn = 575;
-  int qButtonHinn = 75;
+  final int qButtonX = width/2;
+  final float qButtonY =  height/3 * 2.5;
+  final int qButtonW = 600;
+  final int qButtonH = 100;
+  final int qButtonWinn = 575;
+  final int qButtonHinn = 75;
 
   //SoundBar Stats
-  int sBX = width/2;
-  float sBY =  height/3 * 1.1;
-  int sBW = 1010;
-  int sBH = 20;
-  int sBWinn = 1000;
-  int sBHinn = 10;
+  final int sBX = width/2;
+  final float sBY =  height/3 * 1.1;
+  final int sBW = 1010;
+  final int sBH = 20;
+  final int sBWinn = 1000;
+  final int sBHinn = 10;
 
   //Soundslider Stats
   int sSX = sBX + sBWinn/2;
-  float sSY =  sBY;
-  int sSW = 40;
-  int sSH = 80;
-  int sSWinn = 20;
-  int sSHinn = 60;
+  final float sSY =  sBY;
+  final int sSW = 40;
+  final int sSH = 80;
+  final int sSWinn = 20;
+  final int sSHinn = 60;
 
   //BrightnessBar Stats
-  int bBX = width/2;
-  float bBY =  height/3 * 1.8;
-  int bBW = 1010;
-  int bBH = 20;
-  int bBWinn = 1000;
-  int bBHinn = 10;
+  final int bBX = width/2;
+  final float bBY =  height/3 * 1.8;
+  final int bBW = 1010;
+  final int bBH = 20;
+  final int bBWinn = 1000;
+  final int bBHinn = 10;
 
   //BrightnessSlider Stats
   int bSX = bBX + bBWinn/2;
-  float bSY =  bBY;
-  int bSW = 40;
-  int bSH = 80;
-  int bSWinn = 20;
-  int bSHinn = 60;
+  final float bSY =  bBY;
+  final int bSW = 40;
+  final int bSH = 80;
+  final int bSWinn = 20;
+  final int bSHinn = 60;
 
   //Back button Stats
-  int bButtonX = width/2;
-  float bButtonY =  height/3 * 2.3;
-  int bButtonW = 600;
-  int bButtonH = 100;
-  int bButtonWinn = 575;
-  int bButtonHinn = 75;
+  final int bButtonX = width/2;
+  final float bButtonY =  height/3 * 2.3;
+  final int bButtonW = 600;
+  final int bButtonH = 100;
+  final int bButtonWinn = 575;
+  final int bButtonHinn = 75;
 
   //Left Cursor Stats
-  float lcX = staButtonX - 400;
-  float lcY = staButtonY;
-  float lcH = 20;
-  float lcW = 80;
+  final float lcX = staButtonX - 400;
+  final float lcY = staButtonY;
+  final float lcH = 20;
+  final float lcW = 80;
 
   //Right Cursor Stats
-  float rcX = staButtonX + 400;
-  float rcY = staButtonY;
-  float rcH = 20;
-  float rcW = 80;
+  final float rcX = staButtonX + 400;
+  final float rcY = staButtonY;
+  final float rcH = 20;
+  final float rcW = 80;
 
   int countCursor = 0;
 
@@ -114,24 +115,23 @@ class Titel {
   boolean goDown;    //      -direction of player movement
   boolean isShooting;  //whether the player is shooting or not
 
-  float soundDigit;
-  float soundBright;
-  int cTimer = 10;
-  float achS = 40;
+  float soundDigit;        //Number shown underneath soundbar
+  float soundBright;       //Nubershown underneath brightnessbar
+  final int cTimer = 10;         //Cursor timer to count how many seconds a button is pressed
+  final float achS = 40;         //Size for the achievements
 
 
   //Font
   void font() {
-    PFont font;
-    font = createFont("PressStart2P.ttf", 64);
-    textFont(font);
+    PFont font;                                      //Selects font
+    font = createFont("PressStart2P.ttf", 64);       //font
+    textFont(font);    
   }
 
   void startScreen() {
-    maintheme.play();
-    if (StartGame) {
-      bgm.mute();
-
+    maintheme.play();                    //Main menu theme song
+    if (StartGame) {                     //Main start screen
+      bgm.mute();                                  
       dbqueries.getHighScores = false;
       //Titel
       fill(255);
