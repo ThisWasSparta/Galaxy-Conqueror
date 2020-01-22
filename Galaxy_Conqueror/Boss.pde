@@ -1,7 +1,6 @@
 //this pde file was written by Floris Kuiper
-int globalBossTimer = 60;
+int globalBossTimer = 11500;
 int scoutDelay = 3000;
-boolean bossKilled = false;
 
 class BossBullet {
   int bossBulletX = -width;
@@ -245,7 +244,6 @@ class Boss {
 
     visuals.screenShake(200, 250, true);
     bossDied = true;
-    bossKilled = true;
     bgm.play();
   }
 

@@ -33,8 +33,6 @@ class GameOver {
       image(ach12, width/2, height/2 + 420, sAch, sAch);
       image(ach13, width/2+60, height/2 + 420, sAch, sAch);
       fill(0, 0, 0, 245);
-      //Hier onder wordt gechecked of de achievements zijn gehaald
-      //Zo niet dan wordt er een rect voor getekend
       if (killcount == 0) {
         rect(width/2-60, height/2+240, sAch, sAch);
       }
@@ -68,7 +66,7 @@ class GameOver {
       if (scoreObj.score > 0) {
         rect(width/2, height/2+420, sAch, sAch);
       }
-      if (!bossKilled) {
+      if (!boss.bossAlive) {
         rect(width/2+60, height/2+420, sAch, sAch);
       }
     }
