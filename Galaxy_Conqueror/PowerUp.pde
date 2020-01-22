@@ -21,8 +21,8 @@ class PowerUp {
   boolean isActivated;
 }
 void powerupSpawn(int counter) { //function that periodically spawns powerups
-  if (startGame) {
-    if (tutorial) {
+  if (startGame) {               //If game is started
+    if (tutorial) {              //If tutorial is completed
       if (startTime <= timer - 20000) {
         if (lastpower <= timer - random(5000, 10000)) {
           lastpower = timer;
@@ -84,12 +84,12 @@ void createPowerup(int powerType) {
 }
 
 int powerRecycle() {
-  for (int counter = 0; counter < MAX_POWERUPS; counter++) {
-    if (power[counter].isPicked == false) {
+  for (int counter = 0; counter < MAX_POWERUPS; counter++) {                   //Checks if there are any free slots for powerups
+    if (power[counter].isPicked == false) {                                    //If there are slots available
       return counter;
     }
   }
-  return -1;
+  return -1;                                                                   //If there are no slots available
 }
 
 int powerSelector() {                                                          //rolls for powerup
@@ -100,13 +100,13 @@ int powerSelector() {                                                          /
   if (firstDice >= 71 && firstDice <= 100) {                                   //If the first roll is 71 or higher, there will be new powerup
     int secondDice = (int)random(1, 100);                                      //The second dice roll decides the powerup
     {
-      if (secondDice >= 1 && secondDice <= 50) {
+      if (secondDice >= 1 && secondDice <= 50) {                               //When the second dice rolls between 1 and 50
         return 1;                                                              //Double points
       }
-      if (secondDice >= 51 && secondDice <= 90) {
+      if (secondDice >= 51 && secondDice <= 90) {                              //When the second dice rolls between 51 and 90
         return 2;                                                              //Speed
       }
-      if (secondDice >= 91 && secondDice <= 100) {
+      if (secondDice >= 91 && secondDice <= 100) {                             //When the second dice rolls between 90 and 100
         return 3;                                                              //Screenwipe
       }
     }
@@ -116,14 +116,14 @@ int powerSelector() {                                                          /
 
 void powerUpdate(int counter) {
 
-  if (power[counter].isPicked == true) {
-    power[counter].pY = power[counter].pY + power[counter].pV;
-    if (power[counter].pY == height + power[counter].pH) {
-      power[counter].isPicked = false;
-      resetPowerUp(counter);
-    }
+  if (power[counter].isPicked == true) {                                                         //If powerup slot is picked
+    power[counter].pY = power[counter].pY + power[counter].pV;                                   //Moves powerup
+    if (power[counter].pY == height + power[counter].pH) {                                       //If powerup reaches bottom of screen
+      power[counter].isPicked = false;                                                           //Powerup slot becomes available
+      resetPowerUp(counter);                                                                     //Resets variables of powerup
+    }                                                                                            //Collision check
     if (power[counter].pX > player.playerXposition - player.playerWidth / 2 && power[counter].pX < player.playerXposition + player.playerWidth / 2 && power[counter].pY > player.playerYposition - player.playerHeight / 2 && power[counter].pY < player.playerYposition + player.playerHeight / 2 && power[counter].isActivated == false) {
-      power[counter].isActivated = true;
+      power[counter].isActivated = true;                                                         //Activates powerup
       power[counter].pY = height * 2;
       power[counter].spawnTime = millis();                                                       //Sets timer whenever a powerup is activated
     }
@@ -133,7 +133,7 @@ void powerUpdate(int counter) {
           scoreMultiplier = 1;                                                                   //Reverts score multiplier
           power[counter].isActivated = false;                                                    //Deactivates powerup
           power[counter].isPicked = false;                                                       //Allows the slot of the powerup to be used again
-          resetPowerUp(counter);
+          resetPowerUp(counter);                                                                 //Resets variables of powerup
         } else {
           scoreMultiplier = 2;                                                                   //Changes score multiplier for double points
         }
@@ -144,7 +144,7 @@ void powerUpdate(int counter) {
           player.playerMaxVelocity = player.playerVelocityFactor * width;                        //Reverts player speed to original value
           power[counter].isActivated = false;                                                    //Deactivates powerup
           power[counter].isPicked = false;                                                       //Allows the slot of the powerup to be used again
-          resetPowerUp(counter);
+          resetPowerUp(counter);                                                                 //Resets variables of powerup
         } else {
           player.playerVelocityFactor = 0.008;                                                   //Increases speed of the player
           player.playerMaxVelocity = player.playerVelocityFactor * width;                        //Reverts player speed to original value
@@ -159,7 +159,7 @@ void powerUpdate(int counter) {
         }
         power[counter].isActivated = false;                                                      //Deactivates power
         power[counter].isPicked = false;                                                         //Allows the slot of the powerup to be used again
-        resetPowerUp(counter);
+        resetPowerUp(counter);                                                                   //Resets variables of powerup
       }
     }
   }
@@ -179,7 +179,7 @@ void drawPower(int counter) {                                                   
   }
 }
 
-void resetPowerUp(int count) {
+void resetPowerUp(int count) {                                                                   //Resets variables of powerup
   power[count].typePowerup = 0;
   power[count].pY = -50;
   power[count].pX = 0;
