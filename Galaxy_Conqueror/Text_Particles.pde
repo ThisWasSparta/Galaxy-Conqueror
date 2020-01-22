@@ -1,7 +1,7 @@
 class Text_Particles { //This class is about the score's text display when an enemy touches the bottom of the screen. It was written by Dylan Kleton
   int textTimer = 0;
-  boolean duringTextTimer;
-  final int SHOW_TEXT = 700;
+  boolean duringTextTimer; //This
+  final int SHOW_TEXT = 700; // Ammount of miliseconds the text is shown
 
   void drawText () //This method draws the text for the score decrease
   {

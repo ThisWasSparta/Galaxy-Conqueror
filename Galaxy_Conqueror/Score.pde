@@ -1,4 +1,4 @@
-//This code was written by Dylan Kleton
+//This class was written by Dylan Kleton
 
 
 class Score {
