@@ -1,5 +1,3 @@
-float soundVolume = 1;
-
 class Titel {
 
   // Main titel Stats
@@ -118,7 +116,7 @@ class Titel {
 
   float soundDigit;
   float soundBright;
-  int cTimer = 9;
+  int cTimer = 10;
   float achS = 40;
 
 
