@@ -2,94 +2,94 @@
 class Titel {
 
   // Main titel Stats
-  final int textSize = 70;          
-  final int textSizebut = 35;
-  final int titelX = width/2;
-  final int titelY = height/3;
+  //final int textSize = 70;          
+  //final int textSizebut = 35;
+  //final int titelX = width/2;
+  //final int titelY = height/3;
 
   //Start Button Stats
-  final int staButtonX = width/2;
-  final float staButtonY =  height/3 * 1.3;
-  final int staButtonW = 600;
-  final int staButtonH = 100;
-  final int staButtonWinn = 575;
-  final int staButtonHinn = 75;
+  //final int staButtonX = width/2;
+  //final float staButtonY =  height/3 * 1.3;
+  //final int staButtonW = 600;
+  //final int staButtonH = 100;
+  //final int staButtonWinn = 575;
+  //final int staButtonHinn = 75;
 
   //highscore Button Stats
-  final int hiButtonX = width/2;
-  final float hiButtonY =  height/3 * 1.7;
-  final int hiButtonW = 600;
-  final int hiButtonH = 100;
-  final int hiButtonWinn = 575;
-  final int hiButtonHinn = 75;
+  //final int hiButtonX = width/2;
+  //final float hiButtonY =  height/3 * 1.7;
+  //final int hiButtonW = 600;
+  //final int hiButtonH = 100;
+  //final int hiButtonWinn = 575;
+  //final int hiButtonHinn = 75;
 
   // Settings Button Stats
-  final int setButtonX = width/2;
-  final float setButtonY =  height/3 * 2.1;
-  final int setButtonW = 600;
-  final int setButtonH = 100;
-  final int setButtonWinn = 575;
-  final int setButtonHinn = 75;
+  //final int setButtonX = width/2;
+  //final float setButtonY =  height/3 * 2.1;
+  //final int setButtonW = 600;
+  //final int setButtonH = 100;
+  //final int setButtonWinn = 575;
+  //final int setButtonHinn = 75;
 
   // Quit Button Stats
-  final int qButtonX = width/2;
-  final float qButtonY =  height/3 * 2.5;
-  final int qButtonW = 600;
-  final int qButtonH = 100;
-  final int qButtonWinn = 575;
-  final int qButtonHinn = 75;
+  //final int qButtonX = width/2;
+  //final float qButtonY =  height/3 * 2.5;
+  //final int qButtonW = 600;
+  //final int qButtonH = 100;
+  //final int qButtonWinn = 575;
+  //final int qButtonHinn = 75;
 
   //SoundBar Stats
-  final int sBX = width/2;
-  final float sBY =  height/3 * 1.1;
-  final int sBW = 1010;
-  final int sBH = 20;
-  final int sBWinn = 1000;
-  final int sBHinn = 10;
+  //final int sBX = width/2;
+  //final float sBY =  height/3 * 1.1;
+  //final int sBW = 1010;
+  //final int sBH = 20;
+  //final int sBWinn = 1000;
+  //final int sBHinn = 10;
 
   //Soundslider Stats
-  int sSX = sBX + sBWinn/2;
-  final float sSY =  sBY;
-  final int sSW = 40;
-  final int sSH = 80;
-  final int sSWinn = 20;
-  final int sSHinn = 60;
+  //int sSX = sBX + sBWinn/2;
+  //final float sSY =  sBY;
+  //final int sSW = 40;
+  //final int sSH = 80;
+  //final int sSWinn = 20;
+  //final int sSHinn = 60;
 
   //BrightnessBar Stats
-  final int bBX = width/2;
-  final float bBY =  height/3 * 1.8;
-  final int bBW = 1010;
-  final int bBH = 20;
-  final int bBWinn = 1000;
-  final int bBHinn = 10;
+  //final int bBX = width/2;
+  //final float bBY =  height/3 * 1.8;
+  //final int bBW = 1010;
+  //final int bBH = 20;
+  //final int bBWinn = 1000;
+  //final int bBHinn = 10;
 
   //BrightnessSlider Stats
-  int bSX = bBX + bBWinn/2;
-  final float bSY =  bBY;
-  final int bSW = 40;
-  final int bSH = 80;
-  final int bSWinn = 20;
-  final int bSHinn = 60;
+  //int bSX = bBX + bBWinn/2;
+  //final float bSY =  bBY;
+  //final int bSW = 40;
+  //final int bSH = 80;
+  //final int bSWinn = 20;
+  //final int bSHinn = 60;
 
   //Back button Stats
-  final int bButtonX = width/2;
-  final float bButtonY =  height/3 * 2.3;
-  final int bButtonW = 600;
-  final int bButtonH = 100;
-  final int bButtonWinn = 575;
-  final int bButtonHinn = 75;
+  //final int bButtonX = width/2;
+  //final float bButtonY =  height/3 * 2.3;
+  //final int bButtonW = 600;
+  //final int bButtonH = 100;
+  //final int bButtonWinn = 575;
+  //final int bButtonHinn = 75;
 
   //Left Cursor Stats
-  final float lcX = staButtonX - 400;
-  final float lcY = staButtonY;
-  final float lcH = 20;
-  final float lcW = 80;
+  //final float lcX = staButtonX - 400;
+  //final float lcY = staButtonY;
+  //final float lcH = 20;
+  //final float lcW = 80;
 
   //Right Cursor Stats
-  final float rcX = staButtonX + 400;
-  final float rcY = staButtonY;
-  final float rcH = 20;
-  final float rcW = 80;
+  //final float rcX = staButtonX + 400;
+  //final float rcY = staButtonY;
+  //final float rcH = 20;
+  //final float rcW = 80;
 
   int countCursor = 0;
 
@@ -125,7 +125,7 @@ class Titel {
   void font() {
     PFont font;                                      //Selects font
     font = createFont("PressStart2P.ttf", 64);       //font
-    textFont(font);    
+    textFont(font);
   }
 
   void startScreen() {
@@ -135,58 +135,55 @@ class Titel {
       dbqueries.getHighScores = false;
       //Titel
       fill(255);
-      textSize(textSize);
+      textSize(titelvar.textSizeTitel);
       textAlign(CENTER);
-      text("Galaxy Conqueror", titelX, titelY);
+      text("Galaxy Conqueror", titelvar.titelX, titelvar.titelY);
 
       //Start button
       rectMode(CENTER);
       fill(255);
-      rect(staButtonX, staButtonY, staButtonW, staButtonH);
+      rect(titelvar.posX, titelvar.pos1Y, titelvar.buttonW, titelvar.buttonH);
       fill(0);
-      rect(staButtonX, staButtonY, staButtonWinn, staButtonHinn);
+      rect(titelvar.posX, titelvar.pos1Y, titelvar.buttonWinn, titelvar.buttonHinn);
       fill(255);
-      textSize(textSizebut);
-      text("Start", staButtonX, staButtonY + 20);
+      textSize(titelvar.textSizeButton);
+      text("Start", titelvar.posX, titelvar.pos1Y + titelvar.textButtonOffset);
 
       //Highscore button
       rectMode(CENTER);
       fill(255);
-      rect(hiButtonX, hiButtonY, hiButtonW, hiButtonH);
+      rect(titelvar.posX, titelvar.pos2Y, titelvar.buttonW, titelvar.buttonH);
       fill(0);
-      rect(hiButtonX, hiButtonY, hiButtonWinn, hiButtonHinn);
+      rect(titelvar.posX, titelvar.pos2Y, titelvar.buttonWinn, titelvar.buttonHinn);
       fill(255);
-      textSize(textSizebut);
-      text("Highscores", hiButtonX, hiButtonY + 20);
+      textSize(titelvar.textSizeButton);
+      text("Highscores", titelvar.posX, titelvar.pos2Y + titelvar.textButtonOffset);
 
       //Settings Button
       rectMode(CENTER);
       fill(255);
-      rect(setButtonX, setButtonY, setButtonW, setButtonH);
+      rect(titelvar.posX, titelvar.pos3Y, titelvar.buttonW, titelvar.buttonH);
       fill(0);
-      rect(setButtonX, setButtonY, setButtonWinn, setButtonHinn);
+      rect(titelvar.posX, titelvar.pos3Y, titelvar.buttonWinn, titelvar.buttonHinn);
       fill(255);
-      textSize(textSizebut);
-      text("Settings", setButtonX, setButtonY + 20);
+      textSize(titelvar.textSizeButton);
+      text("Settings", titelvar.posX, titelvar.pos3Y + titelvar.textButtonOffset);
 
       //Quit button
       rectMode(CENTER);
       fill(255);
-      rect(qButtonX, qButtonY, qButtonW, qButtonH);
+      rect(titelvar.posX, titelvar.pos4Y, titelvar.buttonW, titelvar.buttonH);
       fill(0);
-      rect(qButtonX, qButtonY, qButtonWinn, qButtonHinn);
+      rect(titelvar.posX, titelvar.pos4Y, titelvar.buttonWinn, titelvar.buttonHinn);
       fill(255);
-      textSize(textSizebut);
-      text("Quit", qButtonX, qButtonY + 20);
+      textSize(titelvar.textSizeButton);
+      text("Quit", titelvar.posX, titelvar.pos4Y + titelvar.textButtonOffset);
 
       //Cursor
       if (CursorStart) {
         rectMode(CENTER);
-        rect(lcX, staButtonY, lcW, lcH);
-        rect(rcX, staButtonY, rcW, rcH);
-        textSize(20);
-        textAlign(CENTER);
-        text("PRESS B", lcX - width * 0.1, staButtonY);
+        rect(titelvar.posX - titelvar.cursorOffset, titelvar.pos1Y, titelvar.cursorW, titelvar.cursorH);
+        rect(titelvar.posX + titelvar.cursorOffset, titelvar.pos1Y, titelvar.cursorW, titelvar.cursorH);
         if (keyPressed) {
           if (player.isShooting) {
             StartGame = false;
@@ -209,11 +206,8 @@ class Titel {
         }
       } else if (CursorHigh) {
         rectMode(CENTER);
-        rect(lcX, hiButtonY, lcW, lcH);
-        rect(rcX, hiButtonY, rcW, rcH);
-        textSize(20);
-        textAlign(CENTER);
-        text("PRESS B", lcX - width * 0.1, hiButtonY);
+        rect(titelvar.posX - titelvar.cursorOffset, titelvar.pos2Y, titelvar.cursorW, titelvar.cursorH);
+        rect(titelvar.posX + titelvar.cursorOffset, titelvar.pos2Y, titelvar.cursorW, titelvar.cursorH);
         if (keyPressed) {
           if (player.isShooting) {
             countCursor ++;
@@ -242,11 +236,8 @@ class Titel {
         }
       } else if (CursorSetting) {
         rectMode(CENTER);
-        rect(lcX, setButtonY, lcW, lcH);
-        rect(rcX, setButtonY, rcW, rcH);
-        textSize(20);
-        textAlign(CENTER);
-        text("PRESS B", lcX - width * 0.1, setButtonY);
+        rect(titelvar.posX - titelvar.cursorOffset, titelvar.pos3Y, titelvar.cursorW, titelvar.cursorH);
+        rect(titelvar.posX + titelvar.cursorOffset, titelvar.pos3Y, titelvar.cursorW, titelvar.cursorH);
         if (keyPressed) {
           if (player.isShooting) {
             countCursor ++;
@@ -275,11 +266,8 @@ class Titel {
         }
       } else if (CursorQuit) {
         rectMode(CENTER);
-        rect(lcX, qButtonY, lcW, lcH);
-        rect(rcX, qButtonY, rcW, rcH);
-        textSize(20);
-        textAlign(CENTER);
-        text("PRESS B", lcX - width * 0.1, qButtonY);
+        rect(titelvar.posX - titelvar.cursorOffset, titelvar.pos4Y, titelvar.cursorW, titelvar.cursorH);
+        rect(titelvar.posX + titelvar.cursorOffset, titelvar.pos4Y, titelvar.cursorW, titelvar.cursorH);
         if (keyPressed) {
           if (player.isShooting) {
             exit();

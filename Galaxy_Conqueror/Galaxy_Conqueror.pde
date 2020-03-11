@@ -81,6 +81,7 @@ Obstakel obstakel;                                //Dit is de meteoriet
 SpaceShip player;                                 //Dit is de player
 BackgroundStars Star;
 Titel titel;
+TitelVar titelvar;
 Score scoreObj;
 Variable variables;
 Controls controls;
@@ -132,6 +133,7 @@ void setup() {
   obstakel = new Obstakel();
   initializeEnemyArrays();
   titel = new Titel();
+  titelvar = new TitelVar();
   variables = new Variable();
   controls = new Controls();
   Star = new BackgroundStars();
