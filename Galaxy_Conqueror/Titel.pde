@@ -286,7 +286,7 @@ class Titel {
       fill(0);
       rect(width/2, height/2-100, 690, 690);
       fill(255);
-      textSize(textSizebut);
+      textSize(titelvar.textSizeButton);
       textAlign(CENTER);
       text("Highscores", width/2, 160);
       highscore.DisplayHighScore();
@@ -295,27 +295,27 @@ class Titel {
       //Back button
       rectMode(CENTER);
       fill(255);
-      rect(qButtonX+bButtonW/4+20, qButtonY, bButtonW/2+5, bButtonH);
+      rect(titelvar.posX+titelvar.buttonW/4+20, titelvar.pos4Y, titelvar.buttonW/2+5, titelvar.buttonH);
       fill(0);
-      rect(qButtonX+bButtonW/4+20, qButtonY, bButtonWinn/2, bButtonHinn);
+      rect(titelvar.posX+titelvar.buttonW/4+20, titelvar.pos4Y, titelvar.buttonWinn/2, titelvar.buttonHinn);
       fill(255);
       textSize(20);
-      text("Back", qButtonX+bButtonW/4+20, qButtonY + 10);
+      text("Back", titelvar.posX+titelvar.buttonW/4+20, titelvar.pos4Y + 10);
 
       //Achievement button
       rectMode(CENTER);
       fill(255);
-      rect(qButtonX-bButtonW/4-20, qButtonY, bButtonW/2+5, bButtonH);
+      rect(titelvar.posX-titelvar.buttonW/4-20, titelvar.pos4Y, titelvar.buttonW/2+5, titelvar.buttonH);
       fill(0);
-      rect(qButtonX-bButtonW/4-20, qButtonY, bButtonWinn/2, bButtonHinn);
+      rect(titelvar.posX-titelvar.buttonW/4-20, titelvar.pos4Y, titelvar.buttonWinn/2, titelvar.buttonHinn);
       fill(255);
       textSize(20);
-      text("Achievements", qButtonX-bButtonW/4-20, qButtonY + 10);
+      text("Achievements", titelvar.posX-titelvar.buttonW/4-20, titelvar.pos4Y + 10);
 
       //Cursor
       if (CursorAch) {
         rectMode(CENTER);
-        rect(qButtonX-bButtonW/4-20, qButtonY+80, 200, 20);
+        rect(titelvar.posX-titelvar.buttonW/4-20, titelvar.pos4Y+80, 200, 20);
         if (player.nextWeapon) {
           countCursor ++;
           if (countCursor >= cTimer) {
@@ -343,7 +343,7 @@ class Titel {
       }
       if (CursorHighBack) {
         rectMode(CENTER);
-        rect(qButtonX+bButtonW/4+20, qButtonY+80, 200, 20);
+        rect(titelvar.posX+titelvar.buttonW/4+20, titelvar.pos4Y+80, 200, 20);
         if (player.nextWeapon) {
           countCursor ++;
           if (countCursor >= cTimer) {
@@ -379,7 +379,7 @@ class Titel {
       fill(0);
       rect(width/2, height/2-60, 1490, 840);
       fill(255);
-      textSize(textSizebut);
+      textSize(titelvar.textSizeButton);
       textAlign(CENTER);
       text("Achievements", width/2, 110);
       image(ach1, width/2-650, 150, achS, achS);
@@ -401,15 +401,15 @@ class Titel {
       //Back button
       rectMode(CENTER);
       fill(255);
-      rect(qButtonX, qButtonY+100, bButtonW, bButtonH);
+      rect(titelvar.posX, titelvar.pos4Y+100, titelvar.buttonW, titelvar.buttonH);
       fill(0);
-      rect(qButtonX, qButtonY+100, bButtonWinn, bButtonHinn);
+      rect(titelvar.posX, titelvar.pos4Y, titelvar.buttonWinn, titelvar.buttonHinn);
       fill(255);
       textSize(20);
       textAlign(CENTER);
-      text("Back", qButtonX, qButtonY + 110);
-      rect(lcX, qButtonY+100, lcW, lcH);
-      rect(rcX, qButtonY+100, rcW, rcH);
+      text("Back", titelvar.posX, titelvar.pos4Y + 110);
+      rect(titelvar.posX - titelvar.cursorOffset, titelvar.pos4Y+100, titelvar.cursorW, titelvar.cursorH);
+      rect(titelvar.posX + titelvar.cursorOffset, titelvar.pos4Y+100, titelvar.cursorW, titelvar.cursorH);
 
       if (player.nextWeapon) {
         countCursor ++;
@@ -430,17 +430,17 @@ class Titel {
     } else if (SettingGame) {
       bgm.mute();
 
-      float sSx = constrain(sSX, sBX-sBWinn/2, sBX+sBWinn/2);
-      float bSx = constrain(bSX, bBX-bBWinn/2, bBX+bBWinn/2);
+      float sSx = constrain(titelvar.sliderX, titelvar.sliderX-titelvar.barWinn/2, titelvar.sliderX+titelvar.barWinn/2);
+      float bSx = constrain(titelvar.sliderX, titelvar.sliderX-titelvar.barWinn/2, titelvar.sliderX+titelvar.barWinn/2);
 
-      float soundDigit = int(dist(sBX - sBW/2, sBY, sSX, sSY)/10);
+      float soundDigit = int(dist(titelvar.posX - titelvar.barW/2, titelvar.pos1Y, sSx, titelvar.pos1Y)/10);
       if (soundDigit > 100) {
         soundDigit = 100;
       }
 
       float soundVolume = soundDigit / 100;
 
-      float brightDigit = int(dist(bBX - bBW/2, bBY, bSX, bSY)/10);
+      float brightDigit = int(dist(titelvar.posX - titelvar.barW/2, titelvar.pos2Y, bSx, titelvar.pos1Y)/10);
       if (brightDigit > 100) {
         brightDigit = 100;
       }
@@ -448,12 +448,12 @@ class Titel {
       //Soundbar
       rectMode(CENTER);
       fill(255);
-      rect(sBX, sBY, sBW, sBH);
+      rect(titelvar.posX, titelvar.pos1Y, titelvar.barW, titelvar.barH);
       fill(0);
-      rect(sBX, sBY, sBWinn, sBHinn);
+      rect(titelvar.posX, titelvar.pos1Y, titelvar.barWinn, titelvar.barHinn);
       fill(255);
-      textSize(textSizebut);
-      text("Sound level", sBX, sBY - 80);
+      textSize(titelvar.textSizeButton);
+      text("Sound level", titelvar.posX, titelvar.pos1Y - 80);
 
       //Soundslider
       rectMode(CENTER);

@@ -21,9 +21,15 @@ class TitelVar {
   float textSizeTitel = 70;
   float textSizeButton = 35;
   float textButtonOffset = 20;
-  //Unique values
+  //Unique values Highscore
   float hiW = 700;
   float hiH = 700;
   float hiWinn = 690;
   float hiHinn = 690;
+  //Unique values Settings
+  final int barW = 1010;
+  final int barH = 20;
+  final int barWinn = 1000;
+  final int barHinn = 10;
+  float sliderX = posX + barWinn;
 }
