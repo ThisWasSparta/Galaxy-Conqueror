@@ -382,34 +382,34 @@ class Titel {
       textSize(titelvar.textSizeButton);
       textAlign(CENTER);
       text("Achievements", width/2, 110);
-      image(ach1, width/2-650, 150, achS, achS);
-      image(ach2, width/2-650, 214, achS, achS);
-      image(ach3, width/2-650, 278, achS, achS);
-      image(ach4, width/2-650, 342, achS, achS);
-      image(ach5, width/2-650, 406, achS, achS);
-      image(ach6, width/2-650, 470, achS, achS);
-      image(ach7, width/2-650, 534, achS, achS);
-      image(ach8, width/2-650, 598, achS, achS);
-      image(ach9, width/2-650, 662, achS, achS);
-      image(ach10, width/2-650, 726, achS, achS);
+      image(ach1, width/2-650, 300, achS, achS);
+      image(ach2, width/2-650, 364, achS, achS);
+      image(ach3, width/2-650, 428, achS, achS);
+      image(ach4, width/2-650, 492, achS, achS);
+      image(ach5, width/2-650, 556, achS, achS);
+      image(ach6, width/2-650, 620, achS, achS);
+      image(ach7, width/2-650, 684, achS, achS);
+      image(ach8, width/2-650, 748, achS, achS);
+      image(ach9, width/2-650, 812, achS, achS);
+      image(ach10, width/2-650, 876, achS, achS);
       //image(ach11,width/2-650,918,30,30);
-      image(ach12, width/2-650, 790, achS, achS);
-      image(ach13, width/2-650, 854, achS, achS);
+      image(ach12, width/2-650, 940, achS, achS);
+      image(ach13, width/2-650, 1004, achS, achS);
       achievements.DisplayAch();
 
 
       //Back button
       rectMode(CENTER);
       fill(255);
-      rect(titelvar.posX, titelvar.pos4Y+100, titelvar.buttonW, titelvar.buttonH);
+      rect(titelvar.posX, titelvar.pos4Y, titelvar.buttonW, titelvar.buttonH);
       fill(0);
       rect(titelvar.posX, titelvar.pos4Y, titelvar.buttonWinn, titelvar.buttonHinn);
       fill(255);
       textSize(20);
       textAlign(CENTER);
-      text("Back", titelvar.posX, titelvar.pos4Y + 110);
-      rect(titelvar.posX - titelvar.cursorOffset, titelvar.pos4Y+100, titelvar.cursorW, titelvar.cursorH);
-      rect(titelvar.posX + titelvar.cursorOffset, titelvar.pos4Y+100, titelvar.cursorW, titelvar.cursorH);
+      text("Back", titelvar.posX, titelvar.pos4Y + 10);
+      rect(titelvar.posX - titelvar.cursorOffset, titelvar.pos4Y, titelvar.cursorW, titelvar.cursorH);
+      rect(titelvar.posX + titelvar.cursorOffset, titelvar.pos4Y, titelvar.cursorW, titelvar.cursorH);
 
       if (player.nextWeapon) {
         countCursor ++;
@@ -430,17 +430,17 @@ class Titel {
     } else if (SettingGame) {
       bgm.mute();
 
-      float sSx = constrain(titelvar.sliderX, titelvar.sliderX-titelvar.barWinn/2, titelvar.sliderX+titelvar.barWinn/2);
-      float bSx = constrain(titelvar.sliderX, titelvar.sliderX-titelvar.barWinn/2, titelvar.sliderX+titelvar.barWinn/2);
+      //float sSx = constrain(titelvar.sliderX, titelvar.sliderX-titelvar.barWinn/2, titelvar.sliderX+titelvar.barWinn/2);
+      //float bSx = constrain(titelvar.sliderX, titelvar.sliderX-titelvar.barWinn/2, titelvar.sliderX+titelvar.barWinn/2);
 
-      float soundDigit = int(dist(titelvar.posX - titelvar.barW/2, titelvar.pos1Y, sSx, titelvar.pos1Y)/10);
+      float soundDigit = int(dist(titelvar.posX - titelvar.barW/2, titelvar.pos1Y, titelvar.sliderSoundX, titelvar.pos1Y)/10);
       if (soundDigit > 100) {
         soundDigit = 100;
       }
 
       float soundVolume = soundDigit / 100;
 
-      float brightDigit = int(dist(titelvar.posX - titelvar.barW/2, titelvar.pos2Y, bSx, titelvar.pos1Y)/10);
+      float brightDigit = int(dist(titelvar.posX - titelvar.barW/2, titelvar.pos2Y, titelvar.sliderBrightX, titelvar.pos2Y)/10);
       if (brightDigit > 100) {
         brightDigit = 100;
       }
@@ -458,49 +458,49 @@ class Titel {
       //Soundslider
       rectMode(CENTER);
       fill(255);
-      rect(sSx, sSY, sSW, sSH);
+      rect(titelvar.sliderSoundX, titelvar.pos1Y, titelvar.sliderW, titelvar.sliderH);
       fill(0);
-      rect(sSx, sSY, sSWinn, sSHinn);
+      rect(titelvar.sliderSoundX, titelvar.pos1Y, titelvar.sliderWinn, titelvar.sliderHinn);
       fill(255);
-      textSize(textSizebut);
-      text(int(soundDigit), sSX, sSY + 80);
+      textSize(titelvar.textSizeButton);
+      text(int(soundDigit), titelvar.sliderSoundX, titelvar.pos1Y + 80);
 
       //Brightnessbar
       rectMode(CENTER);
       fill(255);
-      rect(bBX, bBY, bBW, bBH);
+      rect(titelvar.posX, titelvar.pos2Y, titelvar.barW, titelvar.barH);
       fill(0);
-      rect(bBX, bBY, bBWinn, bBHinn);
+      rect(titelvar.posX, titelvar.pos2Y, titelvar.barWinn, titelvar.barHinn);
       fill(255);
-      textSize(textSizebut);
-      text("Brightness", bBX, bBY - 80);
+      textSize(titelvar.textSizeButton);
+      text("Brightness", titelvar.posX, titelvar.pos2Y - 80);
 
       //Brightnessslider
       rectMode(CENTER);
       fill(255);
-      rect(bSx, bSY, bSW, bSH);
+      rect(titelvar.sliderBrightX, titelvar.pos2Y, titelvar.sliderW, titelvar.sliderH);
       fill(0);
-      rect(bSx, bSY, bSWinn, bSHinn);
+      rect(titelvar.sliderBrightX, titelvar.pos2Y, titelvar.sliderWinn, titelvar.sliderHinn);
       fill(255);
-      textSize(textSizebut);
-      text(int(brightDigit), bSX, bSY + 80);
+      textSize(titelvar.textSizeButton);
+      text(int(brightDigit), titelvar.sliderBrightX, titelvar.pos2Y + 80);
 
 
       //Back button
       rectMode(CENTER);
       fill(255);
-      rect(bButtonX, bButtonY, bButtonW, bButtonH);
+      rect(titelvar.posX, titelvar.pos4Y, titelvar.buttonW, titelvar.buttonH);
       fill(0);
-      rect(bButtonX, bButtonY, bButtonWinn, bButtonHinn);
+      rect(titelvar.posX, titelvar.pos4Y, titelvar.buttonWinn, titelvar.buttonHinn);
       fill(255);
-      textSize(textSizebut);
-      text("Back", bButtonX, bButtonY + 20);
+      textSize(titelvar.textSizeButton);
+      text("Back", titelvar.posX, titelvar.pos4Y + 20);
 
       //Cursor
       if (CursorSound) {
         rectMode(CENTER);
-        rect(sBX - sBW/2 - 70, sBY, lcW, lcH);
-        rect(sBX + sBW/2 + 70, sBY, rcW, rcH);    
+        rect(titelvar.posX - titelvar.barW/2 - 70, titelvar.pos1Y, titelvar.cursorW, titelvar.cursorH);
+        rect(titelvar.posX + titelvar.barW/2 + 70, titelvar.pos1Y, titelvar.cursorW, titelvar.cursorH);    
         if (keyPressed) {
           if (player.nextWeapon) {
             countCursor ++;
@@ -511,9 +511,9 @@ class Titel {
             }
           }
           if (player.goLeft) {
-            sSX -= 10;
+            titelvar.sliderSoundX -= 10;
           } else if (player.goRight) {
-            sSX += 10;
+            titelvar.sliderSoundX += 10;
           }
           if (player.goDown) {
             countCursor ++;
@@ -521,20 +521,20 @@ class Titel {
             CursorBright = true;
           }
         }
-        if (sSX > sBX + sBW/2) {
-          sSX = sBX + sBW/2;
-        } else if (sSX < sBX - sBW/2) {
-          sSX = sBX - sBW/2;
+        if (titelvar.sliderSoundX > titelvar.posX + titelvar.barW/2) {
+          titelvar.sliderSoundX = titelvar.posX + titelvar.barW/2;
+        } else if (titelvar.sliderSoundX < titelvar.posX - titelvar.barW/2) {
+          titelvar.sliderSoundX = titelvar.posX - titelvar.barW/2;
         }
       } else if (CursorBright) {
         rectMode(CENTER);
-        rect(sBX - sBW/2 - 70, bBY, lcW, lcH);
-        rect(sBX + sBW/2 + 70, bBY, rcW, rcH);
+        rect(titelvar.posX - titelvar.barW/2 - 70, titelvar.pos2Y, titelvar.cursorW, titelvar.cursorH);
+        rect(titelvar.posX + titelvar.barW/2 + 70, titelvar.pos2Y, titelvar.cursorW, titelvar.cursorH);
         if (keyPressed) {
           if (player.goLeft) {
-            bSX -= 10;
+            titelvar.sliderBrightX -= 10;
           } else if (player.goRight) {
-            bSX += 10;
+            titelvar.sliderBrightX += 10;
           }
           if (player.goDown) {
             countCursor ++;
@@ -552,15 +552,15 @@ class Titel {
             }
           }
         }
-        if (bSX > bBX + bBW/2) {
-          bSX = bBX + bBW/2;
-        } else if (bSX < bBX - bBW/2) {
-          bSX = bBX - bBW/2;
+        if (titelvar.sliderBrightX > titelvar.posX + titelvar.barW/2) {
+          titelvar.sliderBrightX = titelvar.posX + titelvar.barW/2;
+        } else if (titelvar.sliderBrightX < titelvar.posX - titelvar.barW/2) {
+          titelvar.sliderBrightX = titelvar.posX - titelvar.barW/2;
         }
       } else if (CursorBack) {
         rectMode(CENTER);
-        rect(lcX, bButtonY, lcW, lcH);
-        rect(rcX, bButtonY, rcW, rcH);
+        rect(titelvar.posX - titelvar.cursorOffset, titelvar.pos4Y, titelvar.cursorW, titelvar.cursorH);
+        rect(titelvar.posX + titelvar.cursorOffset, titelvar.pos4Y, titelvar.cursorW, titelvar.cursorH);
         if (player.isShooting) {
           SettingGame = false;
           StartGame = true;
@@ -577,7 +577,7 @@ class Titel {
     }
   }
   void bright() {
-    float bright = dist(bBX+bBW/2, bBY, bSX, bSY)/4.2;
+    float bright = dist(titelvar.posX+titelvar.barW/2, titelvar.pos2Y, titelvar.sliderBrightX, titelvar.pos2Y)/4.2;
     fill(0, 0, 0, bright);
     rectMode(CENTER);
     rect(width/2, height/2, width, height);

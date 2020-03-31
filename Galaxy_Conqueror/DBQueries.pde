@@ -15,7 +15,7 @@ class DBQueries {
   String nameAch;
   String descAch;
   int i;
-  float textStartPosition = 300;
+  float textStartPosition = 400;
   float Distance = 50;
   float DistanceAch = 64;
 
@@ -86,6 +86,6 @@ void GetAch() {
     }
     textSize(25);
     textAlign(LEFT);
-    text(dbqueries.namesAch[i] + " - " + dbqueries.descsAch[i], width/2-600, dbqueries.textStartPosition-135+i*dbqueries.DistanceAch);
+    text(dbqueries.namesAch[i] + " - " + dbqueries.descsAch[i], width/2-600, dbqueries.textStartPosition-80+i*dbqueries.DistanceAch);
   }
 }

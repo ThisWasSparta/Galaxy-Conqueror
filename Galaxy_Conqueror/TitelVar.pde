@@ -31,5 +31,10 @@ class TitelVar {
   final int barH = 20;
   final int barWinn = 1000;
   final int barHinn = 10;
-  float sliderX = posX + barWinn;
+  float sliderSoundX = posX + barWinn/2;
+  float sliderBrightX = posX + barWinn/2;
+  float sliderW = 40;
+  float sliderH = 80;
+  float sliderWinn = 20;
+  float sliderHinn = 60;
 }
